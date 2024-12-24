@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This frontmatter division will contain all content before the -->
+<!-- first chapter. Fill in and comment/uncomment to see how this -->
+<!-- works. -->
+<frontmatter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="frontmatter">
+  <titlepage>
+    <author>
+      <personname>Allaoua Boughrira, Hellen Colman, Samuel Lubliner</personname>
+      <department>Math Department</department>
+      <institution>City Colleges of Chicago</institution>
+    </author>
+    <date>
+      <today />
+    </date>
+  </titlepage>
+  <preface>
+    <p>
+      PLACEHOLDER
+    </p>
+    <attribution>
+      <line>Hellen Colman</line>
+      <line>Chicago, January 2025</line>
+    </attribution>
+  </preface>
+
+  <acknowledgement>
+    <p> We would like to acknowledge the following peer-reviewers: <ul>
+        <li>
+          <p>
+            [Name], [Affiliation]
+          </p>
+        </li>
+      </ul>
+    </p>
+
+    <p> We would like to acknowledge the following proof-readers: <ul>
+        <li>
+          <p>
+            [Name], [Affiliation]
+          </p>
+        </li>
+      </ul>
+    </p>
+  </acknowledgement>
+
+  <preface>
+    <title>From the Student Authors</title>
+    <p>
+      PLACEHOLDER
+    </p>
+
+    <p>
+      <em>Allaoua Boughrira and Samuel Lubliner</em>
+    </p>
+  </preface>
+
+  <preface xml:id="authors">
+    <title>Authors and Contributors</title>
+    <contributors>
+      <contributor xml:id="ab">
+        <personname>Allaoua Boughrira</personname>
+        <department>Mathematics</department>
+        <institution>Wright College</institution>
+        <email>a.boughrira@gmail.com</email>
+      </contributor>
+
+      <contributor xml:id="hc">
+        <personname>Hellen Colman</personname>
+        <department>Math Department</department>
+        <institution>Wright College</institution>
+        <email>hcolman@ccc.edu</email>
+      </contributor>
+
+      <contributor xml:id="sl">
+        <personname>Samuel Lubliner</personname>
+        <department>Computer Science</department>
+        <institution>Wright College</institution>
+        <email>sage.oer@gmail.com</email>
+      </contributor>
+    </contributors>
+  </preface>
+
+  <colophon>
+    <p>
+      <m>\textbf{PDF Download}:</m> This book is available for free download in PDF format by
+      clicking <url href="https://github.com/SageMathOER-CCC/linear-algebra-with-sage/blob/release/output/print/manuscript.pdf"> here</url>.
+    </p>
+
+    <website>
+      <url href="https://github.com/SageMathOER-CCC/linear-algebra-with-sage">GitHub Repository</url>
+    </website>
+
+    <copyright>
+      <year>2025</year>
+      <holder>Allaoua Boughrira, Hellen Colman, Samuel Lubliner</holder>
+      <shortlicense> This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+        International License. To view a copy of this license, visit <url
+          href="http://creativecommons.org/licenses/by-sa/4.0/"
+          visual="creativecommons.org/licenses/by-sa/4.0"> CreativeCommons.org</url>
+      </shortlicense>
+    </copyright>
+  </colophon>
+</frontmatter>

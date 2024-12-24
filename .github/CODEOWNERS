@@ -1,0 +1,6 @@
+# Default owners for the entire repository
+* @linearalgebrateam
+
+# Owners for a specific branches
+# Pull requests to the 'main' branch will request review from
+main @linearalgebrateam
