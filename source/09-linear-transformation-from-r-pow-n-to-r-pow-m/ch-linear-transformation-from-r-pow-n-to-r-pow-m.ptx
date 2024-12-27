@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-linear-transformation-from-r-pow-n-to-r-pow-m" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Linear Transformation From R Pow N to R Pow M</title>
+
+    <introduction>
+        <p>
+            PLACEHOLDER.
+        </p>
+    </introduction>
+
+    <!-- include sections -->
+    <!-- <xi:include href="sec-placeholder.ptx" /> -->
+</chapter>

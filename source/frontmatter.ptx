@@ -81,17 +81,12 @@
   </preface>
 
   <colophon>
-    <p>
-      <m>\textbf{PDF Download}:</m> This book is available for free download in PDF format by
-      clicking <url href="https://github.com/SageMathOER-CCC/linear-algebra-with-sage/blob/release/output/print/manuscript.pdf"> here</url>.
-    </p>
-
     <website>
       <url href="https://github.com/SageMathOER-CCC/linear-algebra-with-sage">GitHub Repository</url>
     </website>
 
     <copyright>
-      <year>2025</year>
+      <year>2024<ndash/>2025</year>
       <holder>Allaoua Boughrira, Hellen Colman, Samuel Lubliner</holder>
       <shortlicense> This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
         International License. To view a copy of this license, visit <url
