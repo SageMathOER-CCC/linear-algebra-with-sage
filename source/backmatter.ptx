@@ -15,30 +15,38 @@
   <references xml:id="refs">
     <introduction>
       <p>
-        Most of the content in this book is based on the Linear Algebra lectures taught by Professor Hellen Colman at Wilbur Wright College. We focused our efforts on creating original work, and we drew inspiration from the following sources:
+        Most of the content in this book is based on the Linear Algebra lectures taught by Professor
+        Hellen Colman at Wilbur Wright College. We focused our efforts on creating original work,
+        and we drew inspiration from the following sources:
       </p>
     </introduction>
-    <biblio>
-      Kuttler, K. A first course in linear algebra. Mathematics LibreTexts. <url href="https://math.libretexts.org/Bookshelves/Linear_Algebra/A_First_Course_in_Linear_Algebra_(Kuttler)?readerView"/>, 17 Sept 2022.
+    <biblio> Kuttler, K. A first course in linear algebra. Mathematics LibreTexts. <url
+        href="https://math.libretexts.org/Bookshelves/Linear_Algebra/A_First_Course_in_Linear_Algebra_(Kuttler)?readerView" />,
+      17 Sept 2022. </biblio>
+
+    <biblio> SageMath, the Sage Mathematics Software System (Version 10.2), The Sage Developers,
+      2024, <url href="https://www.sagemath.org." />
     </biblio>
 
-    <biblio>
-      SageMath, the Sage Mathematics Software System (Version 10.2), The Sage Developers, 2024,  <url href="https://www.sagemath.org." />
-    </biblio>
+    <biblio> Beezer, Robert A., et al. The PreTeXt Guide. Pretextbook.org, 2024, <url
+        href="https://pretextbook.org/doc/guide/html/guide-toc.html" />. </biblio>
 
     <biblio>
-      Beezer, Robert A., et al. The PreTeXt Guide. Pretextbook.org, 2024, <url href="https://pretextbook.org/doc/guide/html/guide-toc.html" />.
-    </biblio>
-
-    <biblio>
-      Zimmermann, Paul. Computational Mathematics with SageMath. Society For Industrial And Applied Mathematics, 2019.
-    </biblio>
+      Zimmermann, Paul. Computational Mathematics with SageMath. Society For Industrial And Applied
+      Mathematics, 2019. </biblio>
   </references>
 
   <colophon>
-    <p> This book was authored in <pretext />. </p>
+    <p>
+      <m>\textbf{PDF Download}:</m> This book was authored in <pretext /> and is available for free
+      download in PDF format by clicking <url
+        href="https://github.com/SageMathOER-CCC/linear-algebra-with-sage/blob/release/output/print/manuscript.pdf">
+      here</url>.</p>
   </colophon>
 
-  <index> <title>Index</title> <index-list/> </index>
+  <index>
+    <title>Index</title>
+    <index-list />
+  </index>
 
 </backmatter>
