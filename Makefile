@@ -23,9 +23,9 @@ pdf:
 view:
 	pretext view
 
-# upgrade pretext to latest version
+# upgrade pretext to latest version & update the requirements.txt file
 update:
-	pretext upgrade
+	pretext upgrade && pretext init --refresh
 
 # Display help dynamically
 help:
