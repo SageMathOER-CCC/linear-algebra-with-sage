@@ -1,0 +1,95 @@
+<section xml:id="sec-solving-equations" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Solving Equations</title>
+    <p>
+         Before we learn how to solve a system of equations, we will solve a single equation. There are multiple ways to solve equations in Sage. The <c>solve</c> function algebraically solves an equation, system of equations, or inequality. Sage uses Maxima by default and can also be set to use SymPy. The first input is the equation followed by the variables to solve for. You can see the additional options with <c>solve?</c> Before solving the equation, start by creating symbolic variables.
+    </p>
+    <sage>
+        <input>
+            solve(8 + x == 5, x)
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        We can also visualize the solution to the equation.
+    </p>
+    <sage>
+        <input>
+            var('x')
+            solution = solve(8 + x == 5, x)
+            solution_x = solution[0].rhs()
+            solution_y = 5
+
+            p = plot(8 + x, (x, -10, 10), color='blue')
+            p += point((solution_x, solution_y), color='red', size=50)
+            show(p)
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        Now let's solve a system of equations. The first input is the list of equations followed by the variables to solve for.
+    </p>
+    <sage>
+        <input>
+            var('x y')
+            eq1 = 2*x + 3*y == 4
+            eq2 = 5*x - 6*y == 7
+            solve([eq1, eq2], x, y)
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        Let's visualize the solution to the system of equations. We can plot each equation and see where they intersect.
+    </p>
+    <sage>
+        <input>
+            solution = solve([eq1, eq2], x, y, solution_dict=True)
+            sol_x = solution[0][x]
+            sol_y = solution[0][y]
+
+            p1 = implicit_plot(eq1, (x, -2, 5), (y, -4, 4), color='blue')
+            p2 = implicit_plot(eq2, (x, -2, 5), (y, -4, 4), color='red')
+
+            point_solution = point((sol_x, sol_y), color='green', size=50, legend_label=f'Solution: ({sol_x}, {sol_y})')
+
+            show(p1 + p2 + point_solution, axes=True)
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        Now lets solve for a systems of three equations with three variables. We will use the <c>solve</c> function again.
+    </p>
+        <sage>
+            <input>
+                x, y, z = SR.var('x y z')
+                a, b, c = [
+                    y + z == 2,
+                    x - y - z == 0,
+                    2*x - 5 + z == 6,
+                ]
+
+                # Define the plotting range:
+                xx = (x, -1000, 1000)
+                yy = (y, -1000, 1000)
+                zz = (z, -1000, 1000)
+
+                pa = implicit_plot3d(a, xx, yy, zz, color='blue')
+                pb = implicit_plot3d(b, xx, yy, zz, color='red')
+                pc = implicit_plot3d(c, xx, yy, zz, color='green')
+                p = pa + pb + pc
+
+                p.show()
+
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+</section>
