@@ -5,28 +5,50 @@
     </p>
     <sage>
         <input>
-            solve(8 + x == 5, x)
+        # Create symbolic variable
+        var('x')
+        # Solve for x
+        solution_x = solve(8 + x == 5, x)
+        show(solution_x)
         </input>
         <output>
-            
+
         </output>
     </sage>
     <p>
-        We can also visualize the solution to the equation.
+        Since the solution is given in a list, we can access the solution by indexing the list with square brackets. The <c>rhs()</c> function returns the right-hand side of the equation.
     </p>
     <sage>
         <input>
-            var('x')
-            solution = solve(8 + x == 5, x)
-            solution_x = solution[0].rhs()
-            solution_y = 5
-
-            p = plot(8 + x, (x, -10, 10), color='blue')
-            p += point((solution_x, solution_y), color='red', size=50)
-            show(p)
+        solution = solve(8 + x == 5, x)
+        solution_x = solution[0].rhs()
+        show(solution_x)
         </input>
         <output>
-            
+
+        </output>
+    </sage>
+    <p>
+        We can also visualize the solution to the equation by plotting each side of the equation and finding the point of intersection.
+    </p>
+    <sage>
+        <input>
+            f(x) = 8 + x
+
+            offset = 0.1
+
+            # Dynamically determine x-range
+            x_min, x_max = solution_x - offset, solution_x + offset
+
+            p = plot(f, (x, x_min, x_max), color='blue')
+
+            # Vertical dashed line at solution_x
+            p += line([(solution_x, f(x_min)), (solution_x, f(x_max))], color='red', linestyle="dashed")
+
+            show(p, axes=True, gridlines=True)
+        </input>
+        <output>
+
         </output>
     </sage>
     <p>
@@ -44,13 +66,24 @@
         </output>
     </sage>
     <p>
+       Dicitonary syntax is more convenient for accessing specific variables and their values.
+    </p>
+    <sage>
+        <input>
+            solve([eq1, eq2], x, y, solution_dict=True)
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
         Let's visualize the solution to the system of equations. We can plot each equation and see where they intersect.
     </p>
     <sage>
         <input>
             solution = solve([eq1, eq2], x, y, solution_dict=True)
-            sol_x = solution[0][x]
-            sol_y = solution[0][y]
+            sol_x = solution[0][x] # Accessing the solution for x
+            sol_y = solution[0][y] # Accessing the solution for y
 
             p1 = implicit_plot(eq1, (x, -2, 5), (y, -4, 4), color='blue')
             p2 = implicit_plot(eq2, (x, -2, 5), (y, -4, 4), color='red')
@@ -60,11 +93,11 @@
             show(p1 + p2 + point_solution, axes=True)
         </input>
         <output>
-            
+
         </output>
     </sage>
     <p>
-        Now lets solve for a systems of three equations with three variables. We will use the <c>solve</c> function again.
+        Now lets vizualize a systems of three equations with three variables.
     </p>
         <sage>
             <input>
@@ -75,7 +108,7 @@
                     2*x - 5 + z == 6,
                 ]
 
-                # Define the plotting range:
+                # Define the plotting range
                 xx = (x, -1000, 1000)
                 yy = (y, -1000, 1000)
                 zz = (z, -1000, 1000)
@@ -85,11 +118,11 @@
                 pc = implicit_plot3d(c, xx, yy, zz, color='green')
                 p = pa + pb + pc
 
-                p.show()
+                p.show(axes=True)
 
             </input>
             <output>
-                
+
             </output>
         </sage>
 </section>
