@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-vector-definition-magnitude-and-geometry"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Definition and Basic Operations</title>
+
+    <introduction xml:id="sm-subsection-introduction">
+        <p> Vectors are used to represent quantities with both magnitude and direction, whereas matrices
+            are used to represent linear transformations, and systems of equations, or multi-dimensional
+            data relationships. In this section, we will see how to define vectors and matrices, and perform
+            basic operations on each.</p>
+    </introduction>
+
+    <subsection xml:id="sm-subsection-vector-definition">
+        <title>Vectors</title>
+        <p>
+            <idx>
+                <h>Vectors</h>
+            </idx>
+            The concept of a vector extends beyond just the familiar 2D and 3D spaces and can exist
+            in any dimension <m>n</m>. The key detail about a vector is that it provides both
+            a magnitude and a direction in a given space. A vector in <m>R^n</m> is an ordered
+            collection of <m>n</m> numbers, represented as <m>(v_1, v_2, ..., v_n)</m>, where
+            each <m>v_i</m> is a number in <m>R</m>.</p>
+
+        <subsection>
+            <title>Constructing Vectors</title>
+            <p> The space <m>R^n</m> refers to an <m>n</m>-dimensional space where each vector
+                corresponds to a <em>point</em> or a <em>direction</em>. In the two-dimensional space <m>R^2</m>,
+                for example, vectors are represented a pair <m>(x, y)</m>, and in three-dimensional space
+                <m>R^3</m>, vectors are represented by triples <m>(x, y, z)</m>. </p>
+            <p>
+                Vector can be defined using <c>vector</c> command, and passing the values of the vectors components
+            </p>
+            <sage>
+                <input>
+                    # creating a 3D vector
+                    v = vector([1, 2, 3])
+                    v
+                </input>
+            </sage>
+
+            <p>
+                <idx>
+                    <h>Vectors</h>
+                    <h>Geometrical Representation</h>
+                </idx>
+                The geometrical representation of a vector can be visualized as an arrow starting from the origin
+                to the point <m>(v_1, v_2, ..., v_n)</m>. In 2D and 3D, the geometric representation is intuitive, but not
+                so much in higher dimensions, where we should focus on abstract concepts rather than geometric
+                representation. To display a vector in sage, we can use the internal method <c>plot</c> of
+                <m>vector</m> class.
+                <sage>
+                    <input>
+                        v.plot()
+                    </input>
+                </sage>
+                <p>
+                    Alternatively, we can use Sage default <c>plot</c> method with the <c>color</c> and <c>thickness</c>
+                    options to customize the appearance of the vector.
+                </p>
+                <sage>
+                    <input>
+                        plot(v, color='red', thickness=2)
+                    </input>
+                </sage>
+            </p>
+
+            <p>
+                <idx>
+                    <h>Vectors</h>
+                    <h>Ring</h>
+                </idx>
+                By default, the vector above is created in the <em>Integers</em> field. The method <c>base_ring</c> returns the base ring
+                of the vector, which is <m>Integer</m> ring represented in Sage as <m>ZZ</m>.
+                <sage>
+                    <input>
+                        v.base_ring()
+                    </input>
+                </sage>
+            </p>
+
+            <p>
+                To create a vector in the real field <m>RR</m> or the rational numbers field <m>QQ</m>, we need to pass the field
+                to the <c>vector</c> command
+                <sage>
+                    <input>
+                        # creating 3D vectors in different fields
+                        components = [1, 2, 3]
+
+                        # 3D vectors in the Integers field
+                        v1 = vector(ZZ, components)  # default
+                        print(v1, "is a vector in", v1.base_ring())
+
+                        # 3D vectors in the Rational Numbers field
+                        v2 = vector(QQ, components)
+                        print(v2, "is a vector in", v2.base_ring())
+
+                        # 3D vectors in the Reals field
+                        v3 = vector(RR, components)
+                        print(v3, "is a vector in", v3.base_ring())
+                    </input>
+                </sage>
+            </p>
+
+            <p>
+                A vector in <m>R^n</m> has <m>n</m> components, one for each dimension. To retrieve the
+                components of a vector as a list, the method <c>list</c> can be used </p>
+            <sage>
+                <input>
+                    components = v.list()
+                    print(components, "are the components of the vector", v, "and it is of type", type(components))
+                </input>
+            </sage>
+
+            <p>
+                A vector in <m>R^{n+1}</m> can be constructed from a vector in <m>R^n</m> by appending
+                the values for the additional dimensions and specifying the field for the new vector
+                <sage>
+                    <input>
+                        # original 3D vector in ZZ
+                        v = vector(ZZ, [1, 2, 3])
+                        print(v)
+
+                        # extended the vector in to create a new vector in R^5
+                        w = vector(RR, v.list() + [4, 5])
+                        print(w)
+                    </input>
+                </sage>
+            </p>
+        </subsection>
+
+        <subsection xml:id="sm-subsection-magnitude-and-geometry">
+            <title>Magnitude and Geometrical Representation</title>
+            <p>
+                <idx>
+                    <h>Magnitude</h>
+                    <h>Geometric Representation</h>
+                </idx>
+                The vector's magnitude and direction form the fundamental components of its geometric
+                interpretation, with magnitude being a scalar and direction being the orientation in space.</p>
+
+            <p> The magnitude of a vector is a measure of its length, calculated using the Euclidean norm
+                <m>||v|| = \sqrt{v_1^2 + v_2^2 + ... + v_n^2}</m>. This magnitude gives us a scalar value
+                representing how far the vector is from the origin.</p>
+
+            <sage>
+                <input>
+                    magnitude = sqrt(v[0]**2 + v[1]**2 + v[2]**2)
+                    magnitude
+                </input>
+            </sage>
+        </subsection>
+    </subsection>
+
+    <subsection xml:id="sm-subsection-matrix-definition">
+        <title>Matrices</title>
+        <p>
+            <idx>
+                <h>Matrices</h>
+            </idx>
+            A matrix is an <m>m \times n</m> rectangular array of numbers, where <m>m</m>
+            is the number of rows and <m>n</m> is the number of columns. The concept of a
+            matrix extends beyond just a simple grid of numbers; as we will later see, it serves
+            as mathematical tool for structuring data, representing linear transformations,
+            or solving systems of equations. Unlike vectors, which primarily describe magnitude
+            and direction, matrices are used to encode transformations and relationships between
+            multiple quantities.
+        </p>
+
+        <p> A matrix in <m>R^{m \times n}</m> is an ordered array of numbers arranged in
+            <m>m</m> rows and <m>n</m> columns, written as:
+
+            <m>
+                \begin{bmatrix}
+                a_{11} &amp; a_{12} &amp; \dots &amp; a_{1n} \\
+                a_{21} &amp; a_{22} &amp; \dots &amp; a_{2n} \\
+                \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+                a_{m1} &amp; a_{m2} &amp; \dots &amp; a_{mn}
+                \end{bmatrix}
+            </m>
+        </p>
+
+        <subsection>
+            <title>Constructing Matrices</title>
+            <p> In Sage, matrices can be created using the <c>matrix</c> command by specifying
+                the base field (by default set to Integers), dimensions, and elements of the matrix
+                as a list of lists (i.e. list of rows).
+                <sage>
+                    <input>
+                        # Creating a 3x3 matrix in the integer field
+                        M = matrix(ZZ, [[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+                        M
+                    </input>
+                </sage>
+            </p>
+
+            <p>
+                Alternatively, we can create a matrix by passing the elements as a list and the dimensions
+                as arguments to the <c>matrix</c> command
+                <sage>
+                    <input>
+                        # Creating a 3x3 matrix using the matrix command
+                        M = matrix(3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+                        M
+                    </input>
+                </sage>
+            </p>
+
+            <p>
+                The matrix elements can be defined programmatically using a list comprehension
+                <sage>
+                    <input>
+                        # Creating a 3x3 matrix using list comprehension
+                        M = matrix(3, 3, [i + j for i in range(1, 4) for j in range(1, 4)])
+                        M
+                    </input>
+                </sage>
+            </p>
+
+            <p>
+                A matrix with a single list of values creates a <em>vector-like</em> object,
+                but it is not a vector (note the square brackets in matrices in lieu of the parenthesis)
+                <sage>
+                    <input>
+                        # creating a vector and single-row matrix
+                        v=vector([1, 2, 3])
+                        m=matrix([1, 2, 3])
+                        print("v=", v, "is of type", type(v))
+                        print("m=", m, "is of type", type(m))
+                        print("are v and m identical ?", v==m)
+                    </input>
+                </sage>
+            </p>
+
+            <p>
+                <idx>
+                    <h>Matrices</h>
+                    <h>Geometrical Representation</h>
+                </idx>
+                Matrices are commonly used to represent transformations in geometry, such as
+                rotation, scaling, and reflection. While 2D matrices may have intuitive geometric
+                interpretations, higher-dimensional matrices should be used more abstractly.
+            </p>
+
+            <p>
+                <idx>
+                    <h>Matrices</h>
+                    <h>Base Ring</h>
+                </idx>
+                By default, a matrix is created in the <em>Integers</em> field. The method <c>base_ring</c>
+                returns the base ring of the matrix, which is <m>ZZ</m> in this case.
+                <sage>
+                    <input>
+                        M.base_ring()
+                    </input>
+                </sage>
+            </p>
+
+            <p>
+                To create a matrix in different fields, such as the real numbers <m>RR</m>, or the rational
+                numbers <m>QQ</m>, we need to specify the field explicitly when using the <c>matrix</c> command.
+            </p>
+
+            <sage>
+                <input>
+                    # Creating matrices in different fields
+                    elements = [[1, 2], [3, 4]]
+
+                    # Matrix in the Integers field (ZZ)
+                    M1 = matrix(ZZ, elements)
+                    print(M1, "is a matrix in", M1.base_ring())
+                    print()
+
+                    # Matrix in the Rational Numbers field (QQ)
+                    M2 = matrix(QQ, elements)
+                    print(M2, "is a matrix in", M2.base_ring())
+                    print()
+
+                    # Matrix in the Real Numbers field (RR)
+                    M3 = matrix(RR, elements)
+                    print(M3, "is a matrix in", M3.base_ring())
+                </input>
+            </sage>
+
+            <p>
+                A matrix in <m>R^{m \times n}</m> consists of <m>m</m> rows and <m>n</m> columns.
+                The individual elements of a matrix can be accessed using the row and column indices.
+            </p>
+
+            <sage>
+                <input>
+                    # Accessing matrix elements
+                    print(M)
+                    a_12 = M[0, 1]  # Element at first row, second column
+                    print("Element at (1,2):", a_12)
+                </input>
+            </sage>
+
+            <p>
+                The determinant of a square matrix is a scalar value that provides important information
+                about the matrix, such as whether it is invertible and how it scales space during transformations.
+                For an <m>n \times n</m> matrix <m>A</m>, the determinant is denoted as <m>\det(A)</m> or <m>|A|</m>.
+                If the determinant is zero, the matrix is singular and does not have an inverse. In Sage, the determinant
+                of a matrix can be computed using the <c>det</c> method:
+                <sage>
+                    <input>
+                        # Defining a 3x3 matrix
+                        A = matrix([[2, 3, 1], [4, 5, 6], [7, 8, 9]])
+
+                        # Computing the determinant
+                        A.det()
+                    </input>
+                </sage>
+            </p>
+        </subsection>
+    </subsection>
+
+</section>

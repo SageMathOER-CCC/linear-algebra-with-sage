@@ -15,7 +15,7 @@
     <xi:include href="./00-getting-started/ch-getting-started.ptx" />
     <xi:include href="./01-system-of-equations/ch-system-of-equations.ptx" />
     <xi:include href="./02-system-of-equations-with-matrices/ch-system-of-equations-with-matrices.ptx" />
-    <xi:include href="./03-matrices/ch-matrices.ptx" />
+    <xi:include href="./03-vectors-and-matrices/ch-vectors-and-matrices.ptx" />
     <xi:include href="./04-determinants/ch-determinants.ptx" />
     <xi:include href="./05-applications-of-determinants/ch-applications-of-determinants.ptx" />
     <xi:include href="./06-vector-in-r-pow-n/ch-vector-in-r-pow-n.ptx" />
