@@ -1,0 +1,39 @@
+<section xml:id="sec-plotting" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>plotting</title>
+    <p>
+        Let's examine the the vector <m>[-2, 3]</m>.
+    </p>
+    <sage>
+        <input>
+            vector([-2, 3])
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+         To plot the vector <m>[x, y]</m> The first number represents the x-coordinate, and the second number represents the y-coordinate.
+    </p>
+    <sage>
+        <input>
+            v = vector([-2, 3])
+            plot(v)
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        To plot a 3D vector, we can use the <c>plot3d</c> function. The first number represents the x-coordinate, the second number represents the y-coordinate, and the third number represents the z-coordinate.
+    </p>
+    <sage>
+        <input>
+            v = vector([1, 2, 3])
+            arrow3d((0, 0, 0), v)
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    
+</section>
