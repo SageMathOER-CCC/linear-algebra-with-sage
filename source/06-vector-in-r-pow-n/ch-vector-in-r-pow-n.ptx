@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <chapter xml:id="ch-vector-in-r-pow-n" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Vector in R Pow N</title>
+    <title>Vectors in <m>\mathbb{R}^n</m></title>
 
     <introduction>
         <p>
@@ -9,6 +9,6 @@
         </p>
     </introduction>
 
-    <!-- include sections -->
+    <!-- Include sections -->
     <!-- <xi:include href="sec-placeholder.ptx" /> -->
 </chapter>
