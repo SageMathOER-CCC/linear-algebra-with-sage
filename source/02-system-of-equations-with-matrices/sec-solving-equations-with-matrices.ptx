@@ -1,37 +1,68 @@
 <section xml:id="sec-solving-equations-with-Matrices" xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Solving Equations with Matrices</title>
     <p>
-        As an introduction to solving equations in Sage, we worked with equations symbolically. Now, we will update our examples by using vectors and matrices. Returning to the system of of two equations, <m>2x + 3y = 4</m> and <m>5x - 6y = 7</m>, we can define a matrix and a vector to represent the system.
+        As an introduction to solving equations in Sage, we worked with equations symbolically. Now, we will learn how to solve systems of equations with vectors and matrices.
+    </p>
+    <p>
+        We can represent a system of equations with an <term>augmented matrix</term> of a system. Each row in the augmented matrix lists the coefficients of the variables in an equation. While we do not directly manipulate the variables themselves, they indicate the position of each coefficient. The last column of the augmented matrix contains the constants from the right-hand side of each equation.
+    </p>
+    <p>
+        Let's solve the following system of equations:
+    </p>
+    <md>
+        <mrow>\amp x + 2y \amp = 4</mrow>
+        <mrow>\amp y - z \amp = 0</mrow>
+        <mrow>\amp x + 2z \amp = 4</mrow>
+    </md>
+    <p>
+        Let's start by creating the augmented matrix.
+    </p>
+    <md>
+        <mrow>
+        \left[\begin{array}{ccc|c} 
+        1 \amp 2 \amp 0 \amp 4 \\ 
+        0 \amp 1 \amp -1 \amp 0 \\ 
+        1 \amp 0 \amp 2 \amp 4 
+        \end{array}\right]
+        </mrow>
+    </md>
+    <p>
+         In Sage, we can create an coefficient matrix using the <code>matrix</code> function.
     </p>
     <sage>
         <input>
-            A = matrix([
-                    [2, 3], # 2*x + 3*y
-                    [5, -6] # 5*x - 6*y
+            A = matrix(
+                    [[1, 2, 0], 
+                    [0, 1, -1], 
+                    [1, 0, 2]
                 ])
-            b = vector([4, 7])
-            A.solve_right(b)
+            print(A)
         </input>
         <output>
-
+            
         </output>
     </sage>
     <p>
-        Returning to the system of three equations, <m>x + y + z = 6</m>, <m>2x - z = -1</m>, and <m>x - y - z = -4</m>, we can define a matrix and a vector to represent the system.
+        Next, provide a list of constants to the <c>vector</c> function.
     </p>
     <sage>
         <input>
-            A = matrix([
-                    [1, 1, 1], # x + y + z
-                    [2, 0, -1], # 2*x - z
-                    [1, -1, -1] # x - y - z
-                ])
-
-            b = vector([6, -1, -4]) # Right-hand side
+            b = vector([4, 0, 4])
+            print(b)
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        Finally, call the <c>solve_right</c> method on the matrix and pass the solution vector as its argument.
+    </p>
+    <sage>
+        <input>
             A.solve_right(b)
         </input>
         <output>
-
+            
         </output>
     </sage>
 </section>
