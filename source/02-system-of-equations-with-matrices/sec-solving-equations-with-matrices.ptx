@@ -1,0 +1,37 @@
+<section xml:id="sec-solving-equations-with-Matrices" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Solving Equations with Matrices</title>
+    <p>
+        As an introduction to solving equations in Sage, we worked with equations symbolically. Now, we will update our examples by using vectors and matrices. Returning to the system of of two equations, <m>2x + 3y = 4</m> and <m>5x - 6y = 7</m>, we can define a matrix and a vector to represent the system.
+    </p>
+    <sage>
+        <input>
+            A = matrix([
+                    [2, 3], # 2*x + 3*y
+                    [5, -6] # 5*x - 6*y
+                ])
+            b = vector([4, 7])
+            A.solve_right(b)
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        Returning to the system of three equations, <m>x + y + z = 6</m>, <m>2x - z = -1</m>, and <m>x - y - z = -4</m>, we can define a matrix and a vector to represent the system.
+    </p>
+    <sage>
+        <input>
+            A = matrix([
+                    [1, 1, 1], # x + y + z
+                    [2, 0, -1], # 2*x - z
+                    [1, -1, -1] # x - y - z
+                ])
+
+            b = vector([6, -1, -4]) # Right-hand side
+            A.solve_right(b)
+        </input>
+        <output>
+
+        </output>
+    </sage>
+</section>

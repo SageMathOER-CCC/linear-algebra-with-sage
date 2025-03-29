@@ -10,5 +10,5 @@
     </introduction>
 
     <!-- include sections -->
-    <!-- <xi:include href="sec-placeholder.ptx" /> -->
+    <xi:include href="sec-solving-equations-with-matrices.ptx" />
 </chapter>

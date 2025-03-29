@@ -1,7 +1,20 @@
 <section xml:id="sec-solving-equations" xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Solving Equations</title>
     <p>
-         The <c>solve</c> function algebraically solves an equation, system of equations, or inequality. Let's solve for <m>x</m> in the equation <m>8 + x = 5</m>.
+         The <c>solve</c> function algebraically solves an equation, system of equations, or inequality. By default, Sage assumes the equation is equal to <m>0</m>. Let's solve for <m>x</m> in the equation <m>8 + x = 0</m>.
+    </p>
+    <sage>
+        <input>
+            E = 8 + x
+            E == 5
+            solve(E, x)
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        Let's solve for <m>x</m> in the equation <m>8 + x = 5</m>.
     </p>
     <sage>
         <input>
@@ -27,7 +40,7 @@
         </output>
     </sage>
     <p>
-        We can store the equation in a new variable and perform operations on it. Recall the single equal sign is used for assignment, while the double equal sign is used for comparison.
+        We can store the equation in a new variable and perform operations on it. Recall the single equal sign (<c>=</c>) is the assignment operator, while the double equal sign (<c>==</c>) is the equality operator.
     </p>
     <sage>
         <input>
@@ -42,52 +55,7 @@
         </output>
     </sage>
     <p>
-        Be mindful of defining equations and storing variables. The following may not work as you may expect.
-    </p>
-    <sage>
-        <input>
-            E = 8 + x
-            E == 5
-            solve(E, x)
-        </input>
-        <output>
-
-        </output>
-    </sage>
-    <p>
-        In the above example, <c>solve(E, x)</c> returns <c>[x == -8]</c> instead of <c>[x == -3]</c>.
-    </p>
-    <ol>
-        <li>
-            <p>
-                <c>E = 8 + x</c> defines <c>E</c> as an algebraic expression, not an equation.
-            </p>
-        </li>
-        <li>
-            <p>
-                <c>E == 5</c> creates a comparison that evaluates to <c>True</c> or <c>False</c>. However, this result isn't stored or used.
-            </p>
-        </li>
-        <li>
-            <p>
-                When we call <c>solve(E, x)</c> without an equality, Sage implicitly solves <c>8 + x == 0</c>, giving us <c>x = -8</c>.
-            </p>
-        </li>
-    </ol>
-    <p>
-        Sage offers flexibility in defining equations. We can solve for the intended equation by placing the equality operator <c>==</c> as an argument in the <c>solve()</c> function.
-    </p>
-    <sage>
-        <input>
-            E = 8 + x
-            solve(E == 5, x)
-        </input>
-        <output>
-
-        </output>
-    </sage>
-    <p>
-        Observe that the solution of a equation is given between square brackets, indicating that the datatype is a list. We can access the solution by <term>indexing</term> the list with square brackets. Notice that after accessing the solution, the brackets are no longer present.
+        Observe that the solution of a equation is given between square brackets, indicating that the data type is a list. We can access the solution by <term>indexing</term> the list with square brackets. Notice that after accessing the solution, the brackets are no longer present.
     </p>
     <sage>
         <input>
@@ -214,7 +182,7 @@
         </output>
     </sage>
     <p>
-        Since we defined the functions implicitly, we can use <c>implicit_plot</c> to graph each equation in 2D-space.
+        Since each equation defines implicitly a function, we can use <c>implicit_plot</c> to graph each equation in 2D-space.
     </p>
     <sage>
         <input>
@@ -227,7 +195,7 @@
         </output>
     </sage>
     <p>
-        We can also plot the solution to the system of equations as the point where the two lines intersect.
+        We can also plot a point whose coordinates are the ones given in the solution.
     </p>
     <sage>
         <input>
@@ -295,40 +263,6 @@
         </input>
         <output>
 
-        </output>
-    </sage>
-    <p>
-        As an introduction to solving equations in Sage, we worked with equations symbolically. Now, we will update our examples by using vectors and matrices. Returning to the system of of two equations, <m>2x + 3y = 4</m> and <m>5x - 6y = 7</m>, we can define a matrix and a vector to represent the system.
-    </p>
-    <sage>
-        <input>
-            A = matrix([
-                    [2, 3], # 2*x + 3*y
-                    [5, -6] # 5*x - 6*y
-                ])
-            b = vector([4, 7])
-            A.solve_right(b)
-        </input>
-        <output>
-            
-        </output>
-    </sage>
-    <p>
-        Returning to the system of three equations, <m>x + y + z = 6</m>, <m>2x - z = -1</m>, and <m>x - y - z = -4</m>, we can define a matrix and a vector to represent the system.
-    </p>
-    <sage>
-        <input>
-            A = matrix([
-                    [1, 1, 1], # x + y + z
-                    [2, 0, -1], # 2*x - z
-                    [1, -1, -1] # x - y - z
-                ])
-
-            b = vector([6, -1, -4]) # Right-hand side
-            A.solve_right(b)
-        </input>
-        <output>
-            
         </output>
     </sage>
 </section>
