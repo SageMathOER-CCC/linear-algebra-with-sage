@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-vectors-and-matrices" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Vectors and Matrices</title>
+
+    <introduction>
+        <p>
+            Vectors and matrices are fundamental objects in linear algebra, playing a crucial
+            role from representing mathematical entities (like lines, planes, and spaces) to
+            modeling geometric and physical quantities (like velocity, acceleration, momentum,
+            force, electric and magnetic fields), or representing linear transformations,
+            systems of equations, and encode transformations and relationships between multiple
+            multi-dimensional quantities. As such, they are central to many applications across
+            various fields, from physics, to computer science, engineering, and data science.
+        </p>
+        <p>
+            In this chapter, we introduce vectors and matrices, and how they are defined and used in Sage.
+        </p>
+    </introduction>
+
+    <!-- include sections -->
+    <xi:include href="sec-defining-vectors.ptx" />
+    <xi:include href="sec-defining-matrices.ptx" />
+</chapter>
