@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-special-matrices"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Special Matrices</title>
+
+    <introduction xml:id="special-matrices">
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Zero Matrix</h>
+                <h>Ones Matrix</h>
+                <h>Diagonal Matrix</h>
+            </idx>
+            Some matrices occur frequently enough to be given special names:
+            <ul>
+                <li>
+                    <p>
+                        The <em>zero matrix</em> contains only zeros and acts as the additive identity.
+                    </p>
+                    <sage>
+                        <input>
+                            # 3x3 zero matrix
+                            zero_matrix(3)
+                        </input>
+                    </sage>
+                </li>
+                <li>
+                    <p>
+                        The <em>ones matrix</em> contains all ones and is useful in uniform computations.
+                    </p>
+                    <sage>
+                        <input>
+                            # 2x4 ones matrix
+                            matrix([[1]*4]*2)
+                        </input>
+                    </sage>
+                </li>
+                <li>
+                    <p>
+                        A <em>diagonal matrix</em> has nonzero entries only along the <em>main diagonal</em>,
+                        and zeros elsewhere (the main diagonal runs from the top left to the bottom right of
+                        the matrix, while the secondary diagonal runs from the top right to the bottom left).
+                    </p>
+                    <sage>
+                        <input>
+                            # 3x3 diagonal matrix
+                            diagonal_matrix([2, 4, 6])
+                        </input>
+                    </sage>
+                    <p>
+                        Diagonal matrices are simple to multiply and often appear in eigenvalue problems which
+                        we'll see in upcoming chapters.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        An <em>identity matrix</em> is a diagonal matrix with all its diagonal elements
+                        equals to 1 (and hence has a determinant of 1).
+                    </p>
+                    <sage>
+                        <input>
+                            # 5x5 diagonal matrix
+                            identity = diagonal_matrix([1] * 5)
+                            print(identity, "\ndet:", identity.det())
+                        </input>
+                    </sage>
+                </li>
+            </ul>
+        </p>
+    </introduction>
+</section>
