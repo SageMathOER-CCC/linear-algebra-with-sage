@@ -12,7 +12,7 @@
         <mrow>\amp x + 2z \amp = 4</mrow>
     </md>
     <p>
-         In Sage, we can create an coefficient matrix using the <code>matrix</code> function.
+        In Sage, we can create an coefficient matrix using the <c>matrix</c> function.
     </p>
     <sage>
         <input>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-vectors" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Vectors</title>
+
+    <introduction>
+        <p>
+            Vectors can be thought of as the building blocks of many mathematical
+            and geometric ideas. In this chapter, we'll explore more vector operations.
+        </p>
+    </introduction>
+
+    <!-- include sections -->
+    <xi:include href="sec-special-vectors.ptx" />
+    <xi:include href="sec-vector-operations.ptx" />
+</chapter>
