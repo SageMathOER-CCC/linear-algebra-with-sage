@@ -1,0 +1,78 @@
+<section xml:id="sec-row-reduction" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Row Reduction</title>
+    <p>
+    A matrix is in <term>reduced echelon form</term> if:
+    <ul>
+        <li>
+            <p>
+                The first nonzero number in the row is a leading 1.
+            </p>
+        </li>
+        <li>
+            <p>
+                In any two consecutive rows that do not consist entirely of zeros, the leading 1 in the lower row occurs farther to the right than the leading 1 in the higher row.
+            </p>
+        </li>
+        <li>
+            <p>
+                Rows that consist entirely of zeros are at the bottom of the matrix.
+            </p>
+        </li>
+        <li>
+            <p>
+                Each column that contains a leading 1 has zeros everywhere else in that column.
+            </p>
+        </li>
+    </ul>
+    </p>
+    <p>
+        Let's use Sage to find the reduced echelon form of the following system of equations:
+    </p>
+    <md>
+        <mrow>\amp x + 2y \amp = 4</mrow>
+        <mrow>\amp y - z \amp = 0</mrow>
+        <mrow>\amp x + 2z \amp = 4</mrow>
+    </md>
+    <p>
+        First, we create the <term>augmented matrix</term> for the system of equations. Each row in the augmented matrix lists the coefficients of the variables in an equation. While we do not directly manipulate the variables themselves, they indicate the position of each coefficient. The last column of the augmented matrix contains the constants from the right-hand side of each equation.
+    </p>
+    <md>
+    <mrow>
+        \left[\begin{array}{ccc|c}
+        1 \amp 2 \amp 0 \amp 4 \\
+        0 \amp 1 \amp -1 \amp 0 \\
+        1 \amp 0 \amp 2 \amp 4
+        \end{array}\right]
+    </mrow>
+    </md>
+    <p>
+        Now we can create a list for every row in the augmented matrix. Next, we pass each list to the matrix function.
+    </p>
+    <sage>
+        <input>
+            A = matrix(QQ, [
+                    [1, 2, 0, 4],  # x + 2y = 4
+                    [0, 1, -1, 0], # y - z  = 0
+                    [1, 0, 2, 4]   # x + 2z = 4
+                ])
+            print("Original augmented matrix:")
+            print(A)
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        Use the <c>rref()</c> method on the augmented matrix to get the reduced echelon form.
+    </p>
+    <sage>
+        <input>
+            R = A.rref()
+            print("Reduced echelon form:")
+            print(R)
+        </input>
+        <output>
+
+        </output>
+    </sage>
+</section>
