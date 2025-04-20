@@ -13,8 +13,8 @@
 
     <!-- Include chapters -->
     <xi:include href="./00-getting-started/ch-getting-started.ptx" />
-    <xi:include href="./01-system-of-equations/ch-system-of-equations.ptx" />
-    <xi:include href="./02-vectors-and-matrices/ch-vectors-and-matrices.ptx" />
+    <xi:include href="./01-vectors-and-matrices/ch-vectors-and-matrices.ptx" />
+    <xi:include href="./02-system-of-equations/ch-system-of-equations.ptx" />
     <xi:include href="./03-system-of-equations-with-matrices/ch-system-of-equations-with-matrices.ptx" />
     <xi:include href="./04-matrices/ch-matrices.ptx" />
     <xi:include href="./05-vectors/ch-vectors.ptx" />
