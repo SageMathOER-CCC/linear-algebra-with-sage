@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-vectors-and-matrices" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Vectors and Matrices</title>
+
+    <introduction>
+        <p>
+            Vectors and matrices are fundamental concepts in linear algebra. This
+            chapter introduces how to define and construct them in Sage.
+        </p>
+    </introduction>
+
+    <!-- include sections -->
+    <xi:include href="sec-defining-vectors.ptx" />
+    <xi:include href="sec-defining-matrices.ptx" />
+</chapter>
