@@ -6,16 +6,14 @@
 
     <introduction xml:id="special-matrices">
         <p>
-            <idx>
-                <h>Matrices</h>
-                <h>Zero Matrix</h>
-                <h>Ones Matrix</h>
-                <h>Diagonal Matrix</h>
-            </idx>
             Some matrices occur frequently enough to be given special names:
             <ul>
                 <li>
                     <p>
+                        <idx>
+                            <h>Matrices</h>
+                            <h>Zero Matrix</h>
+                        </idx>
                         The <em>zero matrix</em> contains only zeros and acts as the additive identity.
                     </p>
                     <sage>
@@ -27,20 +25,20 @@
                 </li>
                 <li>
                     <p>
-                        The <em>ones matrix</em> contains all ones and is useful in uniform computations.
+                        <idx>
+                            <h>Matrices</h>
+                            <h>Diagonal Matrix</h>
+                        </idx>
+                        <em>Diagonal matrices</em> are simple to multiply and often appear in eigenvalue problems
+                        which we'll see in upcoming chapters. A diagonal matrix is a matrix that has all entries
+                        outside of the <em>main </em> diagonal set to <m>0</m> (the main diagonal runs from the top
+                        left to the bottom right of the matrix, while the secondary diagonal runs from the top
+                        right to the bottom left).
                     </p>
-                    <sage>
-                        <input>
-                            # 2x4 ones matrix
-                            matrix([[1]*4]*2)
-                        </input>
-                    </sage>
-                </li>
-                <li>
                     <p>
-                        A <em>diagonal matrix</em> has nonzero entries only along the <em>main diagonal</em>,
-                        and zeros elsewhere (the main diagonal runs from the top left to the bottom right of
-                        the matrix, while the secondary diagonal runs from the top right to the bottom left).
+                        This is an example of a 3-by-3 diagonal matrix constructed using the <c>diagonal_matrix</c>
+                        command. Note that in a diagonal matrix the main diagonal entries may or many not be equal
+                        to <m>0</m>.
                     </p>
                     <sage>
                         <input>
@@ -48,21 +46,49 @@
                             diagonal_matrix([2, 4, 6])
                         </input>
                     </sage>
-                    <p>
-                        Diagonal matrices are simple to multiply and often appear in eigenvalue problems which
-                        we'll see in upcoming chapters.
-                    </p>
                 </li>
                 <li>
                     <p>
-                        An <em>identity matrix</em> is a diagonal matrix with all its diagonal elements
-                        equals to 1 (and hence has a determinant of 1).
+                        <idx>
+                            <h>Matrices</h>
+                            <h>Identity Matrix</h>
+                        </idx>
+                        A special diagonal matrix is the <em>identity matrix</em>, which is a diagonal matrix
+                        with all its diagonal entries equals to 1. Here is an example of a 5-by-5
+                        identity matrix constructed using the <c>identity_matrix</c> command.
                     </p>
                     <sage>
                         <input>
-                            # 5x5 diagonal matrix
-                            identity = diagonal_matrix([1] * 5)
-                            print(identity, "\ndet:", identity.det())
+                            identity_matrix(5)
+                        </input>
+                    </sage>
+                </li>
+                <li>
+                    <p>
+                        <idx>
+                            <h>Matrices</h>
+                            <h>Upper Matrix</h>
+                            <h>Lower Matrix</h>
+                        </idx>
+                        Another two special matrix types are <em>upper</em> and <em>lower</em> matrices.
+                        These are <em>triangular</em> matrix where all entries below the main diagonal
+                        are set to <m>0</m> (the triangular upper matrix), or all entries above the main
+                        diagonal are set to <m>0</m> (the triangular lower matrix). For a given matrix,
+                        the method <c>LU()</c> returns the LU decomposition of the matrix.
+                    </p>
+                    <sage>
+                        <input>
+                            m = matrix([
+                                [-8,  6, -4],
+                                [ 2,  0, -2],
+                                [ 4, -6,  8],
+                            ])
+
+                            _, L, U = m.LU()
+
+                            print("L:"); print(L)
+                            print()
+                            print("U:"); print(U)
                         </input>
                     </sage>
                 </li>
