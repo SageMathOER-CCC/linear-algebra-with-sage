@@ -9,93 +9,68 @@
             <idx>
                 <h>Vectors</h>
             </idx>
-            Vectors are used to represent quantities with both magnitude and direction. A vector is
-            an ordered collection of numbers. In this section, we will see how to define vectors, and
-            perform basic operations on them.
+            In this section, we will see how to define vectors, and perform basic operations on them.
         </p>
 
         <p>
             Sage provides built-in support for vectors. In Sage, vectors are represented as <m>n</m>-tuples,
-            where <m>n</m> is the number of components in the vector. Vector can be defined using <c>vector</c>
-            command, and passing the values of the vectors components
+            <m>(v_1, v_2, ..., v_n) \in R^n</m> where <m>n</m> is the number of components in the vector.
+            Vectors can be defined using <c>vector</c> command, and passing the values of the vectors components.
         </p>
         <sage>
             <input>
-                # creating a vector with 3 components
-                v = vector([1, 2, 3])
-                v
+                vector([10, 20, 30])
             </input>
         </sage>
 
         <p>
-            The number of components of a vector defines its dimensions or degrees of freedom. Sage defines
-            the command <c>degree</c> to query the degrees of vector.
+            The number of components <m>n</m> of a vector <m>v = (v_1, \dots, v_n)</m> is
+            obtained in Sage by using the command <c>degree</c>.
         </p>
         <sage>
             <input>
+                v = vector([11, 22, 33])
                 v.degree()
             </input>
         </sage>
 
         <p>
-            <idx>
-                <h>Vectors</h>
-                <h>Visual Representation</h>
-            </idx>
-            The geometrical representation of a vector can be visualized as an arrow starting from the origin
-            to the point <m>(v_1, v_2, ..., v_n)</m>. In 2D and 3D, the geometric representation is intuitive,
-            but not so much in higher dimensions, where we should focus on abstract concepts rather than geometric
-            representation. To display a vector in sage, we can use the internal method <c>plot</c> of
-            <m>vector</m> class.
-        </p>
-        <sage>
-            <input>
-                # plotting the vector
-                v.plot(color='red', thickness=2)
-            </input>
-
-        </sage>
-
-        <p>
-            We can also obtain the same visual representation using Sage default <c>plot</c> method.
-        </p>
-        <sage>
-            <input>
-                plot(v, color='red', thickness=2)
-            </input>
-        </sage>
-
-        <p>
-            A vector in <m>R^n</m> has <m>n</m> components, one for each dimension. To retrieve the
-            components of a vector as a list, the method <c>list</c> can be used
+            To retrieve the components of a vector as a list, the method <c>list</c> can be used
         </p>
         <sage>
             <input>
                 components = v.list()
-                print(components, "are the components of the vector", v)
-                print("The components of v is of type", type(components))
+                components
+            </input>
+        </sage>
+        <p>
+            Note that the return type of that command is the Python built-in <c>List</c> type; an
+            ordered list of numbers where the order matters. As such, any and all native list methods
+            can be used on the returned value.
+        </p>
+        <sage>
+            <input>
+                type(components)
             </input>
         </sage>
 
         <p>
-            To access a specific component of a vector, we can use vector indexing method (0-based index).
+            Recall that list in Sage are 0-indexed, meaning that the first element of the list is at
+            index 0. To access a specific component of a vector, we can use vector indexing method.
         </p>
         <sage>
             <input>
-                # accessing the first component of the vector
                 first_component = v[0]
                 first_component
             </input>
         </sage>
 
-        <p> The magnitude of a vector is a measure of its length, calculated using the Euclidean norm
-            <m>||v|| = \sqrt{v_1^2 + v_2^2 + ... + v_n^2}</m>. This magnitude gives us a scalar value
-            representing how far the vector is from the origin.
+        <p> The magnitude of a vector, <m>||v|| = \sqrt{v_1^2 + v_2^2 + ... + v_n^2}</m> is obtained
+            in Sage by using the vector method <c>norm</c>.
         </p>
         <sage>
             <input>
-                magnitude = v.norm()
-                print("The magnitude of the vector", v, "is", magnitude)
+                v.norm()
             </input>
         </sage>
 
@@ -105,13 +80,87 @@
         </p>
         <sage>
             <input>
-                # original 2D vector
-                v = vector([1, 2])
-                print("The original vector is", v)
+                vector(v.list() + [44])
+            </input>
+        </sage>
 
-                # extended the vector in to create a new 3D vector
-                w = vector(v.list() + [3])
-                print("The extended vector is", w)
+        <p>
+            <idx>
+                <h>Vectors</h>
+                <h>Field</h>
+            </idx>
+            Vectors in Sage can be created in different <em>Fields</em> based on the datatype of the
+            elements of the vector. While working in a specific field, we need to explicitly pass the
+            field when instantiating a vector using the <c>vector</c> command.
+        </p>
+        <sage>
+            <input>
+                # creating 3D vectors in Integers field
+                v_int = vector(ZZ, components)
+                v_int
+            </input>
+        </sage>
+
+        <p>
+            <idx>
+                <h>Vectors</h>
+                <h>Ring</h>
+            </idx>
+            Note that <m>ZZ</m> is Sage notation for the Integers field. Similarly, <m>QQ</m> is for
+            Rational numbers, <m>RR</m> for Reals, and <m>CC</m> for Complex numbers. The method
+            <c>base_ring</c> returns the <em>base ring</em> of the vector.
+            <sage>
+                <input>
+                    v_int.base_ring()
+                </input>
+            </sage>
+        </p>
+
+        <p>
+            If the field is omitted, Sage will infer the field from the datatype of the vector components.
+        </p>
+        <sage>
+            <input>
+                v_rat = vector([1/2, 2/3, 3/5])
+                v_rat.base_ring()
+            </input>
+        </sage>
+        <p>
+            For the complex field <m>CC</m>, Sage use <m>i</m> to represent the imaginary unit number.
+        </p>
+        <sage>
+            <input>
+                v_cplx = vector([1.2 + i * 2.3, 3.5 - i * 5.7])
+                v_cplx.base_ring()
+            </input>
+        </sage>
+
+        <p>
+            <idx>
+                <h>Vectors</h>
+                <h>Visual Representation</h>
+            </idx>
+            The geometrical representation of a vector can be visualized as an arrow starting from the origin
+            to the point <m>p(v_1, v_2, ..., v_n)</m>. In lower dimension (<m>n \leq 3</m>), the geometric
+            representation is intuitive, but not so much in higher dimensions, where we should focus on abstract
+            concepts rather than geometric representation.
+        </p>
+        <p>
+            To display a vector in sage, we can use the internal method <c>plot</c> of <m>vector</m> class.
+        </p>
+        <sage>
+            <input>
+                v.plot(color='red', thickness=25)
+            </input>
+
+        </sage>
+
+        <p>
+            We can also obtain the same visual representation using Sage default <c>plot</c> method.
+        </p>
+        <sage>
+            <input>
+                plot(v, color='red', thickness=25)
             </input>
         </sage>
     </introduction>
