@@ -9,16 +9,8 @@
             <idx>
                 <h>Matrices</h>
             </idx>
-            While 2D matrices may have intuitive geometric interpretations,
-            higher-dimensional matrices should be used more abstractly. In this section,
-            we will see how to define matrices, and perform basic operations on them.
-        </p>
-
-        <p>
-            A matrix is an <m>m \times n</m> rectangular array of numbers, where <m>m</m>
-            is the number of rows and <m>n</m> is the number of columns. A matrix in
-            <m>R^{m \times n}</m> is an ordered array of numbers arranged in <m>m</m>
-            rows and <m>n</m> columns, written as:
+            In this section, we will see how to define matrices, and perform basic operations
+            on them. A matrix is an <m>m \times n</m> rectangular array of numbers:
             <m>
                 \begin{bmatrix}
                 a_{11} &amp; a_{12} &amp; \dots &amp; a_{1n} \\
@@ -27,20 +19,23 @@
                 a_{m1} &amp; a_{m2} &amp; \dots &amp; a_{mn}
                 \end{bmatrix}
             </m>
+
+            where <m>m</m> is the number of rows and <m>n</m> is the number of columns. Each
+            <em>entry</em> <m>a_{ij}, i=1\dots m, j=1\dots n,</m> corresponds to the value
+            at the intersection of the <m>i</m>-th row and <m>j</m>-th column.
         </p>
 
         <p>
-            Just like vectors, Sage does come with built-in support for matrices. A Matrix
-            is defined as a grid of numbers, and can be defined using the <c>matrix</c> and
-            passing the elements of the matrix as a list of lists (i.e. list of rows).
+            Just like vectors, Sage does come with built-in support for matrices. There are
+            many ways to define a matrix in Sage using the command <c>matrix</c>, passing for
+            instance the rows of the matrix <em>as a list</em>.
         </p>
         <sage>
             <input>
-                # Creating a 3x3 matrix in the integer field
                 M = matrix([
-                    [1, 2, 3],
-                    [4, 5, 6],
-                    [7, 8, 9],
+                    [11, 13, 17, 19],
+                    [23, 29, 31, 37],
+                    [41, 43, 47, 53],
                 ])
 
                 M
@@ -48,88 +43,162 @@
         </sage>
 
         <p>
-            Alternatively, we can create a matrix by passing the elements as a list, and
+            Alternatively, we can create a matrix by passing the entries as a list, and
             the dimensions as arguments to the <c>matrix</c> command.
         </p>
         <sage>
             <input>
-                # Creating a 3x3 matrix using the matrix command
-                M = matrix(3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+                M = matrix(2, 3, [11, 22, 33, 44, 55, 66])
                 M
             </input>
         </sage>
         <p>
-            Note that for 2D matrices, we don't need to specify the all
-            dimensions of a matrix. Sage can infer the dimensions from
-            the number of elements in the list.
+            We don't need to specify the all dimensions of a matrix. Sage can infer the
+            missing dimension from the number of entries in the list.
         </p>
         <sage>
             <input>
-                # Creating a 2x5 matrix using the matrix command
-                M = matrix(2, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-                M
-                # The missing dimension is inferred from the number
-                # of elements and the given dimension
-            </input>
-        </sage>
-
-        <p>
-            The matrix elements can also be defined programmatically using a list comprehension.
-        </p>
-        <sage>
-            <input>
-                # Creating a 3x3 matrix using list comprehension
-                M = matrix(3, 3, [i + j for i in range(1, 4) for j in range(1, 4)])
+                # A matrix with size 5x20 containing the first 100 integers
+                M = matrix(5, list(range(100)))
                 M
             </input>
         </sage>
 
         <p>
-            A matrix with a single list of values creates a <em>vector-like</em> object,
-            but it is NOT a vector (note the square brackets in matrices in lieu of the parenthesis).
+            The matrix entries can also be defined programmatically using a list comprehension.
         </p>
         <sage>
             <input>
-                # creating a vector and single-row matrix
-                v=vector([1, 2, 3])
-                m=matrix([1, 2, 3])
-                print("v=", v, "is of type", type(v))
-                print("m=", m, "is of type", type(m))
-                print("are v and m identical ?", v==m)
+                M = matrix(2, 5, [j + i * 5 for i in range(2) for j in range(5)])
+                M
             </input>
         </sage>
 
         <p>
-            A matrix in <m>R^{m \times n}</m> consists of <m>m</m> rows and <m>n</m> columns.
-            The individual elements of a matrix can be accessed using the row and column indices.
+            The individual entries of a matrix can be accessed using the row and column indices.
+            For instance, here is how we can retrieve the entry at the second row and third column
+            of the matrix <c>M</c>. Recall that the indices in Sage start at 0.
         </p>
         <sage>
             <input>
-                # Accessing matrix elements
-                print(M)
-                a_12 = M[0, 1]  # Element at first row, second column
-                print("Element at (1,2):", a_12)
+                a_23 = M[1, 2]
+                a_23
             </input>
         </sage>
 
-        <!-- Should we also define the rank of a Matrix and .rank() method here ? may be not as it implies linear-independence -->
         <p>
-            The <em>size</em> of a matrix is defined as the number of rows and columns in the matrix.
-            To get the dimensions of a matrix, we can use the <c>dimensions</c> method.
+            Sage offers specific methods to fetch all the rows, or the columns of a matrix,
+            or to retrieve the entries for specific row or column, or the diagonal of the matrix.
+        </p>
+
+        <p>
+            The <c>rows</c> method returns all rows of the matrix (as a list of tuples).
         </p>
         <sage>
             <input>
-                # Size of matrix
+                M.rows()
+            </input>
+        </sage>
+
+        <p>
+            In the same way, the <c>columns</c> method returns all the columns of the matrix
+            (as a list of tuples).
+        </p>
+        <sage>
+            <input>
+                M.columns()
+            </input>
+        </sage>
+
+        <p>
+
+            The <c>M.row(i)</c> returns the <m>i</m>-th row of the matrix.
+        </p>
+        <sage>
+            <input>
+                M.row(1)     # 2nd row
+            </input>
+        </sage>
+
+        <p>
+            The <c>M.column(j)</c> returns the <m>j</m>-th column of the matrix.
+        </p>
+        <sage>
+            <input>
+                M.column(3)  # 4th column
+            </input>
+        </sage>
+
+        <p>
+            The <c>M.diagonal()</c> returns the diagonal of the matrix.
+        </p>
+        <sage>
+            <input>
+                M.diagonal()
+            </input>
+        </sage>
+
+        <p>
+            Alternatively, the method <c>dimensions</c> returns the dimensions of the matrix
+            as a pair <c>(nrows, ncols)</c>.
+        </p>
+        <sage>
+            <input>
                 M.dimensions()
             </input>
         </sage>
 
         <p>
-            For 2D matrices, to get the number of rows or columns, we can use <c>nrows()</c> and <c>ncols</c> Sage methods.
+            Similarly, Sage offer more methods to help us iterate over the rows and/or the
+            columns of a matrix. For instance, the method <c>nrows()</c> returns the number
+            of rows of a matrix.
         </p>
         <sage>
             <input>
-                print("Matrix M has", M.nrows(), "rows and", M.ncols(), "columns")
+                M.nrows()
+            </input>
+        </sage>
+
+        <p>
+            Sage method <c>ncols()</c> returns the number of rows of the matrix.
+        </p>
+        <sage>
+            <input>
+                M.ncols()
+            </input>
+        </sage>
+
+        <p>
+            Note that a matrix with a single list of values creates a <em>vector-like</em>
+            object, but it is NOT a vector. Here is a vector in Sage.
+        </p>
+        <sage>
+            <input>
+                v=vector([1, 2, 3])
+                v
+            </input>
+        </sage>
+        <p>
+            Compare that to this single-row matrix. Observe the square brackets in matrices
+            in lieu of the parenthesis.
+        </p>
+        <sage>
+            <input>
+                m=matrix([1, 2, 3])
+                m
+            </input>
+        </sage>
+
+        <p>
+            <em>Type assertion</em> is a useful tool to check if two objects are <em>identical</em>
+            and are of the same type. For instance, comparing the types of <m>v</m> and <m>m</m>
+            yields <c>False</c> because they are <em>NOT</em> of the same type.
+        </p>
+        <sage>
+            <input>
+                print("v is of type", type(v))
+                print("m is of type", type(m))
+                print("are v and m identical ?", v==m)
             </input>
         </sage>
     </introduction>
