@@ -109,12 +109,12 @@
             Note that <m>ZZ</m> is Sage notation for the Integers field. Similarly, <m>QQ</m> is for
             Rational numbers, <m>RR</m> for Reals, and <m>CC</m> for Complex numbers. The method
             <c>base_ring</c> returns the <em>base ring</em> of the vector.
-            <sage>
-                <input>
-                    v_int.base_ring()
-                </input>
-            </sage>
         </p>
+        <sage>
+            <input>
+                v_int.base_ring()
+            </input>
+        </sage>
 
         <p>
             If the field is omitted, Sage will infer the field from the datatype of the vector components.
@@ -126,6 +126,10 @@
             </input>
         </sage>
         <p>
+            <idx>
+                <h>Vectors</h>
+                <h>Complex</h>
+            </idx>
             For the complex field <m>CC</m>, Sage use <m>i</m> to represent the imaginary unit number.
         </p>
         <sage>
@@ -152,7 +156,6 @@
             <input>
                 v.plot(color='red', thickness=25)
             </input>
-
         </sage>
 
         <p>

@@ -75,6 +75,10 @@
         </sage>
 
         <p>
+            <idx>
+                <h>Matrices</h>
+                <h>indexing</h>
+            </idx>
             The individual entries of a matrix can be accessed using the row and column indices.
             For instance, here is how we can retrieve the entry at the second row and third column
             of the matrix <c>M</c>. Recall that the indices in Sage start at 0.
@@ -92,6 +96,10 @@
         </p>
 
         <p>
+            <idx>
+                <h>Matrices</h>
+                <h>rows</h>
+            </idx>
             The <c>rows</c> method returns all rows of the matrix (as a list of tuples).
         </p>
         <sage>
@@ -101,6 +109,10 @@
         </sage>
 
         <p>
+            <idx>
+                <h>Matrices</h>
+                <h>columns</h>
+            </idx>
             In the same way, the <c>columns</c> method returns all the columns of the matrix
             (as a list of tuples).
         </p>
@@ -111,7 +123,10 @@
         </sage>
 
         <p>
-
+            <idx>
+                <h>Matrices</h>
+                <h>row</h>
+            </idx>
             The <c>M.row(i)</c> returns the <m>i</m>-th row of the matrix.
         </p>
         <sage>
@@ -121,6 +136,10 @@
         </sage>
 
         <p>
+            <idx>
+                <h>Matrices</h>
+                <h>column</h>
+            </idx>
             The <c>M.column(j)</c> returns the <m>j</m>-th column of the matrix.
         </p>
         <sage>
@@ -130,6 +149,10 @@
         </sage>
 
         <p>
+            <idx>
+                <h>Matrices</h>
+                <h>diagonal</h>
+            </idx>
             The <c>M.diagonal()</c> returns the diagonal of the matrix.
         </p>
         <sage>
@@ -139,6 +162,10 @@
         </sage>
 
         <p>
+            <idx>
+                <h>Matrices</h>
+                <h>dimensions</h>
+            </idx>
             Alternatively, the method <c>dimensions</c> returns the dimensions of the matrix
             as a pair <c>(nrows, ncols)</c>.
         </p>
@@ -149,6 +176,10 @@
         </sage>
 
         <p>
+            <idx>
+                <h>Matrices</h>
+                <h>nrows</h>
+            </idx>
             Similarly, Sage offer more methods to help us iterate over the rows and/or the
             columns of a matrix. For instance, the method <c>nrows()</c> returns the number
             of rows of a matrix.
@@ -160,6 +191,10 @@
         </sage>
 
         <p>
+            <idx>
+                <h>Matrices</h>
+                <h>ncols</h>
+            </idx>
             Sage method <c>ncols()</c> returns the number of rows of the matrix.
         </p>
         <sage>
@@ -201,5 +236,41 @@
                 print("are v and m identical ?", v==m)
             </input>
         </sage>
+
+
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Field</h>
+            </idx>
+            Just like Vectors, Matrices in Sage can also be created in different <em>Fields</em>,
+            inferred from the datatype passed to the <c>matrix</c> command, or explicitly when
+            instantiating the matrix.
+        </p>
+        <sage>
+            <input>
+                m_int = matrix(ZZ, 3, list(range(15)))
+                m_int
+            </input>
+        </sage>
+
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Ring</h>
+            </idx>
+            The method <c>base_ring</c> returns the <em>base ring</em> of the matrix.
+        </p>
+        <sage>
+            <input>
+                m_int.base_ring()
+            </input>
+        </sage>
+
+        <p>
+            Once again, if the field is omitted, Sage will simply infers the field from
+            the datatype of the matrix entries. Sage matrices supports the same fields
+            as vectors (<m>ZZ, QQ, RR, CC</m>).
+        </p>
     </introduction>
 </section>
