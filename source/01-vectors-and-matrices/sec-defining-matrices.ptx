@@ -75,6 +75,19 @@
         </sage>
 
         <p>
+            Here is another example of creating a matrix of 3 rows and 4 columns, where all entries are <m>1</m>.
+        </p>
+        <sage>
+            <input>
+                matrix([[1]*4]*3)
+            </input>
+        </sage>
+        <p>
+            This matrix is sometime referred to as the <em>ones</em> matrix, but it's not one of the predefined
+            special matrices supported in Sage.
+        </p>
+
+        <p>
             <idx>
                 <h>Matrices</h>
                 <h>indexing</h>
