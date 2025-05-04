@@ -1,5 +1,5 @@
-<section xml:id="sec-solving-equations-with-Matrices" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Solving Equations with Matrices</title>
+<section xml:id="sec-equations-with-Matrices" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Systems of Equations with Matrices</title>
     <p>
         As an introduction to solving equations in Sage, we worked with equations symbolically. Now, we will learn how to solve systems of equations with vectors and matrices.
     </p>

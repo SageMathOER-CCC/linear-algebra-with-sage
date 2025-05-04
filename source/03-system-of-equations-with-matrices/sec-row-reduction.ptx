@@ -46,20 +46,32 @@
     </mrow>
     </md>
     <p>
-        Define the coefficient matrix and the constants vector.
+        Define the coefficient matrix.
     </p>
     <sage>
         <input>
             coeff_matrix = matrix(QQ, [
-                            [1, 2, 0],
-                            [0, 1, -1],
-                            [1, 0, 2]
-                        ])
+                [1, 2, 0],
+                [0, 1, -1],
+                [1, 0, 2]
+            ])
 
-            constants = vector(QQ, [4, 0, 4])  # Right-hand side of the equations
+            print(coeff_matrix)
         </input>
         <output>
-            
+
+        </output>
+    </sage>
+    <p>
+        Define the constants vector.
+    </p>
+    <sage>
+        <input>
+            constants = vector(QQ, [4, 0, 4])  # Right-hand side of the equations
+            print(constants)
+        </input>
+        <output>
+
         </output>
     </sage>
     <p>
@@ -71,7 +83,7 @@
             print(a)
         </input>
         <output>
-            
+
         </output>
     </sage>
     <p>
@@ -95,7 +107,7 @@
             a == A
         </input>
         <output>
-            
+
         </output>
     </sage>
     <p>
@@ -127,26 +139,7 @@
         </output>
     </sage>
     <p>
-        The <c>add_multiple_of_row</c> method takes three arguments that use 0 based indexing:
-    </p>
-    <p>
-        <ul>
-            <li>
-                <p>
-                    The first argument is the target row number that will be changed.
-                </p>
-            </li>
-            <li>
-                <p>
-                    The second argument is the source row number that will be used in the calculation.
-                </p>
-            </li>
-            <li>
-                <p>
-                    The third argument is the multiplier for the source row. We multiply every entry in the source row by this value, then add those results to the matching entries in the target row.
-                </p>
-            </li>
-        </ul>
+        Use the <c>add_multiple_of_row(i, j, s)</c> method to add <m>s</m> times row <m>j</m> to row <m>i</m>. The arguemnts use <m>0</m> based indexing.
     </p>
     <p>
         Since we already have a leading 1 in the first row, the next step is to multiply the first row by -1 and add it to the third row.
@@ -185,6 +178,6 @@
         </output>
     </sage>
     <p>
-        Now that we have the system in reduced echelong form, we can refer to the variabels we can find the solution.  
+        Now that we have the system in reduced echelong form, we can refer to the variabels we can find the solution.
     </p>
 </section>
