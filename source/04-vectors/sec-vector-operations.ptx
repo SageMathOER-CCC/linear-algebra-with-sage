@@ -26,7 +26,7 @@
 
     <subsection xml:id="subsubsec-rings-of-vectors">
         <title>Field and Rings of Vectors</title>
-        <p>
+        <!-- <p>
             <idx>
                 <h>Vectors</h>
                 <h>Ring</h>
@@ -63,7 +63,7 @@
 
         <p>
             Note that, it is required to explicitly specify the field when creating a
-            vector. Sage infers teh field from the datatype of the vector components.
+            vector. Sage infers the field from the datatype of the vector components.
         </p>
         <sage>
             <input>
@@ -80,7 +80,7 @@
                 print(v2, "is a vector in", v2.base_ring())
                 print(v3, "is a vector in", v3.base_ring())
             </input>
-        </sage>
+        </sage> -->
     </subsection>
 
     <subsection xml:id="subsubsec-vector-arithmetic">
