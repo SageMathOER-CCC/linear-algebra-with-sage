@@ -5,12 +5,12 @@
     <ul>
         <li>
             <p>
-                The first nonzero number in the row is a leading 1.
+                The first nonzero number in the row is a leading <m>1</m>.
             </p>
         </li>
         <li>
             <p>
-                In any two consecutive rows that do not consist entirely of zeros, the leading 1 in the lower row occurs farther to the right than the leading 1 in the higher row.
+                In any two consecutive rows that do not consist entirely of zeros, the leading <m>1</m> in the lower row occurs farther to the right than the leading <m>1</m> in the higher row.
             </p>
         </li>
         <li>
@@ -20,7 +20,7 @@
         </li>
         <li>
             <p>
-                Each column that contains a leading 1 has zeros everywhere else in that column.
+                Each column that contains a leading <m>1</m> has zeros everywhere else in that column.
             </p>
         </li>
     </ul>
@@ -142,7 +142,7 @@
         Use the <c>add_multiple_of_row(i, j, s)</c> method to add <m>s</m> times row <m>j</m> to row <m>i</m>. The arguemnts use <m>0</m> based indexing.
     </p>
     <p>
-        Since we already have a leading 1 in the first row, the next step is to multiply the first row by -1 and add it to the third row.
+        Since we already have a leading <m>1</m> in the first row, the next step is to multiply the first row by <m>-1</m> and add it to the third row.
     </p>
     <sage>
         <input>
@@ -154,7 +154,7 @@
         </output>
     </sage>
     <p>
-        Next, multiple the second row by 2 and add it to the third row.
+        Next, multiple the second row by <m>2</m> and add it to the third row.
     </p>
     <sage>
         <input>
@@ -166,7 +166,7 @@
         </output>
     </sage>
     <p>
-        Multiply the second row by -2 and add it to the first row.
+        Multiply the second row by <m>-2</m> and add it to the first row.
     </p>
     <sage>
         <input>
