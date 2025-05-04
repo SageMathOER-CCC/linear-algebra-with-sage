@@ -46,7 +46,36 @@
     </mrow>
     </md>
     <p>
-        Now we can create a list for every row in the augmented matrix. Next, we pass each list to the matrix function.
+        Define the coefficient matrix and the constants vector.
+    </p>
+    <sage>
+        <input>
+            coeff_matrix = matrix(QQ, [
+                            [1, 2, 0],
+                            [0, 1, -1],
+                            [1, 0, 2]
+                        ])
+
+            constants = vector(QQ, [4, 0, 4])  # Right-hand side of the equations
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        Next, create the augmented matrix by passing the constants vector to the <c>augment()</c> method of the coefficient matrix.
+    </p>
+    <sage>
+        <input>
+            a = coeff_matrix.augment(constants)
+            print(a)
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        Alternatively, we can create the augmented matrix directly by passing a list of lists to the matrix function.
     </p>
     <sage>
         <input>
@@ -55,11 +84,18 @@
                     [0, 1, -1, 0], # y - z  = 0
                     [1, 0, 2, 4]   # x + 2z = 4
                 ])
-            print("Original augmented matrix:")
             print(A)
         </input>
         <output>
 
+        </output>
+    </sage>
+    <sage>
+        <input>
+            a == A
+        </input>
+        <output>
+            
         </output>
     </sage>
     <p>
@@ -68,11 +104,87 @@
     <sage>
         <input>
             R = A.rref()
-            print("Reduced echelon form:")
             print(R)
         </input>
         <output>
 
         </output>
     </sage>
+    <p>
+        We can also use Sage to help us with the individual steps of the row reduction process. Let's begin again with the augmented matrix.
+    </p>
+    <sage>
+        <input>
+            A = matrix(QQ, [
+                    [1, 2, 0, 4],  # x + 2y = 4
+                    [0, 1, -1, 0], # y - z  = 0
+                    [1, 0, 2, 4]   # x + 2z = 4
+                ])
+            print(A)
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        The <c>add_multiple_of_row</c> method takes three arguments that use 0 based indexing:
+    </p>
+    <p>
+        <ul>
+            <li>
+                <p>
+                    The first argument is the target row number that will be changed.
+                </p>
+            </li>
+            <li>
+                <p>
+                    The second argument is the source row number that will be used in the calculation.
+                </p>
+            </li>
+            <li>
+                <p>
+                    The third argument is the multiplier for the source row. We multiply every entry in the source row by this value, then add those results to the matching entries in the target row.
+                </p>
+            </li>
+        </ul>
+    </p>
+    <p>
+        Since we already have a leading 1 in the first row, the next step is to multiply the first row by -1 and add it to the third row.
+    </p>
+    <sage>
+        <input>
+            A.add_multiple_of_row(2, 0, -1)
+            print(A)
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        Next, multiple the second row by 2 and add it to the third row.
+    </p>
+    <sage>
+        <input>
+            A.add_multiple_of_row(2, 1, 2)
+            print(A)
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        Multiply the second row by -2 and add it to the first row.
+    </p>
+    <sage>
+        <input>
+            A.add_multiple_of_row(0, 1, -2)
+            print(A)
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        Now that we have the system in reduced echelong form, we can refer to the variabels we can find the solution.  
+    </p>
 </section>
