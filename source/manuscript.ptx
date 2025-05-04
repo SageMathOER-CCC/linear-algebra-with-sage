@@ -16,8 +16,8 @@
     <xi:include href="./01-vectors-and-matrices/ch-vectors-and-matrices.ptx" />
     <xi:include href="./02-system-of-equations/ch-system-of-equations.ptx" />
     <xi:include href="./03-system-of-equations-with-matrices/ch-system-of-equations-with-matrices.ptx" />
-    <xi:include href="./04-matrices/ch-matrices.ptx" />
-    <xi:include href="./05-vectors/ch-vectors.ptx" />
+    <xi:include href="./04-vectors/ch-vectors.ptx" />
+    <xi:include href="./05-matrices/ch-matrices.ptx" />
     <xi:include href="./06-equations-of-lines-and-planes/ch-equations-of-lines-and-planes.ptx" />
     <xi:include href="./07-orthogonality/ch-orthogonality.ptx" />
     <xi:include href="./08-linear-transformation-from-r-pow-n-to-r-pow-m/ch-linear-transformation-from-r-pow-n-to-r-pow-m.ptx" />

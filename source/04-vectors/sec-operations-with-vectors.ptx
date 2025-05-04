@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-operations-with-vectors"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Operations with Vectors</title>
+
+    <introduction xml:id="introduction-vector-operations">
+        <idx>
+            <h>Vectors</h>
+            <h>Operations</h>
+        </idx>
+
+        <p>
+            The key detail about a vector is that it provides both a magnitude and a direction
+            in a given space. A vector in <m>R^n</m> is an ordered collection of <m>n</m> numbers,
+            represented as <m>(v_1, v_2, ..., v_n)</m>, where each <m>v_i</m> is a number in <m>R</m>.
+        </p>
+
+        <p> The space <m>R^n</m> refers to an <m>n</m>-dimensional space where each vector
+            corresponds to a <em>point</em> or a <em>direction</em>. In the two-dimensional space <m>R^2</m>,
+            for example, vectors are represented a pair <m>(x, y)</m>, and in three-dimensional space
+            <m>R^3</m>, vectors are represented by triples <m>(x, y, z)</m>.
+        </p>
+
+        <p>
+            In this section, we will see introduce how to perform the arithmetic operations on vectors in Sage.
+        </p>
+    </introduction>
+
+    <subsection xml:id="subsubsec-vector-arithmetic">
+        <title>Vector Arithmetic</title>
+        <p>
+            <idx>
+                <h>Vectors</h>
+                <h>Arithmetic</h>
+            </idx>
+            Vectors can be added and subtracted using the <c>+ and -</c> operators.
+            The result of adding or subtracting two vectors is a new vector with the
+            same number of components.
+        </p>
+        <sage>
+            <input>
+                v = vector([1, 2, 3])
+                w = vector([4, 5, 6])
+
+                # Adding vectors
+                print(v + w)
+            </input>
+        </sage>
+        <sage>
+            <input>
+                # Subtracting vectors
+                print(v - w)
+            </input>
+        </sage>
+
+        <p>
+            <idx>
+                <h>Vectors</h>
+                <h>Scalar Multiplication</h>
+            </idx>
+            A vector can be multiplied by a scalar using the <c>*</c> operator.
+            The result is a new vector with each component multiplied by the scalar.
+        </p>
+        <sage>
+            <input>
+                scalar = 2
+                print(scalar * v)
+            </input>
+        </sage>
+    </subsection>
+</section>

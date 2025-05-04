@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-special-matrices"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Special Matrices</title>
+
+    <introduction xml:id="special-matrices">
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Zero Matrix</h>
+                <h>Diagonal Matrix</h>
+            </idx>
+            Some matrices occur frequently enough to be given special names:
+            <ul>
+                <li>
+                    <p>
+                        The <em>zero matrix</em> contains only zeros and acts as the additive identity.
+                    </p>
+                    <sage>
+                        <input>
+                            # 3x3 zero matrix
+                            zero_matrix(3)
+                        </input>
+                    </sage>
+                </li>
+                <li>
+                    <p>
+                        A <em>diagonal matrix</em> has zero entries everywhere outside the <em>main diagonal</em>.
+                        Note that a diagonal matrix may have some or all its diagonal entries equal to <m>0</m>
+                        (recall that the main diagonal runs from the top left to the bottom right of the matrix,
+                        while the secondary diagonal runs from the top right to the bottom left).
+                    </p>
+                    <sage>
+                        <input>
+                            # 3x3 diagonal matrix
+                            diagonal_matrix([2, 4, 6])
+                        </input>
+                    </sage>
+                    <p>
+                        Diagonal matrices are simple to multiply and often appear in eigenvalue problems which
+                        we'll see in upcoming chapters.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        An <em>identity matrix</em> is a diagonal matrix with all its diagonal elements
+                        equals to 1.
+                    </p>
+                    <sage>
+                        <input>
+                            # 5x5 diagonal matrix
+                            identity_matrix(5)
+                        </input>
+                    </sage>
+                </li>
+                <li>
+                    <p>
+                        Although the <em>ones</em> matrix is not a predefined matrix in Sage, it is common in
+                        other similar computational frameworks such as Octave©, and MATLAB©. Essentially,
+                        it is a matrix where every entry is 1. It can be created by leverage the built-in list
+                        duplication operator <code>*</code> applied on a list of ones.
+                    </p>
+                    <sage>
+                        <input>
+                            # 2x4 matrix with all entries equal to 1
+                            matrix([[1]*4]*2)
+                        </input>
+                    </sage>
+                </li>
+                <li>
+                    <idx>
+                        <h>Matrices</h>
+                        <h>Upper Triangular Matrix</h>
+                        <h>Lower Triangular Matrix</h>
+                    </idx>
+                            <p>
+                        Two other common types of matrices are the <em>Upper</em> and <em>Lower</em> triangular matrices:
+                    </p>
+                    <p>
+                        An Upper Triangular Matrix is a square matrix where all entries below the main diagonal are zero.
+                    </p>
+                    <sage>
+                        <input>
+                            # 3x3 Upper triangular matrix
+                            Matrix([[1, 2, 3], [0, 4, 5], [0, 0, 6]])
+                        </input>
+                    </sage>
+                    <p>
+                        A Lower Triangular Matrix is a square matrix where all entries above the main diagonal are zero.
+                    </p>
+                    <sage>
+                        <input>
+                            # 3x3 Lower triangular matrix
+                            Matrix([[1, 0, 0], [2, 4, 0], [3, 5, 6]])
+                        </input>
+                    </sage>
+                    <p>
+                        Sage does not have these last two as predefined command. They can however be obtained by
+                        leveraging the <c>LU()</c> method that we will see in the next section.
+                    </p>
+                </li>
+            </ul>
+        </p>
+    </introduction>
+</section>
