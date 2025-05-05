@@ -14,7 +14,7 @@
 
         <p>
             Sage provides built-in support for vectors. In Sage, vectors are represented as <m>n</m>-tuples,
-            <m>(v_1, v_2, ..., v_n) \in R^n</m> where <m>n</m> is the number of components in the vector.
+            <m>(v_1, v_2, ..., v_n) \in R^n</m> where <m>n</m> is the number of <em>components</em> in the vector.
             Vectors can be defined using <c>vector</c> command, and passing the values of the vectors components.
         </p>
         <sage>
@@ -55,7 +55,7 @@
         </sage>
 
         <p>
-            Recall that list in Sage are 0-indexed, meaning that the first element of the list is at
+            Recall that lists in Sage are 0-indexed, meaning that the first element of the list is at
             index 0. To access a specific component of a vector, we can use vector indexing method.
         </p>
         <sage>
@@ -76,7 +76,7 @@
 
         <p>
             A vector in <m>R^{n+1}</m> can be constructed from a vector in <m>R^n</m> by appending
-            the values for the additional dimensions
+            the values for the additional components.
         </p>
         <sage>
             <input>
@@ -89,9 +89,9 @@
                 <h>Vectors</h>
                 <h>Field</h>
             </idx>
-            Vectors in Sage can be created in different <em>Fields</em> based on the datatype of the
-            elements of the vector. While working in a specific field, we need to explicitly pass the
-            field when instantiating a vector using the <c>vector</c> command.
+            Vectors in Sage can be created in different <em>fields</em> based on the datatype of the
+            components of the vector. While working in a specific field, we need to explicitly pass
+            the field when instantiating a vector using the <c>vector</c> command.
         </p>
         <sage>
             <input>
@@ -145,12 +145,12 @@
                 <h>Visual Representation</h>
             </idx>
             The geometrical representation of a vector can be visualized as an arrow starting from the origin
-            to the point <m>p(v_1, v_2, ..., v_n)</m>. In lower dimension (<m>n \leq 3</m>), the geometric
+            to the point <m>P=(v_1, v_2, ..., v_n)</m>. In lower dimensions (<m>n \leq 3</m>), the geometric
             representation is intuitive, but not so much in higher dimensions, where we should focus on abstract
             concepts rather than geometric representation.
         </p>
         <p>
-            To display a vector in sage, we can use the internal method <c>plot</c> of <m>vector</m> class.
+            To display a vector in Sage, we can use the internal method <c>plot</c> of <em>vector</em> class.
         </p>
         <sage>
             <input>
