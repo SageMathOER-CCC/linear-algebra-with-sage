@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-operations-on-vectors"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Operations on Vectors</title>
+
+    <introduction xml:id="introduction-vector-non-arithmetic-operations">
+        <idx>
+            <h>Vectors</h>
+            <h>Operations</h>
+        </idx>
+        <p>
+            Vectors do also support non-arithmetic operations, and operations that apply to the
+            vector itself and its components. Some of these operations are shown below.
+        </p>
+    </introduction>
+
+    <subsection xml:id="subsubsec-vector-normalization">
+        <idx>
+            <h>Vectors</h>
+            <h>Unit Vector</h>
+            <h>Normalization</h>
+        </idx>
+        <title>Normalized Vector</title>
+        <p>
+            A normalized vector is a vector that has been scaled to have a norm of 1 (hence the name
+            <em>unit vector</em>). This is often done to simplify calculations or to ensure that the
+            vector represents only a direction without any magnitude. Normalizing a vector involves
+            dividing each component of the vector by its norm (or magnitude).
+        </p>
+        <sage>
+            <input>
+                # Normalizing a 3D vector
+                v = vector([3, 4, 0])
+                w = v.normalized()
+
+                print("vector(v):", v, " with norm:", v.norm())
+                print("Normalized vector(w):", w, " with norm:", w.norm())
+            </input>
+        </sage>
+        <p>
+            The normalized vector is a unit vector that points in the same direction as the original
+            vector. Normalizing a vector means scaling it so that it has length <m>1</m> while
+            preserving its direction. This is useful in applications such as directional vectors, unit
+            vectors, and simplifying computations involving angles or projections.
+        </p>
+    </subsection>
+
+    <subsection xml:id="subsubsec-dot-and-cross-product">
+        <title>Cross and Dot Products of Vectors</title>
+        <p>
+            <idx>
+                <h>Vectors</h>
+                <h>Dot Product</h>
+                <h>Scalar Product</h>
+            </idx>
+            Another form of vector multiplication is the <em>dot</em> product, where
+            two vectors <m>v</m> and <m>w</m> are multiplied with each other to produce
+            a <em>scalar</em> value. The dot product of two vectors <m>v</m> and <m>w</m>
+            is defined as the sum of the products of their corresponding components. The
+            dot product is commutative and yields a scalar value
+            <m>v \cdot w = w \cdot v = \sum_{i=1}^n v_i w_i</m>.
+        </p>
+        <sage>
+            <input>
+                v = vector([1, 2, 3])
+                w = vector([4, 5, 6])
+                print(v.dot_product(w))  # Output: 32
+            </input>
+        </sage>
+        <p>
+            Note that the <em>dot</em> product in Sage is implemented in more than one way. All the
+            following statements are equivalent and produce the same result.
+        </p>
+        <sage>
+            <input>
+                print(v * w)
+                print(v.dot_product(w))
+                print(sum([v[i]*w[i] for i in range(v.degree())]))
+            </input>
+        </sage>
+
+        <p>
+            <idx>
+                <h>Vectors</h>
+                <h>Cross Product</h>
+            </idx>
+            The cross product of two vectors <m>v</m> and <m>w</m> is a vector that is
+            perpendicular to both <m>v</m> and <m>w</m>. The cross product is defined only
+            in 3D space and is calculated using the determinant of a matrix formed by the
+            unit vectors <m>i, j, k</m> and the components of the vectors <m>v</m> and <m>w</m>.
+            In Sage, the cross product is calculated using the <c>cross_product</c> method.
+        </p>
+        <sage>
+            <input>
+                v = vector([1, 2, 3])
+                w = vector([4, 5, 6])
+                print(v.cross_product(w))
+            </input>
+        </sage>
+    </subsection>
+
+    <subsection xml:id="subsubsec-complex-vectors">
+        <title>Conjugate of a Complex Vector</title>
+        <p>
+            <idx>
+                <h>Vectors</h>
+                <h>Complex Conjugate</h>
+            </idx>
+            The complex conjugate of a vector is found by taking the conjugate of each of its components.
+            Note the use of <c>i</c> as the the imaginary number in Sage.
+        </p>
+        <sage>
+            <input>
+                # Defining a complex vector
+                v = vector([1 + 2*i, 3 - i])
+
+                # Computing the complex conjugate
+                v.conjugate()
+            </input>
+        </sage>
+    </subsection>
+</section>

@@ -11,6 +11,6 @@
     </introduction>
 
     <!-- include sections -->
-    <xi:include href="sec-special-vectors.ptx" />
-    <xi:include href="sec-vector-operations.ptx" />
+    <xi:include href="sec-operations-with-vectors.ptx" />
+    <xi:include href="sec-operations-on-vectors.ptx" />
 </chapter>
