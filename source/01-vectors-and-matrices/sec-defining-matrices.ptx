@@ -11,20 +11,22 @@
             </idx>
             In this section, we will see how to define matrices, and perform basic operations
             on them. A matrix is an <m>m \times n</m> rectangular array of numbers:
-            <m>
+        </p>
+        <p>
+            <me>
                 \begin{bmatrix}
                 a_{11} &amp; a_{12} &amp; \dots &amp; a_{1n} \\
                 a_{21} &amp; a_{22} &amp; \dots &amp; a_{2n} \\
                 \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
                 a_{m1} &amp; a_{m2} &amp; \dots &amp; a_{mn}
                 \end{bmatrix}
-            </m>
-
+            </me>
+        </p>
+        <p>
             where <m>m</m> is the number of rows and <m>n</m> is the number of columns. Each
             <em>entry</em> <m>a_{ij}, i=1\dots m, j=1\dots n,</m> corresponds to the value
             at the intersection of the <m>i</m>-th row and <m>j</m>-th column.
         </p>
-
         <p>
             Just like vectors, Sage does come with built-in support for matrices. There are
             many ways to define a matrix in Sage using the command <c>matrix</c>, passing for
@@ -43,6 +45,21 @@
         </sage>
 
         <p>
+            Sage also allow constructor a matrix based on a list of vectors (the rows of the matrix).
+        </p>
+        <sage>
+            <input>
+                v1=vector([11, 13, 17, 19])
+                v2=vector([23, 29, 31, 37])
+                v3=vector([41, 43, 47, 53])
+
+                M = matrix([v1, v2, v3])
+                M
+            </input>
+        </sage>
+
+
+        <p>
             Alternatively, we can create a matrix by passing the entries as a list, and
             the dimensions as arguments to the <c>matrix</c> command.
         </p>
@@ -53,7 +70,7 @@
             </input>
         </sage>
         <p>
-            We don't need to specify the all dimensions of a matrix. Sage can infer the
+            We don't need to specify both dimensions of a matrix. Sage can infer the
             missing dimension from the number of entries in the list.
         </p>
         <sage>
@@ -65,7 +82,7 @@
         </sage>
 
         <p>
-            The matrix entries can also be defined programmatically using a list comprehension.
+            The entries of the matrix can also be defined programmatically using a list comprehension.
         </p>
         <sage>
             <input>
@@ -81,7 +98,7 @@
             </idx>
             The individual entries of a matrix can be accessed using the row and column indices.
             For instance, here is how we can retrieve the entry at the second row and third column
-            of the matrix <c>M</c>. Recall that the indices in Sage start at 0.
+            of the matrix <m>M</m>. Recall that the indices in Sage start at 0.
         </p>
         <sage>
             <input>
@@ -153,25 +170,11 @@
                 <h>Matrices</h>
                 <h>diagonal</h>
             </idx>
-            The <c>M.diagonal()</c> returns the diagonal of the matrix.
+            The <c>M.diagonal()</c> returns the main diagonal of the matrix.
         </p>
         <sage>
             <input>
                 M.diagonal()
-            </input>
-        </sage>
-
-        <p>
-            <idx>
-                <h>Matrices</h>
-                <h>dimensions</h>
-            </idx>
-            Alternatively, the method <c>dimensions</c> returns the dimensions of the matrix
-            as a pair <c>(nrows, ncols)</c>.
-        </p>
-        <sage>
-            <input>
-                M.dimensions()
             </input>
         </sage>
 
@@ -200,6 +203,20 @@
         <sage>
             <input>
                 M.ncols()
+            </input>
+        </sage>
+
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>dimensions</h>
+            </idx>
+            Alternatively, the method <c>dimensions</c> returns the dimensions of the matrix
+            as a pair <c>(nrows, ncols)</c>.
+        </p>
+        <sage>
+            <input>
+                M.dimensions()
             </input>
         </sage>
 
