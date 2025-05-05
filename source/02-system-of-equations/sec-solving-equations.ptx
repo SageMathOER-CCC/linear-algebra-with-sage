@@ -265,4 +265,19 @@
 
         </output>
     </sage>
+    <p>
+        The following is an example of a system with infinitely many solutions. We can express the general solution as a function of a parameter.
+    </p>
+    <sage>
+        <input>
+            var('x y z')
+            eq1 = x + 2*y == 4
+            eq2 = y - z == 0
+            eq3 = x + 2*z == 4
+            solve([eq1, eq2, eq3], x, y, z)
+        </input>
+        <output>
+
+        </output>
+    </sage>
 </section>

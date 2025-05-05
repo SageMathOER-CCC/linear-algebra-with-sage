@@ -1,5 +1,5 @@
-<section xml:id="sec-solving-equations-with-Matrices" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Solving Equations with Matrices</title>
+<section xml:id="sec-equations-with-Matrices" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Systems of Equations with Matrices</title>
     <p>
         As an introduction to solving equations in Sage, we worked with equations symbolically. Now, we will learn how to solve systems of equations with vectors and matrices.
     </p>
@@ -56,21 +56,4 @@
     <md>
         <mrow> x = 4, \; y = 0, \; z = 0 </mrow>
     </md>
-    <p>
-        While this is a solution to the system, it is not the only one. The system has infinitely many solutions. We can use symbolic operations to express the general solution as a function of a parameter.
-    </p>
-
-    <sage>
-        <input>
-            var('x y z')
-            eq1 = x + 2*y == 4
-            eq2 = y - z == 0
-            eq3 = x + 2*z == 4
-            solve([eq1, eq2, eq3], x, y, z)
-        </input>
-        <output>
-
-        </output>
-    </sage>
-
 </section>

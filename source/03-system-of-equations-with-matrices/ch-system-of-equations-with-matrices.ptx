@@ -11,5 +11,5 @@
 
     <!-- include sections -->
     <xi:include href="sec-row-reduction.ptx" />
-    <xi:include href="sec-solving-equations-with-matrices.ptx" />
+    <xi:include href="sec-equations-with-matrices.ptx" />
 </chapter>
