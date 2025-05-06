@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-Equations-of-Lines"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Equations of Lines</title>
+    <p>
+        Let's write parametric equations of the line through the points <m>A = (4,-7,8)</m> and <m>B = (2,-8,-3)</m>. The point <m>A</m> is the base-point.
+    </p>
+    <p>
+        First we define the points <m>A</m> and <m>B</m> as vectors.
+    </p>
+    <sage>
+        <input>
+            var('t')
+            A = vector([4, -7, 8])
+            B = vector([2, -8, -3])
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        Compute the direction vector.
+    </p>
+    <sage>
+        <input>
+            d = B - A
+            d
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        Write the parametric equations of the line through the points <m>A</m> and <m>B</m> by accessing the components of the point vector <em>A</em> and the direction vector <em>d</em>.  
+    </p>
+    <sage>
+        <input>
+            # Parametric equations
+            x = A[0] + d[0] * t
+            y = A[1] + d[1] * t
+            z = A[2] + d[2] * t
+            (x, y, z)
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+</section>

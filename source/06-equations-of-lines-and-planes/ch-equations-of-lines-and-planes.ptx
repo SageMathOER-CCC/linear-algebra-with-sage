@@ -10,5 +10,6 @@
     </introduction>
 
     <!-- include sections -->
-    <!-- <xi:include href="sec-placeholder.ptx" /> -->
+    <xi:include href="sec-Equations-of-Lines.ptx" />
+    <xi:include href="sec-Equations-of-Planes.ptx" />
 </chapter>
