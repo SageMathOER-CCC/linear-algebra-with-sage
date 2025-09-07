@@ -5,6 +5,7 @@
 # don't track unpublished builds or stage
 output/web
 output/stage
+output/latex
 
 # don't track assets generated from source
 generated-assets
