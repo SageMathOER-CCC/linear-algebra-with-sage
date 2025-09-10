@@ -6,5 +6,6 @@ https://pretextbook.org/doc/guide/html/processing-CLI.html#cli-project-manifest.
   <targets>
     <target name="web" format="html" />
     <target name="print" format="pdf" />
+    <target name="latex" format="latex"/>
   </targets>
 </project>
