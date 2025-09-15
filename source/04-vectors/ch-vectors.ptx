@@ -5,12 +5,12 @@
 
     <introduction>
         <p>
-            Vectors can be thought of as the building blocks of many mathematical
-            and geometric ideas. In this chapter, we'll explore more vector operations.
+            Vectors can be thought of as the building blocks of linear algebra.
+            In this chapter, we will explore more vector operations in Sage.
         </p>
     </introduction>
 
     <!-- include sections -->
     <xi:include href="sec-operations-with-vectors.ptx" />
-    <xi:include href="sec-operations-on-vectors.ptx" />
+    <xi:include href="sec-cross-and-dot-product.ptx" />
 </chapter>

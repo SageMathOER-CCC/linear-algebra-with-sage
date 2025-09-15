@@ -8,7 +8,7 @@
     and know how to use them. You can also define custom functions to suit your specific needs. You
     are welcome to use the custom functions we define in this book. However, since these custom
     functions are not part of the Sage source code, you will need to copy and paste the functions
-    into your Sage environment. In this section, we'll explore how to define custom functions and
+    into your Sage environment. In this section, we will explore how to define custom functions and
     use them.
   </p>
 

@@ -19,7 +19,8 @@
         </p>
         <sage>
             <input>
-                vector([10, 20, 30])
+                v=vector([1, 2, 3])
+                v
             </input>
         </sage>
 
@@ -29,7 +30,6 @@
         </p>
         <sage>
             <input>
-                v = vector([11, 22, 33])
                 v.degree()
             </input>
         </sage>
@@ -39,8 +39,7 @@
         </p>
         <sage>
             <input>
-                components = v.list()
-                components
+                v.list()
             </input>
         </sage>
         <p>
@@ -48,20 +47,14 @@
             ordered list of numbers where the order matters. As such, any and all native list methods
             can be used on the returned value.
         </p>
-        <sage>
-            <input>
-                type(components)
-            </input>
-        </sage>
-
         <p>
             Recall that lists in Sage are 0-indexed, meaning that the first element of the list is at
-            index 0. To access a specific component of a vector, we can use vector indexing method.
+            index 0. To access a specific component of a vector, we can use vector indexing method. Here how
+            to access the first component of the vector <m>v</m>.
         </p>
         <sage>
             <input>
-                first_component = v[0]
-                first_component
+                v[0]
             </input>
         </sage>
 
@@ -80,7 +73,7 @@
         </p>
         <sage>
             <input>
-                vector(v.list() + [44])
+                vector(v.list() + [4])
             </input>
         </sage>
 
@@ -96,8 +89,8 @@
         <sage>
             <input>
                 # creating 3D vectors in Integers field
-                v_int = vector(ZZ, components)
-                v_int
+                u = vector(ZZ, v)
+                u
             </input>
         </sage>
 
@@ -112,7 +105,7 @@
         </p>
         <sage>
             <input>
-                v_int.base_ring()
+                u.base_ring()
             </input>
         </sage>
 
@@ -121,8 +114,8 @@
         </p>
         <sage>
             <input>
-                v_rat = vector([1/2, 2/3, 3/5])
-                v_rat.base_ring()
+                w = vector([1/2, 2/3, 3/5])
+                w.base_ring()
             </input>
         </sage>
         <p>
@@ -130,12 +123,32 @@
                 <h>Vectors</h>
                 <h>Complex</h>
             </idx>
-            For the complex field <m>CC</m>, Sage use <m>i</m> to represent the imaginary unit number.
+            Sage also supports vectors over the complex field <m>CC</m>. While such vectors are not commonly
+            encountered in elementary linear algebra, they play an essential role in many engineering applications.
+            For instance, in signal processing, orthogonal signals are frequently expressed as complex vectors,
+            enabling the use of a single transformation matrix to act on the entire set, rather than applying the
+            transformation to each signal individually.
+        </p>
+        <p>
+            To create a vector in the complex field, we can either explicitly specify the field as <m>CC</m>,
+            or implicitly by using complex numbers as components of the vector like below.
         </p>
         <sage>
             <input>
-                v_cplx = vector([1.2 + i * 2.3, 3.5 - i * 5.7])
-                v_cplx.base_ring()
+                z=vector([1.2 + i * 2.3, 3.5 - i * 5.7])
+                z.base_ring()
+            </input>
+        </sage>
+        <p>
+            <idx>
+                <h>Vectors</h>
+                <h>Complex Conjugate</h>
+            </idx>
+            In Sage, the complex conjugate of a vector is found by calling the <c>conjugate()</c> method on the vector itself.
+        </p>
+        <sage>
+            <input>
+                z.conjugate()
             </input>
         </sage>
 
@@ -144,26 +157,26 @@
                 <h>Vectors</h>
                 <h>Visual Representation</h>
             </idx>
-            The geometrical representation of a vector can be visualized as an arrow starting from the origin
-            to the point <m>P=(v_1, v_2, ..., v_n)</m>. In lower dimensions (<m>n \leq 3</m>), the geometric
-            representation is intuitive, but not so much in higher dimensions, where we should focus on abstract
-            concepts rather than geometric representation.
+            In low dimensions (<m>n \leq 3</m>), the geometrical representation of a vector can be visualized
+            as an arrow starting from the origin to the point <m>P=(v_1, v_2, ..., v_n)</m>. Although Sage accepts
+            vectors of any dimension, the visual representation is only possible and meaningful in 2D and 3D, and
+            high dimensional vectors are to be taken as abstract objects.
         </p>
         <p>
             To display a vector in Sage, we can use the internal method <c>plot</c> of <em>vector</em> class.
         </p>
         <sage>
             <input>
-                v.plot(color='red', thickness=25)
+                u.plot(color='red', thickness=2)
             </input>
         </sage>
 
         <p>
-            We can also obtain the same visual representation using Sage default <c>plot</c> method.
+            Note that we can also obtain the same visual representation using Sage default <c>plot</c> method.
         </p>
         <sage>
             <input>
-                plot(v, color='red', thickness=25)
+                plot(u, color='red', thickness=2)
             </input>
         </sage>
     </introduction>

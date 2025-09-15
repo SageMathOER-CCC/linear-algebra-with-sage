@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<section xml:id="sec-operations-with-matrices"
+<section xml:id="sec-operations-with-matrices-arithmetic-operations"
     xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Operations With Matrices</title>
 
@@ -11,14 +11,11 @@
                 <h>Operations</h>
             </idx>
             Matrix arithmetic extends familiar operations like addition and multiplication to the
-            world of matrices. We'll learn how to add, subtract, and multiply matrices, explore
+            world of matrices. We will learn how to add, subtract, and multiply matrices, explore
             properties of these operations, and see how they're used to solve systems of equations,
             represent compositions of transformations, and work with data in structured ways.
         </p>
-    </introduction>
 
-    <subsection xml:id="subsubsec-matrix-arithmetic">
-        <title>Matrix Arithmetic</title>
         <p>
             <idx>
                 <h>Matrices</h>
@@ -81,5 +78,5 @@
         <p>
             Note that to use the result of these operations, you would need to assign them to a variable.
         </p>
-    </subsection>
+    </introduction>
 </section>
