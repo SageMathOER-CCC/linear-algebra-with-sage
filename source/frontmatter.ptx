@@ -5,7 +5,7 @@
 <frontmatter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="frontmatter">
   <titlepage>
     <author>
-      <personname>Allaoua Boughrira, Hellen Colman, Samuel Lubliner</personname>
+      <personname>Allaoua Boughrira, Hellen Colman, Michael Kattner, Samuel Lubliner,</personname>
       <department>Math Department</department>
       <institution>City Colleges of Chicago</institution>
     </author>
@@ -71,6 +71,13 @@
         <email>hcolman@ccc.edu</email>
       </contributor>
 
+      <contributor xml:id="mk">
+        <personname>Michael Kattner</personname>
+        <department>Mathematics</department>
+        <institution>Wright College</institution>
+        <email>MDKattner@gmail.com</email>
+      </contributor>
+
       <contributor xml:id="sl">
         <personname>Samuel Lubliner</personname>
         <department>Computer Science</department>
@@ -78,6 +85,7 @@
         <email>sage.oer@gmail.com</email>
       </contributor>
     </contributors>
+
   </preface>
 
   <colophon>
