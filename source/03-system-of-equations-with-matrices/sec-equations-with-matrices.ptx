@@ -51,9 +51,62 @@
         </output>
     </sage>
     <p>
-        The output <c>(4, 0, 0)</c> expresses a solution to the system:
+        The output <c>(4, 0, 0)</c> expresses one solution to the system:
     </p>
     <md>
         <mrow> x = 4, \; y = 0, \; z = 0 </mrow>
     </md>
+    <section xml:id="sec-differences-in-solutions">
+        <title>Differences in Solutions</title>
+    <p>
+        To find all solutions we first need to augment matrix <m>A</m> with vector <m>b</m>. This is done with the <c>augment</c> method.
+    </p>
+    <sage>
+        <input>
+            # subdivide=True adds a dividing line to the new matrix
+            Ab = A.augment(b, subdivide=True)
+            Ab
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        To solve this new matrix, call the <c>rref</c> method to output the matrix in reduced row echelon form.
+    </p>
+    <sage>
+        <input>
+            Ab.rref()
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        The row of zeros at the bottom indicates that the system has infinitely many solutions.
+    </p>
+    <p>
+        These methods also differ in how they handle a system with no solutions. For example if we instead solve for a vector <m>v = (1,2,8)</m> with the <c>solve_right</c> method, an error will be thrown.
+    </p>
+    <sage>
+        <input>
+            v = vector([1,2,8])
+            A.solve_right(v)
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        Where as the <c>rref</c> method will return a matrix which represents an inconsistent system.
+    </p>
+    <sage>
+        <input>
+            A.augment(v, subdivide=True).rref()
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    </section>
 </section>
