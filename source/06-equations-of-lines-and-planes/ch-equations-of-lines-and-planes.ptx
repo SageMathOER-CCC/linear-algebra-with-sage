@@ -4,11 +4,10 @@
     <title>Equations of Lines and Planes</title>
 
     <introduction>
-        <p>
-            PLACEHOLDER.
-        </p>
+        <p>This chapter introduces lines and planes in 3D space.</p>
     </introduction>
 
-    <!-- include sections -->
-    <!-- <xi:include href="sec-placeholder.ptx" /> -->
+    <xi:include href="sec-lines-vector.ptx" />
+    <xi:include href="sec-lines-two-points.ptx" />
+    <xi:include href="sec-planes-normal.ptx" />
 </chapter>

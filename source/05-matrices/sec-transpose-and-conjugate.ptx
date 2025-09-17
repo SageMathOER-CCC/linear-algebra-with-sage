@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-matrix-operations-transpose-and-conjugate"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Transpose and Conjugate</title>
+    <introduction xml:id="sm-introduction-transpose-and-conjugate">
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Transpose</h>
+            </idx>
+            The transpose of a matrix is obtained by flipping it over its diagonal, swapping rows with columns.
+            The transpose is denoted as <m>A^T</m> and can be computed in Sage using the <c>transpose</c> method:
+        </p>
+        <sage>
+            <input>
+                A = matrix([[2, 3, 5], [7, 11, 13], [17, 19, 23]])
+                A.transpose()
+            </input>
+        </sage>
+
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Symmetric</h>
+            </idx>
+            A matrix <m>A</m> is <em>symmetric</em> if it is equal to its transpose, i.e., <m>A = A^T</m>.
+            Sage offers <c>is_symmetric()</c> method to check if a matrix is symmetric.
+        </p>
+        <sage>
+            <input>
+                A.is_symmetric()
+            </input>
+        </sage>
+
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Complex Conjugate</h>
+            </idx>
+            For matrices with complex entries, the complex conjugate is found by taking the conjugate of
+            each individual entry. This operation is often used in conjunction with the transpose to form
+            the conjugate transpose (also called the Hermitian transpose)
+        </p>
+        <sage>
+            <input>
+                A = matrix(CC, [[1 + 2*I, 3 - I], [-2*I, 4]])
+                A.conjugate()
+            </input>
+        </sage>
+        <p>
+            Matrices with Complex values, and computing conjugates are very common in signal processing
+            and quantum mechanics.
+        </p>
+
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Norm</h>
+            </idx>
+            Just like vectors, matrices also has a norm quantity defined. But unlike vectors, there are
+            several types of norms for matrices. The method <c>norm</c> in Sage returns the Frobenius
+            norm which is defined as the square root of the sum of the squares of all the entries in the
+            matrix.
+        </p>
+        <sage>
+            <input>
+                # The norm of a matrix
+                A = matrix([[1, 2], [3, 4]])
+                A.norm()
+            </input>
+        </sage>
+    </introduction>
+</section>

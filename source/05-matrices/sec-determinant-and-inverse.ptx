@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-matrix-operations-determinant-and-inverse"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Determinant and Inverse</title>
+    <introduction xml:id="sm-introduction-determinant-and-inverse">
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Determinants</h>
+            </idx>
+            Matrices also support non-arithmetic, unary operations; operation that are
+            applied to the matrix itself and its entrees. The determinant of a square
+            matrix is a scalar value that provides important information about the matrix,
+            such as whether it is invertible and how it scales space during transformations.
+            For an <m>n \times n</m> matrix <m>A</m>, the determinant is denoted as
+            <m>\det(A)</m> or <m>|A|</m>. If the determinant is zero, the matrix is singular
+            and does not have an inverse. In Sage, the determinant of a matrix can be computed
+            using the <c>det</c> method:
+        </p>
+        <sage>
+            <input>
+                # Computing the determinant
+                A = matrix([[2, 3, 5], [7, 11, 13], [17, 19, 23]])
+                A.det()
+            </input>
+        </sage>
+        <p>
+            Note that the determinant of the identity matrix is 1, and the determinant of the zero matrix is 0.
+        </p>
+
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Inverse</h>
+            </idx>
+            The inverse of a matrix <m>A</m> is denoted as <m>A^{-1}</m> and is defined as the matrix that,
+            when multiplied with <m>A</m>, yields the identity matrix. The inverse exists only if the determinant
+            of the matrix is non-zero. In Sage, the inverse of a matrix can be computed using the <c>inverse</c> method:
+        </p>
+        <sage>
+            <input>
+                # Computing the inverse of matrix A
+                A.inverse()
+            </input>
+        </sage>
+
+        <p>
+            A matrix is <em>singular</em> if it does not have an inverse, which occurs when its determinant is zero.
+            In Sage, to check whether a matrix is singular or not the method <c>is_singular()</c> can be used.
+            Note that just as with the determinant, this method is only applicable to square matrices.
+        </p>
+        <sage>
+            <input>
+                M = matrix([[1, 2], [2, 4]])
+                M.is_singular()
+            </input>
+        </sage>
+        <p>
+            The matrix <c>M</c> is singular because its determinant is zero, hence does not have an inverse.
+            Note that Sage offers several other methods to help check various properties of matrices related
+            to determinants and inverses.
+        </p>
+
+        <p>
+            The method <c>is_square()</c> returns <c>True</c> if the matrix is square.
+        </p>
+        <sage>
+            <input>
+                M.is_square()
+            </input>
+        </sage>
+
+        <p>
+            The method <c>is_invertible()</c> returns <c>True</c> if the matrix has an inverse.
+        </p>
+        <sage>
+            <input>
+                M.is_invertible()
+            </input>
+        </sage>
+
+        <p>
+            The <em>adjugate</em> (or the <em>adjoint</em>) of a matrix is the transpose of its cofactor matrix.
+            In Sage, the <c>adjugate</c> method returns the adjoint matrix.
+        </p>
+        <sage>
+            <input>
+                M.adjugate()
+            </input>
+        </sage>
+
+        <p>
+            Currently, Sage does not have an implementation to directly extract the <em>minors</em> of a matrix.
+            To compute a minor of a matrix, Sage offers <c>delete_rows()</c> and <c>delete_columns()</c> methods
+            which can be used to delete a specific row and column and obtain the minor submatrix.
+        </p>
+        <sage>
+            <input>
+                M = matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+                minor_0_0 = M.delete_rows([0]).delete_columns([0])
+                minor_0_0
+            </input>
+        </sage>
+    </introduction>
+</section>

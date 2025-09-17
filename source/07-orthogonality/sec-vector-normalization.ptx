@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-vector-normalization"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Normalized Vector</title>
+
+    <introduction xml:id="introduction-vector-normalization">
+        <idx>
+            <h>Vectors</h>
+            <h>Unit Vector</h>
+            <h>Normalization</h>
+        </idx>
+        <p>
+            A normalized vector is a vector that has been scaled to have a norm of 1 (hence the name
+            <em>unit vector</em>). This is often done to simplify calculations or to ensure that the
+            vector represents only a direction without any magnitude. Normalizing a vector involves
+            dividing each component of the vector by its norm (or magnitude).
+        </p>
+        <sage>
+            <input>
+                # Normalizing a 3D vector
+                v = vector([3, 4, 0])
+                w = v.normalized()
+
+                print("vector(v):", v, " with norm:", v.norm())
+                print("Normalized vector(w):", w, " with norm:", w.norm())
+            </input>
+        </sage>
+        <p>
+            The normalized vector is a unit vector that points in the same direction as the original
+            vector. Normalizing a vector means scaling it so that it has length <m>1</m> while
+            preserving its direction. This is useful in applications such as directional vectors, unit
+            vectors, and simplifying computations involving angles or projections.
+        </p>
+    </introduction>
+</section>

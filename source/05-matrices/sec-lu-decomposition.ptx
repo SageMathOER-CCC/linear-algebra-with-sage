@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-matrix-operations-lu-decomposition"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>LU Decomposition</title>
+    <introduction xml:id="sm-introduction-lu-decomposition">
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Upper Triangular Matrix</h>
+                <h>Lower Triangular Matrix</h>
+            </idx>
+            The LU decomposition of a matrix is a factorization of the matrix into a product of a lower triangular
+            matrix <m>L</m> and an upper triangular matrix <m>U</m>. This decomposition is useful for solving
+            systems of linear equations and computing the determinant of the matrix.
+        </p>
+        <p>
+            In Sage, the LU decomposition can be computed using the <c>LU()</c> method (note that Sage implementation
+            of this method returns three matrices: the lower triangular matrix <m>L</m>, the upper triangular matrix
+            <m>U</m>, and an extra permutation matrix <m>P</m>):
+        </p>
+        <!-- TODO. Given a matrix that accept the strict mathematic definition of LU decomposition, what would the P
+            matrix contain? (let there be L and U, A=L*U, then what is P in P,L,U = A.LU() ?)
+            Q: given that not every matrix has an LU decomposition, does all matrices have PLU decomposition ?
+            Q: LU decomposition of a matrix is unique, but PLU decomposition **may** not be unique
+            TODO. how is LU decomposition related to diagonalization ?
+            -->
+        <sage>
+            <input>
+                A = matrix([[41, 37, 47], [61, 31, 59], [71, 73, 79]])
+                P, L, U = A.LU()
+                P # Permutation (or the pivot) matrix
+            </input>
+        </sage>
+        <p>
+            The product of the matrices <m>P</m>, <m>L</m>, and <m>U</m> yields the original matrix <m>A</m>.
+            The matrix <m>P</m> is called the <em>Pivot</em> (or the permutation) matrix, which always has a
+            determinant of 1 (has exactly one <m>1</m> in every row and column). The matrix <m>L</m> is the
+            Lower triangular matrix L. its determinant is equal to the product of the diagonal entries.
+        </p>
+        <sage>
+            <input>
+                print(L, end="\n\n")
+                print(L.determinant())
+            </input>
+        </sage>
+        <p>
+            Similarly, the matrix <m>U</m> is the Upper triangular matrix U. its determinant is also equal
+            to the product of the diagonal entries.
+        </p>
+        <sage>
+            <input>
+                # The upper triangular matrix U
+                U
+            </input>
+        </sage>
+        <p>
+            Note that the LU decomposition is not unique, and there are many different ways to perform it.
+            For instance, we can choose to decomposition with a pivot that has a non-zero determinant (also
+            equal to 1 in this case):
+        </p>
+        <sage>
+            <input>
+                P, L, U = A.LU(pivot='nonzero')
+                print(P)
+                print('-'*7+'\n',P.det())
+            </input>
+        </sage>
+        <p>
+            With <em>partial</em> pivoting, every entry of <m>L</m> will have absolute value of <m>1</m> or less.
+        </p>
+        <sage>
+            <input>
+                P, L, U = A.LU(pivot='partial')
+                L
+            </input>
+        </sage>
+        <p>
+            Additionally, Sage offers different ways to format the display of the result of the LU decomposition.
+        </p>
+        <sage>
+            <input>
+                P, L, U = A.LU(format='plu')
+                print(P, end="\n\n")
+                print(L, end="\n\n")
+                print(U, end="\n\n")
+            </input>
+        </sage>
+        <p>
+            And for a slightly compact format:
+        </p>
+        <sage>
+            <input>
+                P, M = A.LU(format='compact')
+                print(P, end="\n\n")  # only display the diagonal entrees
+                print(M, end="\n\n")  # combines the upper and lower triangular matrices
+            </input>
+        </sage>
+    </introduction>
+</section>

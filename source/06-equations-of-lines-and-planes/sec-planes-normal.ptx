@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="planes">
+    <title>Planes with a Normal Vector</title>
+    <introduction>
+        <p>Learn how to write equations of planes using a point and a normal vector.</p>
+    </introduction>
+</section>
