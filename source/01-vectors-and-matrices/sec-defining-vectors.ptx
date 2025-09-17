@@ -1,170 +1,304 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec-defining-vectors" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Working with Vectors in SageMath</title>
 
-<section xml:id="sec-defining-vectors"
-    xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Vectors</title>
-
-    <introduction xml:id="sm-introduction-vectors-in-sage">
+    <introduction>
+        <idx><h>Vectors</h></idx>
         <p>
-            <idx>
-                <h>Vectors</h>
-            </idx>
-            In this section, we will see how to define vectors, and perform basic operations on them.
+            A vector is a fundamental object in mathematics and computer science.
+            In this section, you will learn how to create and work with vectors using SageMath, 
+            even if you are completely new to programming or mathematics software.
+            Think of vectors as a way to represent points, directions, or any collection 
+            of numbers in a structured way.
         </p>
 
+        <p><strong>What you will learn:</strong></p>
+        <ul>
+            <li>How to create vectors.</li>
+            <li>How to determine the size of a vector.</li>
+            <li>How to calculate a vector's magnitude (length).</li>
+            <li>How to convert a vector to a list and vice versa.</li>
+            <li>How to build new vectors from existing ones.</li>
+            <li>How to check what type a vector is (e.g., integer, rational).</li>
+            <li>How to visualize vectors in 2D and 3D.</li>
+        </ul>
+    </introduction>
+
+    <subsection>
+        <title>Creating a Vector</title>
         <p>
-            Sage provides built-in support for vectors. In Sage, vectors are represented as <m>n</m>-tuples,
-            <m>(v_1, v_2, ..., v_n) \in R^n</m> where <m>n</m> is the number of <em>components</em> in the vector.
-            Vectors can be defined using <c>vector</c> command, and passing the values of the vectors components.
+            A vector is a list of numbers that represents a point in space or a direction with a specific length. 
+            For example, the coordinates <m>(x, y)</m> on a map can be represented as a 2-dimensional vector.  
+            In SageMath, creating a vector is straightforward: use the <c>vector()</c> function with a list of numbers 
+            enclosed in square brackets <c>[]</c>.
         </p>
         <sage>
             <input>
-                vector([10, 20, 30])
+                # Create a 3-dimensional vector
+                v = vector([10, 20, 30])
+                v
             </input>
         </sage>
+        <p>
+            This creates a vector with three components: 10, 20, and 30. You can think of this 
+            as coordinates (10, 20, 30) in 3D space, or as an arrow pointing from the origin 
+            (0,0,0) to that point.
+        </p>
+    </subsection>
+
+    <subsection>
+        <title>Finding Vector Size</title>
 
         <p>
-            The number of components <m>n</m> of a vector <m>v = (v_1, \dots, v_n)</m> is
-            obtained in Sage by using the command <c>degree</c>.
+            The number of components in a vector is called its <em>dimension</em> or <em>degree</em>. 
+            Use the <c>.degree()</c> method to find it.
         </p>
         <sage>
             <input>
+                # Let's find out how many components our vector has
                 v = vector([11, 22, 33])
+                print("Our vector:", v)
                 v.degree()
             </input>
         </sage>
-
         <p>
-            To retrieve the components of a vector as a list, the method <c>list</c> can be used
+            This should return <c>3</c>, telling us we are working with a 3-dimensional vector.
         </p>
-        <sage>
-            <input>
-                components = v.list()
-                components
-            </input>
-        </sage>
-        <p>
-            Note that the return type of that command is the Python built-in <c>List</c> type; an
-            ordered list of numbers where the order matters. As such, any and all native list methods
-            can be used on the returned value.
-        </p>
-        <sage>
-            <input>
-                type(components)
-            </input>
-        </sage>
 
-        <p>
-            Recall that lists in Sage are 0-indexed, meaning that the first element of the list is at
-            index 0. To access a specific component of a vector, we can use vector indexing method.
-        </p>
-        <sage>
-            <input>
-                first_component = v[0]
-                first_component
-            </input>
-        </sage>
+        <p><strong>Good to Know:</strong></p>
+        <p> You can use also the standard Python len() function to get the same result</p>
+    </subsection>
 
-        <p> The magnitude of a vector, <m>||v|| = \sqrt{v_1^2 + v_2^2 + ... + v_n^2}</m> is obtained
-            in Sage by using the vector method <c>norm</c>.
+    <subsection>
+    <title>Calculate the Magnitude of a Vector</title>
+        <p>
+            The magnitude (or length) of a vector is calculated using the formula:
+             <m>||v|| = \sqrt{v_1^2 + v_2^2 + ... + v_n^2}</m> . 
+
+            In SageMath, this is done with the <c>.norm()</c> method.
         </p>
+
         <sage>
             <input>
+                # Calculate the magnitude of a vector
+                v = vector([11, 22, 33])
                 v.norm()
             </input>
         </sage>
 
         <p>
-            A vector in <m>R^{n+1}</m> can be constructed from a vector in <m>R^n</m> by appending
-            the values for the additional components.
+            For a decimal approximation of the magnitude, you can use the <c>.n()</c> method:
         </p>
         <sage>
             <input>
-                vector(v.list() + [44])
+                # Get a decimal approximation of the length
+                v.norm().n()
+            </input>
+        </sage>
+            
+        <p>
+            This gives us the distance from the origin to the point represented by our vector.
+        </p>
+    </subsection>
+
+    <subsection>
+        <title>Working with Vector Components</title>
+        <p>
+            You can access a specific component of a vector using index notation using square brackets <c>[]</c>.
+        </p>
+
+        <p>
+            <strong>Good to Know:</strong> 
+            SageMath uses 0-based indexing, meaning 
+            the first element is at index (position) <c>0</c>.
+            This might feel strange at first, but you will get used to it!
+        </p>
+
+        <sage>
+            <input>
+                # Get the first component (at position 0)
+                v = vector([15, 25, 2])
+                v[0]
+            </input>
+        </sage>
+        <sage>
+            <input>
+                # Get the second component (at position 1)
+                v = vector([15, 25, 2])
+                v[1]
             </input>
         </sage>
 
-        <p>
-            <idx>
-                <h>Vectors</h>
-                <h>Field</h>
-            </idx>
-            Vectors in Sage can be created in different <em>fields</em> based on the datatype of the
-            components of the vector. While working in a specific field, we need to explicitly pass
-            the field when instantiating a vector using the <c>vector</c> command.
-        </p>
         <sage>
             <input>
-                # creating 3D vectors in Integers field
-                v_int = vector(ZZ, components)
-                v_int
+                # Get the third component (at position 2)
+                v = vector([15, 25, 2])
+                v[2]
             </input>
         </sage>
+    </subsection>
 
-        <p>
-            <idx>
-                <h>Vectors</h>
-                <h>Ring</h>
-            </idx>
-            Note that <m>ZZ</m> is Sage notation for the Integers field. Similarly, <m>QQ</m> is for
-            Rational numbers, <m>RR</m> for Reals, and <m>CC</m> for Complex numbers. The method
-            <c>base_ring</c> returns the <em>base ring</em> of the vector.
-        </p>
+   <subsection>
+        <title>Convert a Vector to a List</title>
+    <p>
+        You can see all components as a Python <c>list</c> by using the <c>.list()</c> method.  
+        A list is an ordered collection of numbers, such as <c>[1, 2, 3]</c>.  
+        The return value is a Python <c>list</c>, so you can use any standard Python list methods 
+        on the returned value, such as <c>append()</c> or <c>sort()</c>.
+    </p>
+    <sage>
+        <input>
+            v = vector([15, 25, 2])
+            components = v.list()
+            type(components)
+        </input>
+    </sage>
+    </subsection>
+
+    <subsection>
+        <title>Building new Vectors from Existing Ones</title>
+    <p>
+        You can create new vectors by combining existing ones. For example, we can add a fourth component 
+        to our 3D vector <c>v</c> by converting it to a list, appending a value, and creating a new vector.
+    </p>
         <sage>
             <input>
+                # Create a new 4D vector by appending 44
+                new_v = vector(v.list() + [44])
+                new_v
+            </input>
+        </sage>
+        <p>
+            Now we have created a 4-dimensional vector: (11, 22, 33, 44).
+        </p>
+    </subsection>
+
+    <subsection>
+        <title>Specifying Number Types</title>
+        <p>
+            Vectors can be defined over different number systems (called <em>fields</em> or <em>rings</em>).
+            SageMath uses special abbreviations for different number systems:
+        </p>
+        
+        <ul>
+            <li><c>ZZ</c> - Integers (e.g., -2, -1, 0, 1, 2)</li>
+            <li><c>QQ</c> - Rational numbers (e.g., 1/2, 2/3, 5/4)</li>
+            <li><c>RR</c> - Real numbers (including decimals: 3.14, -0.5, 2.0)</li>
+            <li><c>CC</c> – Complex numbers: numbers that can have <c>i</c>(the square root of -1), 
+                            e.g., 2 + 3i, -1 - i</li>
+        </ul>
+        
+        <p>Let's see examples of each:</p>
+        
+        <sage>
+            <input>
+                # ZZ (integer vector)
+                v_int = vector(ZZ, [1, 2, 3])
                 v_int.base_ring()
+
             </input>
         </sage>
-
-        <p>
-            If the field is omitted, Sage will infer the field from the datatype of the vector components.
-        </p>
+        
+            
         <sage>
             <input>
-                v_rat = vector([1/2, 2/3, 3/5])
+                # QQ (rational numbers)
+                v_rat = vector( QQ, [1/2, 2/3, 3/5])
                 v_rat.base_ring()
             </input>
         </sage>
-        <p>
-            <idx>
-                <h>Vectors</h>
-                <h>Complex</h>
-            </idx>
-            For the complex field <m>CC</m>, Sage use <m>i</m> to represent the imaginary unit number.
-        </p>
+
         <sage>
             <input>
+                # RR (real numbers)
+                v_real = vector( RR, [3.14, -0.5, 2.0])
+                v_real.base_ring()
+            </input>
+        </sage>
+        
+        <sage>
+            <input>
+                # CC (complex numbers) 
+                # Sage uses <c>i</c> to represent the imaginary unit number.
                 v_cplx = vector([1.2 + i * 2.3, 3.5 - i * 5.7])
                 v_cplx.base_ring()
             </input>
         </sage>
+        
+        <p>
+            Do not worry if complex numbers seem confusing. You might not need them right away, 
+            but it is good to know they are available when you do!
+        </p>
+    </subsection>
 
+   <subsection>
+    <title>Visualizing Vectors</title>
+    <p>
+        One of the best ways to understand vectors is to see them.  
+        Geometrically, a vector can be visualized as an arrow starting from the origin
+        and pointing to the point <m>P = (v_1, v_2, ..., v_n)</m>.  
+        In lower dimensions (<m>n \leq 3</m>), this representation is easy to imagine, 
+        but in higher dimensions it becomes harder to picture. In those cases, we focus on 
+        abstract concepts rather than geometric representation.
+    </p>
+    <p>
+        You can use <c>show()</c> in Sage or <c>.plot()</c> in Python to display the vector.
+    </p>
+    <p>
+        For example, let's create and visualize a simple 2D vector:
+    </p>
+
+    <sage>
+        <input>
+            # Create and display a smaller 2D vector
+            vector([3, 2]).plot(color='red', thickness=2, figsize=[6,6]).show()
+        </input>
+    </sage>
+
+    <p>
+        This code will display an arrow pointing from the origin to the point (3,2). 
+        Here is what each part does:
+    </p>
+
+    <ul>
+        <li><c>vector([3, 2])</c>: Creates a 2D vector with components 3 and 2.</li>
+        <li><c>.plot()</c>: Converts the vector into a visual plot (an arrow).</li>
+        <li><c>color='red'</c>: Makes the arrow red for better visibility.</li>
+        <li><c>thickness=2</c>: Sets the thickness of the arrow line.</li>
+        <li><c>figsize=[6,6]</c>: Sets the overall size of the figure.</li>
+        <li><c>.show()</c>: Displays the plot immediately.</li>
+    </ul>
+
+    <p>
+        You can experiment by changing the numbers inside the vector.  
+        For example, you can add a third value to create a 3D vector, or modify 
+        the existing values to change the direction and length of the arrow.  
+        Each time you click the Sage "Evaluate" button, the plot will update 
+        automatically to reflect your changes.
+    </p>
+    </subsection>
+
+    <subsection>
+        <title>Putting it all together</title>
         <p>
-            <idx>
-                <h>Vectors</h>
-                <h>Visual Representation</h>
-            </idx>
-            The geometrical representation of a vector can be visualized as an arrow starting from the origin
-            to the point <m>P=(v_1, v_2, ..., v_n)</m>. In lower dimensions (<m>n \leq 3</m>), the geometric
-            representation is intuitive, but not so much in higher dimensions, where we should focus on abstract
-            concepts rather than geometric representation.
+            Let's work through a complete example that uses several concepts we have learned:
         </p>
-        <p>
-            To display a vector in Sage, we can use the internal method <c>plot</c> of <em>vector</em> class.
-        </p>
+        
         <sage>
             <input>
-                v.plot(color='red', thickness=25)
+                # Create a vector
+                u = vector([1, 2, 3])
+                print("Vector u:", u)
+                print("Dimension:", u.degree())
+                print("Magnitude:", u.norm().n())
+                print("First component:", u[0])
+                print("All components:", u.list())
+                
+                # Extend the vector
+                u_extended = vector(u.list() + [4])
+                print("Extended vector:", u_extended)
+                print("New dimension:", u_extended.degree())
             </input>
         </sage>
-
-        <p>
-            We can also obtain the same visual representation using Sage default <c>plot</c> method.
-        </p>
-        <sage>
-            <input>
-                plot(v, color='red', thickness=25)
-            </input>
-        </sage>
-    </introduction>
+    </subsection>
 </section>
