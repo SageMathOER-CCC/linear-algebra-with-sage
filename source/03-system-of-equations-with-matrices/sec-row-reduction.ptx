@@ -50,13 +50,12 @@
     </p>
     <sage>
         <input>
-            coeff_matrix = matrix(QQ, [
+            A = matrix([
                 [1, 2, 0],
                 [0, 1, -1],
                 [1, 0, 2]
             ])
-
-            print(coeff_matrix)
+            A
         </input>
         <output>
 
@@ -67,8 +66,8 @@
     </p>
     <sage>
         <input>
-            constants = vector(QQ, [4, 0, 4])  # Right-hand side of the equations
-            print(constants)
+            b = vector([4, 0, 4])  # Right-hand side of the equations
+            b
         </input>
         <output>
 
@@ -79,8 +78,8 @@
     </p>
     <sage>
         <input>
-            a = coeff_matrix.augment(constants)
-            print(a)
+            Ab = A.augment(b)
+            Ab
         </input>
         <output>
 
@@ -91,12 +90,12 @@
     </p>
     <sage>
         <input>
-            A = matrix(QQ, [
+            Ab = matrix([
                     [1, 2, 0, 4],  # x + 2y = 4
                     [0, 1, -1, 0], # y - z  = 0
                     [1, 0, 2, 4]   # x + 2z = 4
                 ])
-            print(A)
+            Ab
         </input>
         <output>
 
@@ -115,8 +114,7 @@
     </p>
     <sage>
         <input>
-            R = A.rref()
-            print(R)
+            Ab.rref()
         </input>
         <output>
 
@@ -127,12 +125,12 @@
     </p>
     <sage>
         <input>
-            A = matrix(QQ, [
+            Ab = matrix([
                     [1, 2, 0, 4],  # x + 2y = 4
                     [0, 1, -1, 0], # y - z  = 0
                     [1, 0, 2, 4]   # x + 2z = 4
                 ])
-            print(A)
+            Ab
         </input>
         <output>
 
@@ -146,8 +144,8 @@
     </p>
     <sage>
         <input>
-            A.add_multiple_of_row(2, 0, -1)
-            print(A)
+            Ab.add_multiple_of_row(2, 0, -1)
+            Ab
         </input>
         <output>
 
@@ -158,8 +156,8 @@
     </p>
     <sage>
         <input>
-            A.add_multiple_of_row(2, 1, 2)
-            print(A)
+            Ab.add_multiple_of_row(2, 1, 2)
+            Ab
         </input>
         <output>
 
@@ -170,14 +168,14 @@
     </p>
     <sage>
         <input>
-            A.add_multiple_of_row(0, 1, -2)
-            print(A)
+            Ab.add_multiple_of_row(0, 1, -2)
+            Ab
         </input>
         <output>
 
         </output>
     </sage>
     <p>
-        Now that we have the system in reduced echelong form, we can refer to the variabels we can find the solution.
+        Now that we have the system in reduced echelon form, we can refer to the variables we can find the solution.
     </p>
 </section>
