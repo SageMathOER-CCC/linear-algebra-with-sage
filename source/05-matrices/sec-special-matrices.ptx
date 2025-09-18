@@ -26,21 +26,29 @@
                 </li>
                 <li>
                     <p>
-                        A <em>diagonal matrix</em> has zero entries everywhere outside the <em>main diagonal</em>.
-                        Note that a diagonal matrix may have some or all its diagonal entries equal to <m>0</m>
-                        (recall that the main diagonal runs from the top left to the bottom right of the matrix,
-                        while the secondary diagonal runs from the top right to the bottom left).
+                        A <em>diagonal matrix</em> is a square matrix that has zero entries everywhere outside
+                        the <em>main diagonal</em>. Note that a diagonal matrix may have some or all its diagonal
+                        entries equal to <m>0</m> (recall that the main diagonal runs from the top left to the
+                        bottom right of the matrix, while the secondary diagonal runs from the top right to the
+                        bottom left).
                     </p>
                     <sage>
                         <input>
                             # 3x3 diagonal matrix
-                            diagonal_matrix([2, 4, 6])
+                            d = diagonal_matrix([2, 4, 6])
+                            d
                         </input>
                     </sage>
                     <p>
                         Diagonal matrices are simple to multiply and often appear in eigenvalue problems which
-                        we'll see in upcoming chapters.
+                        we will see in upcoming chapters. To check if a matrix is diagonal, the method
+                        <c>is_diagonal()</c> can be used.
                     </p>
+                    <sage>
+                        <input>
+                            d.is_diagonal()
+                        </input>
+                    </sage>
                 </li>
                 <li>
                     <p>
@@ -59,7 +67,7 @@
                         Although the <em>ones</em> matrix is not a predefined matrix in Sage, it is common in
                         other similar computational frameworks such as Octave©, and MATLAB©. Essentially,
                         it is a matrix where every entry is 1. It can be created by leverage the built-in list
-                        duplication operator <code>*</code> applied on a list of ones.
+                        duplication operator <c>*</c> applied on a list of ones.
                     </p>
                     <sage>
                         <input>

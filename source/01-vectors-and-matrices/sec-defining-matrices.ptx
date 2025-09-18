@@ -30,7 +30,7 @@
         <p>
             Just like vectors, Sage does come with built-in support for matrices. There are
             many ways to define a matrix in Sage using the command <c>matrix</c>, passing for
-            instance the rows of the matrix <em>as a list</em>.
+            instance each of the rows of the matrix as a <em>list of numbers</em>.
         </p>
         <sage>
             <input>
@@ -45,7 +45,7 @@
         </sage>
 
         <p>
-            Sage also allow constructor a matrix based on a list of vectors (the rows of the matrix).
+            Or as a <em>list of vectors</em>.
         </p>
         <sage>
             <input>
@@ -58,26 +58,26 @@
             </input>
         </sage>
 
-
         <p>
             Alternatively, we can create a matrix by passing the entries as a list, and
-            the dimensions as arguments to the <c>matrix</c> command.
+            the dimensions as arguments to the <c>matrix</c> command. Here is an example
+            of a <m>2 \times 3</m> matrix
         </p>
         <sage>
             <input>
-                M = matrix(2, 3, [11, 22, 33, 44, 55, 66])
+                M = matrix(2, 3, [1, 1, 2, 3, 5, 8])
                 M
             </input>
         </sage>
         <p>
-            We don't need to specify both dimensions of a matrix. Sage can infer the
-            missing dimension from the number of entries in the list.
+            We do not need to specify both dimensions of a matrix. Sage can infer the
+            missing dimension from the number of entries in the list. Here is an example
+            of a <m>3 \times 4</m> matrix containing the first <m>100</m> integers, and where
+            only the number of rows is specified.
         </p>
         <sage>
             <input>
-                # A matrix with size 5x20 containing the first 100 integers
-                M = matrix(5, list(range(100)))
-                M
+                matrix(5, list(range(100)))
             </input>
         </sage>
 
@@ -92,13 +92,39 @@
         </sage>
 
         <p>
+            Sage also allows to construct a larger matrix by combining smaller <em>submatrices</em> using
+            the <c>block_matrix()</c> function (or <c>matrix.block()</c>). Submatrices can be arranged in
+            rows and columns to form a single, larger matrix.
+        </p>
+        <sage>
+            <input>
+                A = matrix(2, 2, [3, 9, 6, 10])
+
+                M = block_matrix([
+                    [A,     -A],
+                    [~A, 100*A]  # ~A is the transpose of A
+                ])
+                M
+            </input>
+        </sage>
+        <p>
+            In this example, the resulting matrix <m>M</m> is a 4x4 matrix built from the submatrices
+            <m>A</m>, <m>-A</m>, <m>A^T</m> (transpose of <m>A</m>), and <m>100*A</m>. Matrices of
+            different dimensions can be used with the command <c>block_matrix</c> as long as the dimensions
+            result in a uniform rectangular or square matrix.
+        </p>
+
+
+
+        <p>
             <idx>
                 <h>Matrices</h>
                 <h>indexing</h>
             </idx>
-            The individual entries of a matrix can be accessed using the row and column indices.
-            For instance, here is how we can retrieve the entry at the second row and third column
-            of the matrix <m>M</m>. Recall that the indices in Sage start at 0.
+            The individual entries of a matrix can be accessed using the row and column indices. Since
+            indices in Sage start at 0, to retrieve the entry <c>a_{i,j}</c> in a matrix M, we type
+            <c>M[i-1, j-1]</c>. Here is, for instance, how we can retrieve the entry at the second row
+            and third column of the matrix <m>M</m>.
         </p>
         <sage>
             <input>
@@ -108,8 +134,9 @@
         </sage>
 
         <p>
-            Sage offers specific methods to fetch all the rows, or the columns of a matrix,
-            or to retrieve the entries for specific row or column, or the diagonal of the matrix.
+            Sage provides dedicated methods to retrieve all rows of the matrix, or all its columns.
+            It also support the retrieval of the diagonal elements of the matrix, or a specific entry
+            at a particular row and column.
         </p>
 
         <p>
@@ -144,7 +171,7 @@
                 <h>Matrices</h>
                 <h>row</h>
             </idx>
-            The <c>M.row(i)</c> returns the <m>i</m>-th row of the matrix.
+            The <c>M.row(i-1)</c> returns the <m>i</m>-th row of the matrix.
         </p>
         <sage>
             <input>
@@ -157,7 +184,7 @@
                 <h>Matrices</h>
                 <h>column</h>
             </idx>
-            The <c>M.column(j)</c> returns the <m>j</m>-th column of the matrix.
+            The <c>M.column(j-1)</c> returns the <m>j</m>-th column of the matrix.
         </p>
         <sage>
             <input>
@@ -183,7 +210,7 @@
                 <h>Matrices</h>
                 <h>nrows</h>
             </idx>
-            Similarly, Sage offer more methods to help us iterate over the rows and/or the
+            Similarly, Sage offers more methods to help us iterate over the rows and/or the
             columns of a matrix. For instance, the method <c>nrows()</c> returns the number
             of rows of a matrix.
         </p>
@@ -221,6 +248,33 @@
         </sage>
 
         <p>
+            To extract a <em>submatrix</em> from a matrix given the range of rows and columns
+            to include, Sage command <c>matrix_from_rows_and_columns()</c> can be used. It takes
+            two lists: the first for row indices, and the second for column indices as in the
+            following example.
+        </p>
+        <sage>
+            <input>
+                A = matrix([[1, 2, 3],
+                            [4, 5, 6],
+                            [7, 8, 9]])
+
+                submatrix = A.matrix_from_rows_and_columns([0, 2], [1, 0])
+                submatrix
+            </input>
+        </sage>
+        <p>
+            An alternative, and perhaps more straightforward way to achieve the same result
+            is to use Python-like slicing and explicitly listing the range of interest as in
+            the following example.
+        </p>
+        <sage>
+            <input>
+                A[0:2, 1:3]
+            </input>
+        </sage>
+
+        <p>
             Note that a matrix with a single list of values creates a <em>vector-like</em>
             object, but it is NOT a vector. Here is a vector in Sage.
         </p>
@@ -248,12 +302,9 @@
         </p>
         <sage>
             <input>
-                print("v is of type", type(v))
-                print("m is of type", type(m))
-                print("are v and m identical ?", v==m)
+                v==m
             </input>
         </sage>
-
 
         <p>
             <idx>

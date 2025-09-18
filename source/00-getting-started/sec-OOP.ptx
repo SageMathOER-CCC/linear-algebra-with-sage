@@ -91,7 +91,7 @@
   <p>
     While OOP might seem abstract at first, it will become clearer as we explore more and dive deeper into Sage features.
     Sage's built-in classes offer a structured way to represent data and perform powerful mathematical operations.
-    In the next chapters, we'll see how Sage utilizes OOP principles and its built-in classes to perform mathematical operations.
+    In the next chapters, we will see how Sage utilizes OOP principles and its built-in classes to perform mathematical operations.
   </p>
 
 </section>

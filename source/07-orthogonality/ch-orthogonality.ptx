@@ -10,5 +10,5 @@
     </introduction>
 
     <!-- include sections -->
-    <!-- <xi:include href="sec-placeholder.ptx" /> -->
+    <xi:include href="sec-vector-normalization.ptx" />
 </chapter>
