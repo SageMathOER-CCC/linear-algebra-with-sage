@@ -5,7 +5,8 @@
 
     <introduction>
         <p>
-            PLACEHOLDER.
+            Linear systems of equations are often given geometric meaning as intersections between lines, planes, or higher dimensional equivalents.
+            This chapter will introduce how to use sage to find solutions of equations in their familiar form.
         </p>
     </introduction>
 
