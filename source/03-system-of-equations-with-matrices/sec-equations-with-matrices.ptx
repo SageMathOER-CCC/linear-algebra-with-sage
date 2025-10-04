@@ -7,9 +7,13 @@
         Let's solve the following system of equations:
     </p>
     <md>
-        <mrow>\amp x + 2y \amp = 4</mrow>
-        <mrow>\amp y - z \amp = 0</mrow>
-        <mrow>\amp x + 2z \amp = 4</mrow>
+        <mrow>
+            \begin{array}{c}
+            x + 2y + z  = 4\\
+            2x + y - z  = 0\\
+            x + 0y + 2z = 4
+            \end{array}
+        </mrow>
     </md>
     <p>
         In Sage, we can create an coefficient matrix using the <c>matrix</c> function.
@@ -18,7 +22,7 @@
         <input>
             A = matrix([
                     [1, 2, 0],
-                    [0, 1, -1],
+                    [2, 1, -1],
                     [1, 0, 2]
                 ])
             print(A)
