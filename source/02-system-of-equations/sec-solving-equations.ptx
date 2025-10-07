@@ -2,7 +2,10 @@
     <title>Solving Equations</title>
     <p>
         The <c>solve</c> function algebraically solves an equation or system of equations. 
+        We will begin by focusing on solving a single equation. 
         By default, Sage assumes the equation is equal to <m>0</m>. 
+    </p> 
+    <p>
         Let's solve for <m>x</m> in the equation <m>8 + x = 0</m>. 
     </p>
     <sage>

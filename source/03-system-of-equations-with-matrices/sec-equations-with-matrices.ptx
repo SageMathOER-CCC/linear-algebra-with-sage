@@ -10,7 +10,7 @@
         <mrow>
             \begin{array}{c}
             x + 2y + z  = 4\\
-            2x + y - z  = 0\\
+            0x + y - z  = 0\\
             x + 0y + 2z = 4
             \end{array}
         </mrow>
@@ -22,7 +22,7 @@
         <input>
             A = matrix([
                     [1, 2, 0],
-                    [2, 1, -1],
+                    [0, 1, -1],
                     [1, 0, 2]
                 ])
             print(A)
@@ -95,7 +95,10 @@
     <sage>
         <input>
             v = vector([1,2,8])
-            A.solve_right(v)
+            try:
+                A.solve_right(v)
+            except Exception as e:
+                print(e)
         </input>
         <output>
             
@@ -107,6 +110,33 @@
     <sage>
         <input>
             A.augment(v, subdivide=True).rref()
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        The two methods differ very little when there is only one solution.
+        The <c>solve_right</c> method is efficient when the system has a unique solution.
+    </p>
+    <sage>
+        <input>
+            M = matrix([
+                    [1, 2, 3], 
+                    [2, -3, 2], 
+                    [3, 1, -1]
+                ])
+            u = vector([6, 14, -2])
+            M.solve_right(u)
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <sage>
+        <input>
+            Mu = M.augment(u)
+            Mu.rref()
         </input>
         <output>
             

@@ -34,7 +34,8 @@
         </output>
     </sage>
     <p>
-        Now let's define a system of equations.
+        To solve a system of equations algebraically, 
+        we first define the variables and the equations in the system.
     </p>
     <sage>
         <input>
@@ -269,7 +270,8 @@
         </output>
     </sage>
     <p>
-        The following is an example of a system with infinitely many solutions. We can express the general solution as a function of a parameter.
+        The following is an example of a system with infinitely many solutions. 
+        We can express the general solution as a function of a parameter.
     </p>
     <sage>
         <input>
@@ -281,6 +283,22 @@
         </input>
         <output>
 
+        </output>
+    </sage>
+    <p>
+        The following is an example of an inconsistent system. 
+        Since the system has no solutions, Sage returns an empty list.
+    </p>
+    <sage>
+        <input>
+            var('x y z')
+            eq1 = x + 2*y == 4
+            eq2 = x + 2*y == 1
+            eq3 = x + 2*z == 4
+            solve([eq1, eq2, eq3], x, y, z)
+        </input>
+        <output>
+            
         </output>
     </sage>
 </section>

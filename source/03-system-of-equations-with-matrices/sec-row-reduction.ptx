@@ -1,41 +1,19 @@
 <section xml:id="sec-row-reduction" xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Row Reduction</title>
-    <section xml:id="sec-gauss-jordan-method">
-        <title>Gauss-Jordan Method</title>
+    <section xml:id="sec-augmented-matrix">
+        <title>Augmented Matrix</title>
         <p>
-            The <term>Gauss-Jordan Method</term> of solving systems of equations works 
-            by first representing a system of equations as a matrix then using <term>Elementary Row Operations</term>
-            to reach a matrix's <term>Reduced Row Echelon Form</term>. 
-            When in this form a matrix represents all solutions of a system of equations.
+            We can also solve a system of linear equations using matrices. 
+            First, construct the augmented matrix by extracting the coefficients of the variables and placing the constants from the right-hand side of the equations as the last column. 
+            Then, perform elementary row operations to reduce this augmented matrix to <term>reduced row echelon form</term> (RREF). 
+            Finally, convert the matrix back into a system of equations to explicitly display the solutions.
         </p>
         <p>
-        A matrix is in <term>Reduced Row Echelon Form</term> if:
-        <ul>
-            <li>
-                <p>
-                    The first nonzero number in the row is a leading <m>1</m>.
-                </p>
-            </li>
-            <li>
-                <p>
-                    In any two consecutive rows that do not consist entirely of zeros, the leading <m>1</m> in the lower row occurs farther to the right than the leading <m>1</m> in the higher row.
-                </p>
-            </li>
-            <li>
-                <p>
-                    Rows that consist entirely of zeros are at the bottom of the matrix.
-                </p>
-            </li>
-            <li>
-                <p>
-                    Each column that contains a leading <m>1</m> has zeros everywhere else in that column.
-                </p>
-            </li>
-        </ul>
+        Let’s use Sage to find in the following subsections the solution of the following system of equations:
         </p>
     </section>
-    <section xml:id="sec-elementary-row-operations">
-        <title>Elementary Row Operations</title>
+    <section xml:id="sec-rref">
+        <title>RREF (direct and step-by-step)</title>
         <p>
             The <c>add_multiple_of_row(i, j, s)</c> method preforms an elementary row operation on a matrix by adding <m>s</m> times row <m>j</m> to row <m>i</m>. 
             The arguments use <m>0</m> based indexing.
@@ -63,10 +41,6 @@
 
             </output>
         </sage>
-    </section>
-
-    <section xml:id="sec-preforming-row-reduction">
-        <title>Preforming Row Reduction</title>
         <p>
             Let's use Sage to find the reduced echelon form of the following system of equations:
         </p>
