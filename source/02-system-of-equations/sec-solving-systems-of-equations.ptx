@@ -2,7 +2,8 @@
     <title>Solving Systems of Equations</title>
     <p>
         Sage allows for us to generalize the previous methods to solve systems of equations. 
-        In order to do this we must first define multiple symbolic variables for the <c>solve</c> function.
+        In order to do this we must first define multiple symbolic variables, 
+        then we use the <c>solve</c> function as we did before.
     </p>
     <p>
         There are various ways to create multiple symbolic variables at once. The following are all valid.
@@ -53,7 +54,7 @@
         </output>
     </sage>
     <p>
-        In this case, the first argument to <c>solve</c> is a list of equations. Next, we specify the variables to solve for.
+        In this case, the first argument to <c>solve</c> is a list of equations and the following arguments are the variables being solved for.
     </p>
     <sage>
         <input>
@@ -132,102 +133,8 @@
 
         </output>
     </sage>
-    <sage>
-        <input>
-            # Create symbolic variables
-            var('x y')
-
-            # Define the equations and store them in variables
-            eq1 = 2*x + 3*y == 4
-            eq2 = 5*x - 6*y == 7
-
-            show(eq1)
-            show(eq2)
-        </input>
-        <output>
-        </output>
-    </sage>
     <p>
-        In this case, the first argument to <c>solve</c> is a list of equations. Next, we specify the variables to solve for.
-    </p>
-    <sage>
-        <input>
-            S = solve([eq1, eq2], x, y)
-            S
-        </input>
-        <output>
-        </output>
-    </sage>
-    <p>
-        Observe that Sage returns a nested list structure. The outer list contains all possible solutions to the system (in this case, there is only one solution). Each solution is represented as an inner list of equations showing the value of each variable.
-    </p>
-    <sage>
-        <input>
-            # Access the first (and only) solution
-            S[0]
-        </input>
-        <output>
-        </output>
-    </sage>
-    <sage>
-        <input>
-            # Access the x-value equation from the solution
-            S[0][0]
-        </input>
-        <output>
-        </output>
-    </sage>
-    <sage>
-        <input>
-            # Access the y-value equation from the solution
-            S[0][1]
-        </input>
-        <output>
-        </output>
-    </sage>
-    <p>
-        Since each equation defines implicitly a function, we can use <c>implicit_plot</c> to graph each equation in 2D-space.
-    </p>
-    <sage>
-        <input>
-            p1 = implicit_plot(eq1, (x, -2, 5), (y, -4, 4), color='green')
-            p2 = implicit_plot(eq2, (x, -2, 5), (y, -4, 4), color='red')
-            p1+p2
-        </input>
-        <output>
-
-        </output>
-    </sage>
-    <p>
-        We can also plot a point whose coordinates are the ones given in the solution.
-    </p>
-    <sage>
-        <input>
-            A = S[0][0].rhs()
-            B = S[0][1].rhs()
-            P = point((A, B))
-            P
-        </input>
-        <output>
-
-        </output>
-    </sage>
-    <p>
-        Now the full plot with the equations, the solution, and a legend.
-    </p>
-    <sage>
-        <input>
-            PP = point((A, B), size=50, legend_label=f'Solution: ({A}, {B})')
-
-            show(p1 + p2 + PP, axes=True)
-        </input>
-        <output>
-
-        </output>
-    </sage>
-
-    <p>
-        We can solve a system of three equations with three variables.
+        We also can solve a system of three equations with three variables.
     </p>
     <sage>
         <input>
@@ -271,7 +178,7 @@
     </sage>
     <p>
         The following is an example of a system with infinitely many solutions. 
-        We can express the general solution as a function of a parameter.
+        The general solution is expressed as a parameterized function.
     </p>
     <sage>
         <input>

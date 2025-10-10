@@ -1,5 +1,5 @@
-<section xml:id="sec-row-reduction" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Row Reduction</title>
+<section xml:id="sec-gauss-jordan-elimination" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Gauss-Jordan Elimination</title>
     <section xml:id="sec-augmented-matrix">
         <title>Augmented Matrix</title>
         <p>
@@ -9,7 +9,29 @@
             Finally, convert the matrix back into a system of equations to explicitly display the solutions.
         </p>
         <p>
-        Let’s use Sage to find in the following subsections the solution of the following system of equations:
+        A matrix is in <term>reduced row echelon form</term> if:
+            <ul>
+                <li>
+                    <p>
+                        The first nonzero number in the row is a leading <m>1</m>.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        In any two consecutive rows that do not consist entirely of zeros, the leading <m>1</m> in the lower row occurs farther to the right than the leading <m>1</m> in the higher row.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Rows that consist entirely of zeros are at the bottom of the matrix.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Each column that contains a leading <m>1</m> has zeros everywhere else in that column.
+                    </p>
+                </li>
+            </ul>
         </p>
     </section>
     <section xml:id="sec-rref">
@@ -169,7 +191,7 @@
         </p>
         <p>
             Sage has a built in method to do all of this for us. 
-            The <c>rref()</c> method returns the Reduced Row Echelon Form of a matrix.
+            The <c>rref()</c> method returns the reduced row echelon Form of a matrix.
         </p>
         <sage>
             <input>

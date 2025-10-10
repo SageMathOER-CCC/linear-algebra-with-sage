@@ -3,15 +3,14 @@
     <p>
         The <c>solve</c> function algebraically solves an equation or system of equations. 
         We will begin by focusing on solving a single equation. 
-        By default, Sage assumes the equation is equal to <m>0</m>. 
+        By default, Sage assumes the expression is equal to <m>0</m>. 
     </p> 
     <p>
         Let's solve for <m>x</m> in the equation <m>8 + x = 0</m>. 
     </p>
     <sage>
         <input>
-            E = 8 + x
-            solve(E, x)
+            solve(8 + x, x)
         </input>
         <output>
 
@@ -30,7 +29,7 @@
     </sage>
     <p>
         We can store the equation in a new variable and perform operations on it. 
-        Recall the single equal sign (<c>=</c>) is the assignment operator, while the double equal sign (<c>==</c>) is the equality operator. 
+        Recall the single equal sign (<c>=</c>) is the <term>assignment operator</term>, while the double equal sign (<c>==</c>) is the <term>equality operator</term>. 
     </p>
     <sage>
         <input>
@@ -45,8 +44,8 @@
         </output>
     </sage>
     <p>
-        Observe that the solution of a equation is given between square brackets, indicating that the data type is a list. 
-        We can access the solution by <term>indexing</term> the list with square brackets. 
+        Observe that the solution of a equation is given between square brackets, indicating that the data type is a <c>list</c>. 
+        We can access the solutions in the <c>list</c> with square brackets. 
         Notice that after accessing the solution, the brackets are no longer present. 
     </p>
     <sage>
@@ -58,14 +57,16 @@
         S = solve(E, x)
 
         # Index the zero-th element of the list
-        # In this case the list has only one element.
-        # However, other equations may have multiple solutions and therefore multiple elements in the list.
         S[0]
         </input>
         <output>
 
         </output>
     </sage>
+    <p>
+        In this case the <c>list</c> has only one element.
+        However, other equations may have multiple solutions and therefore multiple elements in the <c>list</c>.
+    </p>
     <p>
         We can also access each side of the equation. Here is the right-hand side of the equation.
     </p>
