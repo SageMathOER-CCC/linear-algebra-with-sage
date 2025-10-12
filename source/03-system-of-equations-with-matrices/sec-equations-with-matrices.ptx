@@ -7,9 +7,13 @@
         Let's solve the following system of equations:
     </p>
     <md>
-        <mrow>\amp x + 2y \amp = 4</mrow>
-        <mrow>\amp y - z \amp = 0</mrow>
-        <mrow>\amp x + 2z \amp = 4</mrow>
+        <mrow>
+            \begin{array}{c}
+            x + 2y + z  = 4\\
+            0x + y - z  = 0\\
+            x + 0y + 2z = 4
+            \end{array}
+        </mrow>
     </md>
     <p>
         In Sage, we can create an coefficient matrix using the <c>matrix</c> function.
@@ -91,7 +95,10 @@
     <sage>
         <input>
             v = vector([1,2,8])
-            A.solve_right(v)
+            try:
+                A.solve_right(v)
+            except Exception as e:
+                print(e)
         </input>
         <output>
             
@@ -103,6 +110,33 @@
     <sage>
         <input>
             A.augment(v, subdivide=True).rref()
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        The two methods differ very little when there is only one solution.
+        The <c>solve_right</c> method is efficient when the system has a unique solution.
+    </p>
+    <sage>
+        <input>
+            M = matrix([
+                    [1, 2, 3], 
+                    [2, -3, 2], 
+                    [3, 1, -1]
+                ])
+            u = vector([6, 14, -2])
+            M.solve_right(u)
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <sage>
+        <input>
+            Mu = M.augment(u)
+            Mu.rref()
         </input>
         <output>
             

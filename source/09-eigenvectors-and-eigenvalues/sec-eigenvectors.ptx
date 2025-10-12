@@ -1,0 +1,83 @@
+<section xml:id="sec-eigenvectors" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Eigenvectors</title>
+    <p>
+        An eigenvector, of a matrix, is a non-zero vector where multiplication by said matrix does not change its direction. 
+        This sage block will generate a gif to demonstrate; you can define a new matrix or leave the values in.
+    </p>
+    <p>
+        All eigenvectors exist along the green lines of the gif.
+    </p>
+    <sage>
+        <input>
+            A = matrix([
+                    [6, 0],
+                    [4, 2]
+                    ])
+            def EigenVis2D(T):
+                if T.dimensions() != (2,2): raise Exception('Input must be a 2x2 matrix') #Tests for an appropriate matrix
+
+                t = var('t') # Symbolic variable for parametric_plot
+                V = matrix([[n1, n2] for n1 in range(-5,6) for n2 in range(-5,6)]).transpose() #Creates a matrix of the vectors, as columns, undergoing transformation, these will be represented as dots
+                I = identity_matrix(2) 
+                if not T.eigenvectors_right()[0][0] in RealField():
+                    print("Complex eigenvalues, unable to plot eigenvectors and eigenspaces.")
+                    I_plot = list_plot(V.columns(), figsize=10)
+                else:
+                    E_vectors = [vector for vector_list in [eigen_space[1] for eigen_space in T.eigenvectors_right()] for vector in vector_list ] # collects eigenvectors into a list E
+                    I_plot = list_plot(V.columns(), figsize=10) + sum(parametric_plot(t*(e/e.norm()), (t, -7, 7), color='green') for e in E_vectors) + sum(plot(e, color='green',) for e in E_vectors)
+
+                # Display the numeric info about the transformation
+                print("Eigen spaces: (Eigen Value, [Eigen Vectors])")
+                %display latex
+                show(var('T'), " = ", T)
+                for e_space in T.eigenvectors_right(): show(e_space[0:2])
+                %display plain
+
+                T -= I
+                Frames = [ # All frames of the animation are collected into a list
+                    I_plot + list_plot(((T*(n/30) + I)*V).columns(), color='red', ymin=-5, ymax=5, xmin=-5, xmax=5, figsize=6) for n in range(31)
+                ]
+
+                Frames = Frames + [Frames[-1]] * 16 # Padding extra end frames to make the animation stick to view the end of the transformation
+
+                GIF = animate(Frames)
+                GIF.show(delay=10)
+            EigenVis2D(A)
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <subsection xml:id="subsec-eigenvectors-of-matrices">
+        <title>Eigenvectors of Matrices</title>
+        <p>
+            We will use the matrix <m>A</m> to demonstrate.
+        </p>
+        <sage>
+            <input>
+                A = matrix([
+                    [6, 0],
+                    [4, 2]
+                    ])
+                A
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            We can find its eigenvectors with the <c>eigenvectors_right</c> method.
+        </p>
+        <sage>
+            <input>
+                A.eigenvectors_right()
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            We will focus on the first tuple in the list that was returned. 
+        </p>
+    </subsection>
+</section>

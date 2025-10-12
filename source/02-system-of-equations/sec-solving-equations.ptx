@@ -1,13 +1,16 @@
 <section xml:id="sec-solving-equations" xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Solving Equations</title>
     <p>
-         The <c>solve</c> function algebraically solves an equation, system of equations, or inequality. By default, Sage assumes the equation is equal to <m>0</m>. Let's solve for <m>x</m> in the equation <m>8 + x = 0</m>.
+        The <c>solve</c> function algebraically solves an equation or system of equations. 
+        We will begin by focusing on solving a single equation. 
+        By default, Sage assumes the expression is equal to <m>0</m>. 
+    </p> 
+    <p>
+        Let's solve for <m>x</m> in the equation <m>8 + x = 0</m>. 
     </p>
     <sage>
         <input>
-            E = 8 + x
-            E == 5
-            solve(E, x)
+            solve(8 + x, x)
         </input>
         <output>
 
@@ -25,22 +28,8 @@
         </output>
     </sage>
     <p>
-        To use a variable other than <c>x</c>, we need to create a <term>symbolic</term> variable object with the <c>var()</c> function. Otherwise, Sage will not recognize the variable as a symbolic variable.
-    </p>
-    <sage>
-        <input>
-        # Create a symbolic variable
-        var('z')
-
-        # Solve for z
-        solve(8 + z == 5, z)
-        </input>
-        <output>
-
-        </output>
-    </sage>
-    <p>
-        We can store the equation in a new variable and perform operations on it. Recall the single equal sign (<c>=</c>) is the assignment operator, while the double equal sign (<c>==</c>) is the equality operator.
+        We can store the equation in a new variable and perform operations on it. 
+        Recall the single equal sign (<c>=</c>) is the <term>assignment operator</term>, while the double equal sign (<c>==</c>) is the <term>equality operator</term>. 
     </p>
     <sage>
         <input>
@@ -55,7 +44,9 @@
         </output>
     </sage>
     <p>
-        Observe that the solution of a equation is given between square brackets, indicating that the data type is a list. We can access the solution by <term>indexing</term> the list with square brackets. Notice that after accessing the solution, the brackets are no longer present.
+        Observe that the solution of a equation is given between square brackets, indicating that the data type is a <c>list</c>. 
+        We can access the solutions in the <c>list</c> with square brackets. 
+        Notice that after accessing the solution, the brackets are no longer present. 
     </p>
     <sage>
         <input>
@@ -66,14 +57,16 @@
         S = solve(E, x)
 
         # Index the zero-th element of the list
-        # In this case the list has only one element.
-        # However, other equations may have multiple solutions and therefore multiple elements in the list.
         S[0]
         </input>
         <output>
 
         </output>
     </sage>
+    <p>
+        In this case the <c>list</c> has only one element.
+        However, other equations may have multiple solutions and therefore multiple elements in the <c>list</c>.
+    </p>
     <p>
         We can also access each side of the equation. Here is the right-hand side of the equation.
     </p>
@@ -97,125 +90,16 @@
         </output>
     </sage>
     <p>
-        There are various ways to create multiple symbolic variables at once. The following are all valid.
+        To use a variable other than <c>x</c>, we need to create a <term>symbolic</term> variable object with the <c>var()</c> function. 
+        Otherwise, Sage will not recognize the variable as a symbolic variable.
     </p>
     <sage>
         <input>
-            # Single string
-            var('x y')
+        # Create a symbolic variable
+        var('z')
 
-            # List of strings
-            var(['x','y'])
-
-            # Multiple strings
-            var('x', 'y')
-        </input>
-        <output>
-
-        </output>
-    </sage>
-    <p>
-        Notice how these symbolic variables are all equivalent regardless of how they are created.
-    </p>
-    <sage>
-        <input>
-            var('x y') == var(['x','y']) == var('x', 'y')
-        </input>
-        <output>
-
-        </output>
-    </sage>
-    <p>
-        Now let's define a system of equations.
-    </p>
-    <sage>
-        <input>
-            # Create symbolic variables
-            var('x y')
-
-            # Define the equations and store them in variables
-            eq1 = 2*x + 3*y == 4
-            eq2 = 5*x - 6*y == 7
-
-            show(eq1)
-            show(eq2)
-        </input>
-        <output>
-        </output>
-    </sage>
-    <p>
-        In this case, the first argument to <c>solve</c> is a list of equations. Next, we specify the variables to solve for.
-    </p>
-    <sage>
-        <input>
-            S = solve([eq1, eq2], x, y)
-            S
-        </input>
-        <output>
-        </output>
-    </sage>
-    <p>
-        Observe that Sage returns a nested list structure. The outer list contains all possible solutions to the system (in this case, there is only one solution). Each solution is represented as an inner list of equations showing the value of each variable.
-    </p>
-    <sage>
-        <input>
-            # Access the first (and only) solution
-            S[0]
-        </input>
-        <output>
-        </output>
-    </sage>
-    <sage>
-        <input>
-            # Access the x-value equation from the solution
-            S[0][0]
-        </input>
-        <output>
-        </output>
-    </sage>
-    <sage>
-        <input>
-            # Access the y-value equation from the solution
-            S[0][1]
-        </input>
-        <output>
-        </output>
-    </sage>
-    <p>
-        Since each equation defines implicitly a function, we can use <c>implicit_plot</c> to graph each equation in 2D-space.
-    </p>
-    <sage>
-        <input>
-            p1 = implicit_plot(eq1, (x, -2, 5), (y, -4, 4), color='green')
-            p2 = implicit_plot(eq2, (x, -2, 5), (y, -4, 4), color='red')
-            p1+p2
-        </input>
-        <output>
-
-        </output>
-    </sage>
-    <p>
-        We can also plot a point whose coordinates are the ones given in the solution.
-    </p>
-    <sage>
-        <input>
-            A = S[0][0].rhs()
-            B = S[0][1].rhs()
-            P = point((A, B))
-            P
-        </input>
-        <output>
-
-        </output>
-    </sage>
-    <p>
-        Now the full plot with the equations, the solution, and a legend.
-    </p>
-    <sage>
-        <input>
-            PP = point((A, B), size=50, legend_label=f'Solution: ({A}, {B})')
-
-            show(p1 + p2 + PP, axes=True)
+        # Solve for z
+        solve(8 + z == 5, z)
         </input>
         <output>
 

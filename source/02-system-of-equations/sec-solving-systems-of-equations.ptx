@@ -1,5 +1,43 @@
 <section xml:id="sec-solving-systems-of-equations" xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Solving Systems of Equations</title>
+    <p>
+        Sage allows for us to generalize the previous methods to solve systems of equations. 
+        In order to do this we must first define multiple symbolic variables, 
+        then we use the <c>solve</c> function as we did before.
+    </p>
+    <p>
+        There are various ways to create multiple symbolic variables at once. The following are all valid.
+    </p>
+    <sage>
+        <input>
+            # Single string
+            var('x y')
+
+            # List of strings
+            var(['x','y'])
+
+            # Multiple strings
+            var('x', 'y')
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        Notice how these symbolic variables are all equivalent regardless of how they are created.
+    </p>
+    <sage>
+        <input>
+            var('x y') == var(['x','y']) == var('x', 'y')
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        To solve a system of equations algebraically, 
+        we first define the variables and the equations in the system.
+    </p>
     <sage>
         <input>
             # Create symbolic variables
@@ -16,7 +54,7 @@
         </output>
     </sage>
     <p>
-        In this case, the first argument to <c>solve</c> is a list of equations. Next, we specify the variables to solve for.
+        In this case, the first argument to <c>solve</c> is a list of equations and the following arguments are the variables being solved for.
     </p>
     <sage>
         <input>
@@ -27,7 +65,9 @@
         </output>
     </sage>
     <p>
-        Observe that Sage returns a nested list structure. The outer list contains all possible solutions to the system (in this case, there is only one solution). Each solution is represented as an inner list of equations showing the value of each variable.
+        Observe that Sage returns a nested list structure. 
+        The outer list contains all possible solutions to the system (in this case, there is only one solution). 
+        Each solution is represented as an inner list of equations showing the value of each variable. 
     </p>
     <sage>
         <input>
@@ -93,9 +133,8 @@
 
         </output>
     </sage>
-
     <p>
-        We can solve a system of three equations with three variables.
+        We also can solve a system of three equations with three variables.
     </p>
     <sage>
         <input>
@@ -138,7 +177,8 @@
         </output>
     </sage>
     <p>
-        The following is an example of a system with infinitely many solutions. We can express the general solution as a function of a parameter.
+        The following is an example of a system with infinitely many solutions. 
+        The general solution is expressed as a parameterized function.
     </p>
     <sage>
         <input>
@@ -150,6 +190,22 @@
         </input>
         <output>
 
+        </output>
+    </sage>
+    <p>
+        The following is an example of an inconsistent system. 
+        Since the system has no solutions, Sage returns an empty list.
+    </p>
+    <sage>
+        <input>
+            var('x y z')
+            eq1 = x + 2*y == 4
+            eq2 = x + 2*y == 1
+            eq3 = x + 2*z == 4
+            solve([eq1, eq2, eq3], x, y, z)
+        </input>
+        <output>
+            
         </output>
     </sage>
 </section>
