@@ -94,7 +94,7 @@ If you are happy with your changes, you can commit them to your branch and submi
 
 ### Submitting a Pull Request
 
-After making your changes in the feature branch, you're ready to submit a pull request for review:
+After making your changes in the feature branch, you are ready to submit a pull request for review:
 
 1. Go to the GitHub repository and select the option to make a pull request for your feature branch.
 2. Ensure that the base repository and branch are correct.

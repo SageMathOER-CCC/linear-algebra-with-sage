@@ -16,6 +16,17 @@
                 <li>
                     <p>
                         The <em>zero matrix</em> contains only zeros and acts as the additive identity.
+                        The command <c>zero_matrix(m, n)</c> creates an <m>m</m> by <m>n</m> zero matrix.
+                    </p>
+                    <sage>
+                        <input>
+                            # 2x5 zero matrix
+                            zero_matrix(2,5)
+                        </input>
+                    </sage>
+                    <p>
+                        For a square matrix, the command can be shortened to <c>zero_matrix(n)</c> like
+                        in the example below.
                     </p>
                     <sage>
                         <input>
@@ -28,15 +39,16 @@
                     <p>
                         A <em>diagonal matrix</em> is a square matrix that has zero entries everywhere outside
                         the <em>main diagonal</em>. Note that a diagonal matrix may have some or all its diagonal
-                        entries equal to <m>0</m> (recall that the main diagonal runs from the top left to the
-                        bottom right of the matrix, while the secondary diagonal runs from the top right to the
-                        bottom left).
+                        entries equal to <m>0</m>. Sage offers the command <c>diagonal_matrix([a_1, a_2, ..., a_n])</c>
+                        to create a diagonal matrix with diagonal entries <m>a_1, a_2, \ldots, a_n</m> and <m>0</m> elsewhere.
+                    </p>
+                    <p>
+                        Here is an example of a <m>3 \times 3</m> diagonal matrix with entries <m>2</m>, <m>4</m>, and <m>6</m>
+                        on the main diagonal.
                     </p>
                     <sage>
                         <input>
-                            # 3x3 diagonal matrix
-                            d = diagonal_matrix([2, 4, 6])
-                            d
+                            diagonal_matrix([2, 4, 6])
                         </input>
                     </sage>
                     <p>
@@ -46,6 +58,7 @@
                     </p>
                     <sage>
                         <input>
+                            d=diagonal_matrix([1, 3, 5])
                             d.is_diagonal()
                         </input>
                     </sage>
@@ -53,11 +66,11 @@
                 <li>
                     <p>
                         An <em>identity matrix</em> is a diagonal matrix with all its diagonal elements
-                        equals to 1.
+                        equals to 1. The command <c>identity_matrix(n)</c> returns an identity matrix if dimension
+                        <m>n \times n</m>. Here isa= an example of a <m>5 \times 5</m> identity matrix.
                     </p>
                     <sage>
                         <input>
-                            # 5x5 diagonal matrix
                             identity_matrix(5)
                         </input>
                     </sage>
@@ -82,30 +95,20 @@
                         <h>Upper Triangular Matrix</h>
                         <h>Lower Triangular Matrix</h>
                     </idx>
-                            <p>
-                        Two other common types of matrices are the <em>Upper</em> and <em>Lower</em> triangular matrices:
-                    </p>
                     <p>
-                        An Upper Triangular Matrix is a square matrix where all entries below the main diagonal are zero.
+                        Two other common types of square matrices are the <em>Upper</em> and <em>Lower</em> triangular matrices.
+                        A square matrix an upper triangular matrix if all entries below the diagonal are zero. The following
+                        is an example of a <m>3 \times 3</m> upper triangular matrix.
                     </p>
                     <sage>
                         <input>
-                            # 3x3 Upper triangular matrix
                             Matrix([[1, 2, 3], [0, 4, 5], [0, 0, 6]])
                         </input>
                     </sage>
                     <p>
-                        A Lower Triangular Matrix is a square matrix where all entries above the main diagonal are zero.
-                    </p>
-                    <sage>
-                        <input>
-                            # 3x3 Lower triangular matrix
-                            Matrix([[1, 0, 0], [2, 4, 0], [3, 5, 6]])
-                        </input>
-                    </sage>
-                    <p>
-                        Sage does not have these last two as predefined command. They can however be obtained by
-                        leveraging the <c>LU()</c> method that we will see in the next section.
+                        Note that Sage does not have these predefined commands to create such matrices, or check if a square
+                        matrix is of either type (upper or lower triangular). They can however be obtained by leveraging the
+                        <c>LU()</c> method that we will see later on.
                     </p>
                 </li>
             </ul>

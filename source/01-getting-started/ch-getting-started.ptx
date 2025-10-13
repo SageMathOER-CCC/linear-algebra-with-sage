@@ -6,7 +6,7 @@
   <introduction>
     <p>
       Welcome to our introduction to SageMath (also referred to as Sage). This chapter is designed for
-      learners of all backgrounds —whether you're new to programming or aiming to expand your mathematical
+      learners of all backgrounds —whether you are new to programming or aiming to expand your mathematical
       toolkit. There are various ways to run Sage, including SageMathCell, CoCalc, and a local installation.
       The simplest way to start is by using the SageMathCell embedded in this book. We will also cover how
       to use CoCalc, a cloud-based platform for running Sage in a collaborative environment.
@@ -26,14 +26,14 @@
   </introduction>
 
   <!-- include sections -->
-  <xi:include href="sec-intro-to-sage.ptx" />
-  <xi:include href="sec-data-types.ptx" />
-  <xi:include href="sec-flow-control-structures.ptx" />
-  <xi:include href="sec-defining-functions.ptx" />
-  <xi:include href="sec-OOP.ptx" />
-  <xi:include href="sec-displaying.ptx" />
-  <xi:include href="sec-debugging.ptx" />
-  <xi:include href="sec-documentation.ptx" />
-  <xi:include href="sec-miscellaneous.ptx" />
-  <xi:include href="sec-sage-browser.ptx" />
+  <xi:include href="sec01-intro-to-sage.ptx" />
+  <xi:include href="sec02-data-types.ptx" />
+  <xi:include href="sec03-flow-control-structures.ptx" />
+  <xi:include href="sec04-defining-functions.ptx" />
+  <xi:include href="sec05-OOP.ptx" />
+  <xi:include href="sec06-displaying.ptx" />
+  <xi:include href="sec07-debugging.ptx" />
+  <xi:include href="sec08-documentation.ptx" />
+  <xi:include href="sec09-miscellaneous.ptx" />
+  <xi:include href="sec10-sage-browser.ptx" />
 </chapter>

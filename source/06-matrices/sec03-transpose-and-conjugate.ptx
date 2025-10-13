@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-matrix-operations-transpose-and-conjugate"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Transpose, Conjugate and Adjoint Matrix</title>
+    <introduction xml:id="sm-introduction-transpose-and-conjugate">
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Transpose</h>
+            </idx>
+            The transpose of a matrix is obtained by flipping it over its diagonal, swapping rows with columns.
+            The transpose is denoted as <m>A^T</m> and can be computed in Sage using the <c>transpose</c> method:
+        </p>
+        <sage>
+            <input>
+                A = matrix([[2, 3, 5], [7, 11, 13], [17, 19, 23]])
+                A.transpose()
+            </input>
+        </sage>
+
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Symmetric</h>
+            </idx>
+            A matrix <m>A</m> is <em>symmetric</em> if it is equal to its transpose, i.e., <m>A = A^T</m>.
+            Sage offers <c>is_symmetric()</c> method to check if a matrix is symmetric.
+        </p>
+        <sage>
+            <input>
+                A.is_symmetric()
+            </input>
+        </sage>
+
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Complex Conjugate</h>
+            </idx>
+            For matrices with complex entries, the complex conjugate is found by taking the conjugate of
+            each individual entry. This operation is often used in conjunction with the transpose to form
+            the conjugate transpose (also called the Hermitian transpose)
+        </p>
+        <sage>
+            <input>
+                A = matrix(CC, [[1 + 2*I, 3 - I], [-2*I, 4]])
+                A.conjugate()
+            </input>
+        </sage>
+
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Adjoint</h>
+            </idx>
+            In some fields, working over complex vector spaces is necessary and common. In these contexts,
+            the <em>adjoint matrix</em> of a matrix <m>A</m> refers to its <em>conjugate transpose</em>. It
+            is obtained by first taking the complex conjugate of each entry of <m>A</m>, and then transposing
+            the resulting matrix.
+        </p>
+        <p>
+            The adjoint of a matrix <m>A</m> is denoted by <m>A^{*}</m> and defined as:
+            <m>A^{*} = \overline{A}^{T}</m> where <m>\overline{A}</m> represents the complex conjugate of <m>A</m>.
+        </p>
+
+        <p>
+            It is important to note that this meaning of <em>adjoint</em> differs from
+            the <em>adjugate</em> matrix, which will be defined later as the transpose of
+            the cofactor matrix. The two concepts are conceptually distinct:
+            <ul>
+                <li><em>Adjoint:</em> involves complex conjugation and transposition.</li>
+                <li><em>Adjugate:</em> involves cofactors and determinants (used in matrix inversion).</li>
+            </ul>
+            Sage has built-in method <c>conjugate_transpose</c> to compute the adjoint matrix as follows:
+        </p>
+        <sage>
+            <input>
+                # Define a 2x2 complex matrix
+                C = matrix(CDF, [[1 + 2 * I, 3], [4, 5 - I]])
+                C.conjugate_transpose()
+            </input>
+        </sage>
+        <p>
+            Note that matrices with Complex values, and computing conjugates are very common in signal processing
+            and quantum mechanics.
+        </p>
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Norm</h>
+            </idx>
+            Just like vectors, matrices also has a norm quantity defined. But unlike vectors, there are
+            several types of norms for matrices. The method <c>norm</c> in Sage returns the Frobenius
+            norm which is defined as the square root of the sum of the squares of all the entries in the
+            matrix.
+        </p>
+        <sage>
+            <input>
+                # The norm of a matrix
+                A = matrix([[1, 2], [3, 4]])
+                A.norm()
+            </input>
+        </sage>
+
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Trace</h>
+            </idx>
+            The <em>trace</em> of a square matrix <m>A = [a_{ij}]</m> of order <m>n \times n</m>,
+            denoted by <m>\mathrm{tr}(A)</m>, is defined as the sum of the entries along its main diagonal:
+            <m>\mathrm{tr}(A) = \sum_{i=1}^{n} a_{ii}</m>.
+        </p>
+        <p>
+            The trace has many useful properties, such as linearity and invariance under similarity transformations:
+            <ul>
+                <li><m>\mathrm{tr}(A + B) = \mathrm{tr}(A) + \mathrm{tr}(B)</m></li>
+                <li><m>\mathrm{tr}(kA) = k \, \mathrm{tr}(A)</m> for any scalar <m>k</m></li>
+                <li><m>\mathrm{tr}(AB) = \mathrm{tr}(BA)</m> for any square matrices <m>A</m> and <m>B</m> of the same size</li>
+            </ul>
+        </p>
+        <p>
+            The built-in Sage method <c>.trace()</c> is used to compute the trace of a square matrix as shown in the example below.
+        </p>
+        <sage>
+            <input>
+                A.trace()
+            </input>
+        </sage>
+    </introduction>
+</section>

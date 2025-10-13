@@ -2,7 +2,7 @@
 
 <section xml:id="sec-cross-and-dot-product"
     xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Cross and Dot Products of Vectors</title>
+    <title>Dot and Cross Products</title>
 
     <introduction xml:id="introduction-dot-and-cross-product">
         <idx>
@@ -20,12 +20,9 @@
                 <h>Dot Product</h>
                 <h>Scalar Product</h>
             </idx>
-            For instance, another form of vector multiplication is the <em>dot</em> product, where
-            two vectors <m>v</m> and <m>w</m> are multiplied with each other to produce
-            a <em>scalar</em> value. The dot product of two vectors <m>v</m> and <m>w</m>
-            is defined as the sum of the products of their corresponding components. The
-            dot product is commutative and yields a scalar value
-            <m>v \cdot w = w \cdot v = \sum_{i=1}^n v_i w_i</m>.
+            The <em>dot product</em> of two vectors <m>v=(v_1, v_2, ..., v_n)</m> and
+            <m>w=(w_1, w_2, ..., w_n)</m> is defined as the sum of the products of
+            their corresponding components <m>v \cdot w = w \cdot v = \sum_{i=1}^n v_i w_i</m>.
         </p>
         <sage>
             <input>
@@ -35,14 +32,22 @@
             </input>
         </sage>
         <p>
-            Note that the <em>dot</em> product in Sage is implemented in more than one way. All the
-            following statements are equivalent and produce the same result.
+            Observe that the dot product of two vectors produces a scalar (a single number), not a
+            vector. Also, note that the <em>dot</em> product in Sage is implemented in two ways:
         </p>
         <sage>
             <input>
                 print(v * w)
                 print(v.dot_product(w))
-                print(sum([v[i]*w[i] for i in range(v.degree())]))
+            </input>
+        </sage>
+
+        <p>
+            we can also compute the dot product manually by its definition
+        </p>
+        <sage>
+            <input>
+                sum([v[i]*w[i] for i in range(v.degree())])
             </input>
         </sage>
 
@@ -51,16 +56,16 @@
                 <h>Vectors</h>
                 <h>Cross Product</h>
             </idx>
-            The cross product of two vectors <m>v</m> and <m>w</m> is defined only in 3D space
-            and is calculated using the determinant of a matrix formed by the unit vectors
-            <m>i, j, k</m> and the components of the vectors <m>v</m> and <m>w</m>. In Sage,
-            the cross product is calculated using the <c>cross_product</c> method.
+            The cross product of two vectors <m>v=(v_1, v_2, v_3)</m> and
+            <m>w=(w_1, w_2, w_3)</m> is defined as the vector whose components
+            are given by <m>v \times w = (v_2 w_3 - v_3 w_2, v_3 w_1 - v_1 w_3, v_1 w_2 - v_2 w_1)</m>.
+            In Sage, the cross product is calculated using the <c>cross_product</c> method.
         </p>
         <sage>
             <input>
                 v = vector([1, 2, 3])
                 w = vector([4, 5, 6])
-                v.cross_product(w)
+                v.cross_product(w)  # this yields a vector perpendicular to both v and w
             </input>
         </sage>
     </introduction>

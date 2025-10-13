@@ -11,6 +11,6 @@
     </introduction>
 
     <!-- include sections -->
-    <xi:include href="sec-operations-with-vectors.ptx" />
-    <xi:include href="sec-cross-and-dot-product.ptx" />
+    <xi:include href="sec01-operations-with-vectors.ptx" />
+    <xi:include href="sec02-cross-and-dot-product.ptx" />
 </chapter>

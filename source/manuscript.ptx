@@ -12,20 +12,24 @@
     <xi:include href="./frontmatter.ptx" />
 
     <!-- Include chapters -->
-    <xi:include href="./00-getting-started/ch-getting-started.ptx" />
-    <xi:include href="./01-vectors-and-matrices/ch-vectors-and-matrices.ptx" />
-    <xi:include href="./02-system-of-equations/ch-system-of-equations.ptx" />
-    <xi:include href="./03-system-of-equations-with-matrices/ch-system-of-equations-with-matrices.ptx" />
-    <xi:include href="./04-vectors/ch-vectors.ptx" />
-    <xi:include href="./05-matrices/ch-matrices.ptx" />
-    <xi:include href="./06-equations-of-lines-and-planes/ch-equations-of-lines-and-planes.ptx" />
-    <xi:include href="./07-orthogonality/ch-orthogonality.ptx" />
-    <xi:include href="./08-linear-transformation-from-r-pow-n-to-r-pow-m/ch-linear-transformation-from-r-pow-n-to-r-pow-m.ptx" />
-    <xi:include href="./09-eigenvectors-and-eigenvalues/ch-eigenvectors-and-eigenvalues.ptx" />
-    <xi:include href="./10-diagonalization/ch-diagonalization.ptx" />
-    <xi:include href="./11-general-vector-spaces/ch-general-vector-spaces.ptx" />
-    <xi:include href="./12-linear-independence/ch-linear-independence.ptx" />
-    <xi:include href="./13-general-linear-transformations/ch-general-linear-transformations.ptx" />
+    <xi:include href="./01-getting-started/ch-getting-started.ptx" />
+    <xi:include href="./02-vectors-and-matrices/ch-vectors-and-matrices.ptx" />
+    <xi:include href="./03-system-of-equations/ch-system-of-equations.ptx" />
+    <xi:include href="./04-system-of-equations-with-matrices/ch-system-of-equations-with-matrices.ptx" />
+    <xi:include href="./05-vectors/ch-vectors.ptx" />
+    <xi:include href="./06-matrices/ch-matrices.ptx" />
+    <xi:include href="./07-determinants/ch-determinants.ptx" />
+    <xi:include href="./08-lu-decomposition/ch-lu-decomposition.ptx" />
+
+    <!-- Next chapters to be included -->
+    <xi:include href="./90-equations-of-lines-and-planes/ch-equations-of-lines-and-planes.ptx" />
+    <xi:include href="./91-orthogonality/ch-orthogonality.ptx" />
+    <xi:include href="./92-linear-transformation-from-r-pow-n-to-r-pow-m/ch-linear-transformation-from-r-pow-n-to-r-pow-m.ptx" />
+    <xi:include href="./93-eigenvectors-and-eigenvalues/ch-eigenvectors-and-eigenvalues.ptx" />
+    <xi:include href="./94-diagonalization/ch-diagonalization.ptx" />
+    <xi:include href="./95-general-vector-spaces/ch-general-vector-spaces.ptx" />
+    <xi:include href="./96-linear-independence/ch-linear-independence.ptx" />
+    <xi:include href="./97-general-linear-transformations/ch-general-linear-transformations.ptx" />
 
     <!-- Include backmatter -->
     <xi:include href="./backmatter.ptx" />
