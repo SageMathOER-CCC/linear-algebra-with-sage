@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-determinants" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Determinants</title>
+
+    <introduction xml:id="sm-subsection-determinants">
+        <p>
+            Matrices also support non-arithmetic, unary operations; operation that are applied
+            to the matrix itself and its entrees. Two such operations are the <em>determinant</em>
+            of a <em>square</em> matrix and its <em>inverse</em>.
+        </p>
+        <p>
+            In this chapter, we will learn about a fundamental concept in linear algebra
+            that is determinants, which provides important insights into the properties
+            of matrices, and the linear transformation or the system of linear equations
+            they represent.
+        </p>
+    </introduction>
+
+    <!-- include sections -->
+    <xi:include href="sec01-determinant-and-inverse.ptx" />
+
+</chapter>

@@ -16,10 +16,8 @@
     </introduction>
 
     <!-- include sections -->
-    <xi:include href="sec-special-matrices.ptx" />
-    <xi:include href="sec-operations-with-matrices.ptx" />
-    <xi:include href="sec-determinant-and-inverse.ptx" />
-    <xi:include href="sec-transpose-and-conjugate.ptx" />
-    <xi:include href="sec-lu-decomposition.ptx" />
+    <xi:include href="sec01-special-matrices.ptx" />
+    <xi:include href="sec02-operations-with-matrices.ptx" />
+    <xi:include href="sec03-transpose-and-conjugate.ptx" />
 
 </chapter>

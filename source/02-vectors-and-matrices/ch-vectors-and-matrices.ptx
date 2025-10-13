@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <chapter xml:id="ch-vectors-and-matrices" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Vectors and Matrices</title>
-
+    <title>Vectors and Matrices, The Basics</title>
     <introduction>
         <p>
             Vectors and matrices are fundamental concepts in linear algebra. This
@@ -11,6 +10,6 @@
     </introduction>
 
     <!-- include sections -->
-    <xi:include href="sec-defining-vectors.ptx" />
-    <xi:include href="sec-defining-matrices.ptx" />
+    <xi:include href="sec01-defining-vectors.ptx" />
+    <xi:include href="sec02-defining-matrices.ptx" />
 </chapter>

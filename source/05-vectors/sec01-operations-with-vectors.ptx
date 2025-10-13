@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-operations-with-vectors"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Operations with Vectors</title>
+
+    <introduction xml:id="introduction-vector-arithmetic">
+        <p>
+            <idx>
+                <h>Vectors</h>
+                <h>Arithmetic Operations</h>
+            </idx>
+            In this section, we will introduce how to perform the arithmetic operations on vectors in Sage.
+            Vectors can be added and subtracted using the <c>+</c> and <c>-</c> operators.
+            The result of adding or subtracting two vectors is a new vector with the same number of components.
+        </p>
+        <sage>
+            <input>
+                v = vector([1, 2, 3])
+                w = vector([4, 5, 6])
+                v + w
+            </input>
+        </sage>
+        <sage>
+            <input>
+                v - w
+            </input>
+        </sage>
+
+        <p>
+            <idx>
+                <h>Vectors</h>
+                <h>Scalar Multiplication</h>
+            </idx>
+            Vectors can be multiplied by real numbers (scalar multiplication) using the <c>*</c> operator. Here
+            is an example of scalar multiplication of a vector by 2.
+        </p>
+        <sage>
+            <input>
+                2 * v
+            </input>
+        </sage>
+    </introduction>
+</section>

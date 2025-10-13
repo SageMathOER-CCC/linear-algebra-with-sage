@@ -36,15 +36,14 @@
         </p>
 
         <idx><h>arithmetic operators</h></idx>
-
         <ul>
-            <li><c>+</c> (Addition)</li>
-            <li><c>-</c> (Subtraction)</li>
-            <li><c>*</c> (Multiplication)</li>
-            <li><c>**</c> or <c>^</c> (Exponentiation)</li>
-            <li><c>/</c> (Division)</li>
-            <li><c>//</c> (Integer division)</li>
-            <li><c>%</c> (Modulo - remainder of division)</li>
+            <li><c>+</c> Addition</li>
+            <li><c>-</c> Subtraction</li>
+            <li><c>*</c> Multiplication</li>
+            <li><c>**</c> or <c>^</c> Exponentiation</li>
+            <li><c>/</c> Division</li>
+            <li><c>//</c> Integer division</li>
+            <li><c>%</c> Modulo - remainder of division</li>
         </ul>
 
         <p>
@@ -61,7 +60,7 @@
             <input>
                 # Lines that start with a pound sign are comments
                 # and ignored by Sage
-                1+1
+                1 + 1
             </input>
         </sage>
 
@@ -73,7 +72,7 @@
 
         <sage>
             <input>
-                3*4
+                3 * 4
             </input>
         </sage>
 
@@ -93,7 +92,7 @@
             <input>
                 # Sage uses two exponentiation operators
                 # ^ is valid in Sage
-                2^3
+                2 ^ 3
             </input>
         </sage>
 
