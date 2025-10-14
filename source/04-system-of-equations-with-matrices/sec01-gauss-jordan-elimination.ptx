@@ -1,77 +1,20 @@
 <section xml:id="sec-gauss-jordan-elimination" xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Gauss-Jordan Elimination</title>
-    <section xml:id="sec-augmented-matrix">
-        <title>Augmented Matrix</title>
+    <p>
+        We can also solve a system of linear equations using matrices. 
+        First, construct the augmented matrix by extracting the coefficients of the variables and placing the constants from the right-hand side of the equations as the last column. 
+        Then, perform elementary row operations to reduce this augmented matrix to <term>reduced row echelon form</term> (RREF). 
+        Finally, convert the matrix back into a system of equations to explicitly display the solutions.
+    </p>
         <p>
-            We can also solve a system of linear equations using matrices. 
-            First, construct the augmented matrix by extracting the coefficients of the variables and placing the constants from the right-hand side of the equations as the last column. 
-            Then, perform elementary row operations to reduce this augmented matrix to <term>reduced row echelon form</term> (RREF). 
-            Finally, convert the matrix back into a system of equations to explicitly display the solutions.
-        </p>
-        <p>
-        A matrix is in <term>reduced row echelon form</term> if:
-            <ul>
-                <li>
-                    <p>
-                        The first nonzero number in the row is a leading <m>1</m>.
-                    </p>
-                </li>
-                <li>
-                    <p>
-                        In any two consecutive rows that do not consist entirely of zeros, the leading <m>1</m> in the lower row occurs farther to the right than the leading <m>1</m> in the higher row.
-                    </p>
-                </li>
-                <li>
-                    <p>
-                        Rows that consist entirely of zeros are at the bottom of the matrix.
-                    </p>
-                </li>
-                <li>
-                    <p>
-                        Each column that contains a leading <m>1</m> has zeros everywhere else in that column.
-                    </p>
-                </li>
-            </ul>
-        </p>
-    </section>
-    <section xml:id="sec-rref">
-        <title>RREF (direct and step-by-step)</title>
-        <p>
-            The <c>add_multiple_of_row(i, j, s)</c> method preforms an elementary row operation on a matrix by adding <m>s</m> times row <m>j</m> to row <m>i</m>. 
-            The arguments use <m>0</m> based indexing.
-        </p>
-        <sage>
-            <input>
-                I = identity_matrix(3)
-                I.add_multiple_of_row(0, 2, -3)
-                I
-            </input>
-            <output>
-
-            </output>
-        </sage>
-        <p>
-            The <c>swap_rows(r1, r2)</c> method also preforms an elementary row operation on a matrix by swapping rows <c>r1</c> and <c>r2</c>. 
-        </p>
-        <sage>
-            <input>
-                I = identity_matrix(3)
-                I.swap_rows(0, 2)
-                I
-            </input>
-            <output>
-
-            </output>
-        </sage>
-        <p>
-            Let's use Sage to find the reduced echelon form of the following system of equations:
+            In the following sections, we will use Sage to solve the given system of equations:
         </p>
         <md>
             <mrow>
             \begin{array}{c}
-            0x + y -  z = 0\\
+            0x + y - z = 0\\
             x + 2y + 0z = 4\\
-            x + 0y + 2z = 4
+            x + 0y + z = 4
             \end{array}
             </mrow>
         </md>
@@ -83,7 +26,7 @@
             \left[\begin{array}{ccc|c}
             0 \amp 1 \amp -1 \amp 0 \\
             1 \amp 2 \amp 0 \amp 4 \\
-            1 \amp 0 \amp 2 \amp 4
+            1 \amp 0 \amp 1 \amp 4
             \end{array}\right]
         </mrow>
         </md>
@@ -95,7 +38,7 @@
                 A = matrix([
                     [0, 1, -1],
                     [1, 2, 0],
-                    [1, 0, 2]
+                    [1, 0, 1]
                 ])
                 A
             </input>
@@ -135,13 +78,51 @@
                 Ab = matrix([
                         [0, 1, -1, 0], # y - z  = 0
                         [1, 2, 0, 4],  # x + 2y = 4
-                        [1, 0, 2, 4]   # x + 2z = 4
+                        [1, 0, 1, 4]   # x + 2z = 4
                     ])
                 Ab
             </input>
             <output>
             </output>
         </sage>
+        <section xml:id="sec-augmented-matrix">
+        <title>Augmented Matrix</title>
+            <p>
+                A matrix is in <term>reduced row echelon form</term> if:
+                <ul>
+                    <li>
+                        <p>
+                            The first nonzero number in the row is a leading <m>1</m>.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            In any two consecutive rows that do not consist entirely of zeros, the leading <m>1</m> in the lower row occurs farther to the right than the leading <m>1</m> in the higher row.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Rows that consist entirely of zeros are at the bottom of the matrix.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Each column that contains a leading <m>1</m> has zeros everywhere else in that column.
+                        </p>
+                    </li>
+                </ul>
+            </p>
+        <p>
+            The <c>add_multiple_of_row(i, j, s)</c> method preforms an elementary row operation on a matrix by adding <m>s</m> times row <m>j</m> to row <m>i</m>. 
+            The arguments use <m>0</m> based indexing.
+        </p>
+        <p>
+            The <c>swap_rows(r1, r2)</c> method also preforms an elementary row operation on a matrix by swapping rows <c>r1</c> and <c>r2</c>. 
+        </p>
+        <p>
+            The <c>rescale_row(i,s)</c> method preforms an elementary row operation by 
+            multiplying row <m>i</m> by <m>s</m> in place.
+        </p>
         <p>
             First, we will move the leading <m>1</m> from row <c>1</c> to row <c>0</c>.
         </p>
@@ -176,6 +157,17 @@
             </output>
         </sage>
         <p>
+            Multiply the third row by <m>-1</m> and add it to the second row.
+        </p>
+        <sage>
+            <input>
+                Ab.add_multiple_of_row(1, 2, -1)
+                Ab
+            </input>
+            <output>
+            </output>
+        </sage>
+        <p>
             Multiply the second row by <m>-2</m> and add it to the first row.
         </p>
         <sage>
@@ -187,9 +179,28 @@
             </output>
         </sage>
         <p>
-            Now that we have the system in reduced echelon form, we can refer to the variables we can find the solution.
+            Multiply the second row in place by <m>-1</m>.
         </p>
+        <sage>
+            <input>
+                Ab.rescale_row(2,-1)
+                Ab
+            </input>
+            <output>
+            </output>
+        </sage>
         <p>
+            Now that we have the matrix in reduced echelon form, 
+            we can convert the matrix back into a system of equations:
+        <md>
+        <mrow>
+            \begin{array}{c}
+            x = 4 \\
+            y = 0 \\
+            z = 0 
+            \end{array}
+        </mrow>
+        </md>
             Sage has a built in method to do all of this for us. 
             The <c>rref()</c> method returns the reduced row echelon Form of a matrix.
         </p>
@@ -198,7 +209,7 @@
                 Ab = matrix([ # Re-use our old augmented matrix
                         [0, 1, -1, 0],
                         [1, 2, 0, 4],
-                        [1, 0, 2, 4] 
+                        [1, 0, 1, 4] 
                     ])
                 Ab.rref()
             </input>
