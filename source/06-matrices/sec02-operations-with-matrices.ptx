@@ -9,21 +9,11 @@
             <idx>
                 <h>Matrices</h>
                 <h>Operations</h>
-            </idx>
-            Matrix arithmetic extends familiar operations like addition and multiplication to the
-            world of matrices. We will learn how to add, subtract, and multiply matrices, explore
-            properties of these operations, and see how they are used to solve systems of equations,
-            represent compositions of transformations, and work with data in structured ways.
-        </p>
-
-        <p>
-            <idx>
-                <h>Matrices</h>
                 <h>Arithmetic</h>
             </idx>
-            Matrices can be added, multiplied by a number (scalar multiplication), multiplied by a
-            vector or a matrix (matrix multiplication). The first two operations -addition and scalar
-            multiplication- are performed component-wise, similar to the corresponding operations on vectors.
+            Matrices can be added, scaled by a scalar (scalar multiplication), or multiplied with
+            other matrices (matrix multiplication). Addition and scalar multiplication are performed
+            element-wise, analogous to the corresponding operations on vectors.
         </p>
         <sage>
             <input>
@@ -62,7 +52,10 @@
         <sage>
             <input>
                 # Matrix-matrix multiplication
-                A * B
+                C = matrix([[1, 4, 7, 2, 9],
+                            [0, 3, 5, 8, 6],
+                            [9, 1, 0, 4, 2]])
+                A * C
             </input>
         </sage>
 

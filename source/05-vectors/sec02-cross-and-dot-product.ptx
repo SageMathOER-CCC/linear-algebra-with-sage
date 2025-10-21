@@ -5,20 +5,11 @@
     <title>Dot and Cross Products</title>
 
     <introduction xml:id="introduction-dot-and-cross-product">
-        <idx>
-            <h>Vectors</h>
-            <h>Operations</h>
-        </idx>
-        <p>
-            Vectors do also support non-arithmetic operations, and operations that apply to the
-            vector itself and its components.
-        </p>
-
         <p>
             <idx>
                 <h>Vectors</h>
-                <h>Dot Product</h>
-                <h>Scalar Product</h>
+                <h>Operations</h>
+                <h>Dot/Scalar Product</h>
             </idx>
             The <em>dot product</em> of two vectors <m>v=(v_1, v_2, ..., v_n)</m> and
             <m>w=(w_1, w_2, ..., w_n)</m> is defined as the sum of the products of
@@ -43,7 +34,7 @@
         </sage>
 
         <p>
-            we can also compute the dot product manually by its definition
+            We can also compute the dot product manually by its definition.
         </p>
         <sage>
             <input>
@@ -65,8 +56,11 @@
             <input>
                 v = vector([1, 2, 3])
                 w = vector([4, 5, 6])
-                v.cross_product(w)  # this yields a vector perpendicular to both v and w
+                v.cross_product(w)
             </input>
         </sage>
+        <p>
+            Observe that the cross product of two vectors is a vector.
+        </p>
     </introduction>
 </section>
