@@ -6,22 +6,39 @@
         Then, perform elementary row operations to reduce this augmented matrix to <term>reduced row echelon form</term> (RREF). 
         Finally, convert the matrix back into a system of equations to explicitly display the solutions.
     </p>
+    <p>
+        The following are examples of methods that preform an elementary row operation on a matrix. 
+        Keep in mind that all of the following methods use zero-based indexing.
+    </p>
+        <p>
+            The <c>add_multiple_of_row(i, j, s)</c> method preforms an elementary row operation on a matrix by adding <m>s</m> times row <m>j</m> to row <m>i</m>. 
+        </p>
+        <p>
+            The <c>swap_rows(r1, r2)</c> method also preforms an elementary row operation on a matrix by swapping rows <c>r1</c> and <c>r2</c>. 
+        </p>
+        <p>
+            The <c>rescale_row(i,s)</c> method preforms an elementary row operation by 
+            multiplying row <m>i</m> by <m>s</m> in place.
+        </p>
         <p>
             In the following sections, we will use Sage to solve the given system of equations:
         </p>
         <md>
             <mrow>
             \begin{array}{c}
-            0x + y - z = 0\\
-            x + 2y + 0z = 4\\
-            x + 0y + z = 4
+            y - z = 0\\
+            x + 2y = 4\\
+            x + z = 4
             \end{array}
             </mrow>
         </md>
         <section xml:id="sec-augmented-matrix">
         <title>Augmented Matrix</title>
         <p>
-            First, we create the <term>augmented matrix</term> for the system of equations. Each row in the augmented matrix lists the coefficients of the variables in an equation. While we do not directly manipulate the variables themselves, they indicate the position of each coefficient. The last column of the augmented matrix contains the constants from the right-hand side of each equation.
+            First, we create the <term>augmented matrix</term> for the system of equations. 
+            Each row in the augmented matrix lists the coefficients of the variables in an equation. 
+            While we do not directly manipulate the variables themselves, they indicate the position of each coefficient. 
+            The last column of the augmented matrix contains the constants from the right-hand side of each equation.
         </p>
         <md>
         <mrow>
@@ -33,7 +50,8 @@
         </mrow>
         </md>
         <p>
-            Define the coefficient matrix.
+            Let's define the coefficient matrix, 
+            consisting of the coefficients extracted from the system of equations where each column corresponds to a variable:
         </p>
         <sage>
             <input>
@@ -49,7 +67,7 @@
             </output>
         </sage>
         <p>
-            Define the constants vector.
+            Let's define the constants vector:
         </p>
         <sage>
             <input>
@@ -116,18 +134,7 @@
             </ul>
         </p>
         <p>
-            The <c>add_multiple_of_row(i, j, s)</c> method preforms an elementary row operation on a matrix by adding <m>s</m> times row <m>j</m> to row <m>i</m>. 
-            The arguments use <m>0</m> based indexing.
-        </p>
-        <p>
-            The <c>swap_rows(r1, r2)</c> method also preforms an elementary row operation on a matrix by swapping rows <c>r1</c> and <c>r2</c>. 
-        </p>
-        <p>
-            The <c>rescale_row(i,s)</c> method preforms an elementary row operation by 
-            multiplying row <m>i</m> by <m>s</m> in place.
-        </p>
-        <p>
-            First, we will move the leading <m>1</m> from row <c>1</c> to row <c>0</c>.
+            First, we will move the leading <m>1</m> from the second row to the first row.
         </p>
         <sage>
             <input>
@@ -182,7 +189,7 @@
             </output>
         </sage>
         <p>
-            Multiply the second row in place by <m>-1</m>.
+            Multiply the third row in place by <m>-1</m>.
         </p>
         <sage>
             <input>
@@ -193,6 +200,7 @@
             </output>
         </sage>
         <p>
+            Notice that this matrix satisfies the definition of reduced row echelon form.
             Now that we have the matrix in reduced echelon form, 
             we can convert the matrix back into a system of equations:
         <md>
@@ -204,8 +212,10 @@
             \end{array}
         </mrow>
         </md>
-            Sage has a built in method to do all of this for us. 
-            The <c>rref()</c> method returns the reduced row echelon Form of a matrix.
+        </p>
+        <p>
+        Alternatively, Sage has a built in method to do all of this for us. 
+        The <c>rref()</c> method returns the reduced row echelon Form of a matrix.
         </p>
         <sage>
             <input>
