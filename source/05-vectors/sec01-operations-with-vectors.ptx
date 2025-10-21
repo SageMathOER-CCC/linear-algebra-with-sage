@@ -2,15 +2,17 @@
 
 <section xml:id="sec-operations-with-vectors"
     xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Operations with Vectors</title>
+    <title>Basic Arithmetic Operations</title>
 
     <introduction xml:id="introduction-vector-arithmetic">
+        <p>
+            In this section, we will introduce how to perform the arithmetic operations on vectors in Sage.
+        </p>
         <p>
             <idx>
                 <h>Vectors</h>
                 <h>Arithmetic Operations</h>
             </idx>
-            In this section, we will introduce how to perform the arithmetic operations on vectors in Sage.
             Vectors can be added and subtracted using the <c>+</c> and <c>-</c> operators.
             The result of adding or subtracting two vectors is a new vector with the same number of components.
         </p>

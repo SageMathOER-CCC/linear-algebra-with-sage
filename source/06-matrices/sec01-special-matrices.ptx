@@ -66,8 +66,8 @@
                 <li>
                     <p>
                         An <em>identity matrix</em> is a diagonal matrix with all its diagonal elements
-                        equals to 1. The command <c>identity_matrix(n)</c> returns an identity matrix if dimension
-                        <m>n \times n</m>. Here isa= an example of a <m>5 \times 5</m> identity matrix.
+                        equals to 1. The command <c>identity_matrix(n)</c> returns an identity matrix of dimension
+                        <m>n \times n</m>. Here is an example of a <m>5 \times 5</m> identity matrix.
                     </p>
                     <sage>
                         <input>
@@ -78,9 +78,9 @@
                 <li>
                     <p>
                         Although the <em>ones</em> matrix is not a predefined matrix in Sage, it is common in
-                        other similar computational frameworks such as Octave©, and MATLAB©. Essentially,
-                        it is a matrix where every entry is 1. It can be created by leverage the built-in list
-                        duplication operator <c>*</c> applied on a list of ones.
+                        other computational frameworks. Essentially, it is a matrix where every entry is 1. It
+                        can be created by leverage the built-in list duplication operator <c>*</c> applied on
+                        a list of ones.
                     </p>
                     <sage>
                         <input>
@@ -97,7 +97,7 @@
                     </idx>
                     <p>
                         Two other common types of square matrices are the <em>Upper</em> and <em>Lower</em> triangular matrices.
-                        A square matrix an upper triangular matrix if all entries below the diagonal are zero. The following
+                        A square matrix is an upper triangular matrix if all entries below the diagonal are zero. The following
                         is an example of a <m>3 \times 3</m> upper triangular matrix.
                     </p>
                     <sage>

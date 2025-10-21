@@ -61,12 +61,23 @@
         <p>
             Alternatively, we can create a matrix by passing the entries as a list, and
             the dimensions as arguments to the <c>matrix</c> command. Here is an example
-            of a <m>2 \times 3</m> matrix
+            of a <m>2 \times 3</m> matrix.
         </p>
         <sage>
             <input>
                 M = matrix(2, 3, [1, 1, 2, 3, 5, 8])
                 M
+            </input>
+        </sage>
+        <p>
+            Note that in Sage, you can create a list consisting of repeated copies of the
+            same element using the repetition operator <c>*</c>. For example, <c>[1] * 6</c>
+            produces a list with six ones, which is convenient when filling a matrix with
+            identical entries like in the following example.
+        </p>
+        <sage>
+            <input>
+            matrix(2, 3, [1] * 6)
             </input>
         </sage>
         <p>
@@ -94,7 +105,7 @@
         <p>
             Sage also allows to construct a larger matrix by combining smaller <em>submatrices</em> using
             the <c>block_matrix()</c> function (or <c>matrix.block()</c>). Submatrices can be arranged in
-            rows and columns to form a single, larger matrix.Each row is entered as a list. In the following
+            rows and columns to form a single, larger matrix. Each row is entered as a list. In the following
             example, we create a <m>5 \times 5</m> matrix from four submatrices of different dimensions.
         </p>
         <sage>
@@ -137,8 +148,8 @@
 
         <p>
             Sage provides dedicated methods to retrieve all rows of the matrix, or all its columns.
-            It also support the retrieval of the diagonal elements of the matrix, or a specific entry
-            at a particular row and column.
+            It also support the retrieval of the diagonal elements of a matrix, or extracting a
+            specific row or a specific column of a given matrix.
         </p>
 
         <p>
@@ -212,7 +223,7 @@
                 <h>Matrices</h>
                 <h>nrows</h>
             </idx>
-            Similarly, Sage offers more methods to help us iterate over the rows and/or the
+            Similarly, Sage offers more methods to help us iterate over the rows or the
             columns of a matrix. For instance, the method <c>nrows()</c> returns the number
             of rows of a matrix.
         </p>
