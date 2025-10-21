@@ -56,7 +56,7 @@
         # Store the solution in a variable
         S = solve(E, x)
 
-        # Index the zero-th element of the list
+        # Access the zero-th element of the list
         S[0]
         </input>
         <output>

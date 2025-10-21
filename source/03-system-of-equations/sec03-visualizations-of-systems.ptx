@@ -1,0 +1,79 @@
+<section xml:id="sec-visualizations-of-systems" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Visualizations of Systems</title>
+        <p>
+        Since each equation defines implicitly a function, we can use <c>implicit_plot</c> to graph each equation in 2D-space.
+    </p>
+    <sage>
+        <input>
+            var('x y')
+            eq1 = 2*x + 3*y == 4
+            eq2 = 5*x - 6*y == 7
+            p1 = implicit_plot(eq1, (x, -2, 5), (y, -4, 4), color='green')
+            p2 = implicit_plot(eq2, (x, -2, 5), (y, -4, 4), color='red')
+            p1+p2
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        We can also plot a point whose coordinates are the ones given in the solution.
+    </p>
+    <sage>
+        <input>
+            S = solve([eq1, eq2], x, y)
+            A = S[0][0].rhs()
+            B = S[0][1].rhs()
+            P = point((A, B))
+            P
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        Now the full plot with the equations, the solution, and a legend.
+    </p>
+    <sage>
+        <input>
+            PP = point((A, B), size=50, legend_label=f'Solution: ({A}, {B})')
+
+            show(p1 + p2 + PP, axes=True)
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        We can plot an equations in 3D-space using <c>implicit_plot3d</c>.
+    </p>
+    <sage>
+        <input>
+            var('x y z')
+            eq1 = x+y+z==6
+            eq2 = 2*x-z==-1
+            eq3 = x-y-z==-4
+            a = implicit_plot3d(eq1,(x,0,5), (y,0,5), (z,0,5))
+            b = implicit_plot3d(eq2,(x,0,5), (y,0,5), (z,0,5))
+            c = implicit_plot3d(eq3,(x,0,5), (y,0,5), (z,0,5))
+            a + b + c
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        Let's add some color to the plot so we can distinguish the equations.
+    </p>
+    <sage>
+        <input>
+            a = implicit_plot3d(eq1,(x,0,5), (y,0,5), (z,0,5), color='blue')
+            b = implicit_plot3d(eq2,(x,0,5), (y,0,5), (z,0,5), color='red')
+            c = implicit_plot3d(eq3,(x,0,5), (y,0,5), (z,0,5), color='green')
+            a + b + c
+        </input>
+        <output>
+
+        </output>
+    </sage>
+</section>
