@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-alternative-computations"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Alternative Computation of the Adjoint, Cofactors, and Minors</title>
+    <introduction xml:id="sm-introduction-alternative-computations">
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h></h>
+            </idx>
+        </p>
+        <sage>
+            <input>
+            </input>
+        </sage>
+    </introduction>
+
+    <!-- <subsection xml:id="subsec-">
+        <title></title>
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h></h>
+            </idx>
+
+        </p>
+        <sage>
+            <input>
+            </input>
+        </sage>
+    </subsection> -->
+</section>

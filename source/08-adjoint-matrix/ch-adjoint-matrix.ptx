@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-adjoint-matrix" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Adjoint Matrix</title>
+    <introduction xml:id="sm-subsection-adjoint-matrix-intro">
+        <p>
+            In this chapter, we will learn about a ...
+        </p>
+    </introduction>
+
+    <!-- include sections -->
+    <xi:include href="sec01-adjoint-matrix.ptx" />
+    <xi:include href="sec02-alternative-computations.ptx" />
+    <xi:include href="sec03-historical-note.ptx" />
+
+</chapter>
