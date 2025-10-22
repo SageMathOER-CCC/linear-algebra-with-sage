@@ -2,7 +2,7 @@
 
 <section xml:id="sec-matrix-operations-transpose-and-conjugate"
     xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Transpose, Conjugate and Adjoint Matrix</title>
+    <title>Transpose, Conjugate and Trace</title>
     <introduction xml:id="sm-introduction-transpose-and-conjugate">
         <p>
             <idx>
@@ -48,39 +48,6 @@
                 A.conjugate()
             </input>
         </sage>
-
-        <p>
-            <idx>
-                <h>Matrices</h>
-                <h>Adjoint</h>
-            </idx>
-            In some fields, working over complex vector spaces is necessary and common. In these contexts,
-            the <em>adjoint matrix</em> of a matrix <m>A</m> refers to its <em>conjugate transpose</em>. It
-            is obtained by first taking the complex conjugate of each entry of <m>A</m>, and then transposing
-            the resulting matrix.
-        </p>
-        <p>
-            The adjoint of a matrix <m>A</m> is denoted by <m>A^{*}</m> and defined as:
-            <m>A^{*} = \overline{A}^{T}</m> where <m>\overline{A}</m> represents the complex conjugate of <m>A</m>.
-        </p>
-
-        <p>
-            It is important to note that this meaning of <em>adjoint</em> differs from
-            the <em>adjugate</em> matrix, which will be defined later as the transpose of
-            the cofactor matrix. The two concepts are conceptually distinct:
-            <ul>
-                <li><em>Adjoint:</em> involves complex conjugation and transposition.</li>
-                <li><em>Adjugate:</em> involves cofactors and determinants (used in matrix inversion).</li>
-            </ul>
-            Sage has built-in method <c>conjugate_transpose</c> to compute the adjoint matrix as follows:
-        </p>
-        <sage>
-            <input>
-                # Define a 2x2 complex matrix
-                C = matrix(CDF, [[1 + 2 * I, 3], [4, 5 - I]])
-                C.conjugate_transpose()
-            </input>
-        </sage>
         <p>
             Note that matrices with Complex values, and computing conjugates are very common in signal processing
             and quantum mechanics.
@@ -100,6 +67,34 @@
                 # The norm of a matrix
                 A = matrix([[1, 2], [3, 4]])
                 A.norm()
+            </input>
+        </sage>
+
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Rank</h>
+            </idx>
+            The <em>rank</em> of a matrix is the dimension of the vector space spanned by its rows (row rank)
+            or columns (column rank). It measures the number of linearly independent rows or columns and
+            is used to determine whether a linear system has unique, infinite, or no solutions. In Sage the
+            rank of a matrix is computed with the <c>.rank()</c> method:
+        </p>
+        <sage>
+            <input>
+                # rank=2: rows/columns are linearly dependent
+                B = matrix([[1,2,3],[2,4,6],[1,0,1]])
+                B.rank()
+            </input>
+        </sage>
+        <p>
+            A matrix is called <em>full rank</em> when its rank equals the smaller of the number of rows and columns.
+        </p>
+        <sage>
+            <input>
+                # a full rank matrix with rank=3
+                C = matrix([[1,0,0],[0,1,0],[0,0,1]])
+                C.rank()
             </input>
         </sage>
 
