@@ -12,5 +12,6 @@
 
     <!-- include sections -->
     <xi:include href="sec01-gauss-jordan-elimination.ptx" />
-    <xi:include href="sec02-equations-with-matrices.ptx" />
+    <xi:include href="sec02-row-reduction-results.ptx" />
+    <xi:include href="sec03-pivots.ptx" />
 </chapter>

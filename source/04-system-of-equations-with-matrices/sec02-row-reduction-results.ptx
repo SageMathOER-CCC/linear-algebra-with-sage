@@ -1,17 +1,17 @@
-<section xml:id="sec-equations-with-Matrices" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Systems of Equations with Matrices</title>
+<section xml:id="sec-row-reduction-results" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Row Reduction Results</title>
     <p>
         As an introduction to solving equations in Sage, we worked with equations symbolically. Now, we will learn how to solve systems of equations with vectors and matrices.
     </p>
     <p>
-        Let's solve the following system of equations:
+        Let's solve <m>\textbf{Case II}</m> again:
     </p>
     <md>
         <mrow>
             \begin{array}{c}
-            7x + y - 3z  = 7\\
-            3x + 0y - 9z  = 15\\
-            -x + 0y + 3z = -5
+            y - z = 0\\
+            x + 2y = 4\\
+            x + z = 4
             \end{array}
         </mrow>
     </md>
@@ -21,11 +21,11 @@
     <sage>
         <input>
             M = matrix([
-                    [7, 1, -3],
-                    [3, 0, -9],
-                    [-1, 0, 3]
+                    [1, 2, 0],
+                    [0, 1, -1],
+                    [1, 0, 2]
                 ])
-            print(M)
+            M
         </input>
         <output>
 
@@ -36,57 +36,58 @@
     </p>
     <sage>
         <input>
-            v = vector([7, 15, -5])
-            print(v)
+            u = vector([4, 0, 4])
+            u 
         </input>
         <output>
 
         </output>
     </sage>
     <p>
-        Finally, call the <c>solve_right</c> method on the matrix and pass the solution vector as its argument.
+        Finally, call the <c>solve_right()</c> method on the matrix and pass the solution vector as its argument.
     </p>
     <sage>
         <input>
-            M.solve_right(v)
+            M.solve_right(u)
         </input>
         <output>
 
         </output>
     </sage>
     <p>
-        The output <c>(5, -28, 0)</c> expresses one solution to the system:
+        The output <c>(4, 0, 0)</c> expresses one solution to the system:
     </p>
     <md>
     <mrow>
         \begin{array}{c}
-        x = 5 \\
-        y = -28 \\
-        z = 0 
+        x = 4\\
+        y = 0\\
+        z = 0
         \end{array}
     </mrow>
     </md>
     <section xml:id="sec-differences-in-solutions">
         <title>Differences in Solutions</title>
     <p>
-        To find all solutions we first need to augment matrix <m>M</m> with vector <m>v</m>. This is done with the <c>augment</c> method.
+        To find all solutions we first need to augment matrix <m>M</m> with vector <m>b</m>. 
+        This is done with the <c>augment()</c> method.
     </p>
     <sage>
         <input>
             # subdivide=True adds a dividing line to the new matrix
-            Mv = M.augment(v, subdivide=True)
-            Mv
+            Mu = M.augment(u, subdivide=True)
+            Mu 
         </input>
         <output>
             
         </output>
     </sage>
     <p>
-        To solve this new matrix, call the <c>rref</c> method to output the matrix in reduced row echelon form.
+        To solve this new matrix, call the <c>rref()</c> method to output the matrix in reduced row echelon form.
     </p>
     <sage>
         <input>
-            Mv.rref()
+            Mu.rref()
         </input>
         <output>
             
@@ -97,13 +98,19 @@
     </p>
     <p>
         These methods also differ in how they handle a system with no solutions. 
-        For example if we instead solve for a vector <m>u = (1,2,8)</m> with the <c>solve_right</c> method, an error will be thrown.
+        For example we will pass <m>\textbf{Case III}</m> to the <c>solve_right()</c> method, 
+        and an error will be thrown.
     </p>
     <sage>
         <input>
-            u = vector([1 ,2 ,8])
+            T = matrix([
+                [1, 2, 0],
+                [1, 2, 0],
+                [1, 0, 2]
+            ])
+            v = vector([4, 1, 4])
             try:
-                M.solve_right(u)
+                T.solve_right(v)
             except Exception as e:
                 print(e)
         </input>
@@ -112,19 +119,20 @@
         </output>
     </sage>
     <p>
-        Where as the <c>rref</c> method will return a matrix which represents an inconsistent system.
+        Where as the <c>rref()</c> method will return a matrix which represents an inconsistent system.
     </p>
     <sage>
         <input>
-            M.augment(u, subdivide=True).rref()
+            T.augment(v, subdivide=True).rref()
         </input>
         <output>
             
         </output>
     </sage>
     <p>
-        The two methods differ very little when there is only one solution.
-        The <c>solve_right</c> method is efficient when the system has a unique solution.
+        The two methods differ very little when there is only one solution, 
+        like with <m>\textbf{Case I}</m> bellow.
+        The <c>solve_right()</c> method is efficient when the system has a unique solution.
     </p>
     <sage>
         <input>

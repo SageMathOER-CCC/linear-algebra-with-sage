@@ -1,6 +1,6 @@
-<section xml:id="sec-visualizations-of-systems" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Visualizations of Systems</title>
-        <p>
+<section xml:id="sec-graphing-of-systems" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Graphing of Systems</title>
+    <p>
         Since each equation defines implicitly a function, we can use <c>implicit_plot</c> to graph each equation in 2D-space.
     </p>
     <sage>
@@ -46,16 +46,17 @@
     </sage>
     <p>
         We can plot an equations in 3D-space using <c>implicit_plot3d</c>.
+        Here is an example with <m>\textbf{Case I}</m>:
     </p>
     <sage>
         <input>
             var('x y z')
-            eq1 = x+y+z==6
-            eq2 = 2*x-z==-1
-            eq3 = x-y-z==-4
-            a = implicit_plot3d(eq1,(x,0,5), (y,0,5), (z,0,5))
-            b = implicit_plot3d(eq2,(x,0,5), (y,0,5), (z,0,5))
-            c = implicit_plot3d(eq3,(x,0,5), (y,0,5), (z,0,5))
+            eq1 = y - z == 0
+            eq2 = x + 2*y == 4
+            eq3 = x + z == 4
+            a = implicit_plot3d(eq1, (x,0,5), (y,0,5), (z,0,5), color='blue')
+            b = implicit_plot3d(eq2, (x,0,5), (y,0,5), (z,0,5), color='red')
+            c = implicit_plot3d(eq3, (x,0,5), (y,0,5), (z,0,5), color='green')
             a + b + c
         </input>
         <output>
@@ -63,17 +64,37 @@
         </output>
     </sage>
     <p>
-        Let's add some color to the plot so we can distinguish the equations.
+        Here is the same method with <m>\textbf{Case II}</m>:
     </p>
     <sage>
         <input>
-            a = implicit_plot3d(eq1,(x,0,5), (y,0,5), (z,0,5), color='blue')
-            b = implicit_plot3d(eq2,(x,0,5), (y,0,5), (z,0,5), color='red')
-            c = implicit_plot3d(eq3,(x,0,5), (y,0,5), (z,0,5), color='green')
+            eq1 = x + 2*y == 4
+            eq2 = y - z == 0
+            eq3 = x + 2*z == 4
+            a = implicit_plot3d(eq1, (x,0,5), (y,0,5), (z,0,5), color='blue')
+            b = implicit_plot3d(eq2, (x,0,5), (y,0,5), (z,0,5), color='red')
+            c = implicit_plot3d(eq3, (x,0,5), (y,0,5), (z,0,5), color='green')
             a + b + c
         </input>
         <output>
-
+            
+        </output>
+    </sage>
+    <p>
+        Here is another example with <m>\textbf{Case III}</m>:
+    </p>
+    <sage>
+        <input>
+            eq1 = x + 2*y == 4
+            eq2 = x + 2*y == 1
+            eq3 = x + 2*z == 4
+            a = implicit_plot3d(eq1, (x,0,5), (y,0,5), (z,0,5), color='blue')
+            b = implicit_plot3d(eq2, (x,0,5), (y,0,5), (z,0,5), color='red')
+            c = implicit_plot3d(eq3, (x,0,5), (y,0,5), (z,0,5), color='green')
+            a + b + c
+        </input>
+        <output>
+            
         </output>
     </sage>
 </section>
