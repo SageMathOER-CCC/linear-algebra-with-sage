@@ -76,6 +76,43 @@
             or <c>else</c> clauses. Just like in Python, the indentation is significant and is
             used to define code blocks.
         </p>
+        <subsubsection xml:id="subsubsec-error-handling">
+            <title>Error Handling</title>
+            <p>
+                Similar to <c>if</c> statements, <c>try</c> and <c>except</c> blocks allow for the conditional execution of code in the event of an error in the code of the <c>try</c> block.
+                Then at the end of execution, regardless of if an error occurs the code in the <c>finally</c> block will execute.
+                Take for example division by zero:
+            </p>
+            <sage>
+                <input>
+                    try:
+                        1/0
+                    except:
+                        print("Division by zero is undefined")
+                    finally:
+                        print("The code is done")
+                </input>
+                <output>
+                    
+                </output>
+            </sage>
+            <p>
+                In the case of valid division here is how execution occurs:
+            </p>
+            <sage>
+                <input>
+                    try:
+                        1/1
+                    except:
+                        print("Division by zero is undefined")
+                    finally:
+                        print("The code is done")
+                </input>
+                <output>
+                    
+                </output>
+            </sage>
+        </subsubsection>
     </subsection>
 
     <subsection xml:id="subsec-iteration">

@@ -95,14 +95,15 @@
     </sage>
     <p>
         We also can solve a system of three equations with three variables.
+        This system of equations has exactly one solution and will hereby be referred to as <m>\textbf{Case I}</m>.
     </p>
     <sage>
         <input>
             var('x y z')
-            eq1 = x+y+z==6
-            eq2 = 2*x-z==-1
-            eq3 = x-y-z==-4
-            solve([eq1,eq2,eq3],x,y,z)
+            eq1 = y - z == 0
+            eq2 = x + 2*y == 4
+            eq3 = x + z == 4
+            solve([eq1, eq2, eq3], x, y, z)
         </input>
         <output>
 
@@ -111,6 +112,7 @@
     <p>
         The following is an example of a system with infinitely many solutions. 
         The general solution is expressed as a parameterized function.
+        This system will hereby be referred to as <m>\textbf{Case II}</m>.
     </p>
     <sage>
         <input>
@@ -127,6 +129,7 @@
     <p>
         The following is an example of an inconsistent system. 
         Since the system has no solutions, Sage returns an empty list.
+        This system will hereby be referred to as <m>\textbf{Case III}</m>.
     </p>
     <sage>
         <input>

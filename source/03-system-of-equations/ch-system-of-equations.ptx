@@ -13,5 +13,5 @@
     <!-- include sections -->
     <xi:include href="sec01-solving-equations.ptx" />
     <xi:include href="sec02-solving-systems-of-equations.ptx" />
-    <xi:include href="sec03-visualizations-of-systems.ptx" />
+    <xi:include href="sec03-graphing-of-systems.ptx" />
 </chapter>

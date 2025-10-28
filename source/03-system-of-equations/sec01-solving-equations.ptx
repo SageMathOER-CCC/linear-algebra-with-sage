@@ -44,7 +44,7 @@
         </output>
     </sage>
     <p>
-        Observe that the solution of a equation is given between square brackets, indicating that the data type is a <c>list</c>. 
+        Observe that the solution of an equation is given between square brackets, indicating that the data type is a <c>list</c>. 
         We can access the solutions in the <c>list</c> with square brackets. 
         Notice that after accessing the solution, the brackets are no longer present. 
     </p>
