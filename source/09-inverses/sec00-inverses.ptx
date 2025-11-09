@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-inverse-matrix" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Inverse Matrix</title>
+    <definition xml:id="def-inverse">
+        <statement>
+            <p>
+                Let <m>A</m> be a square matrix.
+                A matrix <m>B</m> is called an inverse of <m>A</m> if <m>AB = I</m> and <m>BA = I</m>. 
+                Where <m>I</m> is the identity matrix.
+            </p>
+        </statement>
+    </definition>
+    <p>
+        If such a matrix exists, we say that <m>A</m> is invertible and we denote the inverse by <m>A^{-1}</m>.
+    </p>
+    <p>
+        We can ask Sage whether a matrix is invertible using the <c>is_invertible()</c> method:
+    </p>
+    <sage>
+        <input>
+            A = matrix([      # case i
+                    [0, 1, -1], 
+                    [1, 2, 0],  
+                    [1, 0, 1]   
+                ])
+            A.is_invertible()
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        In Sage, the inverse of a matrix can be computed using the <c>inverse()</c> method:
+    </p>
+    <sage>
+    <input>
+        A.inverse()
+    </input>
+    </sage>
+    <p>
+        We can check that the products of these matrices are actually the identity:
+    </p>
+    <sage>
+        <input>
+            A * A.inverse()
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <sage>
+        <input>
+            A.inverse() * A
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        Exponent notation also produces the same result.
+    </p>
+    <sage>
+        <input>
+            A^-1 
+        </input>
+    </sage>
+    <p>
+        Observe that a matrix is invertible over its base ring. 
+        Even though the next matrix is invertible, 
+        we would obtain a false result if we do not specify the ring:
+    </p>
+    <sage>
+        <input>
+            A = matrix([
+                [1, 2, 8], 
+                [9, 8, 9], 
+                [5, 6, 0]
+            ])
+            A.is_invertible()
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        By calculating the inverse, 
+        we can see that the inverse exists and therefore A is invertible, 
+        though the coefficients are not integers:
+    </p>
+    <sage>
+        <input>
+            A^-1
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        If we specify the ring to be the rationals, we obtain the correct result:
+    </p>
+    <sage>
+        <input>
+            A = matrix(QQ, [
+                [1, 2, 8], 
+                [9, 8, 9], 
+                [5, 6, 0]
+            ])
+            A.is_invertible()
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        Next, we will show how to use Sage to implement the different ways in which we can calculate the inverse matrix.
+    </p>
+    <subsection xml:id="subsec-using-the-echelon-method">
+        <title>Using the Echelon Method</title>
+        <p>
+            A matrix is invertible if and only if the reduced row echelon form is the identity matrix. 
+            We can find the inverse matrix of <m>A</m> by augmenting <m>A</m> by the identity matrix <m>I</m> and then finding the reduced row echelon form. 
+            If the matrix is invertible, 
+            the first half of the matrix would be the identity and the second half the inverse matrix.
+        </p>
+        <sage>
+            <input>
+                A = matrix([      # case i
+                        [0, 1, -1], 
+                        [1, 2, 0],  
+                        [1, 0, 1]   
+                    ])
+                AI = A.augment(identity_matrix(3))
+                AI
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            Then by invoking <c>rref()</c> the right sub-matrix is now the inverse.
+        </p>
+        <sage>
+            <input>
+                rrefAI = AI.rref()
+                rrefAI
+            </input>
+        </sage>
+        <p>
+            To decide if the matrix is invertible, we check that the first part of the matrix is the identity:
+        </p>
+        <sage>
+            <input>
+                identity_matrix(3) == rrefAI.submatrix(
+                    row=0, col=0, nrows=3, ncols=3)
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            In this case we obtained the identity matrix, so the right part of the matrix is the inverse matrix:
+        </p>
+        <sage>
+            <input>
+                A.inverse() == rrefAI.submatrix(0,3)
+            </input>
+        </sage>
+    </subsection>
+    <subsection xml:id="subsec-minors-cofactors-and-adjugate-for-inverse">
+        <title>Minors, Cofactors and the Adjugate Matrix</title>
+        <p>
+            The Adjugate matrix can then be used to compute the inverse of a non-singular matrix using the formula:
+            <m>A^{-1} = \frac{1}{\det(A)} \cdot \text{adj}(A)</m>.
+        </p>
+        <sage>
+            <input>
+                A.inverse() == A.adjugate() / A.det()
+            </input>
+        </sage>
+        <p>
+            Note that the although methods <c>minor()</c> and <c>cofactor()</c> are currently not implemented in
+            Sage, leveraging the command <c>adj</c> can help compute them, like shown below.
+        </p>
+        <sage>
+            <input>
+                cof = A.adjugate().transpose()
+
+                # Cofactor c_12
+                cofactor_1_2 = cof[0, 1]
+                print("c_12:", cofactor_1_2)
+
+                # Minor M_12
+                minor_1_2 = cofactor_1_2 / ((-1)^(1 + 2))
+                print("m_12:", minor_1_2)
+            </input>
+        </sage>
+    </subsection>
+    <subsection xml:id="subsec-comparing-methods">
+        <title>Comparing Methods</title>
+        <p>
+            The three methods coincide when the matrix is invertible.
+        </p>
+        <sage>
+            <input>
+                I = identity_matrix(3)
+                A = matrix([      # case i
+                        [0, 1, -1], 
+                        [1, 2, 0],  
+                        [1, 0, 1]   
+                    ])
+                A.augment(I).rref().submatrix(0,3) == A.inverse() == A.adjugate() / A.det()
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            Let's see how they differ in the way they handled singular matrices.
+        </p>
+        <p>
+            In the case of a matrix that is not invertible, the <c>inverse()</c> method will throw an error.
+        </p>
+        <sage>
+            <input>
+                M = matrix([   # case ii
+                    [1, 2, 0],
+                    [0, 1, -1],
+                    [1, 0, 2]
+                ])
+                try:
+                    M.inverse()
+                except Exception as e:
+                    print(e)
+            </input>
+        </sage>
+        <p>
+            Using the <c>adjugate()</c> method and dividing by the determinate will also yield an error.
+        </p>
+        <sage>
+            <input>
+                try:
+                    M.inverse() == M.adjugate() / M.det()
+                except Exception as e:
+                    print(e)
+            </input>
+        </sage>
+        <p>
+            While the <c>rref()</c> method will return a matrix whose first half is not the identity.
+        </p>
+        <sage>
+            <input>
+                M.augment(I).rref()
+            </input>
+        </sage>
+    </subsection>
+</section>
