@@ -5,13 +5,13 @@
 
     <introduction>
         <p>
-            Systems of linear equations can be interpreted as matrices in order to make solving them more efficient as the number of variables grows. 
-            This chapter shows how to use Sage to construct and solve these matrices.
+            Systems of linear equations can be represented as matrices to make solving them more efficient as the number of variables increases. 
+            This chapter shows how to use Sage to solve systems using the matrix representation.
         </p>
     </introduction>
 
     <!-- include sections -->
     <xi:include href="sec01-gauss-jordan-elimination.ptx" />
-    <xi:include href="sec02-row-reduction-results.ptx" />
-    <xi:include href="sec03-pivots.ptx" />
+    <xi:include href="sec02-pivots.ptx" />
+    <xi:include href="sec03-matrix-equations.ptx" />
 </chapter>

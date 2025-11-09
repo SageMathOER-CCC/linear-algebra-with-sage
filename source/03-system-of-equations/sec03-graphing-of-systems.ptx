@@ -54,15 +54,18 @@
             eq1 = y - z == 0
             eq2 = x + 2*y == 4
             eq3 = x + z == 4
-            a = implicit_plot3d(eq1, (x,0,5), (y,0,5), (z,0,5), color='blue')
-            b = implicit_plot3d(eq2, (x,0,5), (y,0,5), (z,0,5), color='red')
-            c = implicit_plot3d(eq3, (x,0,5), (y,0,5), (z,0,5), color='green')
+            a = implicit_plot3d(eq1, (x,-9,9), (y,-9,9), (z,-9,9), color='blue')
+            b = implicit_plot3d(eq2, (x,-9,9), (y,-9,9), (z,-9,9), color='red')
+            c = implicit_plot3d(eq3, (x,-9,9), (y,-9,9), (z,-9,9), color='green')
             a + b + c
         </input>
         <output>
 
         </output>
     </sage>
+    <p>
+        We can rotate the graph to visualize the unique point of intersection of the three planes.
+    </p>
     <p>
         Here is the same method with <m>\textbf{Case II}</m>:
     </p>
@@ -71,15 +74,19 @@
             eq1 = x + 2*y == 4
             eq2 = y - z == 0
             eq3 = x + 2*z == 4
-            a = implicit_plot3d(eq1, (x,0,5), (y,0,5), (z,0,5), color='blue')
-            b = implicit_plot3d(eq2, (x,0,5), (y,0,5), (z,0,5), color='red')
-            c = implicit_plot3d(eq3, (x,0,5), (y,0,5), (z,0,5), color='green')
+            a = implicit_plot3d(eq1, (x,-9,9), (y,-9,9), (z,-9,9), color='blue')
+            b = implicit_plot3d(eq2, (x,-9,9), (y,-9,9), (z,-9,9), color='red')
+            c = implicit_plot3d(eq3, (x,-9,9), (y,-9,9), (z,-9,9), color='green')
             a + b + c
         </input>
         <output>
             
         </output>
     </sage>
+    <p>
+        By rotating the graph, we can visualize the infinitely many solutions of this system, 
+        represented by the line where the three planes intersect.
+    </p>
     <p>
         Here is another example with <m>\textbf{Case III}</m>:
     </p>
@@ -88,13 +95,17 @@
             eq1 = x + 2*y == 4
             eq2 = x + 2*y == 1
             eq3 = x + 2*z == 4
-            a = implicit_plot3d(eq1, (x,0,5), (y,0,5), (z,0,5), color='blue')
-            b = implicit_plot3d(eq2, (x,0,5), (y,0,5), (z,0,5), color='red')
-            c = implicit_plot3d(eq3, (x,0,5), (y,0,5), (z,0,5), color='green')
+            a = implicit_plot3d(eq1, (x,-9,9), (y,-9,9), (z,-9,9), color='blue')
+            b = implicit_plot3d(eq2, (x,-9,9), (y,-9,9), (z,-9,9), color='red')
+            c = implicit_plot3d(eq3, (x,-9,9), (y,-9,9), (z,-9,9), color='green')
             a + b + c
         </input>
         <output>
             
         </output>
     </sage>
+    <p>
+        In this last case, we can observe that two of the planes are parallel, 
+        so there is no intersection among the three planes.
+    </p>
 </section>
