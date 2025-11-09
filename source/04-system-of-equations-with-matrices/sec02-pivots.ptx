@@ -1,0 +1,193 @@
+<section xml:id="sec-pivots" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Pivots</title>
+    <p>
+        A leading coefficient in a matrix is the first non-zero entry in a given row. 
+        The position of a leading coefficient in the reduced row echelon matrix of <m>A</m> is called a pivot position.
+    </p>
+    <p>
+        Sage has the <c>pivot()</c> method to identify the pivot columns of the reduced row echelon form of a matrix.
+        Here is an example with <m>\textbf{Case I}</m>:
+    </p>
+    <sage>
+        <input>
+            Ab = matrix([          # case i
+                    [0, 1, -1, 0], # y - z  = 0
+                    [1, 2, 0, 4],  # x + 2y = 4
+                    [1, 0, 1, 4]   # x + 2z = 4
+                ])
+            Ab.pivots()
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        Observe that the solution obtained means that there are pivot positions in the first, second and third row. 
+        We can easily verify this by revisiting the reduced form of the matrix:
+    </p>
+    <sage>
+        <input>
+            Ab.rref()
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        Notice that Sage can determine which columns contain the pivot positions in the reduced row echelon form of the matrix without actually computing this form.
+    </p>
+    <p>
+        The pivot positions in the reduced row echelon form of the augmented matrix of a linear system are crucial for determining the nature of its solutions.
+    </p>
+    <p>
+        Let <m>R</m> and <m>Rb</m> denote the reduced row echelon forms of the coefficient matrix and the augmented matrix, respectively.
+    </p>
+    <ul>
+        <li>
+            <p>
+                A system is inconsistent exactly when a pivot position appears in the last column of <m>Rb</m>.
+            </p>
+        </li>
+        <li>
+            <p>
+                If the system is consistent, 
+                then the columns of <m>R</m> containing pivot positions correspond to basic variables, 
+                while the columns without pivot positions correspond to free variables.
+            </p>
+        </li>
+        <li>
+            <p>
+                The solution is unique when every column of <m>R</m> contains a pivot position, 
+                and there are infinitely many solutions when at least one column of R does not contain a pivot position.
+            </p>
+        </li>
+    </ul>
+    <subsection xml:id="subsec-compatible-unique-solutions">
+        <title>Compatible Unique Solutions (Case I)</title>
+        <p>
+            Observe that in our previous system there was no pivot position in the last column, 
+            so the system was compatible. 
+            Moreover, every column of the reduced row echelon form of the coefficient matrix had a pivot position, 
+            so the system has a unique solution. 
+        </p>
+        <p>
+            Recall that in <xref ref="sec-solving-systems-of-equations"/>, 
+            we were given a solution in the form of constant values, meaning it is unique.
+        </p>
+        <sage>
+            <input>
+                var('x y z')
+                eq1 = y - z == 0
+                eq2 = x + 2*y == 4
+                eq3 = x + z == 4
+                solve([eq1, eq2, eq3], x, y, z)
+            </input>
+            <output>
+
+            </output>
+        </sage>
+        <p>
+            This coincides with the pivots, as they imply a unique solution.
+        </p>
+    </subsection>
+    <subsection xml:id="subsec-compatible-infinitely-many-solutions">
+        <title>Compatible Infinitely Many Solutions (Case II)</title>
+        <p>
+            Let's find the pivot columns for our <m>\textbf{Case II}</m> system.
+        </p>
+        <sage>
+            <input>
+                Ab = matrix([          # case ii
+                        [1, 2, 0, 4],  # x + 2y = 4
+                        [0, 1, -1, 0], # y - z  = 0
+                        [1, 0, 2, 4]   # x + 2z = 4
+                    ])
+                Ab.pivots()
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            We found that there are pivot positions in the first and second columns.
+        </p>
+        <p>
+            Since there is no pivot position in the last column, the system is consistent. 
+            Because there are columns without pivot positions in the rest of the matrix, 
+            the system has infinitely many solutions. 
+            The first and second columns correspond to the variables <m>x</m> and <m>y</m>, 
+            so these are the basic variables, while <m>z</m> is a free variable. 
+            Therefore, the solution can be written as a function of the parameter <m>z</m>.
+        </p>
+        <md>
+            <mrow> 
+                 \begin{array}{r} 
+                     x + 2z = 4\\
+                     y - z = 0\\ 
+                         0 = 0
+                 \end{array}\ 
+                 \Rightarrow\
+                 \begin{array}{l} 
+                     x = -2z + 4\\
+                     y = z\\ 
+                     z = z
+                 \end{array} 
+            </mrow>
+        </md>
+        <p>
+            This coincides with the solutions we found in <xref ref="sec-solving-systems-of-equations"/>, 
+            namely a parameterized solution, but in this case Sage defaults to <c>r1</c> as a parameter.
+        </p>
+        <sage>
+            <input>
+                var('x y z')
+                eq1 = x + 2*y == 4
+                eq2 = y - z == 0
+                eq3 = x + 2*z == 4
+                solve([eq1, eq2, eq3], x, y, z)
+            </input>
+            <output>
+
+            </output>
+        </sage>
+    </subsection>
+    <subsection xml:id="subsec-incompatible">
+        <title>Incompatible (Case III)</title>
+        <p>
+            Let's find the pivot columns for our <m>\textbf{Case III}</m> system.
+        </p>
+    </subsection>
+    <sage>
+        <input>
+            Ab = matrix([         # case iii
+                    [1, 2, 0, 4], # x + 2y = 4
+                    [1, 2, 0, 1], # x + 2y = 1
+                    [1, 0, 2, 4]  # x + 2z = 4
+                ])
+            Ab.pivots()
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        We found that there are pivot positions in the first, second and fourth columns. 
+        In particular, there is a pivot position in the last column so the system is incompatible. 
+    </p>
+    <p>
+        This is again consistent with the solution from <xref ref="sec-solving-systems-of-equations"/>, 
+        as an empty list of solutions was returned.
+    </p>
+    <sage>
+        <input>
+            var('x y z')
+            eq1 = x + 2*y == 4
+            eq2 = x + 2*y == 1
+            eq3 = x + 2*z == 4
+            solve([eq1, eq2, eq3], x, y, z)
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+</section>
