@@ -1,0 +1,105 @@
+<section xml:id="sec-matrix-equations" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Matrix Equations</title>
+    <p>
+        We can represent a system of equations as a matrix equation by writing <m>Ax = b</m>
+        where <m>A</m> is the coefficient matrix,
+        <m>x</m> is the vector of variables, and <m>b</m> is the vector of constants.
+    </p>
+    <p>
+        We can solve a matrix equation in Sage using the method <c>solve_right()</c>. 
+        Evaluating <c>A.solve_right(b)</c> returns a vector <m>x</m> such that <m>Ax = b</m>. 
+        The components of this vector are the values of the solution.
+    </p>
+    <subsection xml:id="subsec-case-i">
+        <title>Case I</title>
+        <p>
+            Let's now solve the <m>\textbf{Case I}</m> system applying the matrix equation method.
+        </p>
+        <sage>
+            <input>
+                A = matrix([   # case i
+                    [0, 1, -1],
+                    [1, 2, 0],
+                    [1, 0, 1]
+                ])
+                b = vector([0, 4, 4])
+                A.solve_right(b)
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            We found that the solution of the system is <m>x = 4,\ y = 0</m>, and <m>z = 0</m>.
+        </p>
+    </subsection>
+    <subsection xml:id="subsec-case-ii">
+        <title>Case II</title>
+        <p>
+            Let's solve now the <m>\textbf{Case II}</m> system applying the matrix equation method.
+        </p>
+        <sage>
+            <input>
+                A = matrix([          # case ii
+                        [1, 2, 0], 
+                        [0, 1, -1], 
+                        [1, 0, 2]  
+                    ])
+                b = vector([4, 0, 4])
+                A.solve_right(b)
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            We found that one solution to the system is <m>x = 4,\ y = 0</m>, and <m>z = 0</m>. 
+            This is just one particular solution when the parameter is zero, 
+            not all the infinitely many solutions of the system.
+        </p>
+    </subsection>
+    <subsection xml:id="subsec-case-iii">
+        <title>Case III</title>
+        <p>
+            Let's solve now the <m>\textbf{Case III}</m> system applying the matrix equation method.
+        </p>
+    </subsection>
+    <sage>
+        <input>
+            A = matrix([          # case iii
+                    [1, 2, 0], 
+                    [1, 2, 0], 
+                    [1, 0, 2]  
+                ])
+            b = vector([4, 1, 4])
+            A.solve_right(b)
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        Observe that in this case, Sage produces an error message. 
+        Nevertheless, the error message states that the system has no solutions.
+    </p>
+    <p>
+        To avoid the error message and continue the execution of the program, we can write:
+    </p>
+    <sage>
+        <input>
+            A = matrix([          # case iii
+                    [1, 2, 0], 
+                    [1, 2, 0], 
+                    [1, 0, 2]  
+                ])
+            b = vector([4, 1, 4])
+            try:
+                A.solve_right(b)
+            except Exception as e:
+                print(e)
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+</section>
