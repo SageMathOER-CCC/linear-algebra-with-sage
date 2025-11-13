@@ -5,7 +5,7 @@
         The position of a leading coefficient in the reduced row echelon matrix of <m>A</m> is called a pivot position.
     </p>
     <p>
-        Sage has the <c>pivot()</c> method to identify the pivot columns of the reduced row echelon form of a matrix.
+        Sage has the <c>pivot()</c> method to identify the pivot columns of the reduced row echelon form of a given matrix.
         Here is an example with <m>\textbf{Case I}</m>:
     </p>
     <sage>
@@ -22,7 +22,8 @@
         </output>
     </sage>
     <p>
-        Observe that the solution obtained means that there are pivot positions in the first, second and third row. 
+        Observe that the solution obtained means that there are pivot positions in the first, 
+        second and third row of the reduced matrix.
         We can easily verify this by revisiting the reduced form of the matrix:
     </p>
     <sage>
@@ -34,7 +35,11 @@
         </output>
     </sage>
     <p>
-        Notice that Sage can determine which columns contain the pivot positions in the reduced row echelon form of the matrix without actually computing this form.
+        We can clearly see the pivot positions in all three first columns.
+    </p>
+    <p>
+        Notice that Sage can determine which columns contain the pivot positions in the reduced row echelon form of the matrix without actually showing explicitly this form.
+.
     </p>
     <p>
         The pivot positions in the reduced row echelon form of the augmented matrix of a linear system are crucial for determining the nature of its solutions.
@@ -72,7 +77,7 @@
         </p>
         <p>
             Recall that in <xref ref="sec-solving-systems-of-equations"/>, 
-            we were given a solution in the form of constant values, meaning it is unique.
+            this unique solution was explicitly obtained.
         </p>
         <sage>
             <input>
@@ -87,7 +92,7 @@
             </output>
         </sage>
         <p>
-            This coincides with the pivots, as they imply a unique solution.
+            This coincides with the pivot criterion, as it implies a unique solution for this matrix.
         </p>
     </subsection>
     <subsection xml:id="subsec-compatible-infinitely-many-solutions">
@@ -121,17 +126,23 @@
         </p>
         <md>
             <mrow> 
-                 \begin{array}{r} 
-                     x + 2z = 4\\
-                     y - z = 0\\ 
-                         0 = 0
-                 \end{array}\ 
-                 \Rightarrow\
-                 \begin{array}{l} 
-                     x = -2z + 4\\
-                     y = z\\ 
-                     z = z
-                 \end{array} 
+                \left\{
+                \begin{array}{c} 
+                    x + 2z = 4\\
+                    y - z = 0\\ 
+                        0 = 0
+                \end{array} 
+                \right\}
+                \hspace{6pt}
+                \Rightarrow
+                \hspace{6pt}
+                \left\{
+                \begin{array}{c} 
+                    x = -2z + 4\\
+                    y = z\\ 
+                    z = z
+                \end{array} 
+                \right\}
             </mrow>
         </md>
         <p>

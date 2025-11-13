@@ -9,8 +9,9 @@
     </p>
 
     <p>
-        In the following sections, we will use Sage to solve <m>\textbf{Case I}</m> with an augmented matrix.
-        Here is <m>\textbf{Case I}</m> restated:
+        In the following sections, we will demonstrate how to use Sage to carry out these steps, 
+        using our example from <m>\textbf{Case I}</m>:
+
     </p>
     <md>
         <mrow> 
@@ -42,7 +43,7 @@
         </md>
 
         <p>
-            Let's define the coefficient matrix, consisting of the coefficients extracted from the system of equations where each column corresponds to a variable:
+            Let’s define first the coefficient matrix, consisting of the coefficients extracted from the system of equations where each column corresponds to a variable:
         </p>
         <sage>
         <input>
@@ -58,7 +59,7 @@
         </sage>
 
         <p>
-            Let's define the constants vector:
+            Then, let's define the constants vector:
         </p>
         <sage>
         <input>
@@ -82,27 +83,24 @@
         </sage>
 
         <p>
-            Alternatively, Sage has a built in method to find the reduced matrix directly. 
-            The <c>rref()</c> method returns the reduced row echelon form of a matrix.
+            Alternatively, we can enter all the coefficients of the augmented matrix directly.
         </p>
         <sage>
-        <input>
-                Ab = matrix([
-                        [0, 1, -1, 0], # y - z  = 0
-                        [1, 2, 0, 4],  # x + 2y = 4
-                        [1, 0, 1, 4]   # x + 2z = 4
-                    ])
-                Ab
-        </input>
-        <output>
-        </output>
+            <input>
+                    Ab = matrix([
+                            [0, 1, -1, 0], # y - z  = 0
+                            [1, 2, 0, 4],  # x + 2y = 4
+                            [1, 0, 1, 4]   # x + 2z = 4
+                        ])
+                    Ab
+            </input>
+            <output>
+            </output>
         </sage>
     </section>
 
     <section xml:id="sec-rref">
         <title>RREF</title>
-        <definition xml:id="def-rref">
-            <statement>
                 <p>
                     A matrix is in <term>reduced row echelon form</term> if:
                     <ul>
@@ -131,10 +129,9 @@
                         </li>
                     </ul>
                 </p>
-            </statement>
-        </definition>
 
         <p>
+            We can perform some operations in a matrix to reduce it to this form. 
             The following elementary operations transform a system of equations into another one with the same solution:
         </p>
         <dl>
@@ -173,8 +170,22 @@
         </p>
 
         <p>
-            We will now perform elementary operations in our matrix to transform it into reduced row echelon form.
+            We will now perform elementary operations in our augmented matrix to transform it into reduced row echelon form. 
+            Recall that our augmented matrix is:
         </p>
+        <sage>
+            <input>
+                    Ab = matrix([
+                            [0, 1, -1, 0], # y - z  = 0
+                            [1, 2, 0, 4],  # x + 2y = 4
+                            [1, 0, 1, 4]   # x + 2z = 4
+                        ])
+                    Ab
+            </input>
+            <output>
+                
+            </output>
+        </sage>
         <p>
             First, we will move the leading <m>1</m> from the second row to the first row.
         </p>
@@ -257,7 +268,7 @@
         </p>
 
         <p>
-            Alternatively, Sage has a built in method to do all of this for us.
+            Alternatively, Sage has a built in method to do all the previous steps directly. 
             The <c>rref()</c> method returns the reduced row echelon Form of a matrix.
         </p>
         <sage>
@@ -277,32 +288,75 @@
             Here is an example of <c>rref()</c> on <m>\textbf{Case II}</m>, with infinitely many solutions.
         </p>
         <sage>
-        <input>
-            M = matrix([
-                    [1, 2, 0, 4],
-                    [0, 1, -1, 0],
-                    [1, 0, 2, 4]
-                ])
-            M.rref()
-        </input>
-        <output>
-        </output>
+            <input>
+                M = matrix([
+                        [1, 2, 0, 4],
+                        [0, 1, -1, 0],
+                        [1, 0, 2, 4]
+                    ])
+                M.rref()
+            </input>
+            <output>
+            </output>
         </sage>
+        <p>
+            Observe that when we translate it back into a system of equations, 
+            we obtain:
+        </p>
+        <md>
+            <mrow> 
+                \left\{
+                \begin{array}{c} 
+                    x + 2z = 4\\
+                    y - z = 0\\ 
+                        0 = 0
+                \end{array} 
+                \right\}
+                \hspace{6pt}
+                \Rightarrow
+                \hspace{6pt}
+                \left\{
+                \begin{array}{c} 
+                    x = -2z + 4\\
+                    y = z\\ 
+                    z = z
+                \end{array} 
+                \right\}
+            </mrow>
+        </md>
+        <p>
+            We will see in the next section how to use Sage to interpret this solution.
+        </p>
 
         <p>
             Here is <c>rref()</c> on <m>\textbf{Case III}</m>, with no solutions:
         </p>
         <sage>
-        <input>
-            T = matrix([
-                    [1, 2, 0, 4],
-                    [1, 2, 0, 1],
-                    [1, 0, 2, 4]
-                ])
-            T.rref()
-        </input>
-        <output>
-        </output>
+            <input>
+                T = matrix([
+                        [1, 2, 0, 4],
+                        [1, 2, 0, 1],
+                        [1, 0, 2, 4]
+                    ])
+                T.rref()
+            </input>
+            <output>
+            </output>
         </sage>
+        <p>
+            Observe that when we translate it back into a system of equations, we obtain:
+        </p>
+        <md>
+            <mrow>
+                \begin{array}{c} 
+                    x + 2z = 4\\
+                    y - z = 0\\ 
+                        0 = 1
+                \end{array} 
+            </mrow>
+        </md>
+        <p>
+            This clearly shows a contradiction.
+        </p>
     </section>
 </section>
