@@ -92,9 +92,6 @@
                     finally:
                         print("The code is done")
                 </input>
-                <output>
-                    
-                </output>
             </sage>
             <p>
                 In the case of valid division here is how execution occurs:
@@ -108,9 +105,6 @@
                     finally:
                         print("The code is done")
                 </input>
-                <output>
-                    
-                </output>
             </sage>
         </subsubsection>
     </subsection>
