@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-matrix-operations-determinants"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Determinants</title>
+    <introduction xml:id="sm-introduction-determinants">
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Determinant</h>
+            </idx>
+            The determinant of a square matrix <m>A</m> is a number <m>det(A)</m> that must satisfies the following key properties:
+            <ul>
+                <li>Adding a row to another row on <m>A</m> does not change <m>det(A)</m>.</li>
+                <li>Scaling a row of <m>A</m> by a scalar <m>k</m> multiplies <m>det(A)</m> by <m>k</m>.</li>
+                <li>Swapping two rows of a matrix <m>A</m> multiplies its  determinant by <m>-1</m>.</li>
+                <li>The determinant of the identity matrix is <m>1</m>.</li>
+            </ul>
+        </p>
+        <p>
+            The determinant of a matrix <m>A</m> is a scalar value <m>det(A)</m> (also denoted <m>|A|</m>) that tells
+            important information about the linear transformation represented by that matrix, such as whether tha matrix is
+            invertible or how it scales space during transformations. In geometric terms for 2D and 3D space, the determinant
+            of a square matrix measures the <em>signed area</em> of the parallelogram (in 2D) or the <em>signed volume</em>
+            of parallelepiped (in 3D) formed by the row (or column) vectors of the matrix.
+        </p>
+
+        <p>
+            In Sage, the determinant of a matrix can be computed using the <c>det</c> command:
+        </p>
+        <sage>
+            <input>
+                A = matrix([[2, 3, 5], [7, 11, 13], [17, 19, 23]])
+                A.det()
+            </input>
+        </sage>
+
+        <p>
+            A matrix is <em>singular</em> if it does not have an inverse, which occurs when its determinant is zero.
+            In Sage, to check whether a matrix is singular or not the method <c>is_singular()</c> can be used.
+            Note that just as with the determinant, this method is only applicable to square matrices.
+        </p>
+        <sage>
+            <input>
+                M = matrix([[1, 2], [2, 4]])
+                M.is_singular()
+            </input>
+        </sage>
+        <p>
+            The matrix <m>M</m> is singular because its determinant is zero, hence does not have an inverse.
+            Note that Sage offers several other methods to help check various properties of matrices related
+            to determinants and inverses.
+        </p>
+    </introduction>
+</section>
