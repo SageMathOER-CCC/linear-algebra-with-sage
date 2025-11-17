@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-alternative-method"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Alternative Computation of the Cofactors, and Minors</title>
+    <introduction xml:id="subsec-alternative-computations-of-minors-and-cofactors-in-sage">
+        <p>
+            Note that the although methods <c>minor()</c> and <c>cofactor()</c> are currently not
+            implemented in Sage, leveraging the command <c>adj</c> can help compute them, like shown below.
+        </p>
+        <sage>
+            <input>
+                A = matrix([[1, 2, 3], [5, 7, 11], [13, 17, 19]])
+
+                cof = A.adjugate().transpose()
+
+                # Cofactor c_12
+                cofactor_1_2 = cof[0, 1]
+                print("c_12:", cofactor_1_2)
+
+                # Minor M_12
+                minor_1_2 = cofactor_1_2 / ((-1)^(1 + 2))
+                print("m_12:", minor_1_2)
+            </input>
+        </sage>
+    </introduction>
+</section>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-cofactor-matrix"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Cofactor Matrix</title>
+    <introduction xml:id="subsec-the-cofactors-matrix">
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Cofactor Matrix</h>
+            </idx>
+            The cofactor matrix <m>C = [c_{ij}]</m> of a square matrix <m>A = [a_{ij}]</m> is the matrix
+            where each entry <m>c_{ij}</m> is the cofactor of the entry <m>a_{ij}</m> in <m>A</m>.
+            The cofactor <m>c_{ij}</m> is computed as <m>c_{ij} = (-1)^{i+j} M_{ij}</m>, where <m>M_{ij}</m>
+            is the minor obtained by deleting the <m>i</m>-th row and <m>j</m>-th column of <m>A</m>.
+        </p>
+        <p>
+            Generally, given a square matrix of order <m>n \times n</m>, the cofactors are obtained by varying
+            the row and column indices <m>i</m> and <m>j</m> from <m>1</m> to <m>n</m>. These computed cofactors
+            constitute the entries of the cofactor matrix <m>C = \big[c_{ij}\big]</m>.
+        </p>
+        <sage>
+            <input>
+                A = matrix([[1, 2, 3], [5, 7, 11], [13, 17, 19]])
+                n = A.nrows()
+
+                # Cofactor matrix
+                C = matrix([
+                    [(-1)^(i + j) * det(A.delete_rows([i - 1]).delete_columns([j - 1])) for j in range(1, n + 1)]
+                    for i in range(1, n + 1)
+                ])
+                C
+            </input>
+        </sage>
+        <p>
+            Note that the transpose of the cofactor matrix is the adjoint matrix
+        </p>
+        <sage>
+            <input>
+                A.adjugate() == C.transpose()
+            </input>
+        </sage>
+
+        <!-- TODO. may need to (re)move since the inverse chapter is next -->
+        <p>
+            The Adjoint matrix can then be used to compute the inverse of a non-singular matrix
+            using the formula: <m>A^{-1} = \frac{1}{\det(A)} \cdot \text{adj}(A)</m>.
+        </p>
+        <sage>
+            <input>
+                A.inverse() == A.adjugate() / A.det()
+            </input>
+        </sage>
+    </introduction>
+</section>
