@@ -10,6 +10,6 @@
     </introduction>
 
     <!-- include sections -->
-    <xi:include href="./sec00-inverses.ptx" />
+    <xi:include href="./sec01-inverses.ptx" />
 
 </chapter>
