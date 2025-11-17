@@ -17,7 +17,7 @@
                 x_{1} \\
                 x_{2} \\
                 \vdots \\
-                x_{n} 
+                x_{n}
             \end{bmatrix}
             \hspace{2pt}
             =
@@ -26,13 +26,13 @@
                 b_{1} \\
                 b_{2} \\
                 \vdots \\
-                b_{m} 
+                b_{m}
             \end{bmatrix}
         </mrow>
     </md>
     <p>
-        We can solve a matrix equation in Sage using the method <c>solve_right()</c>. 
-        Evaluating <c>A.solve_right(b)</c> returns a vector <m>x</m> such that <m>Ax = b</m>. 
+        We can solve a matrix equation in Sage using the method <c>solve_right()</c>.
+        Evaluating <c>A.solve_right(b)</c> returns a vector <m>x</m> such that <m>Ax = b</m>.
         The components of this vector are the values of a solution of the system of equations.
 
     </p>
@@ -51,9 +51,6 @@
                 b = vector([0, 4, 4])
                 A.solve_right(b)
             </input>
-            <output>
-                
-            </output>
         </sage>
         <p>
             We found that the solution of the system is <m>x = 4,\ y = 0</m>, and <m>z = 0</m>.
@@ -67,20 +64,17 @@
         <sage>
             <input>
                 A = matrix([          # case ii
-                        [1, 2, 0], 
-                        [0, 1, -1], 
-                        [1, 0, 2]  
+                        [1, 2, 0],
+                        [0, 1, -1],
+                        [1, 0, 2]
                     ])
                 b = vector([4, 0, 4])
                 A.solve_right(b)
             </input>
-            <output>
-                
-            </output>
         </sage>
         <p>
-            We found that one solution to the system is <m>x = 4,\ y = 0</m>, and <m>z = 0</m>. 
-            This is just one particular solution when the parameter is zero. 
+            We found that one solution to the system is <m>x = 4,\ y = 0</m>, and <m>z = 0</m>.
+            This is just one particular solution when the parameter is zero.
             Observe that we do not obtain all the infinitely many solutions of the system using this method.
         </p>
     </subsection>
@@ -93,19 +87,16 @@
     <sage>
         <input>
             A = matrix([          # case iii
-                    [1, 2, 0], 
-                    [1, 2, 0], 
-                    [1, 0, 2]  
+                    [1, 2, 0],
+                    [1, 2, 0],
+                    [1, 0, 2]
                 ])
             b = vector([4, 1, 4])
             A.solve_right(b)
         </input>
-        <output>
-            
-        </output>
     </sage>
     <p>
-        Observe that in this case, Sage produces an error message. 
+        Observe that in this case, Sage produces an error message.
         Nevertheless, the error message states that the system has no solutions.
     </p>
     <p>
@@ -114,9 +105,9 @@
     <sage>
         <input>
             A = matrix([          # case iii
-                    [1, 2, 0], 
-                    [1, 2, 0], 
-                    [1, 0, 2]  
+                    [1, 2, 0],
+                    [1, 2, 0],
+                    [1, 0, 2]
                 ])
             b = vector([4, 1, 4])
             try:
@@ -124,8 +115,5 @@
             except Exception as e:
                 print(e)
         </input>
-        <output>
-            
-        </output>
     </sage>
 </section>

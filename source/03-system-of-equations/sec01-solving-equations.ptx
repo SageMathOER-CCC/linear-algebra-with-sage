@@ -1,20 +1,17 @@
 <section xml:id="sec-solving-equations" xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Solving Equations</title>
     <p>
-        The <c>solve</c> function algebraically solves an equation or system of equations. 
-        We will begin by focusing on solving a single equation. 
-        By default, Sage assumes the expression is equal to <m>0</m>. 
-    </p> 
+        The <c>solve</c> function algebraically solves an equation or system of equations.
+        We will begin by focusing on solving a single equation.
+        By default, Sage assumes the expression is equal to <m>0</m>.
+    </p>
     <p>
-        Let's solve for <m>x</m> in the equation <m>8 + x = 0</m>. 
+        Let's solve for <m>x</m> in the equation <m>8 + x = 0</m>.
     </p>
     <sage>
         <input>
             solve(8 + x, x)
         </input>
-        <output>
-
-        </output>
     </sage>
     <p>
         Let's solve for <m>x</m> in the equation <m>8 + x = 5</m>.
@@ -23,13 +20,10 @@
         <input>
             solve(8 + x == 5, x)
         </input>
-        <output>
-
-        </output>
     </sage>
     <p>
-        We can store the equation in a new variable and perform operations on it. 
-        Recall the single equal sign (<c>=</c>) is the <term>assignment operator</term>, while the double equal sign (<c>==</c>) is the <term>equality operator</term>. 
+        We can store the equation in a new variable and perform operations on it.
+        Recall the single equal sign (<c>=</c>) is the <term>assignment operator</term>, while the double equal sign (<c>==</c>) is the <term>equality operator</term>.
     </p>
     <sage>
         <input>
@@ -39,14 +33,11 @@
             # Solve the equation for x
             solve(E, x)
         </input>
-        <output>
-
-        </output>
     </sage>
     <p>
-        Observe that the solution of an equation is given between square brackets, indicating that the data type is a <c>list</c>. 
-        We can access the solutions in the <c>list</c> with square brackets. 
-        Notice that after accessing the solution, the brackets are no longer present. 
+        Observe that the solution of an equation is given between square brackets, indicating that the data type is a <c>list</c>.
+        We can access the solutions in the <c>list</c> with square brackets.
+        Notice that after accessing the solution, the brackets are no longer present.
     </p>
     <sage>
         <input>
@@ -59,9 +50,6 @@
         # Access the zero-th element of the list
         S[0]
         </input>
-        <output>
-
-        </output>
     </sage>
     <p>
         In this case the <c>list</c> has only one element.
@@ -74,9 +62,6 @@
         <input>
             E.rhs()
         </input>
-        <output>
-
-        </output>
     </sage>
     <p>
         Here is the left-hand side of the equation.
@@ -85,12 +70,9 @@
         <input>
             E.lhs()
         </input>
-        <output>
-
-        </output>
     </sage>
     <p>
-        To use a variable other than <c>x</c>, we need to create a <term>symbolic</term> variable object with the <c>var()</c> function. 
+        To use a variable other than <c>x</c>, we need to create a <term>symbolic</term> variable object with the <c>var()</c> function.
         Otherwise, Sage will not recognize the variable as a symbolic variable.
     </p>
     <sage>
@@ -101,8 +83,5 @@
         # Solve for z
         solve(8 + z == 5, z)
         </input>
-        <output>
-
-        </output>
     </sage>
 </section>

@@ -1,8 +1,8 @@
 <section xml:id="sec-solving-systems-of-equations" xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Solving Systems of Equations</title>
     <p>
-        Sage allows for us to generalize the previous methods to solve systems of equations. 
-        In order to do this we must first define multiple symbolic variables, 
+        Sage allows for us to generalize the previous methods to solve systems of equations.
+        In order to do this we must first define multiple symbolic variables,
         then we use the <c>solve</c> function as we did before.
     </p>
     <p>
@@ -19,9 +19,6 @@
             # Multiple strings
             var('x', 'y')
         </input>
-        <output>
-
-        </output>
     </sage>
     <p>
         Notice how these symbolic variables are all equivalent regardless of how they are created.
@@ -30,12 +27,9 @@
         <input>
             var('x y') == var(['x','y']) == var('x', 'y')
         </input>
-        <output>
-
-        </output>
     </sage>
     <p>
-        To solve a system of equations algebraically, 
+        To solve a system of equations algebraically,
         we first define the variables and the equations in the system.
     </p>
     <sage>
@@ -50,8 +44,6 @@
             show(eq1)
             show(eq2)
         </input>
-        <output>
-        </output>
     </sage>
     <p>
         In this case, the first argument to <c>solve</c> is a list of equations and the following arguments are the variables being solved for.
@@ -61,37 +53,29 @@
             S = solve([eq1, eq2], x, y)
             S
         </input>
-        <output>
-        </output>
     </sage>
     <p>
-        Observe that Sage returns a nested list structure. 
-        The outer list contains all possible solutions to the system (in this case, there is only one solution). 
-        Each solution is represented as an inner list of equations showing the value of each variable. 
+        Observe that Sage returns a nested list structure.
+        The outer list contains all possible solutions to the system (in this case, there is only one solution).
+        Each solution is represented as an inner list of equations showing the value of each variable.
     </p>
     <sage>
         <input>
             # Access the first (and only) solution
             S[0]
         </input>
-        <output>
-        </output>
     </sage>
     <sage>
         <input>
             # Access the x-value equation from the solution
             S[0][0]
         </input>
-        <output>
-        </output>
     </sage>
     <sage>
         <input>
             # Access the y-value equation from the solution
             S[0][1]
         </input>
-        <output>
-        </output>
     </sage>
     <p>
         We also can solve a system of three equations with three variables.
@@ -105,12 +89,9 @@
             eq3 = x + z == 4
             solve([eq1, eq2, eq3], x, y, z)
         </input>
-        <output>
-
-        </output>
     </sage>
     <p>
-        The following is an example of a system with infinitely many solutions. 
+        The following is an example of a system with infinitely many solutions.
         The general solution is expressed as a parameterized function.
         This system will hereby be referred to as <m>\textbf{Case II}</m>.
     </p>
@@ -122,12 +103,9 @@
             eq3 = x + 2*z == 4
             solve([eq1, eq2, eq3], x, y, z)
         </input>
-        <output>
-
-        </output>
     </sage>
     <p>
-        The following is an example of an inconsistent system. 
+        The following is an example of an inconsistent system.
         Since the system has no solutions, Sage returns an empty list.
         This system will hereby be referred to as <m>\textbf{Case III}</m>.
     </p>
@@ -139,8 +117,5 @@
             eq3 = x + 2*z == 4
             solve([eq1, eq2, eq3], x, y, z)
         </input>
-        <output>
-            
-        </output>
     </sage>
 </section>

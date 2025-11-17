@@ -12,9 +12,6 @@
             p2 = implicit_plot(eq2, (x, -2, 5), (y, -4, 4), color='red')
             p1+p2
         </input>
-        <output>
-
-        </output>
     </sage>
     <p>
         We can also plot a point whose coordinates are the ones given in the solution.
@@ -27,9 +24,6 @@
             P = point((A, B))
             P
         </input>
-        <output>
-
-        </output>
     </sage>
     <p>
         Now the full plot with the equations, the solution, and a legend.
@@ -40,9 +34,6 @@
 
             show(p1 + p2 + PP, axes=True)
         </input>
-        <output>
-
-        </output>
     </sage>
     <p>
         We can plot an equations in 3D-space using <c>implicit_plot3d</c>.
@@ -59,9 +50,6 @@
             c = implicit_plot3d(eq3, (x,-9,9), (y,-9,9), (z,-9,9), color='green')
             a + b + c
         </input>
-        <output>
-
-        </output>
     </sage>
     <p>
         We can rotate the graph to visualize the unique point of intersection of the three planes.
@@ -79,12 +67,9 @@
             c = implicit_plot3d(eq3, (x,-9,9), (y,-9,9), (z,-9,9), color='green')
             a + b + c
         </input>
-        <output>
-            
-        </output>
     </sage>
     <p>
-        By rotating the graph, we can visualize the infinitely many solutions of this system, 
+        By rotating the graph, we can visualize the infinitely many solutions of this system,
         represented by the line where the three planes intersect.
     </p>
     <p>
@@ -100,12 +85,9 @@
             c = implicit_plot3d(eq3, (x,-9,9), (y,-9,9), (z,-9,9), color='green')
             a + b + c
         </input>
-        <output>
-            
-        </output>
     </sage>
     <p>
-        In this last case, we can observe that two of the planes are parallel, 
+        In this last case, we can observe that two of the planes are parallel,
         so there is no intersection among the three planes.
     </p>
 </section>
