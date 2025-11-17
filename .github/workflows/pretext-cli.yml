@@ -12,8 +12,8 @@ on:
       - main
 
   schedule:
-    # run weekly on Tuesday at midnight
-    - cron: "0 0 * * 2"
+    # run weekly on Monday at midnight
+    - cron: "0 0 * * 1"
 
   # Runs on demand
   workflow_dispatch:

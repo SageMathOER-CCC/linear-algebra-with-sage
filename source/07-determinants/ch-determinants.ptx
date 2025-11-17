@@ -18,6 +18,7 @@
     </introduction>
 
     <!-- include sections -->
-    <xi:include href="sec01-determinant-and-inverse.ptx" />
+    <xi:include href="sec01-determinants.ptx" />
+    <xi:include href="sec02-determinants-in-action.ptx" />
 
 </chapter>

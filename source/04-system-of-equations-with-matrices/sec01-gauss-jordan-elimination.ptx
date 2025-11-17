@@ -9,17 +9,17 @@
     </p>
 
     <p>
-        In the following sections, we will demonstrate how to use Sage to carry out these steps, 
+        In the following sections, we will demonstrate how to use Sage to carry out these steps,
         using our example from <m>\textbf{Case I}</m>:
 
     </p>
     <md>
-        <mrow> 
-             \begin{array}{c} 
-                 y - z = 0\\
-                 x + 2y = 4\\ 
-                 x + z = 4 
-             \end{array} 
+        <mrow>
+            \begin{array}{c}
+                y - z = 0\\
+                x + 2y = 4\\
+                x + z = 4
+            \end{array}
         </mrow>
     </md>
 
@@ -33,12 +33,12 @@
             The last column of the augmented matrix contains the constants from the right-hand side of each equation.
         </p>
         <md>
-            <mrow>  
-                \left[\begin{array}{ccc|c} 
+            <mrow>
+                \left[\begin{array}{ccc|c}
                     0 \amp 1 \amp -1 \amp 0 \\
                     1 \amp 2 \amp 0 \amp 4 \\
-                    1 \amp 0 \amp 1 \amp 4 
-                \end{array}\right] 
+                    1 \amp 0 \amp 1 \amp 4
+                \end{array}\right]
             </mrow>
         </md>
 
@@ -54,8 +54,6 @@
                 ])
                 A
         </input>
-        <output>
-        </output>
         </sage>
 
         <p>
@@ -66,8 +64,6 @@
                 b = vector([0, 4, 4])  # Right-hand side of the equations
                 b
         </input>
-        <output>
-        </output>
         </sage>
 
         <p>
@@ -78,8 +74,6 @@
                 Ab = A.augment(b)
                 Ab
         </input>
-        <output>
-        </output>
         </sage>
 
         <p>
@@ -94,8 +88,6 @@
                         ])
                     Ab
             </input>
-            <output>
-            </output>
         </sage>
     </section>
 
@@ -131,7 +123,7 @@
                 </p>
 
         <p>
-            We can perform some operations in a matrix to reduce it to this form. 
+            We can perform some operations in a matrix to reduce it to this form.
             The following elementary operations transform a system of equations into another one with the same solution:
         </p>
         <dl>
@@ -148,7 +140,7 @@
         <li>
             <title>Interchange</title>
             <p>
-                A row is swapped with another. 
+                A row is swapped with another.
             </p>
             <p>
                 The <c>swap_rows(r1, r2)</c> method preforms this operation on a matrix by swapping rows <c>r1</c> and <c>r2</c>.
@@ -157,7 +149,7 @@
         <li>
             <title>Replacement</title>
             <p>
-                A row is added to a multiple of another. 
+                A row is added to a multiple of another.
             </p>
             <p>
                 The <c>add_multiple_of_row(i, j, s)</c> method preforms this operation on a matrix by adding <m>s</m> times row <m>j</m> to row <m>i</m>.
@@ -170,7 +162,7 @@
         </p>
 
         <p>
-            We will now perform elementary operations in our augmented matrix to transform it into reduced row echelon form. 
+            We will now perform elementary operations in our augmented matrix to transform it into reduced row echelon form.
             Recall that our augmented matrix is:
         </p>
         <sage>
@@ -182,9 +174,6 @@
                         ])
                     Ab
             </input>
-            <output>
-                
-            </output>
         </sage>
         <p>
             First, we will move the leading <m>1</m> from the second row to the first row.
@@ -194,8 +183,6 @@
                 Ab.swap_rows(0,1)
                 Ab
         </input>
-        <output>
-        </output>
         </sage>
 
         <p>
@@ -206,8 +193,6 @@
                 Ab.add_multiple_of_row(2, 0, -1)
                 Ab
         </input>
-        <output>
-        </output>
         </sage>
 
         <p>
@@ -218,8 +203,6 @@
                 Ab.add_multiple_of_row(2, 1, 2)
                 Ab
         </input>
-        <output>
-        </output>
         </sage>
 
         <p>
@@ -230,8 +213,6 @@
                 Ab.add_multiple_of_row(1, 2, -1)
                 Ab
         </input>
-        <output>
-        </output>
         </sage>
 
         <p>
@@ -242,8 +223,6 @@
                 Ab.add_multiple_of_row(0, 1, -2)
                 Ab
         </input>
-        <output>
-        </output>
         </sage>
 
         <p>
@@ -254,13 +233,11 @@
                 Ab.rescale_row(2,-1)
                 Ab
         </input>
-        <output>
-        </output>
         </sage>
 
         <p>
             Notice that this matrix satisfies the definition of reduced row echelon form.
-            Now that the matrix is in reduced row echelon form, 
+            Now that the matrix is in reduced row echelon form,
             we can translate it back into a system of equations to explicitly visualize the solution set of the system of equations:
             <md>
                 <mrow> \begin{array}{c} x = 4 \\ y = 0 \\ z = 0 \end{array} </mrow>
@@ -268,7 +245,7 @@
         </p>
 
         <p>
-            Alternatively, Sage has a built in method to do all the previous steps directly. 
+            Alternatively, Sage has a built in method to do all the previous steps directly.
             The <c>rref()</c> method returns the reduced row echelon Form of a matrix.
         </p>
         <sage>
@@ -276,12 +253,10 @@
                 Ab = matrix([ # Re-use our old augmented matrix
                         [0, 1, -1, 0],
                         [1, 2, 0, 4],
-                        [1, 0, 1, 4] 
+                        [1, 0, 1, 4]
                     ])
                 Ab.rref()
         </input>
-        <output>
-        </output>
         </sage>
 
         <p>
@@ -296,31 +271,29 @@
                     ])
                 M.rref()
             </input>
-            <output>
-            </output>
         </sage>
         <p>
-            Observe that when we translate it back into a system of equations, 
+            Observe that when we translate it back into a system of equations,
             we obtain:
         </p>
         <md>
-            <mrow> 
+            <mrow>
                 \left\{
-                \begin{array}{c} 
+                \begin{array}{c}
                     x + 2z = 4\\
-                    y - z = 0\\ 
+                    y - z = 0\\
                         0 = 0
-                \end{array} 
+                \end{array}
                 \right\}
                 \hspace{6pt}
                 \Rightarrow
                 \hspace{6pt}
                 \left\{
-                \begin{array}{c} 
+                \begin{array}{c}
                     x = -2z + 4\\
-                    y = z\\ 
+                    y = z\\
                     z = z
-                \end{array} 
+                \end{array}
                 \right\}
             </mrow>
         </md>
@@ -340,19 +313,17 @@
                     ])
                 T.rref()
             </input>
-            <output>
-            </output>
         </sage>
         <p>
             Observe that when we translate it back into a system of equations, we obtain:
         </p>
         <md>
             <mrow>
-                \begin{array}{c} 
+                \begin{array}{c}
                     x + 2z = 4\\
-                    y - z = 0\\ 
+                    y - z = 0\\
                         0 = 1
-                \end{array} 
+                \end{array}
             </mrow>
         </md>
         <p>

@@ -6,7 +6,7 @@
         <statement>
             <p>
                 Let <m>A</m> be a square matrix.
-                A matrix <m>B</m> is called an inverse of <m>A</m> if <m>AB = I</m> and <m>BA = I</m>. 
+                A matrix <m>B</m> is called an inverse of <m>A</m> if <m>AB = I</m> and <m>BA = I</m>.
                 Where <m>I</m> is the identity matrix.
             </p>
         </statement>
@@ -20,15 +20,12 @@
     <sage>
         <input>
             A = matrix([      # case i
-                    [0, 1, -1], 
-                    [1, 2, 0],  
-                    [1, 0, 1]   
+                    [0, 1, -1],
+                    [1, 2, 0],
+                    [1, 0, 1]
                 ])
             A.is_invertible()
         </input>
-        <output>
-            
-        </output>
     </sage>
     <p>
         In Sage, the inverse of a matrix can be computed using the <c>inverse()</c> method:
@@ -45,56 +42,44 @@
         <input>
             A * A.inverse()
         </input>
-        <output>
-            
-        </output>
     </sage>
     <sage>
         <input>
             A.inverse() * A
         </input>
-        <output>
-            
-        </output>
     </sage>
     <p>
         Exponent notation also produces the same result.
     </p>
     <sage>
         <input>
-            A^-1 
+            A^-1
         </input>
     </sage>
     <p>
-        Observe that a matrix is invertible over its base ring. 
-        Even though the next matrix is invertible, 
+        Observe that a matrix is invertible over its base ring.
+        Even though the next matrix is invertible,
         we would obtain a false result if we do not specify the ring:
     </p>
     <sage>
         <input>
             A = matrix([
-                [1, 2, 8], 
-                [9, 8, 9], 
+                [1, 2, 8],
+                [9, 8, 9],
                 [5, 6, 0]
             ])
             A.is_invertible()
         </input>
-        <output>
-            
-        </output>
     </sage>
     <p>
-        By calculating the inverse, 
-        we can see that the inverse exists and therefore A is invertible, 
+        By calculating the inverse,
+        we can see that the inverse exists and therefore A is invertible,
         though the coefficients are not integers:
     </p>
     <sage>
         <input>
             A^-1
         </input>
-        <output>
-            
-        </output>
     </sage>
     <p>
         If we specify the ring to be the rationals, we obtain the correct result:
@@ -102,15 +87,12 @@
     <sage>
         <input>
             A = matrix(QQ, [
-                [1, 2, 8], 
-                [9, 8, 9], 
+                [1, 2, 8],
+                [9, 8, 9],
                 [5, 6, 0]
             ])
             A.is_invertible()
         </input>
-        <output>
-            
-        </output>
     </sage>
     <p>
         Next, we will show how to use Sage to implement the different ways in which we can calculate the inverse matrix.
@@ -118,24 +100,21 @@
     <subsection xml:id="subsec-using-the-echelon-method">
         <title>Using the Echelon Method</title>
         <p>
-            A matrix is invertible if and only if the reduced row echelon form is the identity matrix. 
-            We can find the inverse matrix of <m>A</m> by augmenting <m>A</m> by the identity matrix <m>I</m> and then finding the reduced row echelon form. 
-            If the matrix is invertible, 
+            A matrix is invertible if and only if the reduced row echelon form is the identity matrix.
+            We can find the inverse matrix of <m>A</m> by augmenting <m>A</m> by the identity matrix <m>I</m> and then finding the reduced row echelon form.
+            If the matrix is invertible,
             the first half of the matrix would be the identity and the second half the inverse matrix.
         </p>
         <sage>
             <input>
                 A = matrix([      # case i
-                        [0, 1, -1], 
-                        [1, 2, 0],  
-                        [1, 0, 1]   
+                        [0, 1, -1],
+                        [1, 2, 0],
+                        [1, 0, 1]
                     ])
                 AI = A.augment(identity_matrix(3))
                 AI
             </input>
-            <output>
-                
-            </output>
         </sage>
         <p>
             Then by invoking <c>rref()</c> the right sub-matrix is now the inverse.
@@ -154,9 +133,6 @@
                 identity_matrix(3) == rrefAI.submatrix(
                     row=0, col=0, nrows=3, ncols=3)
             </input>
-            <output>
-                
-            </output>
         </sage>
         <p>
             In this case we obtained the identity matrix, so the right part of the matrix is the inverse matrix:
@@ -205,15 +181,12 @@
             <input>
                 I = identity_matrix(3)
                 A = matrix([      # case i
-                        [0, 1, -1], 
-                        [1, 2, 0],  
-                        [1, 0, 1]   
+                        [0, 1, -1],
+                        [1, 2, 0],
+                        [1, 0, 1]
                     ])
                 A.augment(I).rref().submatrix(0,3) == A.inverse() == A.adjugate() / A.det()
             </input>
-            <output>
-                
-            </output>
         </sage>
         <p>
             Let's see how they differ in the way they handled singular matrices.

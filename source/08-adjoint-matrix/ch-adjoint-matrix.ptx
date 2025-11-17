@@ -4,13 +4,17 @@
     <title>Adjoint Matrix</title>
     <introduction xml:id="sm-subsection-adjoint-matrix-intro">
         <p>
-            In this chapter, we will learn about a ...
+            In this chapter, we will learn about the the adjoint (or classical adjoint) of a matrix,
+            which is the transpose of its cofactor matrix.
         </p>
     </introduction>
 
     <!-- include sections -->
     <xi:include href="sec01-adjoint-matrix.ptx" />
-    <xi:include href="sec02-alternative-computations.ptx" />
-    <xi:include href="sec03-historical-note.ptx" />
+    <xi:include href="sec02-minors.ptx" />
+    <xi:include href="sec03-cofactors.ptx" />
+    <xi:include href="sec04-cofactors-matrix.ptx" />
+    <xi:include href="sec05-alternative-method.ptx" />
+    <xi:include href="sec06-historical-notes.ptx" />
 
 </chapter>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-cofactors-of-a-matrix"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Cofactors of a Matrix</title>
+    <introduction xml:id="subsec-cofactors-of-a-matrix">
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Cofactors</h>
+            </idx>
+            The cofactor <m>c_{ij}</m> is computed as <m>c_{ij} = (-1)^{i+j} M_{ij}</m>, where <m>M_{ij}</m>
+            is the minor obtained by deleting the <m>i</m>-th row and <m>j</m>-th column of <m>A</m>.
+        </p>
+        <sage>
+            <input>
+                A = matrix([[1, 2, 3], [5, 7, 11], [13, 17, 19]])
+
+                # By Removing first row and second column
+                minor_1_2 = det(A.delete_rows([0]).delete_columns([1]))
+
+                # Cofactor c_12
+                cofactor_1_2=(-1)^(1+2) * minor_1_2
+                print("c_12:", cofactor_1_2)
+            </input>
+        </sage>
+    </introduction>
+</section>

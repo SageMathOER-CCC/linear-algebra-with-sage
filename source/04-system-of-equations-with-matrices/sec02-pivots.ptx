@@ -1,7 +1,7 @@
 <section xml:id="sec-pivots" xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Pivots</title>
     <p>
-        A leading coefficient in a matrix is the first non-zero entry in a given row. 
+        A leading coefficient in a matrix is the first non-zero entry in a given row.
         The position of a leading coefficient in the reduced row echelon matrix of <m>A</m> is called a pivot position.
     </p>
     <p>
@@ -17,12 +17,9 @@
                 ])
             Ab.pivots()
         </input>
-        <output>
-            
-        </output>
     </sage>
     <p>
-        Observe that the solution obtained means that there are pivot positions in the first, 
+        Observe that the solution obtained means that there are pivot positions in the first,
         second and third row of the reduced matrix.
         We can easily verify this by revisiting the reduced form of the matrix:
     </p>
@@ -30,9 +27,6 @@
         <input>
             Ab.rref()
         </input>
-        <output>
-            
-        </output>
     </sage>
     <p>
         We can clearly see the pivot positions in all three first columns.
@@ -55,14 +49,14 @@
         </li>
         <li>
             <p>
-                If the system is consistent, 
-                then the columns of <m>R</m> containing pivot positions correspond to basic variables, 
+                If the system is consistent,
+                then the columns of <m>R</m> containing pivot positions correspond to basic variables,
                 while the columns without pivot positions correspond to free variables.
             </p>
         </li>
         <li>
             <p>
-                The solution is unique when every column of <m>R</m> contains a pivot position, 
+                The solution is unique when every column of <m>R</m> contains a pivot position,
                 and there are infinitely many solutions when at least one column of R does not contain a pivot position.
             </p>
         </li>
@@ -70,13 +64,13 @@
     <subsection xml:id="subsec-compatible-unique-solutions">
         <title>Compatible Unique Solutions (Case I)</title>
         <p>
-            Observe that in our previous system there was no pivot position in the last column, 
-            so the system was compatible. 
-            Moreover, every column of the reduced row echelon form of the coefficient matrix had a pivot position, 
-            so the system has a unique solution. 
+            Observe that in our previous system there was no pivot position in the last column,
+            so the system was compatible.
+            Moreover, every column of the reduced row echelon form of the coefficient matrix had a pivot position,
+            so the system has a unique solution.
         </p>
         <p>
-            Recall that in <xref ref="sec-solving-systems-of-equations"/>, 
+            Recall that in <xref ref="sec-solving-systems-of-equations"/>,
             this unique solution was explicitly obtained.
         </p>
         <sage>
@@ -87,9 +81,6 @@
                 eq3 = x + z == 4
                 solve([eq1, eq2, eq3], x, y, z)
             </input>
-            <output>
-
-            </output>
         </sage>
         <p>
             This coincides with the pivot criterion, as it implies a unique solution for this matrix.
@@ -109,44 +100,41 @@
                     ])
                 Ab.pivots()
             </input>
-            <output>
-                
-            </output>
         </sage>
         <p>
             We found that there are pivot positions in the first and second columns.
         </p>
         <p>
-            Since there is no pivot position in the last column, the system is consistent. 
-            Because there are columns without pivot positions in the rest of the matrix, 
-            the system has infinitely many solutions. 
-            The first and second columns correspond to the variables <m>x</m> and <m>y</m>, 
-            so these are the basic variables, while <m>z</m> is a free variable. 
+            Since there is no pivot position in the last column, the system is consistent.
+            Because there are columns without pivot positions in the rest of the matrix,
+            the system has infinitely many solutions.
+            The first and second columns correspond to the variables <m>x</m> and <m>y</m>,
+            so these are the basic variables, while <m>z</m> is a free variable.
             Therefore, the solution can be written as a function of the parameter <m>z</m>.
         </p>
         <md>
-            <mrow> 
+            <mrow>
                 \left\{
-                \begin{array}{c} 
+                \begin{array}{c}
                     x + 2z = 4\\
-                    y - z = 0\\ 
+                    y - z = 0\\
                         0 = 0
-                \end{array} 
+                \end{array}
                 \right\}
                 \hspace{6pt}
                 \Rightarrow
                 \hspace{6pt}
                 \left\{
-                \begin{array}{c} 
+                \begin{array}{c}
                     x = -2z + 4\\
-                    y = z\\ 
+                    y = z\\
                     z = z
-                \end{array} 
+                \end{array}
                 \right\}
             </mrow>
         </md>
         <p>
-            This coincides with the solutions we found in <xref ref="sec-solving-systems-of-equations"/>, 
+            This coincides with the solutions we found in <xref ref="sec-solving-systems-of-equations"/>,
             namely a parameterized solution, but in this case Sage defaults to <c>r1</c> as a parameter.
         </p>
         <sage>
@@ -157,9 +145,6 @@
                 eq3 = x + 2*z == 4
                 solve([eq1, eq2, eq3], x, y, z)
             </input>
-            <output>
-
-            </output>
         </sage>
     </subsection>
     <subsection xml:id="subsec-incompatible">
@@ -177,16 +162,13 @@
                 ])
             Ab.pivots()
         </input>
-        <output>
-            
-        </output>
     </sage>
     <p>
-        We found that there are pivot positions in the first, second and fourth columns. 
-        In particular, there is a pivot position in the last column so the system is incompatible. 
+        We found that there are pivot positions in the first, second and fourth columns.
+        In particular, there is a pivot position in the last column so the system is incompatible.
     </p>
     <p>
-        This is again consistent with the solution from <xref ref="sec-solving-systems-of-equations"/>, 
+        This is again consistent with the solution from <xref ref="sec-solving-systems-of-equations"/>,
         as an empty list of solutions was returned.
     </p>
     <sage>
@@ -197,8 +179,5 @@
             eq3 = x + 2*z == 4
             solve([eq1, eq2, eq3], x, y, z)
         </input>
-        <output>
-            
-        </output>
     </sage>
 </section>
