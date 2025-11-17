@@ -70,16 +70,5 @@
                 A * v
             </input>
         </sage>
-        <p>
-            <idx>
-                <h>Matrices</h>
-                <h>Properties</h>
-            </idx>
-            Note that matrix addition is commutative and associative, meaning that the order of addition does not
-            affect the result. However, matrix multiplication is not commutative; in general, <m>AB \neq BA</m>.
-            Matrix multiplication is associative, so <m>(AB)C = A(BC)</m>, and it distributes over addition:
-            <m>A(B + C) = AB + AC</m>. Also, the identity matrix serves as the multiplicative identity for matrices,
-            whereas the zero matrix serves as the additive identity.
-        </p>
     </introduction>
 </section>

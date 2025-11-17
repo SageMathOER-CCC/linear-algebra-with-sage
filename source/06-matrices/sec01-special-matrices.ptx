@@ -37,6 +37,38 @@
                 </li>
                 <li>
                     <p>
+                        The <em>ones matrix</em> contains only ones. The command <c>ones_matrix(m, n)</c>
+                        creates an <m>m</m> by <m>n</m> ones matrix.
+                    </p>
+                    <sage>
+                        <input>
+                            # 3x4 ones matrix
+                            ones_matrix(3,4)
+                        </input>
+                    </sage>
+                    <p>
+                        The ones matrix can be useful for example to add a constant offset to all entries of a matrix.
+                    </p>
+                    <sage>
+                        <input>
+                            A = Matrix([[1, 2, 3], [4, 5, 6]])
+                            # Adding an offset of 4 to all entries in A
+                            A + 4 * ones_matrix(2, 3)
+                        </input>
+                    </sage>
+                    <p>
+                        For a square matrix, the command can be shortened to <c>ones_matrix(n)</c> like
+                        in the example below.
+                    </p>
+                    <sage>
+                        <input>
+                            # 4x4 ones matrix
+                            ones_matrix(4)
+                        </input>
+                    </sage>
+                </li>
+                <li>
+                    <p>
                         A <em>diagonal matrix</em> is a square matrix that has zero entries everywhere outside
                         the <em>main diagonal</em>. Note that a diagonal matrix may have some or all its diagonal
                         entries equal to <m>0</m>. Sage offers the command <c>diagonal_matrix([a_1, a_2, ..., a_n])</c>
@@ -72,20 +104,6 @@
                     <sage>
                         <input>
                             identity_matrix(5)
-                        </input>
-                    </sage>
-                </li>
-                <li>
-                    <p>
-                        Although the <em>ones</em> matrix is not a predefined matrix in Sage, it is common in
-                        other computational frameworks. Essentially, it is a matrix where every entry is 1. It
-                        can be created by leverage the built-in list duplication operator <c>*</c> applied on
-                        a list of ones.
-                    </p>
-                    <sage>
-                        <input>
-                            # 2x4 matrix with all entries equal to 1
-                            matrix([[1]*4]*2)
                         </input>
                     </sage>
                 </li>

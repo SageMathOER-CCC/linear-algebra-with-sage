@@ -2,7 +2,7 @@
 
 <section xml:id="sec-matrix-operations-transpose-and-conjugate"
     xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Transpose, Conjugate and Trace</title>
+    <title>Transpose and Conjugate</title>
     <introduction xml:id="sm-introduction-transpose-and-conjugate">
         <p>
             <idx>
@@ -49,78 +49,28 @@
             </input>
         </sage>
         <p>
-            Note that matrices with Complex values, and computing conjugates are very common in signal processing
-            and quantum mechanics.
+            In some fields (signal processing and quantum mechanics), working over complex vector spaces is
+            necessary and common. In these contexts, the <em>conjugate transpose</em> is obtained by first
+            taking the complex conjugate of each entry of <m>A</m>, and then transposing the resulting matrix.
         </p>
         <p>
             <idx>
                 <h>Matrices</h>
-                <h>Norm</h>
+                <h>Conjugate transpose</h>
             </idx>
-            Just like vectors, matrices also has a norm quantity defined. But unlike vectors, there are
-            several types of norms for matrices. The method <c>norm</c> in Sage returns the Frobenius
-            norm which is defined as the square root of the sum of the squares of all the entries in the
-            matrix.
+            The transpose of the conjugate of a matrix <m>A</m> (called the Hermitian transpose, transconjugate
+            matrix, and denoted <m>A^*</m>, <m>A^{H}</m> or <m>A^{\dagger}</m>) is obtained
+            by taking the complex conjugate of each entry of <m>A</m> and then transposing the result. For a complex
+            matrix <m>A=[a_{ij}]</m> this produces the matrix <m>A^*=[\overline{a_{ji}}]</m>. For real matrices it
+            reduces to the ordinary transpose matrix. A matrix equal to its conjugate transpose is called <em>Hermitian</em>,
+            and a matrix whose conjugate transpose equals its inverse is <em>unitary</em>.
+        </p>
+        <p>
+            In Sage, the conjugate transpose of a matrix can be computed using the <c>conjugate_transpose</c> method:
         </p>
         <sage>
             <input>
-                # The norm of a matrix
-                A = matrix([[1, 2], [3, 4]])
-                A.norm()
-            </input>
-        </sage>
-
-        <p>
-            <idx>
-                <h>Matrices</h>
-                <h>Rank</h>
-            </idx>
-            The <em>rank</em> of a matrix is the dimension of the vector space spanned by its rows (row rank)
-            or columns (column rank). It measures the number of linearly independent rows or columns and
-            is used to determine whether a linear system has unique, infinite, or no solutions. In Sage the
-            rank of a matrix is computed with the <c>.rank()</c> method:
-        </p>
-        <sage>
-            <input>
-                # rank=2: rows/columns are linearly dependent
-                B = matrix([[1,2,3],[2,4,6],[1,0,1]])
-                B.rank()
-            </input>
-        </sage>
-        <p>
-            A matrix is called <em>full rank</em> when its rank equals the smaller of the number of rows and columns.
-        </p>
-        <sage>
-            <input>
-                # a full rank matrix with rank=3
-                C = matrix([[1,0,0],[0,1,0],[0,0,1]])
-                C.rank()
-            </input>
-        </sage>
-
-        <p>
-            <idx>
-                <h>Matrices</h>
-                <h>Trace</h>
-            </idx>
-            The <em>trace</em> of a square matrix <m>A = [a_{ij}]</m> of order <m>n \times n</m>,
-            denoted by <m>\mathrm{tr}(A)</m>, is defined as the sum of the entries along its main diagonal:
-            <m>\mathrm{tr}(A) = \sum_{i=1}^{n} a_{ii}</m>.
-        </p>
-        <p>
-            The trace has many useful properties, such as linearity and invariance under similarity transformations:
-            <ul>
-                <li><m>\mathrm{tr}(A + B) = \mathrm{tr}(A) + \mathrm{tr}(B)</m></li>
-                <li><m>\mathrm{tr}(kA) = k \, \mathrm{tr}(A)</m> for any scalar <m>k</m></li>
-                <li><m>\mathrm{tr}(AB) = \mathrm{tr}(BA)</m> for any square matrices <m>A</m> and <m>B</m> of the same size</li>
-            </ul>
-        </p>
-        <p>
-            The built-in Sage method <c>.trace()</c> is used to compute the trace of a square matrix as shown in the example below.
-        </p>
-        <sage>
-            <input>
-                A.trace()
+                A.conjugate_transpose()
             </input>
         </sage>
     </introduction>

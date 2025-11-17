@@ -19,5 +19,6 @@
     <xi:include href="sec01-special-matrices.ptx" />
     <xi:include href="sec02-operations-with-matrices.ptx" />
     <xi:include href="sec03-transpose-and-conjugate.ptx" />
+    <xi:include href="sec04-norm-rank-and-trace.ptx" />
 
 </chapter>
