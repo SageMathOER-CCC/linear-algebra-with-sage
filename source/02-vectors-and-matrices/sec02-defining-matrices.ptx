@@ -261,6 +261,15 @@
         </sage>
 
         <p>
+            Sage defines the method <c>is_square()</c> that returns <c>True</c> if the matrix is square.
+        </p>
+        <sage>
+            <input>
+                M.is_square()
+            </input>
+        </sage>
+
+        <p>
             To extract a <em>submatrix</em> from a matrix given the range of rows and columns
             to include, Sage command <c>matrix_from_rows_and_columns()</c> takes two lists: the
             first for row indices, and the second for column indices as in the following example.
