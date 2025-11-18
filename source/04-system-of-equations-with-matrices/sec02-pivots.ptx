@@ -33,7 +33,6 @@
     </p>
     <p>
         Notice that Sage can determine which columns contain the pivot positions in the reduced row echelon form of the matrix without actually showing explicitly this form.
-.
     </p>
     <p>
         The pivot positions in the reduced row echelon form of the augmented matrix of a linear system are crucial for determining the nature of its solutions.
@@ -115,22 +114,22 @@
         <md>
             <mrow>
                 \left\{
-                \begin{array}{c}
+                \begin{array}{l}
                     x + 2z = 4\\
                     y - z = 0\\
                         0 = 0
                 \end{array}
-                \right\}
+                \right.
                 \hspace{6pt}
                 \Rightarrow
                 \hspace{6pt}
                 \left\{
-                \begin{array}{c}
+                \begin{array}{l}
                     x = -2z + 4\\
                     y = z\\
                     z = z
                 \end{array}
-                \right\}
+                \right.
             </mrow>
         </md>
         <p>

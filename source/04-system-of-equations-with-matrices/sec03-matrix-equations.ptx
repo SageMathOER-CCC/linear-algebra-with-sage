@@ -74,7 +74,7 @@
         </sage>
         <p>
             We found that one solution to the system is <m>x = 4,\ y = 0</m>, and <m>z = 0</m>.
-            This is just one particular solution when the parameter is zero.
+            This is just <alert>one</alert> particular solution when the parameter is zero.
             Observe that we do not obtain all the infinitely many solutions of the system using this method.
         </p>
     </subsection>
