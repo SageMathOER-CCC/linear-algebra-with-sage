@@ -279,22 +279,22 @@
         <md>
             <mrow>
                 \left\{
-                \begin{array}{c}
+                \begin{array}{l}
                     x + 2z = 4\\
                     y - z = 0\\
                         0 = 0
                 \end{array}
-                \right\}
+                \right.
                 \hspace{6pt}
                 \Rightarrow
                 \hspace{6pt}
                 \left\{
-                \begin{array}{c}
+                \begin{array}{l}
                     x = -2z + 4\\
                     y = z\\
                     z = z
                 \end{array}
-                \right\}
+                \right.
             </mrow>
         </md>
         <p>

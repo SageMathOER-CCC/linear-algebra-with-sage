@@ -2,15 +2,11 @@
 
 <section xml:id="sec-inverse-matrix" xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Inverse Matrix</title>
-    <definition xml:id="def-inverse">
-        <statement>
-            <p>
-                Let <m>A</m> be a square matrix.
-                A matrix <m>B</m> is called an inverse of <m>A</m> if <m>AB = I</m> and <m>BA = I</m>.
-                Where <m>I</m> is the identity matrix.
-            </p>
-        </statement>
-    </definition>
+    <p>
+        Let <m>A</m> be a square matrix.
+        A matrix <m>B</m> is called an inverse of <m>A</m> if <m>AB = I</m> and <m>BA = I</m>.
+        Where <m>I</m> is the identity matrix.
+    </p>
     <p>
         If such a matrix exists, we say that <m>A</m> is invertible and we denote the inverse by <m>A^{-1}</m>.
     </p>
@@ -28,7 +24,7 @@
         </input>
     </sage>
     <p>
-        In Sage, the inverse of a matrix can be computed using the <c>inverse()</c> method:
+        In Sage, if a matrix is invertible, the inverse of a matrix can be computed using the <c>inverse()</c> method:
     </p>
     <sage>
     <input>
@@ -112,12 +108,12 @@
                         [1, 2, 0],
                         [1, 0, 1]
                     ])
-                AI = A.augment(identity_matrix(3))
+                AI = A.augment(identity_matrix(3), subdivide=true)
                 AI
             </input>
         </sage>
         <p>
-            Then by invoking <c>rref()</c> the right sub-matrix is now the inverse.
+            Then by invoking <c>rref()</c> we can test if the matrix is invertible.
         </p>
         <sage>
             <input>
@@ -126,16 +122,20 @@
             </input>
         </sage>
         <p>
-            To decide if the matrix is invertible, we check that the first part of the matrix is the identity:
+            Since the left sub-matrix is the identity matrix, 
+            the right sub-matrix is the inverse.
+            We can obtain the inverse using the <c>submatrix()</c> method:
         </p>
         <sage>
             <input>
-                identity_matrix(3) == rrefAI.submatrix(
-                    row=0, col=0, nrows=3, ncols=3)
+                rrefAI.submatrix(0,3)
             </input>
+            <output>
+                
+            </output>
         </sage>
         <p>
-            In this case we obtained the identity matrix, so the right part of the matrix is the inverse matrix:
+            This method coincides with Sage's built-in <c>inverse()</c> method:
         </p>
         <sage>
             <input>
@@ -146,29 +146,12 @@
     <subsection xml:id="subsec-minors-cofactors-and-adjugate-for-inverse">
         <title>Minors, Cofactors and the Adjugate Matrix</title>
         <p>
-            The Adjugate matrix can then be used to compute the inverse of a non-singular matrix using the formula:
+            The Adjugate matrix can then be used to compute the inverse of an invertible matrix using the formula:
             <m>A^{-1} = \frac{1}{\det(A)} \cdot \text{adj}(A)</m>.
         </p>
         <sage>
             <input>
                 A.inverse() == A.adjugate() / A.det()
-            </input>
-        </sage>
-        <p>
-            Note that the although methods <c>minor()</c> and <c>cofactor()</c> are currently not implemented in
-            Sage, leveraging the command <c>adj</c> can help compute them, like shown below.
-        </p>
-        <sage>
-            <input>
-                cof = A.adjugate().transpose()
-
-                # Cofactor c_12
-                cofactor_1_2 = cof[0, 1]
-                print("c_12:", cofactor_1_2)
-
-                # Minor M_12
-                minor_1_2 = cofactor_1_2 / ((-1)^(1 + 2))
-                print("m_12:", minor_1_2)
             </input>
         </sage>
     </subsection>
@@ -189,7 +172,7 @@
             </input>
         </sage>
         <p>
-            Let's see how they differ in the way they handled singular matrices.
+            Let's see how they differ in the way they handled non-invertible matrices.
         </p>
         <p>
             In the case of a matrix that is not invertible, the <c>inverse()</c> method will throw an error.
