@@ -9,24 +9,16 @@
                 <h>Matrices</h>
                 <h>Determinant</h>
             </idx>
-            The determinant of a square matrix <m>A</m> is a number <m>det(A)</m> that must satisfies the following key properties:
+            The determinant of a square matrix <m>A</m> is a number <m>det(A)</m> defined by these properties::
             <ul>
-                <li>Adding a row to another row on <m>A</m> does not change <m>det(A)</m>.</li>
-                <li>Scaling a row of <m>A</m> by a scalar <m>k</m> multiplies <m>det(A)</m> by <m>k</m>.</li>
-                <li>Swapping two rows of a matrix <m>A</m> multiplies its  determinant by <m>-1</m>.</li>
+                <li>Adding a multiple of any row in <m>A</m> to another row does not change <m>det(A)</m>.</li>
+                <li>Multiplying any row of <m>A</m> by a scalar <m>k</m> multiplies <m>det(A)</m> by <m>k</m>.</li>
+                <li>Swapping two rows of <m>A</m> multiplies its determinant by <m>-1</m>.</li>
                 <li>The determinant of the identity matrix is <m>1</m>.</li>
             </ul>
         </p>
         <p>
-            The determinant of a matrix <m>A</m> is a scalar value <m>det(A)</m> (also denoted <m>|A|</m>) that tells
-            important information about the linear transformation represented by that matrix, such as whether tha matrix is
-            invertible or how it scales space during transformations. In geometric terms for 2D and 3D space, the determinant
-            of a square matrix measures the <em>signed area</em> of the parallelogram (in 2D) or the <em>signed volume</em>
-            of parallelepiped (in 3D) formed by the row (or column) vectors of the matrix.
-        </p>
-
-        <p>
-            In Sage, the determinant of a matrix can be computed using the <c>det</c> command:
+            In Sage, the determinant of a matrix can be computed using the <c>det()</c> method:
         </p>
         <sage>
             <input>
@@ -36,9 +28,9 @@
         </sage>
 
         <p>
-            A matrix is <em>singular</em> if it does not have an inverse, which occurs when its determinant is zero.
-            In Sage, to check whether a matrix is singular or not the method <c>is_singular()</c> can be used.
-            Note that just as with the determinant, this method is only applicable to square matrices.
+            A matrix is <em>singular</em> if its determinant is zero. In Sage, to check whether a matrix
+            is singular or not the method <c>is_singular()</c> can be used. Note that just as with the
+            determinant, this method is only applicable to square matrices.
         </p>
         <sage>
             <input>
@@ -46,10 +38,34 @@
                 M.is_singular()
             </input>
         </sage>
+
         <p>
-            The matrix <m>M</m> is singular because its determinant is zero, hence does not have an inverse.
-            Note that Sage offers several other methods to help check various properties of matrices related
-            to determinants and inverses.
+            <idx>
+                <h>Matrices</h>
+                <h>Rank</h>
+            </idx>
+            The <em>rank</em> of a matrix is the largest dimension of any of its square submatrix with a
+            non-zero determinant. In Sage the rank of a matrix is computed with the <c>.rank()</c> method:
+        </p>
+        <sage>
+            <input>
+                B = matrix([[1,2,3],[2,4,6],[1,0,1]])
+                B.rank()
+            </input>
+        </sage>
+        <p>
+            A matrix is called <em>full rank</em> when its rank equals the smaller of the number of rows and columns.
+        </p>
+        <sage>
+            <input>
+                # a full rank matrix with rank=3
+                C = matrix([[1,0,0],[0,1,0],[0,0,1]])
+                C.rank()
+            </input>
+        </sage>
+        <p>
+            The rank of a matrix measures the number of linearly independent rows or columns and is used to determine
+            whether a linear system has unique, infinite, or no solutions.
         </p>
     </introduction>
 </section>

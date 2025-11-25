@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-matrix-operations-cramer-rule"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Cramer's Rule</title>
+    <introduction xml:id="sm-introduction-cramer-rule">
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Cramer's Rule</h>
+            </idx>
+            Cramer's rule is a theorem in linear algebra that provides an explicit formula for solving
+            a system of linear equations with as many equations as unknowns, provided that the system's
+            coefficient matrix is non-singular.
+        </p>
+        <p>
+            Consider a system of <m>n</m> linear equations with <m>n</m> unknowns represented in matrix
+            form as <m>Ax = b</m>, where <m>A</m> is the coefficient matrix, <m>x</m> is the column vector
+            of unknowns, and <m>b</m> is the column vector of constants. According to Cramer's rule, if
+            <m>A</m> is non-singular, then the system has a unique solution given by <m>x_i = \frac{\det(A_i)}{\det(A)}</m>,
+            where <m>A_i</m> is the matrix formed by replacing the <m>i</m>-th column of <m>A</m> with the vector <m>b</m>.
+        </p>
+
+        <p>
+            To illustrate Cramer's rule with an example, let's consider the system of equations from <xref ref="subsec-case-i"/>.
+            Let's first start by checking if the coefficient matrix <m>A</m> is non singular and compute its determinant:
+        </p>
+        <sage>
+            <input>
+                # Ax=b
+                b = vector([0, 4, 4])
+
+                A = matrix([
+                    [0, 1, -1],
+                    [1, 2, 0],
+                    [1, 0, 1]
+                ])
+                det_A = A.det()
+
+                A.is_singular()  # Check if A is singular
+            </input>
+        </sage>
+
+        <p>
+            Next, by applying Cramer's rule, we compute the determinants of the matrices formed by replacing
+            each column of <m>A</m> with the vector <m>b</m>, and then find the values of the unknowns. For
+            the first variable <m>x_1</m>, we replace the first column of <m>A</m> with <m>b</m> to form
+            <m>A_1</m>, compute its determinant, and then find <m>x_1=\frac{\det(A_1)}{\det(A)}</m>.
+        </p>
+        <sage>
+            <input>
+                A1 = matrix(A) # Create a copy of matrix A
+                A1.set_column(0, b)
+                det_A1 = A1.det()
+                x1 = det_A1 / det_A
+                x1
+            </input>
+        </sage>
+
+        <p>
+            We repeat this process for <m>x_2</m> by replacing the second column:
+        </p>
+        <sage>
+            <input>
+                A2 = matrix(A)
+                A2.set_column(1, b)
+                det_A2 = A2.det()
+                x2 = det_A2 / det_A
+                x2
+            </input>
+        </sage>
+
+        <p>
+            We repeat the same process for <m>x_3</m> by replacing the third column as follows:
+        </p>
+        <sage>
+            <input>
+                A3 = matrix(A)
+                A3.set_column(2, b)
+                det_A3 = A3.det()
+                x3 = det_A3 / det_A
+                x3
+            </input>
+        </sage>
+
+        <p>
+            In the above example, we solved the system of equations of <xref ref="subsec-case-i"/> using
+            Cramer's rule. To verify the solution, we can substitute the values of <m>x_1</m>, <m>x_2</m> and
+            <m>x_3</m> back into the original equation:
+        </p>
+        <sage>
+            <input>
+                # Verify the solution
+                x = vector([x1, x2, x3])
+
+                A * x == b # notice the the double equal sign
+            </input>
+        </sage>
+
+        <p>
+            Note that Cramer's rule is an iterative process, hence, can be automated using loops and a reusable function.
+        </p>
+        <sage>
+            <input auto-eval="true">
+                ### Define the helper functions
+                def find_x(A, b, detA, i):
+                    # this helps solve for a single unknown
+                    Ai = matrix(A)
+                    Ai.set_column(i, b)
+                    return Ai.det() / detA
+
+                def solve_system(A, b):
+                    if A.is_singular():
+                        # System has no unique solution per Cramer's Rule
+                        return vector([])
+
+                    # Iterate to solve for all unknowns
+                    x = []
+                    detA = A.det()
+                    for i in range(len(b)):
+                        xi = find_x(A, b, detA, i)
+                        x.append(xi)
+
+                    return vector(x)
+            </input>
+        </sage>
+
+        <p>
+            Which then can be used as follows to solve the given system of equations.
+        </p>
+        <sage>
+            <input>
+                b = vector(
+                    [7, 2, 8, 5, 9],
+                )
+                A = matrix([
+                    [8, 3, 1, 7, 6],
+                    [5, 9, 4, 2, 1],
+                    [2, 6, 9, 8, 3],
+                    [7, 4, 5, 3, 9],
+                    [1, 2, 8, 6, 4],
+                ])
+
+                x = solve_system(A, b)
+                x
+            </input>
+        </sage>
+
+        <p>
+            Once again, we can verify the solution by substituting the values of <m>x</m> back into the original equation:
+        </p>
+        <sage>
+            <input>
+                A * x == b
+            </input>
+        </sage>
+
+        <p>
+            Here is another example for a singular coefficient matrix where Cramer's rule cannot be applied:
+        </p>
+        <sage>
+            <input>
+                A = matrix([
+                    [8, 3, 1, 7, 6],
+                    [5, 9, 4, 2, 1],
+                    [2, 6, 9, 8, 3],
+                    [7, 4, 5, 3, 9],
+                    [2, 6, 9, 8, 3],  # duplicate row
+                ])
+
+                x = solve_system(A, b)
+                x  # returns an empty vector since A is singular
+            </input>
+        </sage>
+
+        <note>
+            <title>Floating-point equality</title>
+            <p>
+                Because computers represent real numbers using finite binary precision, the result of a floating-point
+                computation is almost never exact. For this reason, testing whether two floating-point expressions are
+                <q>exactly equal</q> will often return <c>false</c> even when the values should be mathematically identical.
+                For instance, in the previous <m>5\times 5</m> linear-system example: recomputing the solutions of the system
+                in <m>\mathbb{R}</m> would yield a solution vector with floating-point entries:
+            </p>
+            <sage>
+                <input>
+                    b = vector(RR,
+                        [7, 2, 8, 5, 9],
+                    )
+                    A = matrix(RR,[
+                        [8, 3, 1, 7, 6],
+                        [5, 9, 4, 2, 1],
+                        [2, 6, 9, 8, 3],
+                        [7, 4, 5, 3, 9],
+                        [1, 2, 8, 6, 4],
+                    ])
+
+                    x = solve_system(A, b)
+                    x  # returns solution vector with floating-point entries
+                </input>
+            </sage>
+            <p>
+                However the previous equality comparison <c>A*x == b</c> would typically fails because of tiny rounding errors.
+            </p>
+            <sage>
+                <input>
+                    A * x == b
+                </input>
+            </sage>
+
+            <p>
+                For numerical purposes, instead of checking equality, the correct approach is to compare the difference
+                to a small tolerance (for example, <m>10^{-12}</m>). If the absolute error is below this threshold, then
+                the values <em>should</em> be considered equal.
+            </p>
+            <sage>
+                <input>
+                    all([abs(e)&lt;1E-12 for e in (A * x - b)])
+                </input>
+            </sage>
+        </note>
+    </introduction>
+</section>

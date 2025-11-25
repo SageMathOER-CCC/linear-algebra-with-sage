@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<section xml:id="sec-matrix-operations-norm-rank-and-trace"
+<section xml:id="sec-matrix-operations-norm-and-trace"
     xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Norm, Rank and Trace</title>
-    <introduction xml:id="sm-introduction-matrix-operations-norm-rank-and-trace">
+    <introduction xml:id="sm-introduction-matrix-operations-norm-and-trace">
         <p>
             <idx>
                 <h>Matrices</h>
@@ -17,34 +17,6 @@
                 # The norm of a matrix
                 A = matrix([[1, 2], [3, 4]])
                 A.norm()
-            </input>
-        </sage>
-
-        <p>
-            <idx>
-                <h>Matrices</h>
-                <h>Rank</h>
-            </idx>
-            The <em>rank</em> of a matrix is the dimension of the vector space spanned by its rows (row rank)
-            or columns (column rank). It measures the number of linearly independent rows or columns and
-            is used to determine whether a linear system has unique, infinite, or no solutions. In Sage the
-            rank of a matrix is computed with the <c>.rank()</c> method:
-        </p>
-        <sage>
-            <input>
-                # rank=2: rows/columns are linearly dependent
-                B = matrix([[1,2,3],[2,4,6],[1,0,1]])
-                B.rank()
-            </input>
-        </sage>
-        <p>
-            A matrix is called <em>full rank</em> when its rank equals the smaller of the number of rows and columns.
-        </p>
-        <sage>
-            <input>
-                # a full rank matrix with rank=3
-                C = matrix([[1,0,0],[0,1,0],[0,0,1]])
-                C.rank()
             </input>
         </sage>
 
