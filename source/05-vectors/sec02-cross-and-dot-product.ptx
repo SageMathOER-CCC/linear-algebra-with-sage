@@ -14,6 +14,7 @@
             The <em>dot product</em> of two vectors <m>v=(v_1, v_2, ..., v_n)</m> and
             <m>w=(w_1, w_2, ..., w_n)</m> is defined as the sum of the products of
             their corresponding components <m>v \cdot w = w \cdot v = \sum_{i=1}^n v_i w_i</m>.
+            The method <c>dot_product()</c> helps calculate the dot product of two vectors in Sage.
         </p>
         <sage>
             <input>
@@ -24,7 +25,7 @@
         </sage>
         <p>
             Observe that the dot product of two vectors produces a scalar (a single number), not a
-            vector. Also, note that the <em>dot</em> product in Sage is implemented in two ways:
+            vector. Also, note that the dot product in Sage is implemented in two ways:
         </p>
         <sage>
             <input>

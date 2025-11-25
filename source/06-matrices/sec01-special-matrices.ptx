@@ -15,7 +15,7 @@
             <ul>
                 <li>
                     <p>
-                        The <em>zero matrix</em> contains only zeros and acts as the additive identity.
+                        A <em>zero matrix</em> is a matrix in which every entry is <m>0</m>>.
                         The command <c>zero_matrix(m, n)</c> creates an <m>m</m> by <m>n</m> zero matrix.
                     </p>
                     <sage>
@@ -37,8 +37,8 @@
                 </li>
                 <li>
                     <p>
-                        The <em>ones matrix</em> contains only ones. The command <c>ones_matrix(m, n)</c>
-                        creates an <m>m</m> by <m>n</m> ones matrix.
+                        A <em>ones matrix</em> is a matrix in which every entry is <m>1</m>. The command
+                        <c>ones_matrix(m, n)</c> creates an <m>m</m> by <m>n</m> ones matrix.
                     </p>
                     <sage>
                         <input>
@@ -70,8 +70,8 @@
                 <li>
                     <p>
                         A <em>diagonal matrix</em> is a square matrix that has zero entries everywhere outside
-                        the <em>main diagonal</em>. Note that a diagonal matrix may have some or all its diagonal
-                        entries equal to <m>0</m>. Sage offers the command <c>diagonal_matrix([a_1, a_2, ..., a_n])</c>
+                        the <em>main diagonal</em>. Note that the identity matrix and the square zero matrix are
+                        both diagonal matrices. Sage offers the command <c>diagonal_matrix([a_1, a_2, ..., a_n])</c>
                         to create a diagonal matrix with diagonal entries <m>a_1, a_2, \ldots, a_n</m> and <m>0</m> elsewhere.
                     </p>
                     <p>
@@ -84,9 +84,7 @@
                         </input>
                     </sage>
                     <p>
-                        Diagonal matrices are simple to multiply and often appear in eigenvalue problems which
-                        we will see in upcoming chapters. To check if a matrix is diagonal, the method
-                        <c>is_diagonal()</c> can be used.
+                        To check if a matrix is diagonal, the method <c>is_diagonal()</c> can be used.
                     </p>
                     <sage>
                         <input>
@@ -97,9 +95,9 @@
                 </li>
                 <li>
                     <p>
-                        An <em>identity matrix</em> is a diagonal matrix with all its diagonal elements
-                        equals to 1. The command <c>identity_matrix(n)</c> returns an identity matrix of dimension
-                        <m>n \times n</m>. Here is an example of a <m>5 \times 5</m> identity matrix.
+                        An <em>identity matrix</em> is a diagonal matrix with all of its diagonal entries
+                        equal to 1. The command <c>identity_matrix(n)</c> returns an identity matrix of
+                        dimension <m>n \times n</m>. Here is an example of a <m>5 \times 5</m> identity matrix.
                     </p>
                     <sage>
                         <input>

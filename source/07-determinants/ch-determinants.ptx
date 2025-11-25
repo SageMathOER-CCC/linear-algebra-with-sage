@@ -5,20 +5,13 @@
 
     <introduction xml:id="sm-subsection-determinants">
         <p>
-            Matrices also support non-arithmetic, unary operations; operation that are applied
-            to the matrix itself and its entrees. Two such operations are the <em>determinant</em>
-            of a <em>square</em> matrix and its <em>inverse</em>.
-        </p>
-        <p>
-            In this chapter, we will learn about a fundamental concept in linear algebra
-            that is determinants, which provides important insights into the properties
-            of matrices, and the linear transformation or the system of linear equations
-            they represent.
+            In this chapter we define the determinant of a square matrix, and
+            show how to compute it in Sage.
         </p>
     </introduction>
 
     <!-- include sections -->
     <xi:include href="sec01-determinants.ptx" />
-    <xi:include href="sec02-determinants-in-action.ptx" />
+    <xi:include href="sec02-cramer-rule.ptx" />
 
 </chapter>

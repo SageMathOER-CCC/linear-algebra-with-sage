@@ -5,10 +5,8 @@
 
     <introduction xml:id="sm-subsection-matrices">
         <p>
-            Matrices are often interpreted as a natural expansion of vectors into higher dimensions.
-            But, the concept of a matrix extends beyond the simple grid of numbers; in fact, matrices
-            serve as mathematical tool for structuring data, encoding relationships between multiple
-            quantities, representing linear transformations, or solving systems of equations.
+            Matrices serve as mathematical tool for structuring data, encoding relationships between
+            multiple quantities, representing linear transformations, or solving systems of equations.
         </p>
         <p>
             In this chapter, we will see most common matrix operations often used in linear algebra.
