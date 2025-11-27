@@ -42,10 +42,10 @@
         </sage>
 
         <p>
-            Next, by applying Cramer's rule, we compute the determinants of the matrices formed by replacing
-            each column of <m>A</m> with the vector <m>b</m>, and then find the values of the unknowns. For
-            the first variable <m>x_1</m>, we replace the first column of <m>A</m> with <m>b</m> to form
-            <m>A_1</m>, compute its determinant, and then find <m>x_1=\frac{\det(A_1)}{\det(A)}</m>.
+            Next, we compute the determinants of the matrices formed by replacing each column of <m>A</m> with
+            the vector <m>b</m>, and then find the values of the unknowns. For the first variable <m>x_1</m>,
+            we replace the first column of <m>A</m> with <m>b</m> to form <m>A_1</m>, compute its determinant,
+            and then find <m>x_1=\frac{\det(A_1)}{\det(A)}</m>.
         </p>
         <sage>
             <input>
@@ -174,7 +174,7 @@
         </sage>
 
         <note>
-            <title>Floating-point equality</title>
+            <title>Floating-point Equality</title>
             <p>
                 Because computers represent real numbers using finite binary precision, the result of a floating-point
                 computation is almost never exact. For this reason, testing whether two floating-point expressions are

@@ -35,34 +35,48 @@
 
         <p>
             In some fields like signal processing and quantum mechanics, working over complex vector spaces
-            is necessary and common. the <em>conjugate transpose</em> is obtained by first taking the complex
-            conjugate of each entry of <m>A</m>, and then transposing the resulting matrix. We use <c>conjugate()</c>
-            method to find the conjugate of a matrix in Sage.
+            is necessary and common. The <em>conjugate transpose</em> matrix is defined as the transpose
+            of the conjugate matrix. In Sage, the conjugate transpose of a matrix is obtained by first
+            computing its conjugate then taking the transpose.
         </p>
         <p>
             <idx>
                 <h>Matrices</h>
                 <h>Complex Conjugate</h>
             </idx>
-            For matrices with complex entries, the conjugate is found by taking the conjugate of
-            each individual entry. This operation is often used in conjunction with the transpose to form
-            the conjugate transpose (also called the Hermitian transpose)
+            To find the conjugate of a matrix in Sage, we use the <c>conjugate()</c> method.
         </p>
         <sage>
             <input>
                 A = matrix([[1 + 2*I, 3 - I], [-2*I, 4]])
-                A.conjugate()
+                B = A.conjugate()
             </input>
         </sage>
         <p>
-            In some fields like signal processing and quantum mechanics, working over complex vector spaces is
-            necessary and common. In these contexts, the <em>conjugate transpose</em> is obtained by first finding
-            the conjugate matrix taking the complex conjugate of each entry of <m>A</m>, and then transpose it.
+            <idx>
+                <h>Matrices</h>
+                <h>Conjugate Transpose</h>
+            </idx>
+            Then, we compute the transpose of that conjugate matrix using the transpose method shown earlier.
         </p>
+        <sage>
+            <input>
+                B.transpose()
+            </input>
+        </sage>
+        <p>
+            We can also calculate the conjugate transpose directly using the <c>conjugate_transpose</c> method.
+        </p>
+        <sage>
+            <input>
+                A.conjugate_transpose()
+            </input>
+        </sage>
         <p>
             <idx>
                 <h>Matrices</h>
-                <h>Conjugate transpose</h>
+                <h>Hermititan Transpose</h>
+                <h>Transjugate</h>
             </idx>
             The conjugate transpose of a matrix <m>A</m> is called the Hermitian transpose, Hermititan conjugate,
             or transjugate and is denoted <m>A^*</m>, <m>A^{H}</m> or <m>A^{\dagger}</m>.
@@ -71,13 +85,5 @@
             The conjugate transpose matrix is also called the <em>Adjoint</em> matrix; however, we will not use
             this name in this book. We will reserve it for a different concept introduced in chapter 8.
         </p>
-        <p>
-            In Sage, the conjugate transpose of a matrix can be computed using the <c>conjugate_transpose</c> method:
-        </p>
-        <sage>
-            <input>
-                A.conjugate_transpose()
-            </input>
-        </sage>
     </introduction>
 </section>

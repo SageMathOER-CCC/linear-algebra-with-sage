@@ -15,7 +15,7 @@
             <ul>
                 <li>
                     <p>
-                        A <em>zero matrix</em> is a matrix in which every entry is <m>0</m>>.
+                        A <em>zero matrix</em> is a matrix in which every entry is <m>0</m>.
                         The command <c>zero_matrix(m, n)</c> creates an <m>m</m> by <m>n</m> zero matrix.
                     </p>
                     <sage>
@@ -70,9 +70,9 @@
                 <li>
                     <p>
                         A <em>diagonal matrix</em> is a square matrix that has zero entries everywhere outside
-                        the <em>main diagonal</em>. Note that the identity matrix and the square zero matrix are
-                        both diagonal matrices. Sage offers the command <c>diagonal_matrix([a_1, a_2, ..., a_n])</c>
-                        to create a diagonal matrix with diagonal entries <m>a_1, a_2, \ldots, a_n</m> and <m>0</m> elsewhere.
+                        the <em>main diagonal</em>. Note that a square zero matrix is a diagonal matrices. Sage
+                        offers the command <c>diagonal_matrix([a_1, a_2, ..., a_n])</c> to create a diagonal
+                        matrix with diagonal entries <m>a_1, a_2, \ldots, a_n</m> and <m>0</m> elsewhere.
                     </p>
                     <p>
                         Here is an example of a <m>3 \times 3</m> diagonal matrix with entries <m>2</m>, <m>4</m>, and <m>6</m>

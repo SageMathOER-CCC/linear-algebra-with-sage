@@ -9,7 +9,7 @@
                 <h>Matrices</h>
                 <h>Determinant</h>
             </idx>
-            The determinant of a square matrix <m>A</m> is a number <m>det(A)</m> defined by these properties::
+            The determinant of a square matrix <m>A</m> is a number <m>det(A)</m> defined by these properties:
             <ul>
                 <li>Adding a multiple of any row in <m>A</m> to another row does not change <m>det(A)</m>.</li>
                 <li>Multiplying any row of <m>A</m> by a scalar <m>k</m> multiplies <m>det(A)</m> by <m>k</m>.</li>
@@ -45,7 +45,7 @@
                 <h>Rank</h>
             </idx>
             The <em>rank</em> of a matrix is the largest dimension of any of its square submatrix with a
-            non-zero determinant. In Sage the rank of a matrix is computed with the <c>.rank()</c> method:
+            non-zero determinant. In Sage the rank of a matrix is computed with the <c>rank()</c> method:
         </p>
         <sage>
             <input>
@@ -54,18 +54,13 @@
             </input>
         </sage>
         <p>
-            A matrix is called <em>full rank</em> when its rank equals the smaller of the number of rows and columns.
+            In this example the rank is smaller than the smallest dimension of this matrix, which means
+            its determinant must be zero.
         </p>
         <sage>
             <input>
-                # a full rank matrix with rank=3
-                C = matrix([[1,0,0],[0,1,0],[0,0,1]])
-                C.rank()
+                B.det()
             </input>
         </sage>
-        <p>
-            The rank of a matrix measures the number of linearly independent rows or columns and is used to determine
-            whether a linear system has unique, infinite, or no solutions.
-        </p>
     </introduction>
 </section>
