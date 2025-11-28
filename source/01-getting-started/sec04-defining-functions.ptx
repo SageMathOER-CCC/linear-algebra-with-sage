@@ -113,7 +113,7 @@
               ...
               ValueError: `n` must be a non-negative integer
 
-          .. NOTE::
+            NOTE:
               This function uses the `binomial` function to compute each
               element of the row.
           """
