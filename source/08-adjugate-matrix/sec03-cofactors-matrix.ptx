@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-cofactors-matrix"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Cofactors Matrix</title>
+    <introduction xml:id="subsec-the-cofactors-matrix">
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Cofactor Matrix</h>
+            </idx>
+            Given a square matrix <m>A_{n \times n} = [a_{ij}]</m>, its cofactors matrix
+            <m>C_{n \times n}</m> is defined as <m>C = [c_{ij}]</m> where each entry
+            <m>c_{ij}</m> is the cofactor of the entry <m>a_{ij}</m> in <m>A</m>.
+        </p>
+        <p>
+            We can build the cofactor matrix <m>C</m> by repeating the same last two steps,
+            and varying the row and column indices <m>i</m> and <m>j</m> from <m>1</m> to <m>n</m>.
+        </p>
+        <sage>
+            <input>
+                A = matrix([
+                    [1,   2,   3],
+                    [5,   7,  11],
+                    [13, 17,  19],
+                ])
+                n = A.nrows()
+                C = matrix([[(-1)^(i + j) *
+                    A.delete_rows([i]).delete_columns([j]).det()
+                    for j in range(n)]
+                    for i in range(n)])
+                C
+            </input>
+        </sage>
+
+        <note>
+            <title>Cofactors and 0-Based Indexing</title>
+            <p>
+                Recall that Sage uses <m>0</m>-based indexing of lists, vectors, and matrices. If we were to
+                follow the mathematical notation with <m>1</m>-based indexing, where <m>i</m> and <m>j</m> vary
+                from <m>1</m> to <m>n</m>, the formula for the cofactors entries of <m>C</m> would be written as:
+            </p>
+            <sage>
+                <input>
+                    matrix([[(-1)^(i + j) *
+                        A.delete_rows([i - 1]).delete_columns([j - 1]).det()
+                        for j in range(1, n + 1)]
+                        for i in range(1, n + 1)])
+                </input>
+            </sage>
+            <p>
+                Another valid expression while keeping <m>0</m>-based indexing, and <m>i</m> and <m>j</m> vary
+                from <m>0</m> to <m>n-1</m> would be:
+            </p>
+            <sage>
+                <input>
+                    matrix([[(-1)^((i + 1) + (j + 1))*
+                        A.delete_rows([i]).delete_columns([j]).det()
+                        for j in range(n)]
+                        for i in range(n)])
+                </input>
+            </sage>
+            <p>
+                All these expressions are equivalent and correctly computes the cofactors entries of <m>C</m>.
+            </p>
+        </note>
+
+        <p>
+            Finally, we take the transpose of <m>C</m> to get the adjugate matrix.
+        </p>
+        <sage>
+            <input>
+                Adj = C.transpose()
+                Adj
+            </input>
+        </sage>
+
+        <p>
+            Note that the adjugate matrix calculated in this way coincides with the one resulted
+            from the built-in method introduced earlier, and we can verify they are indeed equal.
+        </p>
+        <sage>
+            <input>
+                Adj == A.adjugate()
+            </input>
+        </sage>
+    </introduction>
+</section>

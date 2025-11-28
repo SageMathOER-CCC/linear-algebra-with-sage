@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-minors-and-cofactors-of-a-matrix"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Minors and Cofactors</title>
+    <introduction xml:id="subsec-minors-and-cofactors-of-a-matrix">
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Minors</h>
+            </idx>
+            A minor <m>M_{ij}</m> of a matrix <m>A</m> is the determinant of the submatrix obtained by
+            deleting the <m>i^{th}</m> row and <m>j^{th}</m> column of <m>A</m>.
+        </p>
+        <p>
+            Currently, Sage does not implement methods to directly extract the <em>minors</em> of a matrix.
+            To compute a minor <m>M_{ij}</m> of a matrix <m>A</m>, Sage offers <c>delete_rows()</c> and
+            <c>delete_columns()</c> methods which can be used to delete a specific row <m>i</m> and column
+            <m>j</m> and obtain a submatrix whose determinant yields a minor <m>M_{ij}</m>. Below is a
+            demonstration how to compute the minor <m>M_{12}</m> of a given matrix <m>A</m>.
+        </p>
+        <sage>
+            <input>
+                A = matrix([
+                    [1,  2,   3],
+                    [5,  7,  11],
+                    [13, 17, 19],
+                ])
+
+                m_12 = A.delete_rows([0]).delete_columns([1]).det()
+                m_12
+            </input>
+        </sage>
+
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Cofactors</h>
+            </idx>
+            The cofactor <m>c_{ij}</m> is computed as <m>c_{ij} = (-1)^{i+j} M_{ij}</m>, where <m>M_{ij}</m>
+            is the minor obtained by deleting the <m>i^{th}</m> row and <m>j^{th}</m> column of <m>A</m>. The
+            following computes the cofactor <m>c_{12}</m> using the previously computed minor <m>M_{12}</m>.
+        </p>
+        <sage>
+            <input>
+                c_12 = (-1)^(1+2) * m_12
+                c_12
+            </input>
+        </sage>
+    </introduction>
+</section>

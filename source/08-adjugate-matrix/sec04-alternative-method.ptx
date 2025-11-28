@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-alternative-method"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Alternative Minors/Cofactors Computation</title>
+    <introduction xml:id="subsec-alternative-computations-of-minors-and-cofactors">
+        <p>
+            Although there are no built-in methods in Sage to directly compute minors
+            and cofactors are currently, we can leverage the command <c>adjugate</c>
+            to compute them like shown below.
+        </p>
+        <sage>
+            <input>
+                A = matrix([
+                    [1,   2,   3],
+                    [5,   7,  11],
+                    [13, 17,  19],
+                ])
+                C = A.adjugate().transpose()
+                C
+            </input>
+        </sage>
+        <p>
+            From the cofactors matrix, we then have access to cofactors <m>c_{ij}</m>,
+            and from there to the minors <m>m_{ij}</m> like in the following example.
+        </p>
+        <sage>
+            <input>
+                c_12 = C[0, 1]
+                print("c_12:", c_12)
+
+                m_12 = (-1)^(1+2)*c_12 # divide/multiply by +/-1 are equivalent
+                print("m_12:", m_12)
+            </input>
+        </sage>
+    </introduction>
+</section>

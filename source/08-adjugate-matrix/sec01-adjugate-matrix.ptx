@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-adjugate-matrix"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Adjugate Matrix</title>
+    <introduction xml:id="sm-introduction-adjugate-matrix">
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Adjugate</h>
+            </idx>
+            For a matrix <m>A</m>, the <em>adjugate</em> matrix is the transpose of its cofactor
+            matrix <m>C</m>, <m>adj(A)=C^T</m>.
+        </p>
+        <p>
+            The cofactor matrix is based on cofactors and minors. Sage does not have methods to
+            calculate cofactors and minors, but it can directly calculate the adjugate matrix.
+        </p>
+        <p>
+            In Sage, the <c>adjugate()</c> method returns the adjugate matrix.
+        </p>
+        <sage>
+            <input>
+                M = matrix([
+                    [1, 1, 0, 1, 2],
+                    [2, 1, 1, 0, 1],
+                    [1, 2, 1, 1, 0],
+                    [0, 1, 2, 1, 1],
+                    [1, 0, 1, 2, 1]])
+                M.adjugate()
+            </input>
+        </sage>
+        <p>
+            In the next sections, we will explore how to compute step by step the minors,
+            cofactors, and then the adjugate matrix.
+        </p>
+    </introduction>
+</section>

@@ -9,12 +9,16 @@
             to the same concept: the transpose of the cofactor matrix of a square matrix. However,
             historically, "adjoint" has been used in different contexts, such as in functional analysis
             to denote a different concept related to linear operators. In modern usage, especially in
-            computational tools like Sage, "adjoint" is the preferred term for the matrix operation involving
+            computational tools like Sage, "adjugate" is the preferred term for the matrix operation involving
             cofactors.
         </p>
         <sage>
             <input>
-                A = matrix([[1, 2, 3], [5, 7, 11], [13, 17, 19]])
+                A = matrix([
+                    [1,   2,   3],
+                    [5,   7,  11],
+                    [13, 17,  19],
+                ])
                 A.adjugate() == A.adjoint()
             </input>
         </sage>
