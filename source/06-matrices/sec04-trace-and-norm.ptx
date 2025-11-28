@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-matrix-operations-trace-and-norm"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Trace and Norm</title>
+    <introduction xml:id="sm-introduction-matrix-operations-trace-and-norm">
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Trace</h>
+            </idx>
+            The <em>trace</em> of a square matrix <m>A = [a_{ij}]</m> of order <m>n \times n</m>,
+            denoted by <m>\mathrm{tr}(A)</m>, is defined as the sum of the entries along its main
+            diagonal: <m>\mathrm{tr}(A) = \sum_{i=1}^{n} a_{ii}</m>.
+        </p>
+        <p>
+            The built-in Sage method <c>trace()</c> is used to compute the trace of a square matrix as shown in the example below.
+        </p>
+        <sage>
+            <input>
+                A = matrix([
+                    [1, 2],
+                    [4, 6]
+                ])
+                A.trace()
+            </input>
+        </sage>
+
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Euclidean Norm</h>
+            </idx>
+            <!-- sage.matrix.matrix2.Matrix.norm?? -->
+            The method <c>norm()</c> in Sage calculates different norms of a given matrix.
+            By default, it computes the <em><m>L_2</m> Euclidean norm</em> (also known as
+            <em>2-norm</em>, or the <em>spectral norm</em>).
+        </p>
+        <sage>
+            <input>
+                # The Euclidean norm of a matrix
+                A = matrix(RR, [
+                    [1, 2, 3],
+                    [3, 4, 6]
+                ])
+                A.norm()
+            </input>
+        </sage>
+
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Frobenius Norm</h>
+                <h>Hilbert-Schmidt Norm</h>
+            </idx>
+            For a matrix <m>A_{n \times m}</m>, the <em>Frobenius norm</em> (also
+            known as <em>Hilbert-Schmidt norm</em>) is a vector-induced norm defined
+            as the square root of the sum of the squares of all its entrees
+            <m>|A|_F = \sqrt{\sum_{i=1}^{n}\sum_{j=1}^{m} |a_{ij}|^2}</m>.
+        </p>
+        <sage>
+            <input>
+                sum([a**2 for a in A.list()]).sqrt()
+            </input>
+        </sage>
+
+        <p>
+            Which is equivalent to the Euclidean norm of the flattened matrix as
+            a vector in <m>\mathbb{R}^{nm}</m>.
+        </p>
+        <sage>
+            <input>
+                vector([a for a in A.list()]).norm()
+            </input>
+        </sage>
+
+        <p>
+            To compute the Frobenius norm in Sage directly, we need to explicitly
+            pass <em>frob</em> as argument to the <c>norm()</c> method.
+        </p>
+        <sage>
+            <input>
+                A.norm('frob')
+            </input>
+        </sage>
+
+        <p>
+            The Frobenius norm can also be computed using the trace of the product
+            of the matrix and its transpose <m>|A|_F = \sqrt{\mathrm{tr(A^T A)}}</m>.
+        </p>
+        <sage>
+            <input>
+                (A.transpose() * A).trace().sqrt()
+            </input>
+        </sage>
+    </introduction>
+</section>
