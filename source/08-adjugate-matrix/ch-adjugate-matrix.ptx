@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-adjugate-matrix" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Adjugate Matrix</title>
+    <introduction xml:id="sm-subsection-adjugate-matrix-intro">
+        <p>
+            In this chapter, we will learn about the adjugate matrix, which is the transpose of its cofactors matrix.
+        </p>
+    </introduction>
+
+    <!-- include sections -->
+    <xi:include href="sec01-adjugate-matrix.ptx" />
+    <xi:include href="sec02-minors-and-cofactors.ptx" />
+    <xi:include href="sec03-cofactors-matrix.ptx" />
+    <xi:include href="sec04-alternative-method.ptx" />
+    <xi:include href="sec05-historical-notes.ptx" />
+
+</chapter>
