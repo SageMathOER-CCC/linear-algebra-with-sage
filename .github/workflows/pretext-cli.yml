@@ -119,4 +119,4 @@ jobs:
           git commit -m "Update PDF document" || echo "No changes to commit"
 
       - name: Force push to release branch
-        run: git push origin release 
+        run: git push origin release --force
