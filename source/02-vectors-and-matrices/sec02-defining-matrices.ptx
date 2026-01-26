@@ -72,7 +72,7 @@
         <p>
             Note that in Sage, you can create a list consisting of repeated copies of the
             same element using the repetition operator <c>*</c>. For example, <c>[1] * 6</c>
-            produces a list with six ones, which is convenient when filling a matrix with
+            produces a list with six 1s, which is convenient when filling a matrix with
             identical entries like in the following example.
         </p>
         <sage>
@@ -83,7 +83,7 @@
         <p>
             We do not need to specify both dimensions of a matrix. Sage can infer the
             missing dimension from the number of entries in the list. Here is an example
-            of a <m>3 \times 4</m> matrix containing the first <m>100</m> integers, and where
+            of a <m>5 \times 20</m> matrix containing the first <m>100</m> integers, where
             only the number of rows is specified.
         </p>
         <sage>
@@ -93,7 +93,7 @@
         </sage>
 
         <p>
-            The entries of the matrix can also be defined programmatically using a list comprehension.
+            The entries of the matrix can also be defined programmatically a list comprehension.
         </p>
         <sage>
             <input>
@@ -103,9 +103,13 @@
         </sage>
 
         <p>
-            Sage also allows to construct a larger matrix by combining smaller <em>submatrices</em> using
+            Sage also allows for constructing a larger matrix by combining smaller <em>submatrices</em> using
             the <c>block_matrix()</c> function (or <c>matrix.block()</c>). Submatrices can be arranged in
-            rows and columns to form a single, larger matrix. Each row is entered as a list. In the following
+            rows and columns to form a single, larger matrix. Each row is entered as a list.
+        </p>
+        <p>
+            Matrices of different dimensions can be used with the command <c>block_matrix</c> as long as
+            the dimensions of the submatrices allow for their concatenation. In the following
             example, we create a <m>5 \times 5</m> matrix from four submatrices of different dimensions.
         </p>
         <sage>
@@ -123,19 +127,23 @@
             </input>
         </sage>
         <p>
-
+            To simplify the following commands, let's use a <m>2 \times 3</m> matrix <m>M</m> 
+            where each element is a unique value.
         </p>
-        <p>
-            Matrices of different dimensions can be used with the command <c>block_matrix</c> as long as
-            the dimensions of the submatrices allow for their concatenation.
-        </p>
+        <sage>
+            <input>
+                M = matrix(2,3, [0,1,2,3,4,5])
+                M
+            </input>
+        </sage>
+        
         <p>
             <idx>
                 <h>Matrices</h>
                 <h>indexing</h>
             </idx>
             The individual entries of a matrix can be accessed using the row and column indices. Since
-            indices in Sage start at 0, to retrieve the entry <m>a_{ij}</m> in a matrix M, we type
+            indices in Sage start at 0, to retrieve the entry <m>a_{ij}</m> in a matrix <m>M</m>, we type
             <c>M[i-1, j-1]</c>. Here is, for instance, how we can retrieve the entry at the second row
             and third column of the matrix <m>M</m>.
         </p>
@@ -201,7 +209,7 @@
         </p>
         <sage>
             <input>
-                M.column(3)  # 4th column
+                M.column(2)  # 3rd column
             </input>
         </sage>
 
@@ -261,7 +269,8 @@
         </sage>
 
         <p>
-            Sage defines the method <c>is_square()</c> that returns <c>True</c> if the matrix is square.
+            Sage defines the method <c>is_square()</c> that returns <c>True</c> if the matrix is square. 
+            In this case, it returns <c>False</c> because matrix <m>M</m> is a <m>2 \times 3</m> matrix.
         </p>
         <sage>
             <input>
@@ -348,9 +357,9 @@
         <p>
             <idx>
                 <h>Matrices</h>
-                <h>Field</h>
+                <h>Base Rings</h>
             </idx>
-            Just like vectors, matrices in Sage can also be created in different <em>Fields</em>,
+            Just like vectors, matrices in Sage can also be created in different <em>Base Rings</em>,
             inferred from the datatype passed to the <c>matrix</c> command, or explicitly when
             instantiating the matrix.
         </p>
@@ -375,8 +384,8 @@
         </sage>
 
         <p>
-            Once again, if the field is omitted, Sage will simply infers the field from
-            the datatype of the matrix entries. Sage matrices supports the same fields
+            Once again, if the ring is omitted, Sage will simply infer the ring from
+            the datatype of the matrix entries. Sage matrices supports the same rings
             as vectors (<m>ZZ, QQ, RR, CC</m>).
         </p>
     </introduction>

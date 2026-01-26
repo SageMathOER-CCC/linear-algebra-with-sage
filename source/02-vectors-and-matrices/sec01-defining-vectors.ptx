@@ -49,7 +49,7 @@
         </p>
         <p>
             Recall that lists in Sage are 0-indexed, meaning that the first element of the list is at
-            index 0. To access a specific component of a vector, we can use vector indexing method. Here how
+            index 0. To access a specific component of a vector, we can use vector indexing method. Here is how
             to access the first component of the vector <m>v</m>.
         </p>
         <sage>
@@ -82,9 +82,9 @@
                 <h>Vectors</h>
                 <h>Field</h>
             </idx>
-            Vectors in Sage can be created in different <em>fields</em> based on the datatype of the
-            components of the vector. While working in a specific field, we need to explicitly pass
-            the field when instantiating a vector using the <c>vector</c> command.
+            Vectors in Sage can be created in different <em>base rings</em> based on the datatype of the
+            components of the vector. While working in a specific ring, we need to explicitly pass
+            the ring when instantiating a vector using the <c>vector</c> command.
         </p>
         <sage>
             <input>
@@ -99,7 +99,7 @@
                 <h>Vectors</h>
                 <h>Ring</h>
             </idx>
-            Note that <m>ZZ</m> is Sage notation for the Integers field. Similarly, <m>QQ</m> is for
+            Note that <m>ZZ</m> is Sage notation for the Integers ring. Similarly, <m>QQ</m> is for
             Rational numbers, <m>RR</m> for Reals, and <m>CC</m> for Complex numbers. The method
             <c>base_ring</c> returns the <em>base ring</em> of the vector.
         </p>
@@ -110,7 +110,7 @@
         </sage>
 
         <p>
-            If the field is omitted, Sage will infer the field from the datatype of the vector components.
+            If the ring type is omitted, Sage will infer the ring from the datatype of the vector components.
         </p>
         <sage>
             <input>
@@ -123,15 +123,15 @@
                 <h>Vectors</h>
                 <h>Complex</h>
             </idx>
-            Sage also supports vectors over the complex field <m>CC</m>. While such vectors are not commonly
+            Sage also supports vectors over the complex ring <m>CC</m>. While such vectors are not commonly
             encountered in elementary linear algebra, they play an essential role in many engineering applications.
             For instance, in signal processing, orthogonal signals are frequently expressed as complex vectors,
             enabling the use of a single transformation matrix to act on the entire set, rather than applying the
             transformation to each signal individually.
         </p>
         <p>
-            To create a vector in the complex field, we can either explicitly specify the field as <m>CC</m>,
-            or implicitly by using complex numbers as components of the vector like below.
+            To create a vector in the complex ring, we can either explicitly specify the ring as <m>CC</m>,
+            or implicitly by using complex numbers as components of the vector as seen below.
         </p>
         <sage>
             <input>
@@ -172,7 +172,7 @@
         </sage>
 
         <p>
-            Note that we can also obtain the same visual representation using Sage default <c>plot</c> method.
+            Note that we can also obtain the same visual representation using the Sage default <c>plot</c> method.
         </p>
         <sage>
             <input>
