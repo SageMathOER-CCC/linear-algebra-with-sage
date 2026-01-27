@@ -6,7 +6,7 @@
     <p>
         In computer science, <term>Data types</term> define the properties of data, and consequently the
         behavior of operations on these data types. Since Sage is built on Python, it naturally inherits
-        all Python's built-in data types. Sage does also introduces new additional and custom classes and
+        all Python's built-in data types. Sage also introduces new custom classes and
         specific data types better-suited and optimized for mathematical computations.
     </p>
 

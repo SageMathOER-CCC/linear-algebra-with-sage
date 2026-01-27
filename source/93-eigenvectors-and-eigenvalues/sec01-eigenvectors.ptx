@@ -2,12 +2,50 @@
     <title>Eigenvectors</title>
     <introduction>
         <p>
-            An eigenvector, of a matrix, is a non-zero vector where multiplication by said matrix does not change its direction.
-            This sage block will generate a gif to demonstrate; you can define a new matrix or leave the values in.
+            An eigenvector, of a matrix <m>A</m>, is a non-zero vector where multiplication by <m>A</m> does not change its direction.
+            We can state this formally as vectors, <m>x</m>, that satisfy the following equation:
         </p>
+        <md number="yes">
+            <mrow> Ax = \lambda x </mrow>
+        </md>
         <p>
-            All eigenvectors exist along the green lines of the gif.
+            Where <m>\lambda</m> is an arbitrary scalar constant.
+            Since multiplication by <m>\lambda</m> does not change the space <m>x</m> inhabits this implies that <m>A:\R^n \rightarrow \R^n</m> or in other words <m>A</m> is square.
         </p>
+
+        <p>
+            This sage block will generate a gif to demonstrate visually; 
+            you can define a new matrix or leave the values in.
+        </p>
+        <note>
+            <title>Graphic Key</title>
+            <dl>
+                <li>
+                    <title>Blue Dots</title>
+                    <p>
+                        The original vectors before being multiplied by <m>A</m>
+                    </p>
+                </li>
+                <li>
+                    <title>Red Dots</title>
+                    <p>
+                        The original vectors being sent to where they end up after being multiplied by <m>A</m>
+                    </p>
+                </li>
+                <li>
+                    <title>Green Arrows</title>
+                    <p>
+                        The calculated eigenvectors of <m>A</m>
+                    </p>
+                </li>
+                <li>
+                    <title>Green Lines</title>
+                    <p>
+                        The lines containing all eigenvectors of> <m>A</m> (eigenspace)
+                    </p>
+                </li>
+            </dl>
+        </note>
         <sage>
             <input>
                 A = matrix([
@@ -47,30 +85,199 @@
             </input>
         </sage>
     </introduction>
-    <subsection xml:id="subsec-eigenvectors-of-matrices">
-        <title>Eigenvectors of Matrices</title>
+    <subsection xml:id="subsec-computation-of-eigenvectors">
+        <title>Computation of Eigenvectors</title>
         <p>
-            We will use the matrix <m>A</m> to demonstrate.
+            In order to find the vectors, <m>x</m>, where the definition holds, we must first find the eigenvalues of <m>A</m>.
+            Then substitute the eigenvalues and row reduce.
         </p>
-        <sage>
-            <input>
-                A = matrix([
-                    [6, 0],
-                    [4, 2]
-                    ])
-                A
-            </input>
-        </sage>
-        <p>
-            We can find its eigenvectors with the <c>eigenvectors_right</c> method.
-        </p>
-        <sage>
-            <input>
-                A.eigenvectors_right()
-            </input>
-        </sage>
-        <p>
-            We will focus on the first tuple in the list that was returned.
-        </p>
+        <subsubsection xml:id="subsubsec-eigenvalues">
+            <title>Eigenvalues</title>
+            <p>
+                From the definition of an eigenvector we arrive at what is referred to as the characteristic equation:
+            </p>
+            <md number="yes">
+                <mrow> \det(A - \lambda I) = 0 </mrow>
+            </md>
+            <p>
+                The values of <m>\lambda</m> for which this equation holds are called the eigenvalues of <m>A</m>.
+            </p>
+            <p>
+                We will use the matrix <m>A</m> to demonstrate.
+            </p>
+            <sage>
+                <input>
+                    A = matrix([
+                        [6, 0],
+                        [4, 2]
+                        ])
+                    A
+                </input>
+            </sage>
+            <p>
+                We will use <c>l</c> to represent <m>\lambda</m>.
+            </p>
+            <sage>
+                <input>
+                    var('l')
+                </input>
+                <output>
+                    
+                </output>
+            </sage>
+            <p>
+                Then define <m>B = A - \lambda I</m>.
+            </p>
+            <sage>
+                <input>
+                    B = A - l * identity_matrix(2)
+                    B
+                </input>
+                <output>
+                    
+                </output>
+            </sage>
+            <p>
+                Then set <m>\det(B) = 0</m> to solve symbolically.
+            </p>
+            <sage>
+                <input>
+                    eq = B.det() == 0
+                    eq
+                </input>
+                <output>
+                    
+                </output>
+            </sage>
+            <p>
+                Then solve <c>eq</c>.
+            </p>
+            <sage>
+                <input>
+                    solve(eq)
+                </input>
+                <output>
+                    
+                </output>
+            </sage>
+            <note>
+                <title>Example by Hand</title>
+                <md number="yes">
+                    <mrow>
+                        \det\left(
+                        \begin{bmatrix}
+                            6 \amp 0 \\
+                            4 \amp 2
+                        \end{bmatrix}
+                        - \lambda
+                        \begin{bmatrix}
+                            1 \amp 0 \\
+                            0 \amp 1
+                        \end{bmatrix}
+                        \right) = 0
+                    </mrow>
+
+                    <mrow> 
+                        \begin{vmatrix}
+                            6 - \lambda \amp 0 \\
+                            4           \amp 2 - \lambda
+                        \end{vmatrix} = 0
+
+                    </mrow>
+
+                    <mrow> (6 - \lambda)(2 - \lambda) + 4 \cdot 0 = 0 </mrow>
+                    <mrow> (6 - \lambda)(2 - \lambda) = 0 </mrow>
+                    <mrow>\lambda_1 = 6, \hspace{12pt} \lambda_2 = 2 </mrow>
+                </md>
+            </note>
+            <p>
+                Sage has the <c>eigenvalues()</c> method to automatically compute the eigenvalues and return them as a list.
+            </p>
+            <sage>
+                <input>
+                    A.eigenvalues()
+                </input>
+                <output>
+                    
+                </output>
+            </sage>
+        </subsubsection>
+        <subsubsection xml:id="subsubsec-using-eigenvalues">
+            <title>Using Eigenvalues</title>
+            <p>
+                Recall the definition of an eigenvector which we used to solve for <m>\lambda</m>.
+                Using these eigenvalues we can create a matrix equation of the form:
+            </p>
+            <md>
+                <mrow> (A - \lambda I) x = 0 </mrow>
+            </md>
+            <p>
+                In the case of our example using <m>A</m> and choosing <m>\lambda = 6</m> this becomes:
+            </p>
+            <md number="yes">
+                <mrow>
+                    \begin{bmatrix}
+                        6 - 6 \amp 0 \\
+                        4 \amp 2 - 6
+                    \end{bmatrix}
+                    \begin{bmatrix}
+                        x_1 \\ x_2
+                    \end{bmatrix}
+                    = 0
+                </mrow>
+            </md>
+            <p>
+                We can then convert this into an augmented matrix and row reduce.
+            </p>
+            <md number="yes">
+                <mrow>
+                    \left[\begin{array}{cc|c}
+                        6 - 6 \amp 0 \amp 0 \\
+                        4 \amp 2 - 6 \amp 0 \\
+                    \end{array}\right]
+                    \sim
+                    \left[\begin{array}{cc|c}
+                        0 \amp 0 \amp 0 \\
+                        1 \amp -1 \amp 0 \\
+                    \end{array}\right]
+                </mrow>
+            </md>
+            <p>
+                Which results in the parameterized equations and corresponding vector:
+            </p>
+            <md number="yes">
+                <mrow> 
+                    \left\{
+                        \begin{array}{c}
+                            x_1 = t \\
+                            x_2 = t
+                        \end{array}
+                     \right. 
+                     \hspace{6pt}
+                     \rightarrow
+                     \hspace{6pt}
+                     t
+                     \begin{bmatrix}
+                        1 \\ 1
+                     \end{bmatrix}
+                </mrow>
+            </md>
+            <p>
+                Recall we chose <m>\lambda = 6</m> so this eigenvector corresponds to that eigenvalue.
+                In order to find the eigenvector corresponding to <m>\lambda = 2</m>, we repeat the process but instead chose <m>\lambda = 2</m>.
+            </p>
+            <p>
+                We can find all eigenvectors of <m>A</m> with the <c>eigenvectors_right()</c> method.
+            </p>
+            <sage>
+                <input>
+                    A.eigenvectors_right()
+                </input>
+            </sage>
+            <p>
+                The output is a list containing elements of the form <c>(e, [v_1, v_2, ... v_n], m)</c>, 
+                where <c>e</c> is the eigenvalue, <c>v_1</c> through <c>v_n</c> are the corresponding eigenvectors, and <c>m</c> is how many times <c>e</c> appears as a root in the characteristic polynomial (also referred to as algebraic multiplicity).
+            </p>
+        </subsubsection>
     </subsection>
 </section>
