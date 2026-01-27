@@ -1,7 +1,7 @@
 <section xml:id="sec-solving-systems-of-equations" xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Solving Systems of Equations</title>
     <p>
-        Sage allows for us to generalize the previous methods to solve systems of equations.
+        Sage allows us to generalize the previous methods to solve systems of equations.
         In order to do this we must first define multiple symbolic variables,
         then we use the <c>solve</c> function as we did before.
     </p>
@@ -46,7 +46,7 @@
         </input>
     </sage>
     <p>
-        In this case, the first argument to <c>solve</c> is a list of equations and the following arguments are the variables being solved for.
+        In this case, the first argument we pass to <c>solve</c> is a list of equations and the following arguments are the variables being solved for.
     </p>
     <sage>
         <input>

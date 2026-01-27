@@ -1,7 +1,7 @@
 <section xml:id="sec-graphing-of-systems" xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Graphing of Systems</title>
     <p>
-        Since each equation defines implicitly a function, we can use <c>implicit_plot</c> to graph each equation in 2D-space.
+        Since each equation implicitly defines a function, we can use <c>implicit_plot</c> to graph each equation in 2D-space.
     </p>
     <sage>
         <input>
@@ -26,7 +26,7 @@
         </input>
     </sage>
     <p>
-        Now the full plot with the equations, the solution, and a legend.
+        Now, the full plot with the equations, the solution, and a legend.
     </p>
     <sage>
         <input>
@@ -36,7 +36,7 @@
         </input>
     </sage>
     <p>
-        We can plot an equations in 3D-space using <c>implicit_plot3d</c>.
+        We can plot equations in 3D-space using <c>implicit_plot3d</c>.
         Here is an example with <m>\textbf{Case I}</m>:
     </p>
     <sage>
