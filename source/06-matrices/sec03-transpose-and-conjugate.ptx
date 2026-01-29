@@ -50,6 +50,7 @@
             <input>
                 A = matrix([[1 + 2*I, 3 - I], [-2*I, 4]])
                 B = A.conjugate()
+                B
             </input>
         </sage>
         <p>

@@ -3,11 +3,11 @@
 <section xml:id="defining-functions" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Defining Functions</title><idx><h>functions (programming)</h></idx>
   <p>
-    Sage comes with many built-in functions. While Math terminology is not always standard, be sure
-    to refer to the documentation to understand the exact functionality of these built-in functions
-    and know how to use them. You can also define custom functions to suit your specific needs. You
-    are welcome to use the custom functions we define in this book. However, since these custom
-    functions are not part of the Sage source code, you will need to copy and paste the functions
+    Sage comes with many built-in functions. Because math terminology is not always standardized, 
+    it is important to refer to the documentation to understand the exact functionality of these 
+    built-in functions and how to use them. You can also define custom functions to suit your 
+    specific needs. You are welcome to use the custom functions we define in this book. However, 
+    since these custom functions are not part of the Sage source code, you will need to copy and paste the functions
     into your Sage environment. In this section, we will explore how to define custom functions and
     use them.
   </p>
@@ -42,7 +42,7 @@
   </sage>
 
   <p>
-    After defining the function above, let's try calling it. :
+    After defining the function above, let's try calling it:
   </p>
   <sage>
     <input>

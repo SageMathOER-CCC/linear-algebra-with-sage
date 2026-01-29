@@ -20,7 +20,7 @@
     </sage>
     <p>
         Observe that the solution obtained means that there are pivot positions in the first,
-        second and third row of the reduced matrix.
+        second and third columns of the reduced matrix.
         We can easily verify this by revisiting the reduced form of the matrix:
     </p>
     <sage>
@@ -29,10 +29,10 @@
         </input>
     </sage>
     <p>
-        We can clearly see the pivot positions in all three first columns.
+        We can clearly see the pivot positions in the first three columns.
     </p>
     <p>
-        Notice that Sage can determine which columns contain the pivot positions in the reduced row echelon form of the matrix without actually showing explicitly this form.
+        Notice that Sage can determine which columns contain the pivot positions in the reduced row echelon form of the matrix without explicitly showing this form.
     </p>
     <p>
         The pivot positions in the reduced row echelon form of the augmented matrix of a linear system are crucial for determining the nature of its solutions.
@@ -49,8 +49,8 @@
         <li>
             <p>
                 If the system is consistent,
-                then the columns of <m>R</m> containing pivot positions correspond to basic variables,
-                while the columns without pivot positions correspond to free variables.
+                then the columns of <m>R</m> containing pivot positions correspond to basic variables (dependent),
+                while the columns without pivot positions correspond to free variables (independent).
             </p>
         </li>
         <li>
