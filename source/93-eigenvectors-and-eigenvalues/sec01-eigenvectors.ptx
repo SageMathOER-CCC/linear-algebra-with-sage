@@ -2,56 +2,22 @@
     <title>Eigenvectors</title>
     <introduction>
         <p>
-            An eigenvector, of a matrix <m>A</m>, is a non-zero vector where multiplication by <m>A</m> does not change its direction.
+            An <term>eigenvector</term>, of a square matrix <m>A</m>, is a non-zero vector where multiplication by <m>A</m> does not change its direction.
             We can state this formally as vectors, <m>x</m>, that satisfy the following equation:
         </p>
-        <md number="yes">
+        <md>
             <mrow> Ax = \lambda x </mrow>
         </md>
         <p>
-            Where <m>\lambda</m> is an arbitrary scalar constant.
-            Since multiplication by <m>\lambda</m> does not change the space <m>x</m> inhabits this implies that <m>A:\R^n \rightarrow \R^n</m> or in other words <m>A</m> is square.
+            Where <m>\lambda</m> is an arbitrary scalar constant, 
+            and valid values of <m>\lambda</m> are referred to as <term>eigenvalues</term>.
         </p>
-
-        <p>
-            This sage block will generate a gif to demonstrate visually; 
-            you can define a new matrix or leave the values in.
-        </p>
-        <note>
-            <title>Graphic Key</title>
-            <dl>
-                <li>
-                    <title>Blue Dots</title>
-                    <p>
-                        The original vectors before being multiplied by <m>A</m>
-                    </p>
-                </li>
-                <li>
-                    <title>Red Dots</title>
-                    <p>
-                        The original vectors being sent to where they end up after being multiplied by <m>A</m>
-                    </p>
-                </li>
-                <li>
-                    <title>Green Arrows</title>
-                    <p>
-                        The calculated eigenvectors of <m>A</m>
-                    </p>
-                </li>
-                <li>
-                    <title>Green Lines</title>
-                    <p>
-                        The lines containing all eigenvectors of> <m>A</m> (eigenspace)
-                    </p>
-                </li>
-            </dl>
-        </note>
         <sage>
             <input>
                 A = matrix([
                         [6, 0],
                         [4, 2]
-                        ])
+                ])
                 def EigenVis2D(T):
                     if T.dimensions() != (2,2): raise Exception('Input must be a 2x2 matrix') #Tests for an appropriate matrix
 
@@ -94,13 +60,14 @@
         <subsubsection xml:id="subsubsec-eigenvalues">
             <title>Eigenvalues</title>
             <p>
-                From the definition of an eigenvector we arrive at what is referred to as the characteristic equation:
+                From the definition of an eigenvector we arrive at what is referred to as the <term>characteristic equation</term>:
             </p>
-            <md number="yes">
+            <md>
                 <mrow> \det(A - \lambda I) = 0 </mrow>
             </md>
             <p>
-                The values of <m>\lambda</m> for which this equation holds are called the eigenvalues of <m>A</m>.
+                The left hand side of this equation will evaluate to a polynomial with <m>\lambda</m> as the variable.
+                This is referred to as a <term>characteristic polynomial</term> and its roots are the eigenvalues of the matrix.
             </p>
             <p>
                 We will use the matrix <m>A</m> to demonstrate.
@@ -162,7 +129,7 @@
             </sage>
             <note>
                 <title>Example by Hand</title>
-                <md number="yes">
+                <md>
                     <mrow>
                         \det\left(
                         \begin{bmatrix}
@@ -214,7 +181,7 @@
             <p>
                 In the case of our example using <m>A</m> and choosing <m>\lambda = 6</m> this becomes:
             </p>
-            <md number="yes">
+            <md>
                 <mrow>
                     \begin{bmatrix}
                         6 - 6 \amp 0 \\
@@ -229,7 +196,7 @@
             <p>
                 We can then convert this into an augmented matrix and row reduce.
             </p>
-            <md number="yes">
+            <md>
                 <mrow>
                     \left[\begin{array}{cc|c}
                         6 - 6 \amp 0 \amp 0 \\
@@ -245,8 +212,17 @@
             <p>
                 Which results in the parameterized equations and corresponding vector:
             </p>
-            <md number="yes">
+            <md>
                 <mrow> 
+                    \left\{
+                       \begin{array}{c}
+                           0 = 0 \\
+                           x_1 - x_2 = 0
+                       \end{array}
+                    \right. 
+                    \hspace{6pt}
+                    \rightarrow
+                    \hspace{6pt}
                     \left\{
                         \begin{array}{c}
                             x_1 = t \\
@@ -263,7 +239,7 @@
                 </mrow>
             </md>
             <p>
-                Recall we chose <m>\lambda = 6</m> so this eigenvector corresponds to that eigenvalue.
+                Recall we chose <m>\lambda = 6</m> so this eigenvector corresponds to the eigenvalue <m>6</m>.
                 In order to find the eigenvector corresponding to <m>\lambda = 2</m>, we repeat the process but instead chose <m>\lambda = 2</m>.
             </p>
             <p>
