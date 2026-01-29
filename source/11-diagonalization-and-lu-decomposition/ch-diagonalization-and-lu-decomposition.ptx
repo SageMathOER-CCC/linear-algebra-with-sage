@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-diagonalization-and-lu-decomposition" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Diagonalization and LU Decomposition</title>
+
+    <introduction xml:id="sm-subsection-diagonalization-and-lu-decomposition">
+        <p>
+            Many problems in linear algebra become simpler when a matrix is written
+            in a special form. Two of the most important such forms are
+            <em>diagonal form</em> and <em>triangular form</em>.
+            In this section, we introduce matrix diagonalization and LU decomposition.
+        </p>
+    </introduction>
+
+    <!-- include sections -->
+    <xi:include href="sec01-diagonalization.ptx" />
+    <xi:include href="sec02-lu-decomposition.ptx" />
+
+</chapter>
