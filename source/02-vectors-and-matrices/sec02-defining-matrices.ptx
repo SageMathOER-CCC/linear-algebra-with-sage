@@ -93,7 +93,7 @@
         </sage>
 
         <p>
-            The entries of the matrix can also be defined programmatically a list comprehension.
+            The entries of the matrix can also be defined programmatically using a list comprehension.
         </p>
         <sage>
             <input>
@@ -127,8 +127,8 @@
             </input>
         </sage>
         <p>
-            To simplify the following commands, let's use a <m>2 \times 3</m> matrix <m>M</m> 
-            where each element is a unique value.
+            We will use the following matrix <m>M</m> 
+            to show how Sage can identify its different parts.
         </p>
         <sage>
             <input>
