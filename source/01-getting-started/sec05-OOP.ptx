@@ -9,8 +9,21 @@
 
   <p>
     <term>Classes</term> act as blueprints that define the structure and behavior of objects. A class specifies the <term>attributes</term> and <term>methods</term> of an object.
-    - An <term>attribute</term> is a variable that stores information about the object.
-    - A <term>method</term> is a function that interacts with or modifies the object.
+  </p>
+  <ul>
+    <li>
+      <p>
+        An <term>attribute</term> is a variable that stores information about the object.
+      </p>
+    </li>
+    <li>
+      <p>
+        A <term>method</term> is a function that interacts with or modifies the object.
+      </p>
+    </li>
+  </ul>
+        
+  <p>
     Although you can create custom classes, many useful classes are already available in Sage and Python, such as those for integers, lists, strings, and graphs.
   </p>
 
