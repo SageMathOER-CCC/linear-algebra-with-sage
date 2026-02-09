@@ -200,7 +200,7 @@
                 </input>
             </sage>
             <p>
-                However the previous equality comparison <c>A*x == b</c> would typically fails because of tiny rounding errors.
+                However the previous equality comparison <c>A*x == b</c> would typically fail because of tiny rounding errors.
             </p>
             <sage>
                 <input>

@@ -70,7 +70,7 @@
                 <li>
                     <p>
                         A <em>diagonal matrix</em> is a square matrix that has zero entries everywhere outside
-                        the <em>main diagonal</em>. Note that a square zero matrix is a diagonal matrices. Sage
+                        the <em>main diagonal</em>. Note that a square zero matrix is a diagonal matrix. Sage
                         offers the command <c>diagonal_matrix([a_1, a_2, ..., a_n])</c> to create a diagonal
                         matrix with diagonal entries <m>a_1, a_2, \ldots, a_n</m> and <m>0</m> elsewhere.
                     </p>
@@ -122,12 +122,21 @@
                         </input>
                     </sage>
                     <p>
-                        Note that Sage does not have these predefined commands to create such matrices, or check if a square
+                        Note that Sage does not have these predefined commands to create triangular matrices, or check if a square
                         matrix is of either type (upper or lower triangular). They can however be obtained by leveraging the
                         <c>LU()</c> method that we will see later on.
                     </p>
                 </li>
             </ul>
         </p>
+        <p>
+            Note that Sage also offers a special method <c>random_matrix()</c> to generate random matrices. For example, the
+            following command generates a random <m>3 \times 4</m> matrix with integer entries between <m>0</m> and <m>9</m>.
+        </p>
+        <sage>
+            <input>
+                random_matrix(ZZ, 3, 4, x=10)
+            </input>
+        </sage>
     </introduction>
 </section>

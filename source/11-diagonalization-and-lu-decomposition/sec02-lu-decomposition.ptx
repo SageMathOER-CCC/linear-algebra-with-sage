@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-lu-decomposition"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>LU Decomposition</title>
+    <introduction xml:id="sm-introduction-lu-decomposition">
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Upper Triangular Matrix</h>
+                <h>Lower Triangular Matrix</h>
+            </idx>
+            The LU decomposition of a matrix <m>A</m> is a factorization of
+            the matrix into a product of a lower triangular matrix <m>L</m>
+            (often with ones on the diagonal) and an upper triangular matrix
+            <m>U</m>. Mathematically, this can be expressed as <m>A = L \times U</m>.
+            This decomposition is useful for solving systems of linear equations
+            and computing the determinant of the matrix.
+        </p>
+
+        <p>
+            LU decomposition is closely related to Gaussian elimination. The matrix
+            <m>L</m> records the multipliers used during elimination, while <m>U</m>
+            is the resulting row-echelon (triangular) matrix.
+        </p>
+
+        <p>
+            <idx>
+                <h>Existence of LU decomposition</h>
+                <h>Pivot</h>
+            </idx>
+            Note that not every matrix admits an LU decomposition without modification.
+            A breakdown occurs when a zero appears in a pivot position during Gaussian
+            elimination. In such cases, row exchanges are required.
+        </p>
+
+        <p>
+            To handle this situation, we introduce <em>pivoting</em>. Pivoting consists
+            of reordering the rows of <m>A</m> so that a suitable nonzero entry is used
+            as a pivot. This leads to the decomposition <m>P A = L U</m>, where <m>P</m>
+            is a permutation matrix representing the row swaps.
+        </p>
+
+        <p>
+            Pivoting improves numerical stability and ensures that an LU-type decomposition
+            exists for a much larger class of matrices.
+        </p>
+
+        <sage>
+            <input>
+                # Define a matrix that requires pivoting
+                A = matrix([[0, 2],
+                            [3, 4]])
+
+                # Compute the LU decomposition with pivoting
+                P, L, U = A.LU()
+
+                print(P)
+                print()
+
+                print(L)
+                print()
+
+                print(U)
+                print()
+
+                # Verify the decomposition
+                P * A == L * U
+            </input>
+        </sage>
+
+        <p>
+            LU decomposition is a fundamental tool for solving linear systems, computing
+            determinants, and performing efficient numerical computations. Unlike
+            diagonalization, LU decomposition applies to a broader class of matrices,
+            especially when pivoting is allowed.
+        </p>
+
+        <p>
+            In Sage, the LU decomposition can be computed using the <c>LU()</c> method
+            (note that Sage implementation of this method returns three matrices: the lower
+            triangular matrix <m>L</m>, the upper triangular matrix <m>U</m>, and an extra
+            permutation matrix <m>P</m>):
+        </p>
+
+        <sage>
+            <input>
+                A = matrix([[41, 37, 47], [61, 31, 59], [71, 73, 79]])
+                P, L, U = A.LU()
+                P # Permutation (or the pivot) matrix
+            </input>
+        </sage>
+        <p>
+            The product of the matrices <m>P</m>, <m>L</m>, and <m>U</m> yields the original matrix <m>A</m>.
+            The matrix <m>P</m> is called the <em>Pivot</em> (or the permutation) matrix, which always has a
+            determinant of 1 (has exactly one <m>1</m> in every row and column). The matrix <m>L</m> is the
+            Lower triangular matrix L. its determinant is equal to the product of the diagonal entries.
+        </p>
+        <sage>
+            <input>
+                print(L, end="\n\n")
+                print(L.determinant())
+            </input>
+        </sage>
+        <p>
+            Similarly, the matrix <m>U</m> is the Upper triangular matrix U. its determinant is also equal
+            to the product of the diagonal entries.
+        </p>
+        <sage>
+            <input>
+                # The upper triangular matrix U
+                U
+            </input>
+        </sage>
+        <p>
+            Note that the LU decomposition is not unique, and there are many different ways to perform it.
+            For instance, we can choose to decomposition with a pivot that has a non-zero determinant (also
+            equal to 1 in this case):
+        </p>
+        <sage>
+            <input>
+                P, L, U = A.LU(pivot='nonzero')
+                print(P)
+                print('-'*7+'\n',P.det())
+            </input>
+        </sage>
+        <p>
+            With <em>partial</em> pivoting, every entry of <m>L</m> will have absolute value of <m>1</m> or less.
+        </p>
+        <sage>
+            <input>
+                P, L, U = A.LU(pivot='partial')
+                L
+            </input>
+        </sage>
+        <p>
+            Additionally, Sage offers different ways to format the display of the result of the LU decomposition.
+        </p>
+        <sage>
+            <input>
+                P, L, U = A.LU(format='plu')
+                print(P)
+                print()
+
+                print(L)
+                print()
+
+                print(U)
+                print()
+            </input>
+        </sage>
+        <p>
+            And for a slightly compact format:
+        </p>
+        <sage>
+            <input>
+                P, M = A.LU(format='compact')
+                print(P)  # only display the diagonal entrees
+                print()
+                print(M)  # combines the upper and lower triangular matrices
+            </input>
+        </sage>
+
+        <p>
+            Note that every square matrix over the complex numbers can be written
+            in an upper triangular form (for example, via the <em>Schur</em> decomposition),
+            but this does not imply that the matrix is diagonalizable.
+        </p>
+
+        <p>
+            <idx>
+                <h>Numerical instability</h>
+                <h>Pivoting</h>
+                <h>Floating-point arithmetic</h>
+            </idx>
+            In numerical computations, LU decomposition without pivoting can be unstable.
+            Even when an LU decomposition exists theoretically, small pivot values can
+            lead to large rounding errors in floating-point arithmetic.
+        </p>
+
+        <p>
+            For this reason, practical algorithms almost always use <em>partial pivoting</em>,
+            leading to a decomposition of the form <m>P A = L U</m>. Ignoring pivoting can
+            result in inaccurate solutions when solving linear systems numerically.
+        </p>
+
+        <sage>
+            <input>
+                # A matrix that is theoretically invertible
+                # but problematic without pivoting
+                A = matrix(RDF, [[1e-16, 1],
+                                [1,     1]])
+
+                # LU decomposition with pivoting
+                P, L, U = A.LU()
+                print(P)
+                print()
+
+                print(L)
+                print()
+
+                print(U)
+                print()
+
+                # Verify the decomposition
+                P * A - L * U
+            </input>
+        </sage>
+
+        <p>
+            Once again, it is important to distinguish between exact arithmetic (as used by Sage
+            with symbolic or rational entries) and numerical computation with floating-point numbers.
+            A decomposition that is exact in theory may behave poorly when implemented numerically
+            without proper safeguards.
+        </p>
+    </introduction>
+    <!-- TODO. Given a matrix that accept the strict mathematic definition of LU decomposition, what would the P
+        matrix contain? (let there be L and U, A=L*U, then what is P in P,L,U = A.LU() ?)
+        Q: given that not every matrix has an LU decomposition, does all matrices have PLU decomposition ?
+        Q: LU decomposition of a matrix is unique, but PLU decomposition **may** not be unique
+        TODO. how is LU decomposition related to diagonalization ?
+    -->
+</section>

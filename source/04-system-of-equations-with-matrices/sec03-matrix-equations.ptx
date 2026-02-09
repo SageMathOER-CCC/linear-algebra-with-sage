@@ -39,7 +39,7 @@
     <subsection xml:id="subsec-case-i">
         <title>Case I</title>
         <p>
-            Let's now solve the <m>\textbf{Case I}</m> system applying the matrix equation method.
+            Now, let's solve the <m>\textbf{Case I}</m> system applying the matrix equation method.
         </p>
         <sage>
             <input>
@@ -59,7 +59,7 @@
     <subsection xml:id="subsec-case-ii">
         <title>Case II</title>
         <p>
-            Let's solve now the <m>\textbf{Case II}</m> system applying the matrix equation method.
+            Now, let's solve the <m>\textbf{Case II}</m> system applying the matrix equation method.
         </p>
         <sage>
             <input>
@@ -81,7 +81,7 @@
     <subsection xml:id="subsec-case-iii">
         <title>Case III</title>
         <p>
-            Let's solve now the <m>\textbf{Case III}</m> system applying the matrix equation method.
+            Now, let's solve the <m>\textbf{Case III}</m> system applying the matrix equation method.
         </p>
     </subsection>
     <sage>
