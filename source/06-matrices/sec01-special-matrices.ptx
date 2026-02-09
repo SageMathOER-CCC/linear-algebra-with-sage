@@ -129,5 +129,14 @@
                 </li>
             </ul>
         </p>
+        <p>
+            Note that Sage also offers a special method <c>random_matrix()</c> to generate random matrices. For example, the
+            following command generates a random <m>3 \times 4</m> matrix with integer entries between <m>0</m> and <m>9</m>.
+        </p>
+        <sage>
+            <input>
+                random_matrix(ZZ, 3, 4, x=10)
+            </input>
+        </sage>
     </introduction>
 </section>

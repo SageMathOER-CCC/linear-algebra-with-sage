@@ -13,14 +13,14 @@
             on them. A matrix is an <m>m \times n</m> rectangular array of numbers:
         </p>
         <p>
-            <me>
+            <m>
                 \begin{bmatrix}
                 a_{11} &amp; a_{12} &amp; \dots &amp; a_{1n} \\
                 a_{21} &amp; a_{22} &amp; \dots &amp; a_{2n} \\
                 \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
                 a_{m1} &amp; a_{m2} &amp; \dots &amp; a_{mn}
                 \end{bmatrix}
-            </me>
+            </m>
         </p>
         <p>
             where <m>m</m> is the number of rows and <m>n</m> is the number of columns. Each

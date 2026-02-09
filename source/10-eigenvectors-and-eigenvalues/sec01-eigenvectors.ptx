@@ -1,0 +1,189 @@
+<section xml:id="sec-eigenvectors" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Eigenvectors</title>
+    <introduction>
+        <p>
+            An <term>eigenvector</term>, of a square matrix <m>A</m>, is a non-zero vector where multiplication by <m>A</m> does not change its direction.
+            We can state this formally as vectors, <m>x</m>, that satisfy the following equation:
+        </p>
+        <md>
+            <mrow> Ax = \lambda x </mrow>
+        </md>
+        <p>
+            Here, <m>\lambda</m> is a scalar known as an <term>eigenvalue</term> 
+            associated with the eigenvector <m>x</m>.
+        </p>
+        <p>
+            In order to find the vectors, <m>x</m>, where the definition holds, 
+            we must first find the eigenvalues of <m>A</m>.
+            Then substitute the eigenvalues and row reduce.
+        </p>
+    </introduction>
+    <subsection xml:id="subsec-eigenvalues">
+        <title>Eigenvalues</title>
+        <p>
+            From the definition of an eigenvector we arrive 
+            at what is referred to as the <term>characteristic equation</term>:
+        </p>
+        <md>
+            <mrow> \det(A - \lambda I) = 0 </mrow>
+        </md>
+        <p>
+            The left hand side of this equation will evaluate to a polynomial with <m>\lambda</m> as the variable.
+            This is referred to as a <term>characteristic polynomial</term> and its roots are the eigenvalues of the matrix.
+        </p>
+        <p>
+            We will use the matrix <m>A</m> to demonstrate.
+        </p>
+        <sage>
+            <input>
+                A = matrix([
+                    [6, 0],
+                    [4, 2]
+                    ])
+                A
+            </input>
+        </sage>
+        <p>
+            First we will set <m>\lambda</m> as a variable.
+        </p>
+        <sage>
+            <input>
+                var('λ')
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            Then initialize <m>B = A - \lambda I</m>.
+        </p>
+        <sage>
+            <input>
+                B = A - λ * identity_matrix(2)
+                B
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            Then initialize <c>eq</c> with <m>\det(B) = 0</m> to solve symbolically.
+        </p>
+        <sage>
+            <input>
+                eq = B.det() == 0
+                eq
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            Then solve <c>eq</c>.
+        </p>
+        <sage>
+            <input>
+                solve(eq)
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            Sage has the <c>eigenvalues()</c> method to automatically compute the eigenvalues and return them as a list.
+        </p>
+        <sage>
+            <input>
+                A.eigenvalues()
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            We can use the <c>characteristic_polynomial()</c> 
+            method to directly obtain the characteristic polynomial, 
+            in terms of <m>x</m>, of a matrix.
+        </p>
+        <sage>
+            <input>
+                A.characteristic_polynomial()
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+    </subsection>
+    <subsection xml:id="subsec-computation-of-eigenvectors">
+        <title>Computation of Eigenvectors</title>
+        <p>
+            Recall the definition of an eigenvector which we used to solve for <m>\lambda</m>.
+            Using these eigenvalues we can create a matrix equation of the form:
+        </p>
+        <md>
+            <mrow> (A - \lambda I) x = 0 </mrow>
+        </md>
+        <note>
+        <title>Proof</title>
+            <p>
+                From the definition of eigenvectors we get:
+            </p>
+            <md>
+                <mrow> Ax = \lambda x </mrow>
+            </md>
+            <p>
+                Which becomes:
+            </p>
+            <md>
+                <mrow> Ax - \lambda x = 0 </mrow>
+                <mrow> Ax - \lambda I x = 0 </mrow>
+                <mrow> (A - \lambda I) x = 0 </mrow>
+            </md>
+            <p>
+                Due to the assumption that <m>x \neq 0</m>,
+                this requires that <m>\det(A - \lambda I) = 0</m> 
+                for the equation above to hold.
+            </p>
+        </note>
+        <p>
+            We can obtain <m>x</m> by substituting a value of <m>\lambda</m>, we will chose <m>\lambda = 6</m>. 
+        </p>
+        <sage>
+            <input>
+                B = A - 6 * identity_matrix(2)
+                B
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            Then using the <c>kernel()</c> method sage can solve this equation for us.
+            Since sage uses the left-kernel while our formula uses right multiplication, 
+            we must transpose <m>B</m> beforehand.
+        </p>
+        <sage>
+            <input>
+                B.transpose().kernel()
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            We can find all eigenvectors of <m>A</m> with the <c>eigenvectors_right()</c> method.
+        </p>
+        <sage>
+            <input>
+                A.eigenvectors_right()
+            </input>
+        </sage>
+        <p>
+            The output is a list containing elements of the form <c>(e, [v_1, v_2, ... v_n], m)</c>, 
+            where <c>e</c> is the eigenvalue, 
+            <c>v_1</c> through <c>v_n</c> are the corresponding eigenvectors, 
+            and <c>m</c> is how many times <c>e</c> 
+            appears as a root in the characteristic polynomial (also referred to as algebraic multiplicity).
+        </p>
+    </subsection>
+</section>

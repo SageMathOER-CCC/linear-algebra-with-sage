@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-matrix-diagonalization"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Diagonalization of a Matrix</title>
+    <introduction xml:id="sm-introduction-diagonalization">
+        <p>
+            <idx>
+                <h>Diagonalization</h>
+                <h>Diagonal matrix</h>
+                <h>Change of basis</h>
+            </idx>
+            A square matrix <m>A</m> is said to be <em>diagonalizable</em> if it can be written in the form
+            <m>P^{-1} A P = D</m>, where <m>D</m> is a diagonal matrix whose diagonal entries are eigenvalues
+            of <m>A</m>, and <m>P</m> is an invertible matrix whose columns are eigenvectors of <m>A</m> (Note
+            that <m>P^{-1}</m> exists only if the eigenvectors are linearly independent). Equivalently, this
+            relation can be written as <m>A = P D P^{-1}.</m>
+        </p>
+
+        <p>
+            Conceptually, diagonalization represents a <em>change of basis</em>. In the basis formed by the
+            eigenvectors of <m>A</m>, the linear transformation associated with <m>A</m> acts simply by scaling
+            each coordinate by an eigenvalue.
+        </p>
+
+        <p>
+            Note that not every square matrix can be diagonalized. A matrix <m>A</m> is diagonalizable if and
+            only if it has enough linearly independent eigenvectors to form a basis of the vector space. In
+            particular, an <m>n \times n</m> matrix must have <m>n</m> linearly independent eigenvectors.
+        </p>
+
+        <p>
+            When diagonalization is possible, it is useful for computing matrix powers, solving systems of
+            differential equations, and understanding the structure of linear transformations. To check if a
+            matrix is diagonalizable, Sage provides the built-in function <c>is_diagonalizable()</c>.
+        </p>
+        <sage>
+            <input>
+                A = matrix(QQ, [
+                    [4, 1],
+                    [0, 2],
+                ])
+
+                A.is_diagonalizable()
+            </input>
+        </sage>
+
+        <p>
+            To perform diagonalization of a diagonalizable matrix <m>A</m>, Sage provides the matrix
+            built-in function <c>diagonalization()</c> returning a tuple <m>(P, D)</m> where <m>P</m>
+            is the matrix of eigenvectors and <m>D</m> is the diagonal matrix of eigenvalues.
+        </p>
+        <sage>
+            <input>
+                A = matrix(QQ, [
+                    [4, 1],
+                    [0, 2],
+                ])
+
+                D, P = A.diagonalization()
+
+                print(D)
+                print()
+                print(P)
+            </input>
+        </sage>
+
+        <p>
+            Alternatively, we could leverage Sage built-in <c>eigenmatrix_right()</c> method to diagonalize a matrix:
+        </p>
+        <sage>
+            <input>
+                D, P = A.eigenmatrix_right()
+                print(D)
+                print()
+                print(P)
+            </input>
+        </sage>
+
+        <p>
+            We can then verify that indeed <m> A * P = P * D</m>.
+        </p>
+        <sage>
+            <input>
+                A * P == P * D
+            </input>
+        </sage>
+
+        <p>
+            Similary, we can assert that <m> D = P^{-1} * A * P</m>
+        </p>
+        <sage>
+            <input>
+                D == P.inverse() * A * P
+            </input>
+        </sage>
+
+        <p>
+            <idx>
+                <h>Non-diagonalizable matrix</h>
+                <h>Defective matrix</h>
+            </idx>
+            A frequent mistake is to assume that every square matrix is diagonalizable.
+            This is not true. A matrix may have eigenvalues but still fail to have enough
+            linearly independent eigenvectors. Such matrices are sometimes called <em>defective</em>.
+        </p>
+
+        <p>
+            For example, a matrix with a repeated eigenvalue may have an eigenspace
+            of dimension smaller than the algebraic multiplicity of that eigenvalue.
+            In this case, no matrix <m>P</m> with independent eigenvectors exists,
+            and diagonalization is impossible.
+        </p>
+
+        <sage>
+            <input>
+                # A matrix with a repeated eigenvalue
+                A = matrix(QQ, [
+                    [1, 1],
+                    [0, 1],
+                ])
+
+                A.eigenvalues()
+                A.eigenvectors_right()
+
+                # Attempt diagonalization
+                A.is_diagonalizable()
+            </input>
+        </sage>
+    </introduction>
+</section>

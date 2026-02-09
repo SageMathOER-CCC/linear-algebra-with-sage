@@ -1,6 +1,7 @@
 # Default owners for the entire repository
-* @linearalgebrateam
+* @hcolmanccc
+* @sagemath-linearalgebra-spring-2026
 
 # Owners for a specific branches
 # Pull requests to the 'main' branch will request review from
-main @linearalgebrateam
+main @sagemath-linearalgebra-spring-2026
