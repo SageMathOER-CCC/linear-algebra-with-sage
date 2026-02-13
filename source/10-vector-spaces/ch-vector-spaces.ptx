@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-vector-spaces" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Vector Spaces</title>
+
+    <introduction xml:id="sm-subsection-vector-spaces">
+        <p>PLACEHOLDER</p>
+    </introduction>
+
+    <!-- include sections -->
+    <xi:include href="sec01-definition.ptx" />
+    <xi:include href="sec02-subspaces.ptx" />
+    <xi:include href="sec03-spans.ptx" />
+    <xi:include href="sec04-linear-independence.ptx" />
+    <xi:include href="sec05-basis-and-dimension.ptx" />
+    <xi:include href="sec06-coordinates.ptx" />
+    <xi:include href="sec07-gram-schmidt-method.ptx" />
+
+</chapter>
