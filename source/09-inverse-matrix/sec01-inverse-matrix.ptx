@@ -2,6 +2,7 @@
 
 <section xml:id="sec-inverse-matrix" xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Inverse Matrix</title>
+    <!-- Invertible Matrices -->
     <p>
         Let <m>A</m> be a square matrix.
         A matrix <m>B</m> is called an inverse of <m>A</m> if <m>AB = I</m> and <m>BA = I</m>, 
