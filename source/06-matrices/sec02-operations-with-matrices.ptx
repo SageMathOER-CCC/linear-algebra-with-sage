@@ -110,15 +110,15 @@
         <sage>
             <input>
                 # Matrix-matrix multiplication
-                C = matrix([[1, 4, 7],
+                A = matrix([[1, 4, 7],
                             [2, 5, 8],
                             [3, 6, 9]])
 
-                D = matrix([[1, 4, 7, 2, 9],
+                B = matrix([[1, 4, 7, 2, 9],
                             [0, 3, 5, 8, 6],
                             [9, 1, 0, 4, 2]])
 
-                C * D
+                A * B
             </input>
         </sage>
 

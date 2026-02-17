@@ -89,6 +89,14 @@
   </preface>
 
   <colophon>
+    <!-- TODO. revisit and fix why the link to the pdf is not being rendered here (but works fine in the backmatter/colophon) -->
+    <p>
+      This book was authored in <pretext /> and is available for free
+      download in PDF format by clicking <url
+        href="https://github.com/SageMathOER-CCC/linear-algebra-with-sage/blob/release/output/print/manuscript.pdf">
+      here</url>.
+    </p>
+
     <website>
       <url href="https://github.com/SageMathOER-CCC/linear-algebra-with-sage">GitHub Repository</url>
     </website>

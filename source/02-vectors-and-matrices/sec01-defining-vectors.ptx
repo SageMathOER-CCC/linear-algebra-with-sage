@@ -99,8 +99,8 @@
                 <h>Vectors</h>
                 <h>Ring</h>
             </idx>
-            Note that <m>ZZ</m> is Sage notation for the Integers ring. Similarly, <m>QQ</m> is for
-            Rational numbers, <m>RR</m> for Reals, and <m>CC</m> for Complex numbers. The method
+            Note that <m>ZZ</m> is Sage notation for Integer numbers. Similarly, <m>QQ</m> is for
+            Rational numbers, <m>RR</m> for Real numbers, and <m>CC</m> for Complex numbers. The method
             <c>base_ring</c> returns the <em>base ring</em> of the vector.
         </p>
         <sage>
@@ -123,14 +123,14 @@
                 <h>Vectors</h>
                 <h>Complex</h>
             </idx>
-            Sage also supports vectors over the complex ring <m>CC</m>. While such vectors are not commonly
+            Sage also supports complex vectors. While such vectors are not commonly
             encountered in elementary linear algebra, they play an essential role in many engineering applications.
             For instance, in signal processing, orthogonal signals are frequently expressed as complex vectors,
             enabling the use of a single transformation matrix to act on the entire set, rather than applying the
             transformation to each signal individually.
         </p>
         <p>
-            To create a vector in the complex ring, we can either explicitly specify the ring as <m>CC</m>,
+            To create a vector whose components are complex numbers, we can either explicitly specify the ring as <m>CC</m>,
             or implicitly by using complex numbers as components of the vector as seen below.
         </p>
         <sage>
