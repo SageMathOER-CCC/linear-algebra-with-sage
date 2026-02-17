@@ -15,25 +15,25 @@
             other matrices (matrix multiplication). Addition and scalar multiplication are performed
             element-wise, analogous to the corresponding operations on vectors.
         </p>
+        <me>
+            Let\  A = 
+            \begin{bmatrix}
+            a_{ij}
+            \end{bmatrix} 
+            \ and\ B = 
+            \begin{bmatrix}
+            b_{ij}
+            \end{bmatrix}
+            \ be\ m\times n\ matrices. 
+        </me>
+        
+        <me>
+        A + B = 
+        \begin{bmatrix}
+        a_{ij} + b_{ij} 
+        \end{bmatrix}
+        </me>
 
-        <md>
-        <mrow>
-            A=
-            \begin{bmatrix}
-                a_{11} &amp; a_{12} &amp; \dots &amp; a_{1n} \\
-                a_{21} &amp; a_{22} &amp; \dots &amp; a_{2n} \\
-                \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-                a_{m1} &amp; a_{m2} &amp; \dots &amp; a_{mn}
-            \end{bmatrix}
-            B=
-            \begin{bmatrix}
-                b_{11} &amp; b_{12} &amp; \dots &amp; b_{1n} \\
-                b_{21} &amp; b_{22} &amp; \dots &amp; b_{2n} \\
-                \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-                b_{m1} &amp; b_{m2} &amp; \dots &amp; b_{mn}
-            \end{bmatrix}
-        </mrow>
-    </md>
         <sage>
             <input>
                 # Defining two 3x3 matrices
@@ -44,12 +44,27 @@
                 A + B
             </input>
         </sage>
+
+         <me>
+        A - B = 
+        \begin{bmatrix}
+        a_{ij} - b_{ij} 
+        \end{bmatrix}
+        </me>
+
         <sage>
             <input>
                 # Matrix subtraction
                 A - B
             </input>
         </sage>
+
+         <me>
+        kA = 
+        \begin{bmatrix}
+        ka_{ij} 
+        \end{bmatrix}
+        </me>
         <sage>
             <input>
                 # Scalar multiplication
@@ -65,67 +80,33 @@
             Matrix multiplication is an operation between two matrices where the rows of the first
             matrix are multiplied (<em>dot product</em>) by the columns of the second matrix to produce
             the matrix product.
-        <md>
-            <mrow>
-                A=
-                \begin{bmatrix}
-                    a_{11} &amp; a_{12} &amp; \dots &amp; a_{1n} \\
-                    a_{21} &amp; a_{22} &amp; \dots &amp; a_{2n} \\
-                    \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-                    a_{m1} &amp; a_{m2} &amp; \dots &amp; a_{mn}
-                \end{bmatrix}
-                B=
-                \begin{bmatrix}
-                    b_{11} &amp; b_{12} &amp; \dots &amp; b_{1m} \\
-                    b_{21} &amp; b_{22} &amp; \dots &amp; b_{2m} \\
-                    \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-                    b_{n1} &amp; b_{n2} &amp; \dots &amp; b_{nm}
-                \end{bmatrix}
-            </mrow>
-        </md>
-        <md>
-            <mrow>
-                c_{ij} = \sum_{k=1}^{n} a_{ik}b_{kj}
-            </mrow>
-        </md>
-
-        <md>
-            <mrow>
-                C = AB = \begin{bmatrix}
-                c_{11} \amp c_{12} \amp \dots \amp c_{1m} \\
-                c_{21} \amp c_{22} \amp \dots \amp c_{2m} \\
-                \vdots \amp \vdots \amp \ddots \amp \vdots \\
-                c_{m1} \amp c_{m2} \amp \dots \amp c_{mm}
-                \end{bmatrix}
-            </mrow>
-        </md>
-            
-            <md>
-            <mrow>
-               C =
-            \begin{bmatrix}
-                \sum_{k=1}^{n} a_{1k}b_{k1} &amp;
-                \sum_{k=1}^{n} a_{1k}b_{k2} &amp;
-                \cdots &amp;
-                \sum_{k=1}^{n} a_{1k}b_{kp} \\
-                \sum_{k=1}^{n} a_{2k}b_{k1} &amp;
-                \sum_{k=1}^{n} a_{2k}b_{k2} &amp;
-                \cdots &amp;
-                \sum_{k=1}^{n} a_{2k}b_{kp} \\
-                \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-                \sum_{k=1}^{n} a_{mk}b_{k1} &amp;
-                \sum_{k=1}^{n} a_{mk}b_{k2} &amp;
-                \cdots &amp;
-                \sum_{k=1}^{n} a_{mk}b_{kp}
-            \end{bmatrix}
-            </mrow>
-            </md>
-
-            
              For the multiplication to be defined, the number of columns in the first matrix must
             equal the number of rows in the second matrix. The resulting matrix has the same number of
             rows as the first matrix and the same number of columns as the second matrix.
         </p>
+         <me>
+            Let\  C = 
+            \begin{bmatrix}
+            c_{ij}
+            \end{bmatrix} 
+            \ be\ an\ m\times p\; matrix\ 
+            \ and\ D = 
+            \begin{bmatrix}
+            d_{ij}
+            \end{bmatrix}
+            \ an\; p\times n\ matrix. 
+        </me>
+        <me>
+        CD = 
+        \begin{bmatrix}
+        d_{ij}
+        \end{bmatrix}
+        </me>
+        
+        <me>
+        \ where\ d_{ij} = \sum_{k=1}^p c_{ik}d_{kj}.
+        </me>
+
         <sage>
             <input>
                 # Matrix-matrix multiplication
