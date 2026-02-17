@@ -19,7 +19,7 @@
         </p>
     </introduction>
     <subsection xml:id="subsec-eigenvalues">
-        <title>Eigenvalues</title>
+        <title>Calculation of Eigenvectors</title>
         <p>
             From the definition of an eigenvector we arrive 
             at what is referred to as the <term>characteristic equation</term>:
@@ -67,7 +67,7 @@
             </output>
         </sage>
         <p>
-            Then initialize <c>eq</c> with <m>\det(B) = 0</m> to solve symbolically.
+            Then initialize variable eq with <m>\det(B) = 0</m> to solve symbolically.
         </p>
         <sage>
             <input>
@@ -79,7 +79,7 @@
             </output>
         </sage>
         <p>
-            Then solve <c>eq</c>.
+            Then solve eq.
         </p>
         <sage>
             <input>
@@ -101,9 +101,10 @@
             </output>
         </sage>
         <p>
-            We can use the <c>characteristic_polynomial()</c> 
+            We can use the <c>characteristic_polynomial()</c> or <c>charpoly()</c>
             method to directly obtain the characteristic polynomial, 
-            in terms of <m>x</m>, of a matrix.
+            in terms of <m>x</m>, of a matrix. Using either method will get us the same 
+            output.
         </p>
         <sage>
             <input>
@@ -123,28 +124,7 @@
         <md>
             <mrow> (A - \lambda I) x = 0 </mrow>
         </md>
-        <note>
-        <title>Proof</title>
-            <p>
-                From the definition of eigenvectors we get:
-            </p>
-            <md>
-                <mrow> Ax = \lambda x </mrow>
-            </md>
-            <p>
-                Which becomes:
-            </p>
-            <md>
-                <mrow> Ax - \lambda x = 0 </mrow>
-                <mrow> Ax - \lambda I x = 0 </mrow>
-                <mrow> (A - \lambda I) x = 0 </mrow>
-            </md>
-            <p>
-                Due to the assumption that <m>x \neq 0</m>,
-                this requires that <m>\det(A - \lambda I) = 0</m> 
-                for the equation above to hold.
-            </p>
-        </note>
+        
         <p>
             We can obtain <m>x</m> by substituting a value of <m>\lambda</m>, we will chose <m>\lambda = 6</m>. 
         </p>
@@ -158,13 +138,13 @@
             </output>
         </sage>
         <p>
-            Then using the <c>kernel()</c> method sage can solve this equation for us.
-            Since sage uses the left-kernel while our formula uses right multiplication, 
-            we must transpose <m>B</m> beforehand.
+            Then using the <c>right_kernel()</c> method Sage can solve this equation for us.
+            Since Sage uses the left-kernel while our formula uses right multiplication, 
+            we must specify to use right-kernel.
         </p>
         <sage>
             <input>
-                B.transpose().kernel()
+                B.right_kernel()
             </input>
             <output>
                 
