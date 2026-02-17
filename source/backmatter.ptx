@@ -41,14 +41,6 @@
     </biblio>
   </references>
 
-  <colophon>
-    <p>
-      <m>\textbf{PDF Download}:</m> This book was authored in <pretext /> and is available for free
-      download in PDF format by clicking <url
-        href="https://github.com/SageMathOER-CCC/linear-algebra-with-sage/blob/release/output/print/manuscript.pdf">
-      here</url>.</p>
-  </colophon>
-
   <index>
     <title>Index</title>
     <index-list />
