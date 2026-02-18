@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-subspaces"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Subspaces</title>
+    <introduction xml:id="sm-introduction-subspaces">
+        <p>
+            A <term>subspace</term> is a vector space that is contained within another, 
+            larger vector space. 
+            For a vector space, <m>V</m>,
+            a subset, <m>W \subset V</m>, 
+            is a subspace if it satisfies the axioms of a vector space 
+            under the same operations of <m>V</m>, 
+            denoted as <m>W \leq V</m>.
+        </p>
+        <p>
+            For a subset, <m>W</m>, of a vector space, <m>V</m>,
+            to test if <m>W \leq V</m>,
+            we only need to ensure the following hold:
+        </p>
+        <dl>
+            <li>
+                <title>Contains Zero Vector</title>
+                <p>
+                    The zero vector of <m>V</m> is in <m>W</m>.
+                </p>
+            </li>
+            <li>
+                <title>Closure Under Addition</title>
+                <p>
+                    For all vectors <m>u, w \in W</m>, 
+                    their sum <m>u + w</m> is also in <m>W</m>.
+                </p>
+            </li>
+            <li>
+                <title>Closure Under Scalar Multiplication</title>
+                <p>
+                    For any scalar <m>a \in \R</m> and any vector <m>u \in W</m>, 
+                    the product <m>a * u</m> is also in <m>W</m>.
+                </p>
+            </li>
+        </dl>
+    </introduction>
+    <p>
+        In Sage, we can create a subspace by providing a set
+        of vectors that form a basis for it. 
+        For example, 
+        let's define a subspace of <m>\R^3</m> that is spanned by the vectors 
+        <m>(1, 2, 3)</m> and <m>(4, 5, 6)</m>.
+    </p>
+    <sage>
+        <input>
+            V = VectorSpace(RR, 3)
+            W = V.subspace([vector([1, 2, 3]), vector([4, 5, 6])])
+            W
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        We can then verify that <m>W</m> is a subspace of <m>V</m>.
+    </p>
+    <sage>
+        <input>
+            W.is_subspace(V)
+        </input>
+        <output>
+
+        </output>
+    </sage>
+</section>
