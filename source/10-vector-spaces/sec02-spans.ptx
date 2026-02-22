@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-spans"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Spans</title>
+    <introduction xml:id="sm-introduction-spans">
+        <p>
+            The <term>span</term> of a set of vectors is the set
+            of all possible linear combinations of those vectors. 
+            It can be thought of as all the points in space that 
+            can be reached by scaling and adding the vectors in the set. 
+        </p>
+        <p>
+            If <m>S = \{v_1, v_2, \dots, v_k\}</m> is a set of vectors 
+            in a vector space <m>V</m>, 
+            then the span of <m>S</m>, denoted as <m>\operatorname{span}(S)</m>, is the set of all vectors of the form
+            <me>a_1 v_1 + a_2 v_2 + \dots + a_k v_k</me>
+            where <m>a_1, a_2, \dots, a_k</m> are scalars.
+        </p>
+    </introduction>
+    <p>
+        In Sage, 
+        the <c>span</c> command can be used to create the set of vectors
+        that can be represented by linear combinations of these vectors. 
+        Let's find the span of the vectors <m>(1, -1, 0)</m> and <m>(0, 1, -1)</m> in <m>\R^3</m>.
+    </p>
+    <sage>
+        <input>
+            V = VectorSpace(RR, 3)
+            S = V.span([vector([1, -1, 0]), vector([0, 1, -1])])
+            S
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        We can now check if other vectors lie within this span. 
+        For example, let's test if the vector <m>u = (2, 0, -2)</m>
+        is in the span <m>S</m>.
+    </p>
+    <sage>
+        <input>
+            u = vector([2, 0, -2])
+            u in S
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        It is, because <m>u = 2 * (1, -1, 0) + 2 * (0, 1, -1)</m>. 
+    </p>
+    <p>
+        Now let's test a vector that is not in the span.
+    </p>
+    <sage>
+        <input>
+            v = vector([1, 1, 1])
+            v in S
+        </input>
+        <output>
+
+        </output>
+    </sage>
+</section>

@@ -4,6 +4,62 @@
     xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Basis and Dimension</title>
     <introduction xml:id="sm-introduction-basis-and-dimension">
-        <p>PLACEHOLDER</p>
+        <p>
+            A set, <m>B_V</m>, that is a <term>basis</term> of a vector space, 
+            <m>V</m>, if <m>B_V</m> is both linearly independent and spans the entire space, 
+            <m>\operatorname{span}(B_V) = V</m>. 
+            The number of vectors in a basis is called the <term>dimension</term>
+            of the vector space and 
+            all sets that form a basis, of the same space, 
+            are of equal size. 
+        </p>
     </introduction>
+    <p>
+        Sage implicitly computes the basis and dimension 
+        of any subspace with the <c>span</c> command. 
+        Let's start with a set of vectors that might be 
+        linearly dependent and find the basis for the space they span.
+    </p>
+    <sage>
+        <input>
+            V = VectorSpace(RR, 4)
+            # This set is linearly dependent
+            vectors = [
+                vector([ 1,  2,  0,  1]),
+                vector([-1, -2,  0, -1]),
+                vector([ 0,  1,  1,  0]),
+                vector([ 1,  3,  1,  1])
+            ]
+            S = V.span(vectors)
+            S
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        Even though we started with four vectors, 
+        the subspace they span is only two dimensional. 
+        We can see the minimal set of vectors that form the 
+        basis for this subspace using the <c>basis</c> command.
+    </p>
+    <sage>
+        <input>
+            S.basis()
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        The <c>dimension</c> command simply returns the number of vectors in the basis.
+    </p>
+    <sage>
+        <input>
+            S.dimension()
+        </input>
+        <output>
+            
+        </output>
+    </sage>
 </section>

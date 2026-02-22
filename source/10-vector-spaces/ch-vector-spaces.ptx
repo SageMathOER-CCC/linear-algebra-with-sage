@@ -4,16 +4,22 @@
     <title>Vector Spaces</title>
 
     <introduction xml:id="sm-subsection-vector-spaces">
-        <p>PLACEHOLDER</p>
+        <p> 
+            A vector space is a fundamental concept in linear algebra. 
+            They are generalizations of <m>\R^n</m>, 
+            which we have been using up until this point.
+            These generalizations aim to maintain
+            the desirable arithmetic properties that <m>\R^n</m> has. 
+        </p>
     </introduction>
 
     <!-- include sections -->
     <xi:include href="sec01-definition.ptx" />
-    <xi:include href="sec02-subspaces.ptx" />
-    <xi:include href="sec03-spans.ptx" />
-    <xi:include href="sec04-linear-independence.ptx" />
+    <xi:include href="sec02-spans.ptx" />
+    <xi:include href="sec03-linear-independence.ptx" />
+    <xi:include href="sec04-subspaces.ptx" />
     <xi:include href="sec05-basis-and-dimension.ptx" />
     <xi:include href="sec06-coordinates.ptx" />
-    <xi:include href="sec07-gram-schmidt-method.ptx" />
+    <xi:include href="sec07-gram-schmidt-process.ptx" />
 
 </chapter>
