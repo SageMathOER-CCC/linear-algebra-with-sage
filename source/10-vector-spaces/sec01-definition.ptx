@@ -82,8 +82,8 @@
     </introduction>
     <p>
         Sage allows for us to create a vector space using the <c>VectorSpace</c>
-        command. 
-        The following how the command can be used to create <m>\R^3</m>.
+        command. We will primarily be working in the vector space given by the Euclidean space <m>\R^n</m>.
+        To create the vector space in <m>\R^3</m>, we may use the following command.
     </p>
     <sage>
         <input>
@@ -94,6 +94,14 @@
             
         </output>
     </sage>
+    <note>
+        <title>Mantissa</title>
+            <p>
+                By executing this command, we created a 3-dimensional vector space composed of Real numbers with 53 bits of precision.
+                The 53 bits are referred to as the mantissa, or the significand. The mantissa is the number of significant digits
+                that are in the floating point system. This signifies how precise the number can be.
+            </p>
+    </note>
     <p>
         Interestingly, polynomials with real coefficients also satisfy the definition of a vector space.
         We can construct the vector space containing polynomials, 
@@ -116,4 +124,7 @@
             This is a more general term and in this context can be interpreted as a vector space.
         </p>
     </note>
+    <p>
+        It is required by Sage to specify the variable of the polynomial when we are working with polynomials.
+    </p>
 </section>
