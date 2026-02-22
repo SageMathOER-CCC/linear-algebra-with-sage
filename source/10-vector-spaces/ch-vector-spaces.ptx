@@ -15,11 +15,8 @@
 
     <!-- include sections -->
     <xi:include href="sec01-definition.ptx" />
-    <xi:include href="sec02-spans.ptx" />
-    <xi:include href="sec03-linear-independence.ptx" />
-    <xi:include href="sec04-subspaces.ptx" />
-    <xi:include href="sec05-basis-and-dimension.ptx" />
-    <xi:include href="sec06-coordinates.ptx" />
-    <xi:include href="sec07-gram-schmidt-process.ptx" />
+    <xi:include href="sec02-subspaces.ptx" />
+    <xi:include href="sec03-coordinates.ptx" />
+    <xi:include href="sec04-gram-schmidt-process.ptx" />
 
 </chapter>

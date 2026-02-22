@@ -2,24 +2,23 @@
     <title>Eigenvectors</title>
     <introduction>
         <p>
-            An <term>eigenvector</term>, of a square matrix <m>A</m>, is a non-zero vector where multiplication by <m>A</m> does not change its direction.
-            We can state this formally as vectors, <m>x</m>, that satisfy the following equation:
+            An <term>eigenvector</term> of a square matrix, <m>A</m>, is a non-zero vector where multiplication by <m>A</m> does not change its direction.
+            Formally, for a vector <m>v</m>, this relationship is expressed as:
         </p>
         <md>
-            <mrow> Ax = \lambda x </mrow>
+            <mrow> Av = \lambda v </mrow>
         </md>
         <p>
             Here, <m>\lambda</m> is a scalar known as an <term>eigenvalue</term> 
-            associated with the eigenvector <m>x</m>.
+            associated with the eigenvector <m>v</m>.
         </p>
         <p>
-            In order to find the vectors, <m>x</m>, where the definition holds, 
-            we must first find the eigenvalues of <m>A</m>.
-            Then substitute the eigenvalues and row reduce.
+            First, we will use Sage to calculate the eigenvalues of matrix <m>A</m>, and then
+            we will find the eigenvectors of matrix <m>A</m>.
         </p>
     </introduction>
-    <subsection xml:id="subsec-eigenvalues">
-        <title>Calculation of Eigenvectors</title>
+    <subsection xml:id="subsec-calculation-of-eigenvalues">
+        <title>Calculation of Eigenvalues</title>
         <p>
             From the definition of an eigenvector we arrive 
             at what is referred to as the <term>characteristic equation</term>:
@@ -68,6 +67,7 @@
         </sage>
         <p>
             Then initialize variable eq with <m>\det(B) = 0</m> to solve symbolically.
+            Then initialize variable eq with <m>\det(B) = 0</m> to solve symbolically.
         </p>
         <sage>
             <input>
@@ -79,6 +79,7 @@
             </output>
         </sage>
         <p>
+            Then solve eq.
             Then solve eq.
         </p>
         <sage>
@@ -102,8 +103,9 @@
         </sage>
         <p>
             We can use the <c>characteristic_polynomial()</c> or <c>charpoly()</c>
+            We can use the <c>characteristic_polynomial()</c> or <c>charpoly()</c>
             method to directly obtain the characteristic polynomial, 
-            in terms of <m>x</m>, of a matrix. Using either method will get us the same 
+            in terms of <m>v</m>, of a matrix. Using either method will get us the same 
             output.
         </p>
         <sage>
@@ -122,11 +124,11 @@
             Using these eigenvalues we can create a matrix equation of the form:
         </p>
         <md>
-            <mrow> (A - \lambda I) x = 0 </mrow>
+            <mrow> (A - \lambda I) v = 0 </mrow>
         </md>
         
         <p>
-            We can obtain <m>x</m> by substituting a value of <m>\lambda</m>, we will chose <m>\lambda = 6</m>. 
+            We can obtain <m>v</m> by substituting a value of <m>\lambda</m>, we will chose <m>\lambda = 6</m>. 
         </p>
         <sage>
             <input>
@@ -141,9 +143,13 @@
             Then using the <c>right_kernel()</c> method Sage can solve this equation for us.
             Since Sage uses the left-kernel while our formula uses right multiplication, 
             we must specify to use right-kernel.
+            Then using the <c>right_kernel()</c> method Sage can solve this equation for us.
+            Since Sage uses the left-kernel while our formula uses right multiplication, 
+            we must specify to use right-kernel.
         </p>
         <sage>
             <input>
+                B.right_kernel()
                 B.right_kernel()
             </input>
             <output>
