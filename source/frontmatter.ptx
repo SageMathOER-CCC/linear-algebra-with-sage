@@ -9,7 +9,7 @@
       <department>Math Department</department>
       <institution>City Colleges of Chicago</institution>
     </author>
-    <date><today /></date>
+    <date><today/></date>
   </titlepage>
 
   <preface xml:id="preface">
@@ -175,20 +175,50 @@
   </preface>
 
   <colophon xml:id="colophon">
+    <credit>
+      <role>Authors</role>
+      <entity>Allaoua Boughrira, Hellen Colman, Michael Kattner, Samuel Lubliner</entity>
+    </credit>
+
+    <credit>
+      <role>Significant Contributors</role>
+      <entity>Alex Koci, Sagha Axelsson</entity>
+    </credit>
+
+    <credit>
+      <role>Cover Design</role>
+      <entity>Hellen Colman, made with SageMath — licensed under the CC-BY-NC-SA 4.0 License</entity>
+    </credit>
+
+    <edition>February 2026</edition>
+
     <website>
       <url href="https://github.com/SageMathOER-CCC/linear-algebra-with-sage">GitHub Repository</url>
     </website>
 
     <copyright>
-      <holder>Allaoua Boughrira, Hellen Colman, Michael Kattner, Samuel Lubliner.</holder>
       <year>2024<ndash/>2026</year>
-
+      <holder>Allaoua Boughrira, Hellen Colman, Michael Kattner, Samuel Lubliner.</holder>
       <shortlicense>
-        This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit
-        <url href="http://creativecommons.org/licenses/by-sa/4.0/" visual="creativecommons.org/licenses/by-sa/4.0"> CreativeCommons.org</url>.<p/>
-        This book was authored in <pretext/> and is available for free download in PDF format by clicking
-        <url href="https://github.com/SageMathOER-CCC/linear-algebra-with-sage/blob/release/output/print/manuscript.pdf">here</url>.
+          This work is licensed under a Creative Commons Attribution 4.0 International License.
+          This license enables reusers to distribute, remix, adapt, and build upon the material
+          in any medium or format, so long as attribution is given to the creator. To view a copy
+          of this license, visit <url href="http://creativecommons.org/licenses/by-sa/4.0/" visual="creativecommons.org/licenses/by-sa/4.0"> CreativeCommons.org</url>.<p/>
+
+          This book was authored in <pretext/>. The PDF version of the book is available for free download
+          <url href="https://github.com/SageMathOER-CCC/linear-algebra-with-sage/blob/release/output/print/manuscript.pdf">here</url>.<p/>
+
+          We recommend attribution as follows. If you redistribute all or part of this textbook,
+          include in every digital format page view (including but not limited to EPUB, PDF, and
+          HTML) and on every physical printed page the following attribution:
+          <!-- TODO. update as needed -->
+          <q>Linear Algebra with SageMath Learn math with open-source software,...</q><p/>
+
+          For questions, or reporting any issues with the content or the terms of use of this license, please contact
+          <url href="mailto:hcolman@ccc.edu" visual="hcolman@ccc.edu"/>.
       </shortlicense>
     </copyright>
   </colophon>
+
+<!-- TODO. revisit/update <title>Accessibility</title>  -->
 </frontmatter>

@@ -16,21 +16,21 @@
             element-wise, analogous to the corresponding operations on vectors.
         </p>
         <me>
-            Let\  A = 
+            Let\  A =
             \begin{bmatrix}
             a_{ij}
-            \end{bmatrix} 
-            \ and\ B = 
+            \end{bmatrix}
+            \ and\ B =
             \begin{bmatrix}
             b_{ij}
             \end{bmatrix}
-            \ be\ m\times n\ matrices. 
+            \ be\ m\times n\ matrices.
         </me>
-        
+
         <me>
-        A + B = 
+        A + B =
         \begin{bmatrix}
-        a_{ij} + b_{ij} 
+        a_{ij} + b_{ij}
         \end{bmatrix}
         </me>
 
@@ -47,9 +47,9 @@
         </sage>
 
          <me>
-        A - B = 
+        A - B =
         \begin{bmatrix}
-        a_{ij} - b_{ij} 
+        a_{ij} - b_{ij}
         \end{bmatrix}
         </me>
 
@@ -62,9 +62,9 @@
         </sage>
 
          <me>
-        kA = 
+        kA =
         \begin{bmatrix}
-        ka_{ij} 
+        ka_{ij}
         \end{bmatrix}
         </me>
         <sage>
@@ -88,24 +88,24 @@
             rows as the first matrix and the same number of columns as the second matrix.
         </p>
          <me>
-            Let\  C = 
+            Let\  C =
             \begin{bmatrix}
             c_{ij}
-            \end{bmatrix} 
-            \ be\ an\ m\times p\; matrix\ 
-            \ and\ D = 
+            \end{bmatrix}
+            \ be\ an\ m\times p\; matrix\
+            \ and\ D =
             \begin{bmatrix}
             d_{ij}
             \end{bmatrix}
-            \ an\; p\times n\ matrix. 
+            \ an\; p\times n\ matrix.
         </me>
         <me>
-        CD = 
+        CD =
         \begin{bmatrix}
         d_{ij}
         \end{bmatrix}
         </me>
-        
+
         <me>
         \ where\ d_{ij} = \sum_{k=1}^p c_{ik}d_{kj}.
         </me>

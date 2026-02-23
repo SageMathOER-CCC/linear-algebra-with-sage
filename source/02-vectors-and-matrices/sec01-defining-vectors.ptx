@@ -179,5 +179,34 @@
                 plot(u, color='red', thickness=2)
             </input>
         </sage>
+        <p>
+            Sage also provides alternative methods to represent vectors visually. For instance, the <c>arrow</c> method
+            can be used to create an arrow representation of a vector in 3D space like in the following example.
+        </p>
+        <sage>
+            <input>
+                show(arrow((0, 0, 0), (2, 3, 4), color='blue', width=2))
+            </input>
+        </sage>
+        <p>
+            Similarly, the <c>arrow2d</c> method can be used to create an arrow representation of a vector in 2D space like in the following example.
+        </p>
+        <sage>
+            <input>
+                show(
+                    arrow2d((0, 0), (0.5, 1), color='red', width=2),
+                    xmin=-0.2, xmax=1, ymin=-0.2, ymax=1.2,
+                )
+            </input>
+        </sage>
+        <p>
+            Note that both methods take points coordinates as input (the beginning and end of the vector), as it can also take vectors as input.
+            In which case, the arrow goes from the end of the first vector to the end of the second vector, like in the following example.
+        </p>
+        <sage>
+            <input>
+                show(arrow(vector([1,1,1]), v, color='blue', width=2), aspect_ratio=1)
+            </input>
+        </sage>
     </introduction>
 </section>
