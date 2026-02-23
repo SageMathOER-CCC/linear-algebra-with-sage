@@ -50,16 +50,15 @@
         <sage>
             <input>
                 B = matrix([[1,2,3],[2,4,6],[1,0,1]])
-                B.rank()
+                print(B.rank())
             </input>
         </sage>
         <p>
-            In this example the rank is smaller than the smallest dimension of this matrix, which means
-            its determinant must be zero.
+            Another way to get the rank of a matrix is to count how may pivots the matrix has.
         </p>
         <sage>
             <input>
-                B.det()
+                len(B.pivots())
             </input>
         </sage>
     </introduction>

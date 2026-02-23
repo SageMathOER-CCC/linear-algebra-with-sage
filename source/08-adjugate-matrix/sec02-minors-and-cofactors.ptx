@@ -31,7 +31,8 @@
                 m_12
             </input>
         </sage>
-
+        <!-- TODO. matrix(3,3,A.minors(2)) returns the matrix of all minors but need to find the indexing pattern
+            with respect to the actual minors matrix -->
         <p>
             <idx>
                 <h>Matrices</h>
