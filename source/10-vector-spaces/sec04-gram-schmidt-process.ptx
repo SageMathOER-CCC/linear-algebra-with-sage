@@ -16,7 +16,7 @@
                 </li>
             </ul>
             
-            The algorithm can be described as follows. We start with finding the orthogonal set:
+            If we have a set of vectors <m>v_1, v_2, \ldots, v_n</m>, the algorithm can be described as follows. We start with finding the orthogonal set:
         </p>
         <me>u_k = v_k - \sum_{j=1}^{k-1} \mathrm{proj}_{u_j}(v_k)</me>
         <p>
