@@ -4,6 +4,249 @@
     xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Subspaces</title>
     <introduction xml:id="sm-introduction-subspaces">
-        <p>PLACEHOLDER</p>
+        <p>
+            A <term>subspace</term> is a vector space that is contained within another, 
+            larger vector space. 
+            For a vector space, <m>V</m>,
+            a subset, <m>W \subset V</m>, 
+            is a subspace if it satisfies the axioms of a vector space 
+            under the same operations of <m>V</m>, 
+            denoted as <m>W \leq V</m>.
+        </p>
+        <p>
+            For a subset, <m>W</m>, of a vector space, <m>V</m>,
+            to test if <m>W \leq V</m>,
+            we only need to ensure the following hold:
+        </p>
+        <dl>
+            <li>
+                <title>Contains Zero Vector</title>
+                <p>
+                    The zero vector of <m>V</m> is in <m>W</m>.
+                </p>
+            </li>
+            <li>
+                <title>Closure Under Addition</title>
+                <p>
+                    For all vectors <m>u, w \in W</m>, 
+                    their sum <m>u + w</m> is also in <m>W</m>.
+                </p>
+            </li>
+            <li>
+                <title>Closure Under Scalar Multiplication</title>
+                <p>
+                    For any scalar <m>a \in \R</m> and any vector <m>u \in W</m>, 
+                    the product <m>a * u</m> is also in <m>W</m>.
+                </p>
+            </li>
+        </dl>
     </introduction>
+    <subsection xml:id="subsec-spans">
+        <title>Spans</title>
+        <p>
+            The <term>span</term> of a set of vectors is the set
+            of all possible linear combinations of those vectors. 
+            It can be thought of as all the points in space that 
+            can be reached by scaling and adding the vectors in the set. 
+        </p>
+        <p>
+            If <m>S = \{v_1, v_2, \dots, v_k\}</m> is a set of vectors 
+            in a vector space <m>V</m>, 
+            then the span of <m>S</m>, denoted as <m>\operatorname{span}(S)</m>, is the set of all vectors of the form
+            <me>a_1 v_1 + a_2 v_2 + \dots + a_k v_k</me>
+            where <m>a_1, a_2, \dots, a_k</m> are scalars.
+        </p>
+        <p>
+            In Sage, 
+            the <c>span</c> command can be used to create the set of vectors
+            that can be represented by linear combinations of these vectors. 
+            Let's find the span of the vectors <m>(1, -1, 0)</m> and <m>(0, 1, -1)</m> in <m>\R^3</m>.
+        </p>
+        <sage>
+            <input>
+                V = VectorSpace(RR, 3)
+                S = V.span([vector([1, -1, 0]), vector([0, 1, -1])])
+                S
+            </input>
+            <output>
+
+            </output>
+        </sage>
+        <p>
+            We can now check if other vectors lie within this span. 
+            For example, let's test if the vector <m>u = (2, 0, -2)</m>
+            is in the span <m>S</m>.
+        </p>
+        <sage>
+            <input>
+                u = vector([2, 0, -2])
+                u in S
+            </input>
+            <output>
+
+            </output>
+        </sage>
+        <p>
+            It is, because <m>u = 2 * (1, -1, 0) + 2 * (0, 1, -1)</m>. 
+        </p>
+        <p>
+            Now let's test a vector that is not in the span.
+        </p>
+        <sage>
+            <input>
+                v = vector([1, 1, 1])
+                v in S
+            </input>
+            <output>
+
+            </output>
+        </sage>
+
+    </subsection>
+    <subsection xml:id="subsec-linear-independence">
+        <title>Linear Independence</title>
+        <p>
+            A set of vectors is <term>linearly independent</term> 
+            if no vector in the set can be expressed as a linear combination of the others. 
+            In other words, 
+            each vector in the set provides unique directional information that isn't redundant. 
+            Formally, a set of vectors <m>\{v_1, v_2, \dots, v_k\}</m>
+             is linearly independent if the only solution to the equation
+            <me>c_1 v_1 + c_2 v_2 + \dots + c_k v_k = \mathbf{0}</me>
+            is <m>c_1 = c_2 = \dots = c_k = 0</m>. 
+            This is known as the trivial solution. 
+            If there is any other solution (a non-trivial solution), 
+            the set is said to be <term>linearly dependent</term>.
+        </p>
+        <p>
+            To check for linear independence in Sage, 
+            we can create a matrix using the vectors as its rows. 
+            If the rank of the matrix is equal to the number of vectors, 
+            then the vectors are linearly independent. 
+            Let's consider a set of vectors in <m>\R^3</m>.
+        </p>
+        <sage>
+            <input>
+                v1 = vector([1, 0, 0])
+                v2 = vector([0, 1, 1])
+                v3 = vector([1, 0, 1])
+                
+                # Create a matrix from the vectors
+                M = matrix([v1, v2, v3])
+
+                # Check if the rank is equal to the number of vectors
+                M.rank() == len(M.rows())
+            </input>
+            <output>
+                True
+            </output>
+        </sage>
+        <p>
+            The result is <c>True</c>, 
+            so the set <m>\{v_1, v_2, v_3\}</m> is linearly independent. 
+            Now let's consider a linearly dependent set.
+        </p>
+        <sage>
+            <input>
+                u1 = vector([1, 2, 3])
+                u2 = vector([4, 5, 6])
+                u3 = vector([7, 8, 9])
+
+                N = matrix([u1, u2, u3])
+                N.rank() == len(N.rows())
+            </input>
+            <output>
+                False
+            </output>
+        </sage>
+    </subsection>
+    <subsection xml:id="subsec-basis-and-dimensions">
+        <title>Basis and Dimensions</title>
+        <p>
+            A set, <m>B_V</m>, that is a <term>basis</term> of a vector space, 
+            <m>V</m>, if <m>B_V</m> is both linearly independent and spans the entire space, 
+            <m>\operatorname{span}(B_V) = V</m>. 
+            The number of vectors in a basis is called the <term>dimension</term>
+            of the vector space and 
+            all sets that form a basis, of the same space, 
+            are of equal size. 
+        </p>
+        <p>
+            Sage implicitly computes the basis and dimension 
+            of any subspace with the <c>span</c> command. 
+            Let's start with a set of vectors that might be 
+            linearly dependent and find the basis for the space they span.
+        </p>
+        <sage>
+            <input>
+                V = VectorSpace(RR, 4)
+                # This set is linearly dependent
+                vectors = [
+                    vector([ 1,  2,  0,  1]),
+                    vector([-1, -2,  0, -1]),
+                    vector([ 0,  1,  1,  0]),
+                    vector([ 1,  3,  1,  1])
+                ]
+                S = V.span(vectors)
+                S
+            </input>
+            <output>
+
+            </output>
+        </sage>
+        <p>
+            Even though we started with four vectors, 
+            the subspace they span is only two dimensional. 
+            We can see the minimal set of vectors that form the 
+            basis for this subspace using the <c>basis</c> command.
+        </p>
+        <sage>
+            <input>
+                S.basis()
+            </input>
+            <output>
+
+            </output>
+        </sage>
+        <p>
+            The <c>dimension</c> command simply returns the number of vectors in the basis.
+        </p>
+        <sage>
+            <input>
+                S.dimension()
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+    </subsection>
+
+    <p>
+        In Sage, we can create a subspace by providing a set
+        of vectors that form a basis for it. 
+        For example, 
+        let's define a subspace of <m>\R^3</m> that is spanned by the vectors 
+        <m>(1, 2, 3)</m> and <m>(4, 5, 6)</m>.
+    </p>
+    <sage>
+        <input>
+            V = VectorSpace(RR, 3)
+            W = V.subspace([vector([1, 2, 3]), vector([4, 5, 6])])
+            W
+        </input>
+        <output>
+
+        </output>
+    </sage>
+    <p>
+        We can then verify that <m>W</m> is a subspace of <m>V</m>.
+    </p>
+    <sage>
+        <input>
+            W.is_subspace(V)
+        </input>
+        <output>
+
+        </output>
+    </sage>
 </section>

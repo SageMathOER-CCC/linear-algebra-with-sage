@@ -1,9 +1,130 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<section xml:id="sec-vector-spaces-definition"
+<section xml:id="sec-axioms"
     xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Definition</title>
+    <title>Axioms</title>
     <introduction xml:id="sm-introduction-vector-spaces-definition">
-        <p>PLACEHOLDER</p>
+            <p>
+                A vector space is a set of vectors <m>V</m> with the operations, 
+                <m>+</m> vector addition and <m>*</m> scalar multiplication,
+                that respect the following axioms:
+            </p>
+        <dl>
+            <li>
+                <title>Closure</title>
+                <p>
+                    For all vectors, <m>v,u \in V</m>,
+                    <m>v + u</m> must also be a vector in <m>V</m>,
+                    and for all scalars, <m>a \in \R</m>, 
+                    <m>a * v</m> must also be a vector in <m>V</m>.
+                </p>
+            </li>
+            <li>
+                <title>Commutativity</title>
+                <p>
+                    For all vectors, <m>v,u \in V</m>,
+                    <m>v + u = u + v</m>.
+                </p>
+            </li>
+            <li>
+                <title>Associativity</title>
+                <p>
+                    For all vectors, <m>v,u,w \in V</m>,
+                    <m>(v + u) + w = v + (u + w)</m> 
+                    and for all scalars, <m>a,b \in \R</m>,
+                    <m>(ab) * v = a * (b * v)</m>
+                </p>
+            </li>
+            <li>
+                <title>Additive Identity</title>
+                <p>
+                    There is a vector, <m>\mathbf 0 \in V</m> 
+                    (commonly referred to as the zero vector),
+                    where for all vectors, <m>v \in V</m>,
+                    <m>\mathbf 0 + v = v</m>.
+                </p>
+            </li>
+            <li>
+                <title>Additive Inverse</title>
+                <p>
+                    For all vectors, <m>v \in V</m>,
+                    there exists a vector, <m> -v \in V</m>,
+                    where <m>v + (-v) = \mathbf 0</m>.
+                </p>
+            </li>
+            <li>
+                <title>Multiplicative Identity</title>
+                <p>
+                    For all vectors, <m>v \in V</m>,
+                    <m>1 * v = v</m>.
+                </p>
+            </li>
+            <li>
+                <title>Distributivity</title>
+                <p>
+                    For all vectors, <m>v,u \in V</m>, 
+                    and scalars, <m>a,b \in \R</m>,
+                    <m>a * (u + v) = a * v + a * u</m> and 
+                    <m>(a + b) * v = a * v + b * v</m>.
+                </p>
+            </li>
+        </dl>
+        <note>
+            <title>Fields</title>
+            <p>
+                Sage and more abstract forms of linear algebra use a general field
+                for scalars instead of <m>\R</m>.
+                Fields and their properties are outside of the scope of this book
+                and we will hereby be using <m>\R</m> (or <c>RR</c> in Sage)
+                as our field.
+            </p>
+        </note>
     </introduction>
+    <p>
+        Sage allows for us to create a vector space using the <c>VectorSpace</c>
+        command. We will primarily be working in the vector space given by the Euclidean space <m>\R^n</m>.
+        To create the vector space in <m>\R^3</m>, we may use the following command.
+    </p>
+    <sage>
+        <input>
+            V = VectorSpace(RR, 3)
+            V
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <note>
+        <title>Mantissa</title>
+            <p>
+                By executing this command, we created a 3-dimensional vector space composed of Real numbers with 53 bits of precision.
+                The 53 bits are referred to as the mantissa, or the significand. The mantissa is the number of significant digits
+                that are in the floating point system. This signifies how precise the number can be.
+            </p>
+    </note>
+    <p>
+        Interestingly, polynomials with real coefficients also satisfy the definition of a vector space.
+        We can construct the vector space containing polynomials, 
+        with a variable <m>x</m>, of maximum degree 3 as follows:
+    </p>
+    <sage>
+        <input>
+            P_3 = VectorSpace(RR, PolynomialRing(RR, var('x'), 4))
+            P_3
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <note>
+        <title>Free Modules</title>
+        <p>
+            The return type of <c>VectorSpace</c> is a <c>FreeModule</c>
+            as opposed to a vector space class.
+            This is a more general term and in this context can be interpreted as a vector space.
+        </p>
+    </note>
+    <p>
+        It is required by Sage to specify the variable of the polynomial when we are working with polynomials.
+    </p>
 </section>
