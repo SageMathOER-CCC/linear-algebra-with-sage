@@ -18,11 +18,11 @@
         </p>
         <sage>
             <input>
-                A = matrix([
+                M = matrix([
                     [1, 2],
                     [4, 6]
                 ])
-                A.trace()
+                M.trace()
             </input>
         </sage>
 
@@ -32,9 +32,9 @@
                 <h>Euclidean Norm</h>
             </idx>
             <!-- sage.matrix.matrix2.Matrix.norm?? -->
-            The method <c>norm()</c> in Sage calculates different norms of a given matrix.
-            By default, it computes the <em><m>L_2</m> Euclidean norm</em> (also known as
-            <em>2-norm</em>, or the <em>spectral norm</em>).
+            <!-- TODO. Sage documentation to investigate and correct definition Frobenius/Euclidean/Default norm -->
+            Sage's method <c>norm()</c> calculates different norms of a given matrix. By default, it computes the
+            <em>2-norm <m>L_2</m></em> (also known as the <em>spectral norm</em>).
         </p>
         <sage>
             <input>
@@ -46,16 +46,40 @@
                 A.norm()
             </input>
         </sage>
+        <p>
+            The <m>L_2</m> norm of a matrix <m>A</m> is defined as the largest singular value of <m>A</m>,
+            which is the square root of the largest eigenvalue of <m>A^T A</m>. We can verify that the value computed
+            by Sage is indeed the largest singular value of <m>A</m> as follows.
+        </p>
+        <sage>
+            <input>
+                # Compute the square root of largest singular values of A
+                sqrt(max([abs(s) for s in list((A.transpose()*A).eigenvalues())]))
+            </input>
+            <output>
 
+            </output>
+        </sage>
+        <note>
+            <title>Default Norm of Matrix in Sage</title>
+            <p>
+                Sage documentation states that the <c>norm()</c> method computes the <em>Euclidean</em> norm by
+                default, whereas the actual value being returned is for the spectral norm (<em><m>L_2</m> norm</em>).
+                Sage documentation also implies that <em>Euclidean</em> norm is different from the <em>Frobenius</em>
+                norm, which is not the case. In fact, the <em>Euclidean</em> norm and the <em>Frobenius</em> norm are
+                the same and they are both different from the <em><m>L_2</m></em> norm.
+            </p>
+        </note>
         <p>
             <idx>
                 <h>Matrices</h>
                 <h>Frobenius Norm</h>
+                <h>Euclidean Norm</h>
                 <h>Hilbert-Schmidt Norm</h>
             </idx>
-            For a matrix <m>A_{n \times m}</m>, the <em>Frobenius norm</em> (also
-            known as <em>Hilbert-Schmidt norm</em>) is a vector-induced norm defined
-            as the square root of the sum of the squares of all its entrees
+            For a matrix <m>A_{n \times m}</m>, the <em>Euclidean Norm</em> (also
+            known as <em>Frobenius norm</em> or the <em>Hilbert-Schmidt norm</em>) is a
+            vector-induced norm defined as the square root of the sum of the squares of all its entrees
             <m>|A|_F = \sqrt{\sum_{i=1}^{n}\sum_{j=1}^{m} |a_{ij}|^2}</m>.
         </p>
         <sage>

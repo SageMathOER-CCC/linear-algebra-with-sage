@@ -4,12 +4,11 @@
     <title>Vector Spaces</title>
 
     <introduction xml:id="sm-subsection-vector-spaces">
-        <p> 
-            A vector space is a fundamental concept in linear algebra. 
-            They are generalizations of <m>\R^n</m>, 
-            which we have been using up until this point.
-            These generalizations aim to maintain
-            the desirable arithmetic properties that <m>\R^n</m> has. 
+        <p>
+            A vector space is a fundamental concept in linear algebra.
+            They are generalizations of <m>\R^n</m>, which we have been
+            using up until this point. These generalizations aim to maintain
+            the desirable arithmetic properties that <m>\R^n</m> has.
         </p>
     </introduction>
 

@@ -9,7 +9,7 @@
             <mrow> Av = \lambda v </mrow>
         </md>
         <p>
-            Here, <m>\lambda</m> is a scalar known as an <term>eigenvalue</term> 
+            Here, <m>\lambda</m> is a scalar known as an <term>eigenvalue</term>
             associated with the eigenvector <m>v</m>.
         </p>
         <p>
@@ -20,7 +20,7 @@
     <subsection xml:id="subsec-calculation-of-eigenvalues">
         <title>Calculation of Eigenvalues</title>
         <p>
-            From the definition of an eigenvector we arrive 
+            From the definition of an eigenvector we arrive
             at what is referred to as the <term>characteristic equation</term>:
         </p>
         <md>
@@ -50,7 +50,7 @@
                 var('λ')
             </input>
             <output>
-                
+
             </output>
         </sage>
         <p>
@@ -62,7 +62,7 @@
                 B
             </input>
             <output>
-                
+
             </output>
         </sage>
         <p>
@@ -75,7 +75,7 @@
                 eq
             </input>
             <output>
-                
+
             </output>
         </sage>
         <p>
@@ -87,7 +87,7 @@
                 solve(eq)
             </input>
             <output>
-                
+
             </output>
         </sage>
         <p>
@@ -98,14 +98,14 @@
                 A.eigenvalues()
             </input>
             <output>
-                
+
             </output>
         </sage>
         <p>
             We can use the <c>characteristic_polynomial()</c> or <c>charpoly()</c>
             We can use the <c>characteristic_polynomial()</c> or <c>charpoly()</c>
-            method to directly obtain the characteristic polynomial, 
-            in terms of <m>v</m>, of a matrix. Using either method will get us the same 
+            method to directly obtain the characteristic polynomial,
+            in terms of <m>v</m>, of a matrix. Using either method will get us the same
             output.
         </p>
         <sage>
@@ -113,7 +113,7 @@
                 A.characteristic_polynomial()
             </input>
             <output>
-                
+
             </output>
         </sage>
     </subsection>
@@ -126,9 +126,9 @@
         <md>
             <mrow> (A - \lambda I) v = 0 </mrow>
         </md>
-        
+
         <p>
-            We can obtain <m>v</m> by substituting a value of <m>\lambda</m>, we will chose <m>\lambda = 6</m>. 
+            We can obtain <m>v</m> by substituting a value of <m>\lambda</m>, we will chose <m>\lambda = 6</m>.
         </p>
         <sage>
             <input>
@@ -136,15 +136,15 @@
                 B
             </input>
             <output>
-                
+
             </output>
         </sage>
         <p>
             Then using the <c>right_kernel()</c> method Sage can solve this equation for us.
-            Since Sage uses the left-kernel while our formula uses right multiplication, 
+            Since Sage uses the left-kernel while our formula uses right multiplication,
             we must specify to use right-kernel.
             Then using the <c>right_kernel()</c> method Sage can solve this equation for us.
-            Since Sage uses the left-kernel while our formula uses right multiplication, 
+            Since Sage uses the left-kernel while our formula uses right multiplication,
             we must specify to use right-kernel.
         </p>
         <sage>
@@ -153,7 +153,7 @@
                 B.right_kernel()
             </input>
             <output>
-                
+
             </output>
         </sage>
         <p>
@@ -165,10 +165,10 @@
             </input>
         </sage>
         <p>
-            The output is a list containing elements of the form <c>(e, [v_1, v_2, ... v_n], m)</c>, 
-            where <c>e</c> is the eigenvalue, 
-            <c>v_1</c> through <c>v_n</c> are the corresponding eigenvectors, 
-            and <c>m</c> is how many times <c>e</c> 
+            The output is a list containing elements of the form <c>(e, [v_1, v_2, ... v_n], m)</c>,
+            where <c>e</c> is the eigenvalue,
+            <c>v_1</c> through <c>v_n</c> are the corresponding eigenvectors,
+            and <c>m</c> is how many times <c>e</c>
             appears as a root in the characteristic polynomial (also referred to as algebraic multiplicity).
         </p>
     </subsection>

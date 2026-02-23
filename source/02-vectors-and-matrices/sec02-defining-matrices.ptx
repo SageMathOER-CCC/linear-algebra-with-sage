@@ -322,6 +322,30 @@
             The syntax <c>A[i:j, k:l]</c> extracts the submatrix from rows <m>i</m> to <m>j-1</m>
             and columns <m>k</m> to <m>l-1</m> (lower bound inclusive but not the upper bound of the range).
         </p>
+
+        <p>
+            Sage also offers the method <c>submatrix()</c> that takes the starting row and column indices,
+            and the number of rows and columns to include in the resulting submatrix. The following example
+            shows how to extract a submatrix starting from the first row and first column, and including
+            two rows and two columns.
+        </p>
+        <sage>
+            <input>
+                # extract the same top-left 2x2 submatrix
+                A.submatrix(0, 0, 2, 2)
+            </input>
+        </sage>
+        <p>
+            Another indirect way to extract a submatrix is to use the methods <c>delete_rows()</c> and
+            <c>delete_columns()</c>. For instance, to extract the same top-left <m>2 \times 2</m> submatrix
+            of the previous example, we can use the following command.
+        </p>
+        <sage>
+            <input>
+                # delete the 3rd row and 3rd column
+                A.delete_rows([2]).delete_columns([2])
+            </input>
+        </sage>
         <p>
             Note that a matrix with a single list of values creates a <em>vector-like</em>
             object, but it is NOT a vector. Here is a vector in Sage.

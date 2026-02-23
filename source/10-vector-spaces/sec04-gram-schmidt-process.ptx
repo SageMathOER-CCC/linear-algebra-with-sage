@@ -6,8 +6,8 @@
     <introduction xml:id="sm-introduction-gram-schmidt-process">
         <p>
             The <term>Gram-Schmidt process</term> is an algorithm used to create an <term>orthonormal</term>
-            set from a linearly independent set of vectors. 
-            An orthonormal set of vectors has two key properties: 
+            set from a linearly independent set of vectors.
+            An orthonormal set of vectors has two key properties:
             <ul>
                 <li>
                     <p>
@@ -16,98 +16,83 @@
                 </li>
                 <li>
                     <p>
-                        Every vector has a length of 1. 
+                        Every vector has a length of 1.
                     </p>
                 </li>
             </ul>
         </p>
-    </introduction>
-    <p>
-        In Sage, the Gram-Schmidt process can be applied to a matrix whose rows 
-        form the set of vectors we wish to make orthonormal. 
-        Let's start with a basis for a subspace of <m>\R^3</m>.
-    </p>
-    <sage>
-        <input>
-            # Define a basis with two linearly independent vectors
-            v1 = vector(RDF, [1, 1, 0]) # Sage does not support the Gram-Schmidt process with RR real numbers so we must use RDF real numbers
-            v2 = vector(RDF, [1, 2, 2])
-            
-            # Create a matrix with these vectors as rows
-            A = matrix([v1, v2])
-            A
-        </input>
-        <output>
-
-        </output>
-    </sage>
-    <p>
-        Now, we apply the <c>gram_schmidt</c> method. 
-        The <c>orthonormal=True</c>
-        argument ensures the resulting vectors are normalized to have unit length.
-    </p>
-    <sage>
-        <input>
-            B, mu = A.gram_schmidt(orthonormal=True)
-            B
-        </input>
-        <output>
-
-        </output>
-    </sage>
-    <p>
-        The matrix <m>B</m> contains the new basis as row vectors, 
-        while <m></m> the matrix <m>mu</m>
-        contains the coefficients used in the Gram-Schmidt Process.
-    </p>
-    <p>
-        Let's extract the new basis vectors and verify their properties.
-    </p>
-    <p>
-        First we will extract the vectors:
-    </p>
-    <sage>
-        <input>
-            u1 = B.row(0)
-            u2 = B.row(1)
-            print(u1)
-            print(u2)
-        </input>
-        <output>
-
-        </output>
-    </sage>
-    <p>
-        Now we will use the dot product to check orthogonality.
-    </p>
-    <sage>
-        <input>
-            u1.dot_product(u2)
-        </input>
-        <output>
-            
-        </output>
-    </sage>
-    <p>
-        Then we must ensure that they are normalized.
-    </p>
-    <sage>
-        <input>
-            print(f"{u1.norm() = }\n{u2.norm() = }")
-        </input>
-        <output>
-            
-        </output>
-    </sage>
-    <note>
-        <title>Floating Point Approximation</title>
         <p>
-            The results here are only near their expected values 
-            due to accumulated floating point errors.
-            If one wants to avoid these issues, 
-            Sage offers the algebraic field, <c>QQbar</c>,
-            which contains all rational numbers and many irrational numbers 
-            (but notably missing <m>\pi</m> and <m>e</m>).
+            In Sage, the Gram-Schmidt process can be applied to a matrix whose rows
+            form the set of vectors we wish to make orthonormal.
+            Let's start with a basis for a subspace of <m>\R^3</m>.
         </p>
-    </note>
+        <sage>
+            <input>
+                # Define a basis with two linearly independent vectors
+                v1 = vector(RDF, [1, 1, 0]) # Sage does not support the Gram-Schmidt process
+                v2 = vector(RDF, [1, 2, 2]) # with RR real numbers so we must use RDF real numbers
+
+                # Create a matrix with these vectors as rows
+                A = matrix([v1, v2])
+                A
+            </input>
+        </sage>
+        <p>
+            Now, we apply the <c>gram_schmidt</c> method.
+            The <c>orthonormal=True</c>
+            argument ensures the resulting vectors are normalized to have unit length.
+        </p>
+        <sage>
+            <input>
+                B, mu = A.gram_schmidt(orthonormal=True)
+                B
+            </input>
+        </sage>
+        <p>
+            The matrix <m>B</m> contains the new basis as row vectors,
+            while <m></m> the matrix <m>mu</m>
+            contains the coefficients used in the Gram-Schmidt Process.
+        </p>
+        <p>
+            Let's extract the new basis vectors and verify their properties.
+        </p>
+        <p>
+            First we will extract the vectors:
+        </p>
+        <sage>
+            <input>
+                u1 = B.row(0)
+                u2 = B.row(1)
+                print(u1)
+                print(u2)
+            </input>
+        </sage>
+        <p>
+            Now we will use the dot product to check orthogonality.
+        </p>
+        <sage>
+            <input>
+                u1.dot_product(u2)
+            </input>
+        </sage>
+        <p>
+            Then we must ensure that they are normalized.
+        </p>
+        <sage>
+            <input>
+                print(f"{u1.norm() = }\n{u2.norm() = }")
+            </input>
+        </sage>
+        <note>
+            <title>Floating Point Approximation</title>
+            <p>
+                The results here are only near their expected values
+                due to accumulated floating point errors.
+                If one wants to avoid these issues,
+                Sage offers the algebraic field, <c>QQbar</c>,
+                which contains all rational numbers and many irrational numbers
+                (but notably missing <m>\pi</m> and <m>e</m>).
+            </p>
+        </note>
+    </introduction>
 </section>
