@@ -12,13 +12,7 @@
                     <p>Every vector in the set is orthogonal to every other vector.</p>
                 </li>
                 <li>
-<<<<<<< alex-testing
                     <p>Every vector has a length of 1.</p>
-=======
-                    <p>
-                        Every vector has a length of 1.
-                    </p>
->>>>>>> main
                 </li>
             </ul>
             
@@ -28,7 +22,6 @@
         <p>
             We then normalize to get the orthonormal set:
         </p>
-<<<<<<< alex-testing
         <me>e_k = \frac{u_k}{||u_k||}</me>
 
 
@@ -114,33 +107,14 @@
                 v1 = vector(RDF, [1, 1, 0]) # Sage does not support the Gram-Schmidt process with RR real numbers so we must use RDF real numbers
                 v2 = vector(RDF, [1, 2, 2])
                 
-=======
-        <p>
-            In Sage, the Gram-Schmidt process can be applied to a matrix whose rows
-            form the set of vectors we wish to make orthonormal.
-            Let's start with a basis for a subspace of <m>\R^3</m>.
-        </p>
-        <sage>
-            <input>
-                # Define a basis with two linearly independent vectors
-                v1 = vector(RDF, [1, 1, 0]) # Sage does not support the Gram-Schmidt process
-                v2 = vector(RDF, [1, 2, 2]) # with RR real numbers so we must use RDF real numbers
-
->>>>>>> main
                 # Create a matrix with these vectors as rows
                 A = matrix([v1, v2])
                 A
             </input>
-<<<<<<< alex-testing
             <output></output>
         </sage>
         <p>
             Now, we apply the <c>gram_schmidt</c> method. 
-=======
-        </sage>
-        <p>
-            Now, we apply the <c>gram_schmidt</c> method.
->>>>>>> main
             The <c>orthonormal=True</c>
             argument ensures the resulting vectors are normalized to have unit length.
         </p>
@@ -149,18 +123,11 @@
                 B, mu = A.gram_schmidt(orthonormal=True)
                 B
             </input>
-<<<<<<< alex-testing
             <output></output>
         </sage>
         <p>
             The matrix <m>B</m> contains the new basis as row vectors, 
             while the matrix <m>mu</m>
-=======
-        </sage>
-        <p>
-            The matrix <m>B</m> contains the new basis as row vectors,
-            while <m></m> the matrix <m>mu</m>
->>>>>>> main
             contains the coefficients used in the Gram-Schmidt Process.
         </p>
         <p>
@@ -176,10 +143,7 @@
                 print(u1)
                 print(u2)
             </input>
-<<<<<<< alex-testing
             <output></output>
-=======
->>>>>>> main
         </sage>
         <p>
             Now we will use the dot product to check orthogonality.
@@ -188,10 +152,7 @@
             <input>
                 u1.dot_product(u2)
             </input>
-<<<<<<< alex-testing
             <output></output>
-=======
->>>>>>> main
         </sage>
         <p>
             Then we must ensure that they are normalized.
@@ -200,15 +161,11 @@
             <input>
                 print(f"{u1.norm() = }\n{u2.norm() = }")
             </input>
-<<<<<<< alex-testing
             <output></output>
-=======
->>>>>>> main
         </sage>
         <note>
             <title>Floating Point Approximation</title>
             <p>
-<<<<<<< alex-testing
                 The results here are only near their expected values 
                 due to accumulated floating point errors.
                 If one wants to avoid these issues, 
@@ -219,15 +176,4 @@
         </note>
     </subsection>
 
-=======
-                The results here are only near their expected values
-                due to accumulated floating point errors.
-                If one wants to avoid these issues,
-                Sage offers the algebraic field, <c>QQbar</c>,
-                which contains all rational numbers and many irrational numbers
-                (but notably missing <m>\pi</m> and <m>e</m>).
-            </p>
-        </note>
-    </introduction>
->>>>>>> main
 </section>
