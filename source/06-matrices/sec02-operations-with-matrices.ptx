@@ -43,6 +43,7 @@
                 # Matrix addition.
                 A + B
             </input>
+            <output></output>
         </sage>
 
          <me>
@@ -57,6 +58,7 @@
                 # Matrix subtraction
                 A - B
             </input>
+            <output></output>
         </sage>
 
          <me>
@@ -70,6 +72,7 @@
                 # Scalar multiplication
                 3 * A
             </input>
+            <output></output>
         </sage>
 
         <p>
@@ -110,16 +113,17 @@
         <sage>
             <input>
                 # Matrix-matrix multiplication
-                A = matrix([[1, 4, 7],
+                C = matrix([[1, 4, 7],
                             [2, 5, 8],
                             [3, 6, 9]])
 
-                B = matrix([[1, 4, 7, 2, 9],
+                D = matrix([[1, 4, 7, 2, 9],
                             [0, 3, 5, 8, 6],
                             [9, 1, 0, 4, 2]])
 
-                A * B
+                C * D
             </input>
+            <output></output>
         </sage>
 
         <p>
@@ -132,6 +136,7 @@
                 v = vector([3]*3)
                 A * v
             </input>
+            <output></output>
         </sage>
     </introduction>
 </section>
