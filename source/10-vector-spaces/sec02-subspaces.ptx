@@ -25,8 +25,8 @@
             <li>
                 <title>Scalar Multiplication</title>
                 <p>
-                    If <m>a \in \R</m> and <m>u \in W</m>, then
-                    <m>a * u \in W</m>.
+                    If <m>a \in \F</m> and <m>u \in W</m>, then
+                    <m>a \cdot u \in W</m>.
                 </p>
             </li>
         </dl>
@@ -221,8 +221,10 @@
         </p>
         <note>
             <title>Rank</title>
-            The rank of a matrix <m>M</m> is the maximal number of linearly independent
-            row vectors (rows viewed as vectors). 
+            <p>
+                The rank of a matrix <m>M</m> is the maximal number of linearly independent
+                row vectors (rows viewed as vectors). 
+            </p>
         </note>
         <sage>
             <input>
@@ -254,37 +256,46 @@
     <subsection xml:id="subsec-basis-and-dimensions">
         <title>Basis and Dimensions</title>
         <p>
-            A set, <m>B_V</m>, that is a <term>basis</term> of a vector space,
-            <m>V</m>, if <m>B_V</m> is both linearly independent and spans the entire space,
-            <m>\operatorname{span}(B_V) = V</m>. The number of vectors in a basis is called the
-            <term>dimension</term> of the vector space and all sets that form a basis, of the
-            same space, are of equal size.
+            A basis for the vector space <m>V</m>
+            is a set of vectors <m>\{v_1, v_2,\dots ,v_k\}</m>
+            that is linearly independent and spans <m>V</m>.
         </p>
         <p>
-            Sage implicitly computes the basis and dimension of any subspace with the <c>span</c> command.
-            Let's start with a set of vectors that might be linearly dependent and find the basis for the space they span.
+            Th <c>basis</c> method outputs a basis of the vector space,
+            in echelonized form, as a list of vectors. 
         </p>
         <sage>
             <input>
-                V = VectorSpace(RR, 4)
+                V = VectorSpace(QQ, 3)
+                V.basis()
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            Sage implicitly computes the basis and dimension of any 
+            subspace generated with the <c>span</c> command.
+        </p>
+        <sage>
+            <input>
+                V = VectorSpace(QQ, 4)
                 # This set is linearly dependent
-                vectors = [
-                    vector([ 1,  2,  0,  1]),
-                    vector([-1, -2,  0, -1]),
-                    vector([ 0,  1,  1,  0]),
-                    vector([ 1,  3,  1,  1])
-                ]
-                S = V.span(vectors)
+                v1 = vector(QQ, [1, 2,  0,  1])
+                v2 = vector(QQ, [0, 2, -1,  2])
+                v3 = vector(QQ, [1, 0,  1, -1])
+                v4 = vector(QQ, [2, 4,  0,  2])
+                S = V.span([v1,v2,v3,v4])
                 S
             </input>
         </sage>
         <p>
-            Even though we started with four vectors, the subspace they span is only two dimensional.
-            We can see the minimal set of vectors that form the basis for this subspace using the <c>basis</c> command.
+            The method <c>basis_matrix</c> outputs a basis of the vector space, 
+            in echelonized form, as rows of a matrix. 
         </p>
         <sage>
             <input>
-                S.basis()
+                S.basis_matrix()
             </input>
         </sage>
         <p>
@@ -295,26 +306,280 @@
                 S.dimension()
             </input>
         </sage>
-    </subsection>
-
     <p>
-        In Sage, we can create a subspace by providing a set of vectors that form a basis for it.
-        For example, let's define a subspace of <m>\R^3</m> that is spanned by the vectors
-        <m>(1, 2, 3)</m> and <m>(4, 5, 6)</m>.
+        Alternatively, 
+        we can create the same subspace using the <c>subspace</c> method:
     </p>
     <sage>
         <input>
-            V = VectorSpace(RR, 3)
-            W = V.subspace([vector([1, 2, 3]), vector([4, 5, 6])])
+            W = V.subspace([v1,v2,v3,v4])
             W
         </input>
     </sage>
     <p>
-        We can then verify that <m>W</m> is a subspace of <m>V</m>.
+        We can then verify that <m>W</m> is a subspace of <m>V</m> with the
+        <c>is_subspace</c> method.
     </p>
     <sage>
         <input>
             W.is_subspace(V)
         </input>
     </sage>
+    <p>
+        We can check that we obtain the same object.
+    </p>
+    <sage>
+        <input>
+            S == W
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        We can also specify a different basis than the echelonized one given by default, 
+        using the <c>subspace_with_basis</c> method:
+    </p>
+    <sage>
+        <input>
+            u1 = vector([1, 4, -1, 3]) #another basis of the same space S
+            u2 = vector([2, 2, 1, 0])
+            T = S.subspace_with_basis([u1,u2]) 
+            T
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    <p>
+        This method returns error if we input a list that is not a basis for S.
+    </p>
+    <p>
+        Observe that we still obtain the same object, 
+        only the specified basis changes:
+    </p>
+    <sage>
+        <input>
+            S == W == T
+        </input>
+        <output>
+            
+        </output>
+    </sage>
+    </subsection>
+    <subsection xml:id="subsec-extracting-a-basis-from-a-generator">
+        <title>Extracting a Basis from a Generator</title>
+        <p>
+            Every spanning set in a vector space can be reduced to a basis of that vector space.
+            We can manually extract a basis from a given generating set 
+            <m>\{v_1, v_2, \dots ,v_n\}</m> as follows:
+        </p>
+        <ol marker="i">
+            <li>
+                <p>
+                    Construct a matrix with <m>v_1, v_2, \dots ,v_n</m>
+                    as its columns.
+                </p>
+            </li>
+            <li>
+                <p>
+                    Find the pivot columns.
+                </p>
+            </li>
+        </ol>
+        <p>
+            The columns corresponding to the pivots form a basis of the subspace spanned by the vectors.
+        </p>
+        <p>
+            For example, let's extract a basis of <m>S</m> from the generator 
+            <m>v_1,v_2,v_3,v_4</m>. 
+        </p>
+        <sage>
+            <input>
+                # Re-initialize our previous definitions
+                V = VectorSpace(QQ, 4)
+                v1 = vector(QQ, [1, 2,  0,  1])
+                v2 = vector(QQ, [0, 2, -1,  2])
+                v3 = vector(QQ, [1, 0,  1, -1])
+                v4 = vector(QQ, [2, 4,  0,  2])
+
+                A = column_matrix([v1,v2,v3,v4])
+                A.pivots()
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            We obtain that the pivot columns are the first and the second. 
+            Then the vectors <m>v_1</m> and <m>v_2</m> forms a basis of <m>S</m>.
+            Since we already know that the dimension of <m>S</m> is 2,
+            this result is consistent. 
+            We can also verify that these vectors are linearly independent:
+        </p>
+        <sage>
+            <input>
+                V.linear_dependence([v1,v2])
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+    </subsection>
+    <subsection xml:id="subsec-coordinates-in-a-basis">
+        <title>Coordinates in a Basis</title>
+        <p>
+            If <m>B = \{b_1,b_2, \dots, b_n\}</m>
+            is a basis of the vector space <m>V</m>, 
+            then every <m>v \in V</m>
+            can be expressed uniquely as a linear combination:
+        </p>
+        <md>
+            <mrow>v = c_1 b_1 + c_2 b_2 + \dots + c_n b_n</mrow>
+        </md>
+        <p>
+            The scalars <m>c_1, c_2, \dots, c_n</m>
+            are the coordinates of <m>v</m> with respect to the basis <m>B</m>
+            and we write <m>[v]_B = (c_1, c_2, \dots , c_n)</m>.
+        </p>
+        <p>
+            Sage provides dedicated methods to calculate the coordinates of a given vector in any basis. 
+            To calculate the coordinates in the canonical echelonized basis, 
+            we simply use the method <c>coordinates</c>
+            and Sage will return the coordinates as a list. 
+            For instance, let's calculate the coordinates of <m>v_1</m>
+            in the canonical basis <m>B</m> of <m>S</m>. 
+            Recall that the canonical basis is given as a list:
+        </p>
+        <sage>
+            <input>
+                # Re-initialize our previous definitions
+                v1 = vector(QQ, [1, 2,  0,  1])
+                v2 = vector(QQ, [0, 2, -1,  2])
+                v3 = vector(QQ, [1, 0,  1, -1])
+                v4 = vector(QQ, [2, 4,  0,  2])
+                S = V.span([v1,v2,v3,v4])
+                u1 = vector([1, 4, -1, 3])
+                u2 = vector([2, 2, 1, 0])
+
+                B = S.basis()
+                B
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            Then the coordinates of <m>v_1</m> are:
+        </p>
+        <sage>
+            <input>
+                S.coordinates(v1)
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            We obtained that the vector 
+            <m>v_1 = b_1 + 2 \cdot b_2</m>.
+        </p>
+        <sage>
+            <input>
+                b1 = B[0] #first vector in the list B
+                b2 = B[1] #second vector in the list B
+                1*b1 + 2*b2 == v1
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            By using the method 
+            <c>coordinate_vector</c> we obtain the same coordinates as a <c>vector</c>:
+        </p>
+        <sage>
+            <input>
+                v1B = S.coordinate_vector(v1)
+                v1B
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            Recall the definition of matrix multiplication, 
+            this results in <m>[v_1]_B \cdot M_B = v_1</m>, 
+            where <m>M_B</m> is the canonical basis matrix of <m>S</m>.
+        </p>
+        ,<sage>
+            <input>
+                v1B * S.basis_matrix() == v1
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+    </subsection>
+    <subsection xml:id="subsec-change-of-basis">
+        <title>Change of Basis</title>
+        <p>
+            To calculate the coordinates in any other user defined basis, 
+            we use a combination of the methods <c>subspace_with_basis</c> and <c>coordinates</c>.
+            For instance, let's calculate the coordinates of <m>v_1</m>
+            in the basis <m>C = \{u_1,u_2\}</m> of <m>S</m>:
+        </p>
+        <sage>
+            <input>
+                # Re-initialize our previous definitions
+                V = VectorSpace(QQ, 4)
+                v1 = vector(QQ, [1, 2,  0,  1])
+                v2 = vector(QQ, [0, 2, -1,  2])
+                v3 = vector(QQ, [1, 0,  1, -1])
+                v4 = vector(QQ, [2, 4,  0,  2])
+                S = V.span([v1,v2,v3,v4])
+                u1 = vector([1, 4, -1, 3])
+                u2 = vector([2, 2, 1, 0])
+
+                T = S.subspace_with_basis([u1,u2])
+                T.coordinates(v1)
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            We obtained that the vector <m>v_1 = 1/3 \cdot u_1 + 1/3 \cdot u_2</m>. 
+            Once again, we can verify it by manually calculating this linear combination 
+            and comparing it with the given vector:
+        </p>
+        <sage>
+            <input>
+                1/3*u1 + 1/3*u2 == v1
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            As expected, when we compute the coordinates of the basis vectors themselves, 
+            we obtain the standard unit vector coordinates.
+        </p>
+        <sage>
+            <input>
+                S.subspace_with_basis([v1, v2]).coordinates(v1)
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <sage>
+            <input>
+                S.subspace_with_basis([v1, v2]).coordinates(v2)
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+    </subsection>
 </section>

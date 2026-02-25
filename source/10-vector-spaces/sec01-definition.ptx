@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-axioms"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Definition of Vector Spaces</title>
+    <introduction xml:id="sm-introduction-vector-spaces-definition">
+            <p>
+                A vector space provides an abstract generalization of the vectors in 
+                <m>\R^n</m> defined before. 
+                In <m>\R^n</m>, 
+                vectors can be added and multiplied by real numbers. 
+                Abstract vectors will have similar operations, 
+                and scalars can be drawn from any field <m>\F</m>, 
+                not exclusively <m>\R</m>.
+            </p>
+            <note>
+                <title>Fields</title>
+                <p>
+                    Fields have their own set of axioms, 
+                    but for our purposes we will use pre-defined fields in Sage.
+                    So you may think of them as a class in Sage.
+                </p>
+            </note>
+            <p>
+                A vector space over a field of scalars 
+                <m>\F</m> as a nonempty set <m>V</m> of vectors,
+                together with the operations, <m>+</m> vector addition 
+                and <m>\cdot</m> scalar multiplication,
+                such that the following axioms are satisfied for all
+                <m>u,v,w \in V</m> and <m>a,b,1 \in \F</m>:
+            </p>
+        <dl>
+            <li>
+                <title>Closure</title>
+                <md>
+                    <mrow>v + u \in V</mrow>
+                    <mrow>a \cdot v \in V</mrow>.
+                </md>
+            </li>
+            <li>
+                <title>Commutativity</title>
+                <md>
+                    <mrow>v + u = u + v</mrow>.
+                </md>
+            </li>
+            <li>
+                <title>Associativity</title>
+                <md>
+                    <mrow>(v + u) + w = v + (u + w)</mrow>
+                    <mrow>(ab) \cdot v = a \cdot (b \cdot v)</mrow>
+                </md>
+                <p>
+                </p>
+            </li>
+            <li>
+                <title>Additive Identity</title>
+                <p>
+                    There is a vector, <m>\mathbf 0 \in V</m>
+                    such that <m>\mathbf 0 + v = v</m>.
+                </p>
+            </li>
+            <li>
+                <title>Additive Inverse</title>
+                <p>
+                    There exists a vector, <m> -v \in V</m>
+                    such that <m>v + (-v) = \mathbf 0</m>.
+                </p>
+            </li>
+            <li>
+                <title>Multiplicative Identity</title>
+                <md>
+                    <mrow>1 \cdot v = v</mrow>.
+                </md>
+            </li>
+            <li>
+                <title>Distributivity</title>
+                <md>
+                    <mrow>a \cdot (u + v) = a \cdot v + a \cdot u</mrow>
+                    <mrow>(a + b) \cdot v = a \cdot v + b \cdot v</mrow>
+                </md>
+            </li>
+        </dl>
+        <p>
+            As an example, 
+            <m>\R^n</m> is a vector space over <m>\R</m>
+            and the set <m>\F^n</m> of <m>n</m>-tuples <m>(a_1, \ldots, a_n)</m>
+            where <m>a_i \in \F</m>
+            forms a vector space over <m>\F</m>. 
+            We will say that the dimension of these vector spaces is <m>n</m>.
+        </p>
+        <p>
+            Sage allows for us to create a vector space using the <c>VectorSpace</c> command. 
+            We need to pass the field as well as the dimension of the space as arguments. 
+            For instance, the following method creates the vector space <m>\R^3</m>:
+        </p>
+        <sage>
+            <input>
+                V = VectorSpace(RR, 3)
+                V
+            </input>
+        </sage>
+        <note>
+            <title>Mantissa</title>
+                <p>
+                    By executing this command, we created a 3-dimensional vector space composed of Real numbers with 53 bits of precision.
+                    The 53 bits are referred to as the mantissa, or the significand. The mantissa is the number of significant digits
+                    that are in the floating point system. This signifies how precise the number can be.
+                </p>
+        </note>
+        <p>
+            Let's create now the vector space <m>\C^2</m>
+            of pairs of complex numbers:
+        </p>
+        <sage>
+            <input>
+                W = VectorSpace(CC, 2)
+                W
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            Equivalently, we can define the same vector space as:
+        </p>
+        <sage>
+            <input>
+                W = CC ^ 2
+                W
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            We can check if a vector belongs to a vector space. Like this:
+        </p>
+        <sage>
+            <input>
+                v = vector(RR, [1,3,4])
+                # Ensure that the vector is over the same field
+                v in V
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <!-- 
+        <p>
+        Interestingly, polynomials with real coefficients also satisfy the definition of a vector space.
+        We can construct the vector space containing polynomials, with a variable <m>x</m>, of maximum degree 3 as follows:
+        </p>
+        <sage>
+        <input>
+        P_3 = VectorSpace(RR, PolynomialRing(RR, var('x'), 4))
+        P_3
+        </input>
+        </sage>
+        <note>
+        <title>Free Modules</title>
+        <p>
+        The return type of <c>VectorSpace</c> is a <c>FreeModule</c>
+        as opposed to a vector space class.
+        This is a more general term and in this context can be interpreted as a vector space.
+        </p>
+        </note>
+        <p>
+        It is required by Sage to specify the variable of the polynomial when we are working with polynomials.
+        </p>
+        -->
+    </introduction>
+</section>
