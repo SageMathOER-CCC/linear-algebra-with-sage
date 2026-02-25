@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<section xml:id="sec-coordinates"
+<section xml:id="sec-bases"
     xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Coordinates and Change of Basis</title>
+    <title>Bases</title>
     <introduction xml:id="sm-introduction-coordinates">
         <p>
             Given a basis for a vector space,
