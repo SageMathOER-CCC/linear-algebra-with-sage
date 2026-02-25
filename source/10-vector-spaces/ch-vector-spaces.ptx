@@ -13,9 +13,9 @@
     </introduction>
 
     <!-- include sections -->
-    <xi:include href="sec01-definition.ptx" />
+    <xi:include href="sec01-axioms.ptx" />
     <xi:include href="sec02-subspaces.ptx" />
-    <xi:include href="sec03-coordinates.ptx" />
+    <xi:include href="sec03-bases.ptx" />
     <xi:include href="sec04-gram-schmidt-process.ptx" />
 
 </chapter>
