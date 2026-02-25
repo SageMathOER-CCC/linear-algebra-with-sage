@@ -16,108 +16,142 @@
                 </li>
             </ul>
             
-            If we have a set of vectors <m>v_1, v_2, \ldots, v_n</m>, the algorithm can be described as follows. We start with finding the orthogonal set:
+            Suppose <m>v_1, v_2, \ldots, v_n</m>, is a linearly independent set of vectors, the algorithm can be described as follows.
+            We begin by finding the orthogonal set:
         </p>
-        <me>u_k = v_k - \sum_{j=1}^{k-1} \mathrm{proj}_{u_j}(v_k)</me>
+
+        <me>
+            u_k = v_k - \sum_{j=1}^{k-1} \frac{v_k \cdot u_j}{||u_j||^2} u_j
+        </me>
+        
         <p>
-            We then normalize to get the orthonormal set:
+            We then normalize these vectors to obtain the orthonormal set:
         </p>
-        <me>e_k = \frac{u_k}{||u_k||}</me>
+
+        <me>
+            e_k = \frac{u_k}{||u_k||}
+        </me>
 
 
     </introduction>
     <subsection xml:id="sm-gram-schmidt-manual">
-        <title>Manual Gram-Schmidt Process</title>
+        <title>Finding an Orthogonal Basis</title>
         <p>
             We will first implement Gram-Schmidt manually. In the following
-            example, we use vectors in <m>\mathbb{R}^4</m>.
+            example, we use the basis <m>\{v_1, v_2\}</m> of a subspace of <m>\R^3</m>.
         </p>
 
         <sage>
             <input>
-                v1 = vector([1, 1, 1, 1])
-                v2 = vector([0, 1, 1, 1])
-                v3 = vector([0, 0, 1, 1])
-                v1, v2, v3
+                v1 = vector([1, 1, 0])
+                v2 = vector([1, 2, 2])
+                v1, v2
             </input>
             <output></output>
         </sage>
 
-        <p>Compute the orthogonal set using projections: <m>u_1 = v_1,\quad u_2 = v_2 - \mathrm{proj}_{u_1}(v_2),\quad u_3 = v_3 - \mathrm{proj}_{u_1}(v_3) - \mathrm{proj}_{u_2}(v_3)</m>.</p>
+        <p>
+            If 
+            <me>
+                P_2 = \frac{v_2 \cdot u_1}{||u_1||^2} u_1
+            </me>.
+            Then we can compute the orthogonal set by: 
+        </p>
 
+        <me>
+            u_1 = v_1,\quad u_2 = v_2 - P_2
+        </me>
+        
         <sage>
             <input>
                 # Step 1
                 u1 = v1
 
-                # Step 2: u2 = v2 - proj_u1(v2)
-                proj1_2 = (v2.dot_product(u1) / u1.dot_product(u1)) * u1
-                u2 = v2 - proj1_2
-                # Step 3: u3 = v3 - proj_u1(v3) - proj_u2(v3)
-                proj1_3 = (v3.dot_product(u1) / u1.dot_product(u1)) * u1
-                proj2_3 = (v3.dot_product(u2) / u2.dot_product(u2)) * u2
-                u3 = v3 - proj1_3 - proj2_3
+                # Step 2: u2 = v2 - p2
+                p2 = v2*u1 / norm(u1)^2 * u1
+                u2 = v2 - p2
 
-                print("Orthogonal basis (unnormalized):")
-                print("u1 =", u1, "||u1|| =", u1.norm())
-                print("u2 =", u2, "||u2|| =", u2.norm())
-                print("u3 =", u3, "||u3|| =", u3.norm())
+                #orthogonal basis
+                u1, u2
             </input>
             <output></output>
         </sage>
 
-        <p>We now normalize to get the orthonormal set: <m>e_i = u_i / ||u_i||</m>.</p>
-
-        <sage>
-            <input>
-                e1 = u1 / u1.norm()
-                e2 = u2 / u2.norm()
-                e3 = u3 / u3.norm()
-                print("Orthonormal basis:")
-                print("e1 =", e1)
-                print("e2 =", e2)
-                print("e3 =", e3)
-            </input>
-            <output></output>
-        </sage>
-
-        <p>We can easily verify our work by checking the orthogonality of the orthonormal vectors.</p>
-
-        <sage>
-            <input>
-                print("Checks:")
-                print("u1 · u2 =", u1.dot_product(u2))
-                print("u1 · u3 =", u1.dot_product(u3))
-                print("u2 · u3 =", u2.dot_product(u3))
-            </input>
-            <output></output>
-        </sage>
-    </subsection>
-
-    <subsection xml:id="sm-gram-schmidt-builtin">
-        <title>Built-in Gram-Schmidt Process</title>
         <p>
-            In Sage, the Gram-Schmidt process can be applied to a matrix whose rows 
-            form the set of vectors we wish to make orthonormal. 
-            Let's start with a basis for a subspace of <m>\mathbb{R}^3</m>.
+            The Gram-Schmidt algorithm is implemented in Sage as a method for matrices.
+            Therefore, we need to write a matrix where the rows are the vectors of the original set.
+            Sage returns two matrices, the vectors in the orthogonal basis are the rows of the first matrix.
+            The second matrix contains the coefficients in the linear combinations at each step of the process.
+            Let's start by constructing the matrix from the set of linearly independent vectors <m>\{v_1, v_2\}</m>.
         </p>
+
         <sage>
             <input>
-                # Define a basis with two linearly independent vectors
-                v1 = vector(RDF, [1, 1, 0]) # Sage does not support the Gram-Schmidt process with RR real numbers so we must use RDF real numbers
-                v2 = vector(RDF, [1, 2, 2])
-                
-                # Create a matrix with these vectors as rows
+                v1 = vector([1, 1, 0])
+                v2 = vector([1, 2, 2])
                 A = matrix([v1, v2])
                 A
             </input>
             <output></output>
         </sage>
+
         <p>
-            Now, we apply the <c>gram_schmidt</c> method. 
-            The <c>orthonormal=True</c>
-            argument ensures the resulting vectors are normalized to have unit length.
+            Now we apply <c>gram_schmidt()</c> method and consider the first matrix returned.
         </p>
+
+        <sage>
+            <input>
+                B, mu = A.gram_schmidt()
+                B
+            </input>
+            <output></output>
+        </sage>
+
+        <p>
+            The matrix <m>B</m> contains the orthogonal basis as rows.
+            Let's check that the basis <m>\{u_1, u_2\}</m> obtained manually coincides with this one.
+        </p>
+
+        <sage>
+            <input>
+                C = matrix([u1, u2])
+                C == B
+            </input>
+            <output></output>
+        </sage>
+
+    </subsection>
+
+    <subsection xml:id="sm-gram-schmidt-builtin">
+        <title>Finding the Orthonormal Basis</title>
+
+        <p>
+            For the last step of the algorithm, we can manually normalize the orthogonal basis obtained.
+        </p>
+
+        <sage>
+            <input>
+                e1 = u1 / norm(u1)
+                e2 = u2 / norm(u2)
+                e1, e2
+            </input>
+            <output></output>
+        </sage>
+
+        <p>
+            Alternatively, we can use the option <c>orthonormal=True</c> in the <c>gram_schmidt()</c> method.
+        </p>
+
+        <sage>
+            <input>
+                v1 = vector(QQbar,[1, 1, 0])
+                v2 = vector(QQbar,[1, 2, 2])
+                A = matrix([v1, v2])
+                A
+            </input>
+            <output></output>
+        </sage>
+        
         <sage>
             <input>
                 B, mu = A.gram_schmidt(orthonormal=True)
@@ -125,55 +159,27 @@
             </input>
             <output></output>
         </sage>
+
         <p>
-            The matrix <m>B</m> contains the new basis as row vectors, 
-            while the matrix <m>mu</m>
-            contains the coefficients used in the Gram-Schmidt Process.
+            Let's write the vectors <m>e_1,e_2</m> obtained manually as rows of a matrix M 
+            and compare it with the matrix B of orthonormal vectors obtained directly.
         </p>
-        <p>
-            Let's extract the new basis vectors and verify their properties.
-        </p>
-        <p>
-            First we will extract the vectors:
-        </p>
+
         <sage>
             <input>
-                u1 = B.row(0)
-                u2 = B.row(1)
-                print(u1)
-                print(u2)
+                M = matrix([e1, e2])
+                M
             </input>
             <output></output>
         </sage>
-        <p>
-            Now we will use the dot product to check orthogonality.
-        </p>
+
         <sage>
             <input>
-                u1.dot_product(u2)
+                B == M
             </input>
             <output></output>
         </sage>
-        <p>
-            Then we must ensure that they are normalized.
-        </p>
-        <sage>
-            <input>
-                print(f"{u1.norm() = }\n{u2.norm() = }")
-            </input>
-            <output></output>
-        </sage>
-        <note>
-            <title>Floating Point Approximation</title>
-            <p>
-                The results here are only near their expected values 
-                due to accumulated floating point errors.
-                If one wants to avoid these issues, 
-                Sage offers the algebraic field, <c>QQbar</c>,
-                which contains all rational numbers and many irrational numbers 
-                (but notably missing <m>\pi</m> and <m>e</m>).
-            </p>
-        </note>
+
     </subsection>
 
 </section>
