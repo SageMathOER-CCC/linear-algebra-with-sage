@@ -109,7 +109,7 @@
         </sage>
         <p>
             Now we factor the characteristic polynomial, so that we can identify each eigenvalue and determine how many times it appears as a root.
-            The number of times an eigenvalue occurs as a root of the characteristic polynomial is called its algebraic multiplicity.
+            The number of times an eigenvalue occurs as a root of the characteristic polynomial is called its <term>algebraic multiplicity</term>.
         </p>
         <sage>
             <input>
@@ -141,7 +141,7 @@
         </sage>
 
         <p>
-            Observe that we obtained the same eigenvalues as before, each repeated according to its multiplicity.
+            Observe that we obtained the same eigenvalues as before, each repeated according to its algebraic multiplicity.
         </p>
         <p>
             To calculate the characteristic polynomial, Sage provides the <c>characteristic_polynomial()</c> method.
@@ -153,7 +153,7 @@
         </md>
         
         <p>
-            which may differ from our definition of the characteristic polynomial by a sign, depending on the dimension n of the matrix.
+            which may differ from our definition of the characteristic polynomial by a sign, depending on the dimension <m>n</m> of the matrix.
             Indeed,
         </p>
 
@@ -176,12 +176,12 @@
             </output>
         </sage>
         <p>
-            We can check now that the characteristic polynomial "cpoly" we computed by hand before,
+            We can check now that the characteristic polynomial <em>cpoly</em> we computed by hand before,
             coincides with this polynomial <m>p</m> returned by the <c>characteristic_polynomial()</c> method multiplied by <m>(-1)^n</m>.
         </p>
         <sage>
             <input>
-                bool(SR(cpoly) == SR((-1)^3 * p))
+                bool(cpoly == (-1)^3 * p)
             </input>
             <output>
 
@@ -189,8 +189,6 @@
         </sage>
         <p>
             Note that if we want to test whether the symbolic expression <m>q</m> is equal to the symbolic expression <m>r</m>, we need to type <c>bool(q == r)</c>.
-            Additionally, we may want to use the <c>SR()</c> method to ensure that both expressions are treated as symbolic expressions,
-            which is necessary for the equality test to work correctly.
         </p>
     </subsection>
 </section>
