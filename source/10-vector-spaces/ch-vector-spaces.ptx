@@ -5,17 +5,15 @@
 
     <introduction xml:id="sm-subsection-vector-spaces">
         <p>
-            A vector space is a fundamental concept in linear algebra.
-            They are generalizations of <m>\R^n</m>, which we have been
-            using up until this point. These generalizations aim to maintain
-            the desirable arithmetic properties that <m>\R^n</m> has.
+            Linear algebra is the study of vector spaces and linear transformations. 
+            This chapter will introduce how to use Sage to work with vector spaces.
         </p>
     </introduction>
 
     <!-- include sections -->
     <xi:include href="sec01-definition.ptx" />
     <xi:include href="sec02-subspaces.ptx" />
-    <xi:include href="sec03-coordinates.ptx" />
+    <xi:include href="sec03-bases.ptx" />
     <xi:include href="sec04-gram-schmidt-process.ptx" />
 
 </chapter>
