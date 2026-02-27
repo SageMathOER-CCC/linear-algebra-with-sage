@@ -53,13 +53,13 @@
         <p>
             If 
             <me>
-                P_2 = \frac{v_2 \cdot u_1}{||u_1||^2} u_1
+                p_2 = \frac{v_2 \cdot u_1}{||u_1||^2} u_1
             </me>.
             Then we can compute the orthogonal set by: 
         </p>
 
         <me>
-            u_1 = v_1,\quad u_2 = v_2 - P_2
+            u_1 = v_1,\quad u_2 = v_2 - p_2
         </me>
         
         <sage>

@@ -2,48 +2,54 @@
     <title>Eigenvectors</title>
     <introduction>
         <p>
-            An <term>eigenvector</term> of a square matrix, <m>A</m>, is a non-zero vector where multiplication by <m>A</m> does not change its direction.
+            An <term>eigenvector</term> of a square matrix <m>A</m> is a non zero vector whose direction is unchanged when multiplied by <m>A</m>.
             Formally, for a vector <m>v</m>, this relationship is expressed as:
         </p>
         <md>
             <mrow> Av = \lambda v </mrow>
         </md>
         <p>
-            Here, <m>\lambda</m> is a scalar known as an <term>eigenvalue</term>
+            Here, <m>\lambda</m> is a scalar known as the <term>eigenvalue</term>
             associated with the eigenvector <m>v</m>.
         </p>
         <p>
-            First, we will use Sage to calculate the eigenvalues of matrix <m>A</m>, and then
-            we will find the eigenvectors of matrix <m>A</m>.
+            First, we will show how to use Sage to calculate the eigenvalues of a matrix, and then
+            we will proceed with the calculations of its eigenvectors.
         </p>
     </introduction>
-    <subsection xml:id="subsec-calculation-of-eigenvalues">
-        <title>Calculation of Eigenvalues</title>
+    <subsection xml:id="subsec-manual-calculation-of-eigenvalues">
+        <title>Manual Calculation of Eigenvalues</title>
         <p>
-            From the definition of an eigenvector we arrive
-            at what is referred to as the <term>characteristic equation</term>:
+            Since the equation <m> Av = \lambda v </m> is equivalent to <m> (A - \lambda I)v = 0 </m> , the eigenvalues of <m>A</m>
+            are precisely the scalars <m>\lambda</m> for which this equation has nontrivial solutions.
+            The determinant of the coefficient matrix of this homogeneous system must be zero.
+            Therefore, we require <m> \det(A - \lambda I) = 0 </m>.
+        </p>
+        <p>
+            The nth-degree polynomial <m>\det(A - \lambda I)</m> is called the <term>characteristic polynomial</term> of <m>A</m>. The eigenvalues of <m>A</m> are the solutions of the <term>characteristic equation</term>: 
         </p>
         <md>
-            <mrow> \det(A - \lambda I) = 0 </mrow>
+            <mrow> \det(A - \lambda I) = 0. </mrow>
         </md>
         <p>
-            The left hand side of this equation will evaluate to a polynomial with <m>\lambda</m> as the variable.
-            This is referred to as a <term>characteristic polynomial</term> and its roots are the eigenvalues of the matrix.
-        </p>
-        <p>
-            We will use the matrix <m>A</m> to demonstrate.
+            Let's start by solving this equation manually, to calculate the eigenvalues.
+            First, we enter our matrix <m>A</m>:
         </p>
         <sage>
             <input>
                 A = matrix([
-                    [6, 0],
-                    [4, 2]
+                    [0, 1, 1],
+                    [1, 0, 1],
+                    [1, 1, 0]
                     ])
                 A
             </input>
+            <output>
+            
+            </output>
         </sage>
         <p>
-            First we will set <m>\lambda</m> as a variable.
+            We declare <m>\lambda</m> as a variable.
         </p>
         <sage>
             <input>
@@ -54,11 +60,11 @@
             </output>
         </sage>
         <p>
-            Then initialize <m>B = A - \lambda I</m>.
+            We then construct the matrix <m>B = A - \lambda I</m>.
         </p>
         <sage>
             <input>
-                B = A - λ * identity_matrix(2)
+                B = A - λ * identity_matrix(3)
                 B
             </input>
             <output>
@@ -66,110 +72,125 @@
             </output>
         </sage>
         <p>
-            Then initialize variable eq with <m>\det(B) = 0</m> to solve symbolically.
-            Then initialize variable eq with <m>\det(B) = 0</m> to solve symbolically.
+            Next, we define the characteristic equation <m>\det(B) = 0</m>.
         </p>
         <sage>
             <input>
-                eq = B.det() == 0
-                eq
+                ceq = B.det() == 0
+                ceq
             </input>
             <output>
 
             </output>
         </sage>
         <p>
-            Then solve eq.
-            Then solve eq.
+            Finally, we solve the characteristic equation.
         </p>
         <sage>
             <input>
-                solve(eq)
+                solve(ceq)
             </input>
             <output>
 
             </output>
         </sage>
         <p>
-            Sage has the <c>eigenvalues()</c> method to automatically compute the eigenvalues and return them as a list.
+            Sage returns the solution of the equation, which are the eigenvalues of <m>A</m>.
+            By using the <c>lhs()</c> method, we obtain the left-hand side part of the equation, namely, the characteristic polynomial.
         </p>
         <sage>
             <input>
-                A.eigenvalues()
+                cpoly = ceq.lhs()
+                cpoly
             </input>
             <output>
 
             </output>
         </sage>
         <p>
-            We can use the <c>characteristic_polynomial()</c> or <c>charpoly()</c>
-            We can use the <c>characteristic_polynomial()</c> or <c>charpoly()</c>
-            method to directly obtain the characteristic polynomial,
-            in terms of <m>v</m>, of a matrix. Using either method will get us the same
-            output.
+            Now we factor the characteristic polynomial, so that we can identify each eigenvalue and determine how many times it appears as a root.
+            The number of times an eigenvalue occurs as a root of the characteristic polynomial is called its algebraic multiplicity.
         </p>
         <sage>
             <input>
-                A.characteristic_polynomial()
+                cpoly.factor()
             </input>
             <output>
 
             </output>
         </sage>
     </subsection>
-    <subsection xml:id="subsec-computation-of-eigenvectors">
-        <title>Computation of Eigenvectors</title>
+    <subsection xml:id="subsec-sage-calculation-of-eigenvalues">
+        <title>Sage Calculation of Eigenvalues</title>
         <p>
-            Recall the definition of an eigenvector which we used to solve for <m>\lambda</m>.
-            Using these eigenvalues we can create a matrix equation of the form:
+            Sage provides the <c>eigenvalues()</c> method to compute the eigenvalues directly and return them as a list.
         </p>
+        <sage>
+            <input>
+                A = matrix([
+                    [0, 1, 1],
+                    [1, 0, 1],
+                    [1, 1, 0]
+                    ])
+                A
+                A.eigenvalues()
+            </input>
+            <output>
+
+            </output>
+        </sage>
+
+        <p>
+            Observe that we obtained the same eigenvalues as before, each repeated according to its multiplicity.
+        </p>
+        <p>
+            To calculate the characteristic polynomial, Sage provides the <c>characteristic_polynomial()</c> method.
+            Note that this method computes the polynomial
+        </p>
+
         <md>
-            <mrow> (A - \lambda I) v = 0 </mrow>
+            <mrow>p = \det(\lambda I - A),</mrow>
+        </md>
+        
+        <p>
+            which may differ from our definition of the characteristic polynomial by a sign, depending on the dimension n of the matrix.
+            Indeed,
+        </p>
+
+        <md>
+            <mrow>\det(\lambda I - A) = (-1)^n \det(A - \lambda I).</mrow>
         </md>
 
         <p>
-            We can obtain <m>v</m> by substituting a value of <m>\lambda</m>, we will chose <m>\lambda = 6</m>.
+            To compute the polynomial <m>p</m>, we can use the <c>characteristic_polynomial()</c> or <c>charpoly()</c> methods.
+            Using either method will yield the same result.
         </p>
+
         <sage>
             <input>
-                B = A - 6 * identity_matrix(2)
-                B
+                p = A.characteristic_polynomial(var='λ')
+                p
             </input>
             <output>
 
             </output>
         </sage>
         <p>
-            Then using the <c>right_kernel()</c> method Sage can solve this equation for us.
-            Since Sage uses the left-kernel while our formula uses right multiplication,
-            we must specify to use right-kernel.
-            Then using the <c>right_kernel()</c> method Sage can solve this equation for us.
-            Since Sage uses the left-kernel while our formula uses right multiplication,
-            we must specify to use right-kernel.
+            We can check now that the characteristic polynomial "cpoly" we computed by hand before,
+            coincides with this polynomial <m>p</m> returned by the <c>characteristic_polynomial()</c> method multiplied by <m>(-1)^n</m>.
         </p>
         <sage>
             <input>
-                B.right_kernel()
-                B.right_kernel()
+                bool(SR(cpoly) == SR((-1)^3 * p))
             </input>
             <output>
 
             </output>
         </sage>
         <p>
-            We can find all eigenvectors of <m>A</m> with the <c>eigenvectors_right()</c> method.
-        </p>
-        <sage>
-            <input>
-                A.eigenvectors_right()
-            </input>
-        </sage>
-        <p>
-            The output is a list containing elements of the form <c>(e, [v_1, v_2, ... v_n], m)</c>,
-            where <c>e</c> is the eigenvalue,
-            <c>v_1</c> through <c>v_n</c> are the corresponding eigenvectors,
-            and <c>m</c> is how many times <c>e</c>
-            appears as a root in the characteristic polynomial (also referred to as algebraic multiplicity).
+            Note that if we want to test whether the symbolic expression <m>q</m> is equal to the symbolic expression <m>r</m>, we need to type <c>bool(q == r)</c>.
+            Additionally, we may want to use the <c>SR()</c> method to ensure that both expressions are treated as symbolic expressions,
+            which is necessary for the equality test to work correctly.
         </p>
     </subsection>
 </section>
