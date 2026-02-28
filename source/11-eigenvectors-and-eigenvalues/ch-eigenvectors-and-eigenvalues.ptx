@@ -10,5 +10,7 @@
     </introduction>
 
     <!-- include sections -->
-    <xi:include href="sec01-eigenvectors.ptx" />
+    <xi:include href="sec01-definition.ptx" />
+    <xi:include href="sec02-eigenvalues.ptx" />
+    <xi:include href="sec03-eigenvectors.ptx" />
 </chapter>
