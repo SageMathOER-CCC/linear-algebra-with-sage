@@ -24,6 +24,7 @@
     <xi:include href="./10-vector-spaces/ch-vector-spaces.ptx" />
     <xi:include href="./11-eigenvectors-and-eigenvalues/ch-eigenvectors-and-eigenvalues.ptx" />
     <xi:include href="./12-diagonalization-and-lu-decomposition/ch-diagonalization-and-lu-decomposition.ptx" />
+    <xi:include href="./13-linear-transformations/ch-linear-transformations.ptx" />
 
     <!-- Include backmatter -->
     <xi:include href="./backmatter.ptx" />
