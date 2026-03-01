@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sm-gram-schmidt-process">
+    <title>Gram-Schmidt Process</title>
+
+    <introduction xml:id="sm-introduction-gram-schmidt-process">
+        <p>
+            The <term>Gram-Schmidt process</term> is an algorithm used to create an <term>orthonormal</term>
+            set from a linearly independent set of vectors.
+            An orthonormal set of vectors has two key properties:
+            <ul>
+                <li>
+                    <p>Every vector in the set is orthogonal to every other vector.</p>
+                </li>
+                <li>
+                    <p>Every vector has a length of 1.</p>
+                </li>
+            </ul>
+
+            Suppose <m>v_1, v_2, \ldots, v_n</m>, is a linearly independent set of vectors, the algorithm can be described as follows.
+            We begin by finding the orthogonal set:
+        </p>
+
+        <me>
+            u_k = v_k - \sum_{j=1}^{k-1} \frac{v_k \cdot u_j}{||u_j||^2} u_j
+        </me>
+
+        <p>
+            We then normalize these vectors to obtain the orthonormal set:
+        </p>
+
+        <me>
+            e_k = \frac{u_k}{||u_k||}
+        </me>
+
+
+    </introduction>
+    <subsection xml:id="sm-gram-schmidt-manual">
+        <title>Finding an Orthogonal Basis</title>
+        <p>
+            We will first implement Gram-Schmidt manually. In the following
+            example, we use the basis <m>\{v_1, v_2\}</m> of a subspace of <m>\R^3</m>.
+        </p>
+
+        <sage>
+            <input>
+                v1 = vector([1, 1, 0])
+                v2 = vector([1, 2, 2])
+                v1, v2
+            </input>
+            <output></output>
+        </sage>
+
+        <p>
+            If 
+            <me>
+                p_2 = \frac{v_2 \cdot u_1}{||u_1||^2} u_1
+            </me>.
+            Then we can compute the orthogonal set by: 
+        </p>
+
+        <me>
+            u_1 = v_1,\quad u_2 = v_2 - p_2
+        </me>
+
+        <sage>
+            <input>
+                # Step 1
+                u1 = v1
+
+                # Step 2: u2 = v2 - p2
+                p2 = v2*u1 / norm(u1)^2 * u1
+                u2 = v2 - p2
+
+                #orthogonal basis
+                u1, u2
+            </input>
+            <output></output>
+        </sage>
+
+        <p>
+            The Gram-Schmidt algorithm is implemented in Sage as a method for matrices.
+            Therefore, we need to write a matrix where the rows are the vectors of the original set.
+            Sage returns two matrices, the vectors in the orthogonal basis are the rows of the first matrix.
+            The second matrix contains the coefficients in the linear combinations at each step of the process.
+            Let's start by constructing the matrix from the set of linearly independent vectors <m>\{v_1, v_2\}</m>.
+        </p>
+
+        <sage>
+            <input>
+                v1 = vector([1, 1, 0])
+                v2 = vector([1, 2, 2])
+                A = matrix([v1, v2])
+                A
+            </input>
+            <output></output>
+        </sage>
+
+        <p>
+            Now we apply <c>gram_schmidt()</c> method and consider the first matrix returned.
+        </p>
+
+        <sage>
+            <input>
+                B, mu = A.gram_schmidt()
+                B
+            </input>
+            <output></output>
+        </sage>
+
+        <p>
+            The matrix <m>B</m> contains the orthogonal basis as rows.
+            Let's check that the basis <m>\{u_1, u_2\}</m> obtained manually coincides with this one.
+        </p>
+
+        <sage>
+            <input>
+                C = matrix([u1, u2])
+                C == B
+            </input>
+            <output></output>
+        </sage>
+
+    </subsection>
+
+    <subsection xml:id="sm-gram-schmidt-builtin">
+        <title>Finding the Orthonormal Basis</title>
+
+        <p>
+            For the last step of the algorithm, we can manually normalize the orthogonal basis obtained.
+        </p>
+
+        <sage>
+            <input>
+                e1 = u1 / norm(u1)
+                e2 = u2 / norm(u2)
+                e1, e2
+            </input>
+            <output></output>
+        </sage>
+
+        <p>
+            Alternatively, we can use the option <c>orthonormal=True</c> in the <c>gram_schmidt()</c> method.
+        </p>
+
+        <sage>
+            <input>
+                v1 = vector(QQbar,[1, 1, 0])
+                v2 = vector(QQbar,[1, 2, 2])
+                A = matrix([v1, v2])
+                A
+            </input>
+            <output></output>
+        </sage>
+
+        <sage>
+            <input>
+                B, mu = A.gram_schmidt(orthonormal=True)
+                B
+            </input>
+            <output></output>
+        </sage>
+
+        <p>
+            Let's write the vectors <m>e_1,e_2</m> obtained manually as rows of a matrix M 
+            and compare it with the matrix B of orthonormal vectors obtained directly.
+        </p>
+
+        <sage>
+            <input>
+                M = matrix([e1, e2])
+                M
+            </input>
+            <output></output>
+        </sage>
+
+        <sage>
+            <input>
+                B == M
+            </input>
+            <output></output>
+        </sage>
+
+    </subsection>
+
+</section>
