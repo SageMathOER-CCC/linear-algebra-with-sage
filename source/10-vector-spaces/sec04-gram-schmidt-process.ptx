@@ -15,7 +15,7 @@
                     <p>Every vector has a length of 1.</p>
                 </li>
             </ul>
-
+            
             Suppose <m>v_1, v_2, \ldots, v_n</m>, is a linearly independent set of vectors, the algorithm can be described as follows.
             We begin by finding the orthogonal set:
         </p>
@@ -23,7 +23,7 @@
         <me>
             u_k = v_k - \sum_{j=1}^{k-1} \frac{v_k \cdot u_j}{||u_j||^2} u_j
         </me>
-
+        
         <p>
             We then normalize these vectors to obtain the orthonormal set:
         </p>
@@ -61,7 +61,7 @@
         <me>
             u_1 = v_1,\quad u_2 = v_2 - p_2
         </me>
-
+        
         <sage>
             <input>
                 # Step 1
@@ -151,7 +151,7 @@
             </input>
             <output></output>
         </sage>
-
+        
         <sage>
             <input>
                 B, mu = A.gram_schmidt(orthonormal=True)
