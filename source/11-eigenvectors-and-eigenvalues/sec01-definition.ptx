@@ -1,0 +1,21 @@
+<section xml:id="sec-definition" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Definition</title>
+    <introduction>
+        <p>
+            An <term>eigenvector</term> of a square matrix <m>A</m> is a non zero vector whose direction is unchanged when multiplied by <m>A</m>.
+            Formally, for a vector <m>v</m>, this relationship is expressed as:
+        </p>
+        <md>
+            <mrow> Av = \lambda v </mrow>
+        </md>
+        <p>
+            Here, <m>\lambda</m> is a scalar known as the <term>eigenvalue</term>
+            associated with the eigenvector <m>v</m>.
+        </p>
+        <p>
+            First, we will show how to use Sage to calculate the eigenvalues of a matrix, and then
+            we will proceed with the calculations of its eigenvectors.
+        </p>
+    </introduction>
+    
+</section>

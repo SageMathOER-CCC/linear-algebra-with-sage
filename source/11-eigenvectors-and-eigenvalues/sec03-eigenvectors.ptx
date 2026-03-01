@@ -1,0 +1,63 @@
+<section xml:id="sec-eigenvectors" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Eigenvectors</title>
+
+        <p>
+            In this section, we will learn how to compute eigenvectors of a matrix.
+        </p>
+        <p>
+            Recall the definition of an eigenvector which we used to solve for <m>\lambda</m>.
+            Using these eigenvalues we can create a matrix equation of the form:
+        </p>
+        <md>
+            <mrow> (A - \lambda I) v = 0 </mrow>
+        </md>
+        <p>
+            We can obtain <m>v</m> by substituting a value of <m>\lambda</m>, we will chose <m>\lambda = 6</m>.
+        </p>
+        <sage>
+            <input>
+                A = matrix([
+                    [6, 0],
+                    [4, 2],
+                    ])
+                B = A - 6 * identity_matrix(2)
+                B</input>
+            <output>
+
+            </output>
+        </sage>
+        <p>
+            Then using the <c>right_kernel()</c> method Sage can solve this equation for us.
+            Since Sage uses the left-kernel while our formula uses right multiplication,
+            we must specify to use right-kernel.
+            Then using the <c>right_kernel()</c> method Sage can solve this equation for us.
+            Since Sage uses the left-kernel while our formula uses right multiplication,
+            we must specify to use right-kernel.
+        </p>
+        <sage>
+            <input>
+                B.right_kernel()
+                B.right_kernel()</input>
+            <output>
+            </output>
+        </sage>
+        <p> We can find all eigenvectors of <m>A</m> with the <c>eigenvectors_right()</c> method.
+        </p>
+        <sage>
+            <input>
+                A.eigenvectors_right()</input>
+            <output>
+
+            </output>
+        </sage>
+        <p>
+            The output is a list containing elements of the form <c>(e, [v_1, v_2, ... v_n], m)</c>,
+            where <c>e</c> is the eigenvalue,
+            <c>v_1</c> through <c>v_n</c> are the corresponding eigenvectors,
+            and <c>m</c> is how many times <c>e</c>
+            appears as a root in the characteristic polynomial (also referred to as algebraic multiplicity).
+        </p>
+
+
+
+</section>

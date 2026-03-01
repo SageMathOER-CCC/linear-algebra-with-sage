@@ -23,7 +23,7 @@
 
         <p>
             To illustrate Cramer's rule with an example, let's consider the system of equations from <xref ref="subsec-case-i"/>.
-            Let's first start by checking if the coefficient matrix <m>A</m> is non singular and compute its determinant:
+            Let's first start by checking if the coefficient matrix <m>A</m> is non-singular and compute its determinant:
         </p>
         <sage>
             <input>
@@ -35,9 +35,17 @@
                     [1, 2, 0],
                     [1, 0, 1]
                 ])
-                det_A = A.det()
-
                 A.is_singular()  # Check if A is singular
+            </input>
+        </sage>
+
+        <p>
+            As it turned out, the matrix <m>A</m> is non-singular, let's then compute its determinant:
+        </p>
+        <sage>
+            <input>
+                det_A = A.det()
+                print(det_A)
             </input>
         </sage>
 
@@ -47,7 +55,8 @@
             we replace the first column of <m>A</m> with <m>b</m> to form <m>A_1</m>, compute its determinant,
             and then find <m>x_1=\frac{\det(A_1)}{\det(A)}</m>.
         </p>
-        <sage>
+        <!-- TODO. revisit / auto-eval all cells -->
+        <sage autoeval='true'>
             <input>
                 A1 = matrix(A) # Create a copy of matrix A
                 A1.set_column(0, b)
@@ -98,7 +107,16 @@
         </sage>
 
         <p>
-            Note that Cramer's rule is an iterative process, hence, can be automated using loops and a reusable function.
+            Note that Cramer's rule is an iterative process, hence, can be automated using loops and a reusable
+            function.
+        </p>
+
+        <p>
+            Let's create a function <c>solve_system</c> that takes as input a coefficient matrix
+            <m>A</m> and a constant vector <m>b</m>, and returns the solution vector <m>x</m> using Cramer's rule.
+            The function will first check if the matrix <m>A</m> is non-singular, and if so, it will compute the
+            determinant of <m>A</m> and the determinants of the matrices formed by replacing each column of <m>A</m>
+            with <m>b</m>. Finally, it will return <m>x</m>, the solution vector.
         </p>
         <sage>
             <input auto-eval="true">
