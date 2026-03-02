@@ -5,26 +5,26 @@
     <title>Definition of Vector Spaces</title>
     <introduction xml:id="sm-introduction-vector-spaces-definition">
             <p>
-                A vector space provides an abstract generalization of the vectors in 
-                <m>\R^n</m> defined before. 
-                In <m>\R^n</m>, 
-                vectors can be added and multiplied by real numbers. 
-                Abstract vectors will have similar operations, 
-                and scalars can be drawn from any field <m>\F</m>, 
+                A vector space provides an abstract generalization of the vectors in
+                <m>\R^n</m> defined before.
+                In <m>\R^n</m>,
+                vectors can be added and multiplied by real numbers.
+                Abstract vectors will have similar operations,
+                and scalars can be drawn from any field <m>\F</m>,
                 not exclusively <m>\R</m>.
             </p>
             <note>
                 <title>Fields</title>
                 <p>
-                    Fields have their own set of axioms, 
+                    Fields have their own set of axioms,
                     but for our purposes we will use pre-defined fields in Sage.
                     So you may think of them as a class in Sage.
                 </p>
             </note>
             <p>
-                A vector space over a field of scalars 
+                A vector space over a field of scalars
                 <m>\F</m> as a nonempty set <m>V</m> of vectors,
-                together with the operations, <m>+</m> vector addition 
+                together with the operations, <m>+</m> vector addition
                 and <m>\cdot</m> scalar multiplication,
                 such that the following axioms are satisfied for all
                 <m>u,v,w \in V</m> and <m>a,b,1 \in \F</m>:
@@ -81,16 +81,16 @@
             </li>
         </dl>
         <p>
-            As an example, 
+            As an example,
             <m>\R^n</m> is a vector space over <m>\R</m>
             and the set <m>\F^n</m> of <m>n</m>-tuples <m>(a_1, \ldots, a_n)</m>
             where <m>a_i \in \F</m>
-            forms a vector space over <m>\F</m>. 
+            forms a vector space over <m>\F</m>.
             We will say that the dimension of these vector spaces is <m>n</m>.
         </p>
         <p>
-            Sage allows for us to create a vector space using the <c>VectorSpace</c> command. 
-            We need to pass the field as well as the dimension of the space as arguments. 
+            Sage allows for us to create a vector space using the <c>VectorSpace</c> command.
+            We need to pass the field as well as the dimension of the space as arguments.
             For instance, the following method creates the vector space <m>\R^3</m>:
         </p>
         <sage>
@@ -116,9 +116,6 @@
                 W = VectorSpace(CC, 2)
                 W
             </input>
-            <output>
-                
-            </output>
         </sage>
         <p>
             Equivalently, we can define the same vector space as:
@@ -128,9 +125,6 @@
                 W = CC ^ 2
                 W
             </input>
-            <output>
-                
-            </output>
         </sage>
         <p>
             We can check if a vector belongs to a vector space. Like this:
@@ -141,11 +135,8 @@
                 # Ensure that the vector is over the same field
                 v in V
             </input>
-            <output>
-                
-            </output>
         </sage>
-        <!-- 
+        <!--
         <p>
         Interestingly, polynomials with real coefficients also satisfy the definition of a vector space.
         We can construct the vector space containing polynomials, with a variable <m>x</m>, of maximum degree 3 as follows:
