@@ -5,7 +5,7 @@
     <!-- Invertible Matrices -->
     <p>
         Let <m>A</m> be a square matrix.
-        A matrix <m>B</m> is called an inverse of <m>A</m> if <m>AB = I</m> and <m>BA = I</m>, 
+        A matrix <m>B</m> is called an inverse of <m>A</m> if <m>AB = I</m> and <m>BA = I</m>,
         where <m>I</m> is the identity matrix.
     </p>
     <p>
@@ -126,7 +126,7 @@
             </input>
         </sage>
         <p>
-            Since the left sub-matrix is the identity matrix, 
+            Since the left sub-matrix is the identity matrix,
             the original matrix is invertible and the right sub-matrix is the inverse.
             We can obtain the inverse using the <c>submatrix()</c> method:
         </p>
@@ -135,16 +135,13 @@
                 B = rrefAI.submatrix(0,3)
                 B
             </input>
-            <output>
-                
-            </output>
         </sage>
         <p>
             This algorithm coincides with Sage's built-in <c>inverse()</c> method:
         </p>
         <sage>
             <input>
-                A.inverse() == B 
+                A.inverse() == B
             </input>
         </sage>
     </subsection>
@@ -159,9 +156,6 @@
                 C = A.adjugate() / A.det()
                 C
             </input>
-            <output>
-                
-            </output>
         </sage>
         <p>
             This algorithm also coincides with Sage's built-in <c>inverse()</c> method:
@@ -233,12 +227,9 @@
             <input>
                 I == M.augment(I).rref().submatrix(0,0,-1,3)
             </input>
-            <output>
-                
-            </output>
         </sage>
         <p>
-            To generalize the previous code to any <m>n \times n</m> matrix, 
+            To generalize the previous code to any <m>n \times n</m> matrix,
             keep the first three arguments the same but replace 3 with <m>n</m>.
         </p>
     </subsection>

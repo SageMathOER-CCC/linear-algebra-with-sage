@@ -7,6 +7,28 @@
         <p>
             <idx>
                 <h>Matrices</h>
+                <h>Cofactors</h>
+            </idx>
+            The cofactor <m>c_{ij}</m> is computed as <m>c_{ij} = (-1)^{i+j} M_{ij}</m>, where <m>M_{ij}</m>
+            is the minor obtained by deleting the <m>i^{th}</m> row and <m>j^{th}</m> column of <m>A</m>. The
+            following computes the cofactor <m>c_{12}</m> using the previously computed minor <m>M_{12}</m>.
+        </p>
+        <sage>
+            <input>
+                A = matrix([
+                    [1,   2,   3],
+                    [5,   7,  11],
+                    [13, 17,  19],
+                ])
+                m_12 = A.delete_rows([0]).delete_columns([1]).det()
+
+                c_12 = (-1)^(1+2) * m_12
+                c_12
+            </input>
+        </sage>
+        <p>
+            <idx>
+                <h>Matrices</h>
                 <h>Cofactor Matrix</h>
             </idx>
             Given a square matrix <m>A_{n \times n} = [a_{ij}]</m>, its cofactors matrix
@@ -19,11 +41,6 @@
         </p>
         <sage>
             <input>
-                A = matrix([
-                    [1,   2,   3],
-                    [5,   7,  11],
-                    [13, 17,  19],
-                ])
                 n = A.nrows()
                 C = matrix([[(-1)^(i + j) *
                     A.delete_rows([i]).delete_columns([j]).det()
