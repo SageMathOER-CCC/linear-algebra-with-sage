@@ -54,6 +54,9 @@
             </input>
         </sage>
         <p>
+            Alternatively, the rank is also the number of pivots in the row reduction of the matrix.
+            In Sage, the row reduction can be performed with the <c>rref()</c> method,
+            which returns a tuple containing the reduced row echelon form of the matrix and a list of pivot columns.
             Another way to get the rank of a matrix is to count how may pivots the matrix has.
         </p>
         <sage>

@@ -56,9 +56,6 @@
                 # Compute the square root of largest singular values of A
                 sqrt(max([abs(s) for s in list((A.transpose()*A).eigenvalues())]))
             </input>
-            <output>
-
-            </output>
         </sage>
         <note>
             <title>Default Norm of Matrix in Sage</title>

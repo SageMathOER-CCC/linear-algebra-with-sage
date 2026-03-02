@@ -79,13 +79,14 @@
                 <h>Hermititan Transpose</h>
                 <h>Transjugate</h>
             </idx>
-            The conjugate transpose of a matrix <m>A</m> is called the Hermitian transpose, Hermititan conjugate,
-            or transjugate and is denoted <m>A^*</m>, <m>A^{H}</m> or <m>A^{\dagger}</m>.
+            The conjugate transpose of a matrix <m>A</m> is called the Hermitian transpose, Hermititan
+            conjugate, or transjugate and is denoted <m>A^*</m>, <m>A^{H}</m> or <m>A^{\dagger}</m>.
         </p>
         <p>
-            The conjugate transpose matrix is also called the <em>Adjoint</em> matrix; however, this terminology will not be used
-            in this book to avoid confusion with the <em>Adjugate</em> concept introduced in chapter 8. 
-            Historically, "<em>Adjoint</em>" was used to refer to both concepts, see historical notes in chapter 8 for more details.
+            The conjugate transpose matrix is also called the <em>Adjoint</em> matrix. Historically,
+            this term was also used to refer to <em>Adjugate</em> concept introduced in chapter <m>8</m>.
+            To avoid confusion, this terminology will not be used in this book.
+            See <xref ref="sec-historical-notes"/> for more details.
         </p>
     </introduction>
 </section>

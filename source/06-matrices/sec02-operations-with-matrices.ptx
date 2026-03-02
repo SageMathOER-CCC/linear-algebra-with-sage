@@ -15,7 +15,7 @@
             other matrices (matrix multiplication). Addition and scalar multiplication are performed
             element-wise, analogous to the corresponding operations on vectors.
         </p>
-        <me>
+        <m>
             Let\  A =
             \begin{bmatrix}
             a_{ij}
@@ -25,14 +25,14 @@
             b_{ij}
             \end{bmatrix}
             \ be\ m\times n\ matrices.
-        </me>
+        </m>
 
-        <me>
-        A + B =
-        \begin{bmatrix}
-        a_{ij} + b_{ij}
-        \end{bmatrix}
-        </me>
+        <m>
+            A + B =
+            \begin{bmatrix}
+            a_{ij} + b_{ij}
+            \end{bmatrix}
+        </m>
 
         <sage>
             <input>
@@ -43,36 +43,33 @@
                 # Matrix addition.
                 A + B
             </input>
-            <output></output>
         </sage>
 
-         <me>
-        A - B =
-        \begin{bmatrix}
-        a_{ij} - b_{ij}
-        \end{bmatrix}
-        </me>
+        <m>
+            A - B =
+            \begin{bmatrix}
+            a_{ij} - b_{ij}
+            \end{bmatrix}
+        </m>
 
         <sage>
             <input>
                 # Matrix subtraction
                 A - B
             </input>
-            <output></output>
         </sage>
 
-         <me>
-        kA =
-        \begin{bmatrix}
-        ka_{ij}
-        \end{bmatrix}
-        </me>
+        <m>
+            kA =
+            \begin{bmatrix}
+            ka_{ij}
+            \end{bmatrix}
+        </m>
         <sage>
             <input>
                 # Scalar multiplication
                 3 * A
             </input>
-            <output></output>
         </sage>
 
         <p>
@@ -83,11 +80,11 @@
             Matrix multiplication is an operation between two matrices where the rows of the first
             matrix are multiplied (<em>dot product</em>) by the columns of the second matrix to produce
             the matrix product.
-             For the multiplication to be defined, the number of columns in the first matrix must
+            For the multiplication to be defined, the number of columns in the first matrix must
             equal the number of rows in the second matrix. The resulting matrix has the same number of
             rows as the first matrix and the same number of columns as the second matrix.
         </p>
-         <me>
+        <m>
             Let\  C =
             \begin{bmatrix}
             c_{ij}
@@ -98,17 +95,17 @@
             d_{ij}
             \end{bmatrix}
             \ an\; p\times n\ matrix.
-        </me>
-        <me>
+        </m>
+        <m>
         CD =
         \begin{bmatrix}
         d_{ij}
         \end{bmatrix}
-        </me>
+        </m>
 
-        <me>
+        <m>
         \ where\ d_{ij} = \sum_{k=1}^p c_{ik}d_{kj}.
-        </me>
+        </m>
 
         <sage>
             <input>
@@ -123,7 +120,6 @@
 
                 C * D
             </input>
-            <output></output>
         </sage>
 
         <p>
@@ -136,7 +132,6 @@
                 v = vector([3]*3)
                 A * v
             </input>
-            <output></output>
         </sage>
     </introduction>
 </section>
