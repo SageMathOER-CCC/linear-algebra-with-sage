@@ -5,7 +5,6 @@
             In this section, we will learn how to compute eigenvalues of a matrix.
         </p>
     </introduction>
-
     <subsection xml:id="subsec-manual-calculation-of-eigenvalues">
         <title>Manual Calculation of Eigenvalues</title>
         <p>
@@ -27,9 +26,9 @@
         <sage>
             <input>
                 A = matrix([
-                    [0, 1, 1],
-                    [1, 0, 1],
-                    [1, 1, 0]
+                    [2, 1, 0],
+                    [0, 2, 0],
+                    [0, 0, -1]
                     ])
                 A
             </input>
@@ -96,15 +95,26 @@
         <sage>
             <input>
                 A = matrix([
-                    [0, 1, 1],
-                    [1, 0, 1],
-                    [1, 1, 0]
+                    [2, 1, 0],
+                    [0, 2, 0],
+                    [0, 0, -1]
                     ])
                 A
                 A.eigenvalues()
             </input>
         </sage>
 
+        <p>
+            Sage also provides a direct method to compute the multiplicities of the eigenvalues.
+        </p>
+        <sage>
+            <input>
+                A.eigenvalue_multiplicity(-1)
+                A.eigenvalue_multiplicity(2)
+            </input>
+            <output>
+            </output>
+        </sage>
         <p>
             Observe that we obtained the same eigenvalues as before, each repeated according to its algebraic multiplicity.
         </p>
