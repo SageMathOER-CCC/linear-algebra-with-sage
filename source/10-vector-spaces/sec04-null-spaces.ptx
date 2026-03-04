@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec-null-spaces"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Null Spaces</title>
+    <p>
+        The <term>null space</term> or <term>kernel</term> of a <m>m \times n</m> matrix <m>A</m>
+        is the solution space of the homogeneous system of equations <m>Ax=0</m>. 
+        We denote this space <m>N(A)</m>, where
+    </p>
+    <md>
+        <mrow> N(A) = \{x \in \R^n : Ax = \mathbf 0 \}. </mrow>
+    </md>
+    <p>
+        The null space is a subspace of <m>\R^n</m>.
+    </p>
+    <subsection xml:id="subsec-manual-calculation-of-n">
+        <title>Manual Calculation of the Kernel</title>
+        <p>
+            To calculate the null space of an <m>m \times n</m>
+            matrix we must:
+        </p>
+        <ol>
+            <li>
+                <p>
+                    Compute the reduced row echelon form <m>E</m> of <m>A</m>.
+                </p>
+            </li>
+            <li>
+                <p>
+                    Use <m>E</m> 
+                    to find the solution to the homogeneous system <m>Ax = 0</m>.
+                </p>
+            </li>
+            <li>
+                <p>
+                    Write the solution 
+                    <m>x = (d_1, d_2, \dots, d_k, f_1, \dots f_r)</m>
+                    in the form <m>d_i= a_{i1} f_1 + a_{i2} f_2 + \dots +a_{ir} f_r</m>,
+                    for <m> i=1...k </m>
+                    where <m>f_1, f_2, \dots, f_r</m>
+                    are the free variables and <m>k + r = n</m>.
+                </p>
+            </li>
+        </ol>
+        The vectors:
+        <md>
+            <mrow> (a_{11}, a_{12}, \dots, a_{1r}, 1, 0, \dots, 0) </mrow>
+            <mrow> (a_{21}, a_{22}, \dots, a_{2r}, 0, 1, \dots, 0) </mrow>
+            <mrow> \vdots </mrow>
+            <mrow> (a_{k1}, a_{k2}, \dots, a_{kr}, 0, 0, \dots, 1) </mrow>
+        </md>
+        <p>
+             form a basis of <m>N(A)</m>.
+        </p>
+        <p>
+            We do this in Sage by using the <c>solve</c> function.
+        </p>
+        <p>
+            First we will initialize our variables and the matrix we will solve.
+        </p>
+        <sage>
+            <input>
+                var('x1, x2, x3')
+                vars = [x1, x2, x3]
+                A = matrix(QQ, [
+                        [1, 2, 3], 
+                        [4, 5, 6]
+                    ])
+                A
+            </input>
+        </sage>
+        <p>
+            Then we will decompose the matrix into its homogeneous system
+            of equations <m>Ax = \mathbf 0</m>.
+        </p>
+        <sage>
+            <input>
+                eqs = [sum(A[i,j]*vars[j] for j in range(A.ncols())) == 0 
+                       for i in range(A.nrows())]
+                eqs
+            </input>
+        </sage>
+        <p>
+            Then we call <c>solve</c> to solve the equation.
+        </p>
+        <sage>
+            <input>
+                sol = solve(eqs, vars)
+                sol
+            </input>
+        </sage>
+        <p>
+            In the output, variables like <c>r1</c> represent free parameters. 
+            By choosing values for these parameters, 
+            we can identify the basis vectors of the null space.
+        </p>
+    </subsection>
+
+    <subsection xml:id="subsec-kernel-method">
+        <title>Kernel Method</title>
+        <p>
+            Sage provides the <c>right_kernel</c> method to compute this subspace.
+        </p>
+        <sage>
+            <input>
+                V = VectorSpace(RR, 3)
+                A = matrix(QQ,[
+                         [1, 2, 3],
+                         [4, 5, 6],
+                     ])
+                A
+            </input>
+        </sage>
+        <sage>
+            <input>
+                N = A.right_kernel()
+                N
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            Sage returns the subspace N with its basis as a matrix.
+        </p>
+        <p>
+            We can verify that N is a subspace of <m>\R3</m>.
+        </p>
+        <sage>
+            <input>
+                N.is_subspace(V)
+            </input>
+        </sage>
+    </subsection>
+</section>
