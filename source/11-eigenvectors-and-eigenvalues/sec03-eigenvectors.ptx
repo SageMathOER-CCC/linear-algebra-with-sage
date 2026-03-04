@@ -2,54 +2,280 @@
     <title>Eigenvectors</title>
 
         <p>
-            In this section, we will learn how to compute eigenvectors of a matrix.
+            A nonzero vector <m>v</m> such that <m>Av = \lambda v</m> is an eigenvector vector
+            belonging to the eigenvalue <m>\lambda</m>.
         </p>
         <p>
-            Recall the definition of an eigenvector which we used to solve for <m>\lambda</m>.
-            Using these eigenvalues we can create a matrix equation of the form:
+            Eigenvectors of <m>A</m>, as defined above, are also called right eigenvectors of <m>A</m>.
+            Since the equation <m>Av = \lambda v</m> is equivalent to <m>(A - \lambda I)v = 0</m>, we have that its solution equals the nullspace of <m>(A - \lambda I)</m>.
+            For a given eigenvalue <m>\lambda</m>, the subspace <m>N(A - \lambda I)</m> is called the eigenspace of <m>A</m> associated to the eigenvalue <m>\lambda</m>. The dimension of this subspace is the geometric multiplicity of the eigenvalue <m>\lambda</m>. 
         </p>
-        <md>
-            <mrow> (A - \lambda I) v = 0 </mrow>
-        </md>
         <p>
-            We can obtain <m>v</m> by substituting a value of <m>\lambda</m>, we will chose <m>\lambda = 6</m>.
+            The eigenvectors of the matrix <m>A</m> belonging to <m>\lambda</m> are all the nonzero vectors of <m>N(A - \lambda I)</m>. There is just one vector in the eigenspace <m>N(A - \lambda I)</m> that is not an eigenvector, namely the zero vector.
+        </p>
+
+    <subsection xml:id="subsec-manual-calculation-of-eigenvectors">
+        <title>Manual Calculation of Eigenvectors</title>
+        <p>
+            For each eigenvalue <m>\lambda</m> calculated before, we evaluate the expression at that particular value of <m>\lambda</m> and then we can compute the particular eigenspace <m>N(A - \lambda I)</m>.
+        </p>
+
+        <p>
+            In our example, we evaluate the expression at  <m>\lambda = -1</m>:
         </p>
         <sage>
             <input>
                 A = matrix([
-                    [6, 0],
-                    [4, 2],
+                    [2, 1, 0],
+                    [0, 2, 0],
+                    [0, 0, -1]
                     ])
-                B = A - 6 * identity_matrix(2)
-                B
+                B1 = A - (-1) * identity_matrix(3)
+                B1
             </input>
+            <output>
+            </output>
         </sage>
         <p>
-            Then using the <c>right_kernel()</c> method Sage can solve this equation for us.
-            Since Sage uses the left-kernel while our formula uses right multiplication,
-            we must specify to use right-kernel.
-            Then using the <c>right_kernel()</c> method Sage can solve this equation for us.
-            Since Sage uses the left-kernel while our formula uses right multiplication,
-            we must specify to use right-kernel.
+            Next, we compute the null space.
         </p>
         <sage>
             <input>
-                B.right_kernel()
-                B.right_kernel()
+                Nfirst = B1.right_kernel()
+                Nfirst
             </input>
+            <output>
+            </output>
         </sage>
-        <p> We can find all eigenvectors of <m>A</m> with the <c>eigenvectors_right()</c> method.
+        <p>
+            We obtained the basis of the eigenspace associated to the eigenvalue <m>\lambda = -1</m> as rows of a matrix.
+            We can visualize the number of rows in this matrix, and we can also ask Sage to compute the geometric multiplicity by asking for the dimension of this subspace.
+        </p>
+        <sage>
+            <input>
+                Nfirst.dimension()
+            </input>
+            <output>
+            </output>
+        </sage>
+
+        <p>
+            Repeating the process for the second eigenvalue:
+        </p>
+        <sage>
+            <input>
+                B2 = A - 2 * identity_matrix(3)
+                B2
+            </input>
+            <output>
+            </output>
+        </sage>
+
+    <sage>
+        <input>
+            Nsecond=B2.right_kernel()
+            Nsecond
+        </input>
+        <output>
+        </output>
+    </sage>
+    <sage>
+        <input>
+            Nsecond.dimension()
+        </input>
+        <output>
+        </output>
+    </sage>
+    <p>
+        We have that obtained manually, a basis for each of the eigenspaces.
+    </p>
+    </subsection>
+    <subsection xml:id="subsec-sage-calculation-of-eigenvectors">
+        <title>Sage Calculation of Eigenvectors</title>
+        <p>
+            Sage provides the <c>eigenvectors_right()</c> method which directly computes the eigenvalues, eigenvectors and algebraic multiplicities.
         </p>
         <sage>
             <input>
                 A.eigenvectors_right()
             </input>
+            <output>
+            </output>
         </sage>
         <p>
-            The output is a list containing elements of the form <c>(e, [v_1, v_2, ... v_n], m)</c>,
-            where <c>e</c> is the eigenvalue,
-            <c>v_1</c> through <c>v_n</c> are the corresponding eigenvectors,
-            and <c>m</c> is how many times <c>e</c>
-            appears as a root in the characteristic polynomial (also referred to as algebraic multiplicity).
+            Sage returned a list of triples. Each triple <m>(e, [v1, v2, ... vn], m)</m> consists of 
         </p>
+        <dl>
+            <li>
+                <title>e</title>
+                <p>
+                    The eigenvalue.
+                </p>
+            </li>
+            <li>
+                <title>[v1, v2, ... vn]</title>
+                <p>
+                    A basis for the eigenspace associated to the eigenvalue <m>e</m>.
+                </p>
+            </li>
+            <li>
+                <title>m</title>
+                <p>
+                    The algebraic multiplicity of the eigenvalue.
+                </p>
+            </li>
+        </dl>
+
+        <p>
+            We can access the corresponding element in this list, for instance, 
+            to obtain the algebraic multiplicity of the first eigenvalue, we first name the list:
+        </p>
+
+        <sage>
+            <input>
+                C=A.eigenvectors_right()
+                C
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+
+        <p>
+            Then we access the third element (index 2) of the first triple (index 0).
+        </p>
+
+        <sage>
+            <input>
+                C[0][2]
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+
+        <p>
+            The method <c>eigenspaces_right()</c> returns a list of pairs. In each pair <m>(e,V)</m> the first component is the eigenvalue
+            and the second the eigenspace. The eigenspace is given as a vector space, with its base. This format will be useful
+            for instance to visualize, or to ask Sage to compute the geometric multiplicity as the dimension of this space.
+        </p>
+
+        <sage>
+            <input>
+                A.eigenspaces_right()
+            </input>
+            <output>
+            </output>
+        </sage>
+
+        <p>
+            First we access the desired eigenspace in the list,
+            for instance, the eigenspace associated to the first eigenvalue (index 0).
+        </p>
+
+        <sage>
+            <input>
+                L=A.eigenspaces_right()
+                L[0][1] #accessing the first eigenspace
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+
+        <p>
+            And then we calculate its dimension.
+        </p>
+
+        <sage>
+            <input>
+                L[0][1].dimension()
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+
+        <p>
+            Analogously, we can compute the geometric multiplicity of the second eigenvalue.
+        </p>
+
+        <sage>
+            <input>
+                L=A.eigenspaces_right()
+                L[1][1] #accessing the second eigenspace
+                L[1][1].dimension()
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+
+        <p>
+            We can check that both methods yield the same data:
+        </p>
+
+        <p>
+            Same eigenspaces:
+        </p>
+        <sage>
+            <input>
+                Nfirst == L[0][1]
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <sage>
+            <input>
+                Nsecond == L[1][1]
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            Same algebraic multiplicities:
+        </p>
+        <sage>
+            <input>
+                C[0][2] == A.eigenvalue_multiplicity(-1)
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <sage>
+            <input>
+                C[1][2] == A.eigenvalue_multiplicity(2)                
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            Same geometric multiplicities:
+        </p>
+        <sage>
+            <input>
+                Nfirst.dimension() == L[0][1].dimension()
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <sage>
+            <input>
+                Nsecond.dimension() == L[1][1].dimension()
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+
+
+
+    </subsection>
+
+
 </section>
