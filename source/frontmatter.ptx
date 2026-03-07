@@ -132,7 +132,7 @@
       <contributor xml:id="ab">
         <personname>Allaoua Boughrira</personname>
         <department>Mathematics</department>
-        <institution>Wright College</institution>
+        <institution>Wilbur Wright College</institution>
         <email>a.boughrira@gmail.com</email>
       </contributor>
 
@@ -157,21 +157,20 @@
         <email>sage.oer@gmail.com</email>
       </contributor>
 
-      <contributor xml:id="ak">
-        <personname>Alex Koci (Contrib.)</personname>
-        <department>Computer Engineering</department>
-        <institution>Wilbur Wright College</institution>
-        <email>kocialex04@gmail.com</email>
-      </contributor>
-
       <contributor xml:id="sa">
         <personname>Sagha Axelsson (Contrib.)</personname>
         <department>Bioengineering</department>
         <institution>Harold Washington College</institution>
         <email>axelssonsagha@gmail.com</email>
       </contributor>
-    </contributors>
 
+      <contributor xml:id="ak">
+        <personname>Alex Koci (Contrib.)</personname>
+        <department>Computer Engineering</department>
+        <institution>Wilbur Wright College</institution>
+        <email>kocialex04@gmail.com</email>
+      </contributor>
+    </contributors>
   </preface>
 
   <colophon xml:id="colophon">
@@ -181,12 +180,13 @@
     </credit>
 
     <credit>
-      <role>Significant Contributors</role>
-      <entity>Alex Koci, Sagha Axelsson</entity>
+      <role>Contributors</role>
+      <entity>Sagha Axelsson, Alex Koci</entity>
     </credit>
 
     <credit>
       <role>Cover Design</role>
+      <!-- <img src="https://creativecommons.org/wp-content/themes/vocabulary-theme/vocabulary/svg/cc/icons/cc-icons.svg#cc-logo" alt="Creative Commons Icon" width="16"/> -->
       <entity>Hellen Colman, made with SageMath — licensed under the CC-BY-NC-SA 4.0 License</entity>
     </credit>
 
@@ -206,16 +206,15 @@
           of this license, visit <url href="http://creativecommons.org/licenses/by-sa/4.0/" visual="creativecommons.org/licenses/by-sa/4.0"> CreativeCommons.org</url>.<p/>
 
           This book was authored in <pretext/>. The PDF version of the book is available for free download
-          <url href="https://github.com/SageMathOER-CCC/linear-algebra-with-sage/blob/release/output/print/manuscript.pdf">here</url>.<p/>
+          <url href="https://github.com/SageMathOER-CCC/linear-algebra-with-sage/blob/release/output/print/manuscript.pdf">here</url>.
+          <p/>
+          <br/> <!-- no impact -->
+          <b>Recommended Citation:</b> Boughrira, A., Colman, H., Kattner, M., &amp; Lubliner, S. (2026). <q>Linear algebra with SageMath: Learn math with open-source software</q>.
+          https://sagemathoer-ccc.github.io/linear-algebra-with-sage/frontmatter.html.
+          <p/>
 
-          We recommend attribution as follows. If you redistribute all or part of this textbook,
-          include in every digital format page view (including but not limited to EPUB, PDF, and
-          HTML) and on every physical printed page the following attribution:
-          <!-- TODO. update as needed -->
-          <q>Linear Algebra with SageMath Learn math with open-source software,...</q><p/>
-
-          For questions, or reporting any issues with the content or the terms of use of this license, please contact
-          <url href="mailto:hcolman@ccc.edu" visual="hcolman@ccc.edu"/>.
+          For questions, or reporting any issues with the content or the terms of use of this license, please create an issue in the
+          <url href="https://github.com/SageMathOER-CCC/linear-algebra-with-sage/issues" visual="GitHub Repository Issues"/>.
       </shortlicense>
     </copyright>
   </colophon>

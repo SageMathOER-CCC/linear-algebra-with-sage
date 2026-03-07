@@ -15,23 +15,22 @@
                     <p>Every vector has a length of 1.</p>
                 </li>
             </ul>
-            
+
             Suppose <m>v_1, v_2, \ldots, v_n</m>, is a linearly independent set of vectors, the algorithm can be described as follows.
             We begin by finding the orthogonal set:
         </p>
 
-        <me>
+        <m>
             u_k = v_k - \sum_{j=1}^{k-1} \frac{v_k \cdot u_j}{||u_j||^2} u_j
-        </me>
-        
+        </m>
+
         <p>
             We then normalize these vectors to obtain the orthonormal set:
         </p>
 
-        <me>
+        <m>
             e_k = \frac{u_k}{||u_k||}
-        </me>
-
+        </m>
 
     </introduction>
     <subsection xml:id="sm-gram-schmidt-manual">
@@ -51,17 +50,17 @@
         </sage>
 
         <p>
-            If 
-            <me>
+            If
+            <m>
                 p_2 = \frac{v_2 \cdot u_1}{||u_1||^2} u_1
-            </me>.
-            Then we can compute the orthogonal set by: 
+            </m>.
+            Then we can compute the orthogonal set by:
         </p>
 
-        <me>
+        <m>
             u_1 = v_1,\quad u_2 = v_2 - p_2
-        </me>
-        
+        </m>
+
         <sage>
             <input>
                 # Step 1
@@ -151,7 +150,7 @@
             </input>
             <output></output>
         </sage>
-        
+
         <sage>
             <input>
                 B, mu = A.gram_schmidt(orthonormal=True)
@@ -161,7 +160,7 @@
         </sage>
 
         <p>
-            Let's write the vectors <m>e_1,e_2</m> obtained manually as rows of a matrix M 
+            Let's write the vectors <m>e_1,e_2</m> obtained manually as rows of a matrix M
             and compare it with the matrix B of orthonormal vectors obtained directly.
         </p>
 

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-minors-of-a-matrix"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Minors of a Matrix</title>
+    <introduction xml:id="subsec-minors-of-a-matrix">
+        <p>
+            <idx>
+                <h>Matrices</h>
+                <h>Minors</h>
+            </idx>
+            A minor <m>M_{ij}</m> of a matrix <m>A</m> is the determinant of the submatrix obtained by
+            deleting the <m>i^{th}</m> row and <m>j^{th}</m> column of <m>A</m>.
+        </p>
+        <p>
+            Currently, Sage does not implement methods to directly extract the <em>minors</em> of a matrix.
+            To compute a minor <m>M_{ij}</m> of a matrix <m>A</m>, Sage offers <c>delete_rows()</c> and
+            <c>delete_columns()</c> methods which can be used to delete a specific row <m>i</m> and column
+            <m>j</m> and obtain a submatrix whose determinant yields a minor <m>M_{ij}</m>. Below is a
+            demonstration how to compute the minor <m>M_{12}</m> of a given matrix <m>A</m>.
+        </p>
+        <sage>
+            <input>
+                # a 5x5 matrix
+                A = Matrix([
+                    [3, 7, 1, 9, 4],
+                    [8, 2, 6, 0, 5],
+                    [4, 9, 3, 1, 7],
+                    [6, 5, 8, 2, 0],
+                    [1, 4, 9, 7, 3]
+                ])
+
+                m_12 = A.delete_rows([0]).delete_columns([1]).det()
+                m_12
+            </input>
+        </sage>
+
+        <p>
+            Sage's <c>minors()</c> method can be used to compute the minors of a matrix. The method takes an integer
+            <m>n</m> and returns a all minors of size <m>n \times n</m> of the matrix as a <em>list</em>.
+        </p>
+        <sage>
+            <input>
+                A.minors(2) # all 2x2 minors
+            </input>
+        </sage>
+        <p>
+            For a square matrix of size <m>N \times N</m>, the number of minors of size <m>n \times n</m> is given by
+            <m>\binom{N}{n}^2</m>, since we need to choose <m>n</m> rows and <m>n</m> columns from the original matrix
+            to form the submatrix whose determinant gives the minor.
+        </p>
+        <p>
+            For example, for the previous 5x5 matrix, there are <m>100</m> minors of size <m>2 \times 2</m>
+            (<em><m>5</m> choose <m>2</m> for rows gives <m>10</m>, and the same thing for columns, resulting
+            in <m>10 \times 10 = 100</m></em>).
+        </p>
+        <sage>
+            <input>
+                len(A.minors(2)) == 100
+            </input>
+        </sage>
+        <p>
+            Note that for a square matrix of size <m>N \times N</m>, the method <c>minors(N)</c> returns a
+            list with a single element which is the determinant of the matrix itself.
+        </p>
+        <sage>
+            <input>
+                # 5x5 minors, i.e. the determinant of the matrix itself
+                A.minors(5)[0] == A.det()
+            </input>
+        </sage>
+        <p>
+            Similarly, the minors of size <m>1</m> will be the individual entries of the matrix as a list.
+        </p>
+        <sage>
+            <input>
+                A.minors(1)
+            </input>
+        </sage>
+        <p>
+            Also, for <m>n &gt; N</m>, the method <c>minors(n)</c> returns an empty list since there are no minors of size larger than the matrix itself.
+        </p>
+        <sage>
+            <input>
+                # n > N, no minors of size larger than the matrix itself
+                A.minors(6)
+            </input>
+        </sage>
+        <p>
+            To construct the matrix of minors for a given square matrix <m>A</m> of size <m>N \times N</m>, we can use the list of minors obtained
+            from <c>minors(N-1)</c> and reshape it into a matrix (<em>must reverse the order of the minors since they are returned in a specific order
+            corresponding to the rows and columns deleted</em>).
+        </p>
+        <p>
+            For example, to construct a matrix of all 4x4 minors of the matrix <m>A</m>, we can do as follows:
+        </p>
+        <sage>
+            <input>
+                minors_list = A.minors(4) # list of 4x4 minors
+                # reverse order of minors to match that of rows and columns deleted
+                minors_list.reverse()
+
+                M = Matrix(5, 5, minors_list)
+                M
+            </input>
+        </sage>
+        <p>
+            To verify that the matrix of minors is correct, we can compute the matrix of minors by iterating over all rows and columns of the original
+            matrix, and computing the determinant of the submatrix obtained by deleting the corresponding row and column to compute the minor for each
+            entry of the matrix of minors. The resulting matrix should match the one obtained from reshaping the list of minors.
+        </p>
+        <sage>
+            <input>
+                # verify that the minor matrix matches the one obtained from reshaping the list of minors
+                M == Matrix(
+                    [
+                        [
+                            A.delete_rows([i]).delete_columns([j]).det()
+                            for j in range(A.ncols())
+                        ]
+                        for i in range(A.nrows())
+                    ]
+                )
+            </input>
+        </sage>
+    </introduction>
+</section>
