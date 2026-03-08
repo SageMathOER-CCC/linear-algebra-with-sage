@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-matrix-diagonalization"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Diagonalization of a Matrix</title>
+    <introduction xml:id="sm-introduction-diagonalization">
+        <p>
+            A matrix <m>A</m> is said to be similar to matrix <m>B</m> if there exists an invertible matrix <m>P</m> such that
+            <m>P^{-1} A P = B</m>
+        </p>
+        <sage>
+            <input>
+                A = matrix(QQ,[
+                [2, 1, 0],
+                [0, 2, 0],
+                [0, 0, -1]
+                ])
+
+                B = matrix(QQ,[
+                [2, 0, 0],
+                [1, 2, -1],
+                [1, 3, -2]
+                ])
+
+                A.is_similar(B)
+            </input>
+        </sage>
+        <p>
+            Similar matrices have the same eigenvalues.
+        </p>
+        <p>
+            <idx>
+                <h>Diagonalization</h>
+                <h>Diagonal matrix</h>
+                <h>Change of basis</h>
+            </idx>
+            The matrix <m>A</m> is diagonalizable if it is similar to a diagonal
+            matrix, i.e, there is an invertible matrix <m>P</m> and diagonal matrix <m>D</m> such
+            that <m>P^{-1} A P = D</m>. We say in this case that the matrix <m>P</m> diagonalizes <m>A</m>.
+        </p>
+        <p>
+            When diagonalization is possible, it is useful for computing matrix powers, solving systems of
+            differential equations, and understanding the structure of linear transformations. To check if a
+            matrix is diagonalizable, Sage provides the built-in function <c>is_diagonalizable()</c>
+        </p>
+        <sage>
+            <input>
+                A.is_diagonalizable()
+            </input>
+        </sage>
+        <sage>
+            <input>
+                B.is_diagonalizable()
+            </input>
+        </sage>
+
+        <p>
+            To obtain the diagonal form and the matrix that diagonalizes <m>A</m>, we can use the <c>diagonalization()</c>
+            method whose output is the pair of matrices <m>(D,P)</m>.
+        </p>
+        <sage>
+            <input>
+                B.diagonalization()
+            </input>
+        </sage>
+        <p>
+            The following conditions are equivalent:
+        </p>
+        <p>
+            <ol>
+              <li>
+                <m>A</m> is diagonalizable.
+              </li>
+              <li>
+                There exists a linearly independent set of eigenvectors <m>v1, v2, ..., vn</m> of <m>A</m>. In this case, the matrix <m>D</m> 
+                is diagonal with the eigenvalues of <m>A</m> on the diagonal, and the matrix <m>P</m> has the eigenvectors <m>v1, v2, ...,
+                vn</m> as its columns.
+              </li>
+              <li>
+                The geometric multiplicity of each eigenvalue of <m>A</m> is equal to its algebraic multiplicity.
+              </li>
+            </ol>
+          </p>
+        <p>
+            Using these conditions, we can check for the multiplicities of the eigenvalues in the matrix <m>A</m>:
+        </p>
+        <sage>
+            <input>
+                L=A.eigenspaces_right()
+                L
+            </input>
+        </sage>
+        <sage>
+            <input>
+                L[0][1].dimension() == A.eigenvalue_multiplicity(-1)
+            </input>
+        </sage>
+        <sage>
+            <input>
+                L[1][1].dimension() == A.eigenvalue_multiplicity(2)
+            </input>
+        </sage>
+        <p>
+            We obtained that the geometric multiplicity of the second eigenvalue is not equal to its
+            algebraic multiplicity, confirming that the matrix <m>A</m> is not diagonalizable.
+        </p>
+        <p>
+            Checking the multiplicities for the matrix <m>B</m>:
+        </p>
+        <sage>
+            <input>
+                N=B.eigenspaces_right()
+                N
+            </input>
+        </sage>
+        <sage>
+            <input>
+                N[0][1].dimension() == B.eigenvalue_multiplicity(2)
+            </input>
+        </sage>
+        <sage>
+            <input>
+                N[1][1].dimension() == B.eigenvalue_multiplicity(1)
+            </input>
+        </sage>
+        <sage>
+            <input>
+                N[2][1].dimension() == B.eigenvalue_multiplicity(-1)
+            </input>
+        </sage>
+        <p>
+            We obtain that they are all equal for all the eigenvalues and therefore B is diagonalizable.
+        </p>
+        <p>
+            Alternatively can also leverage Sage built-in <c>eigenmatrix_right()</c> method to apply the second condition.
+        </p>
+        <p>
+            If the second matrix <m>P</m> of the pair has zero columns, then this means that there were not enough eigenvectors
+            to satisfy the second condition, so the matrix is not diagonalizable.
+        </p>
+        <sage>
+            <input>
+                A.eigenmatrix_right()
+            </input>
+        </sage>
+        <p>
+            We can visualize the zero column in the second matrix, or we can ask Sage to check directly:
+        </p>
+        <sage>
+            <input>
+                D,P = A.eigenmatrix_right()
+                P.is_singular()
+            </input>
+        </sage>
+        <p>
+            Therefore verifying that the matrix <m>A</m> is not diagonalizable. Observe that in this case, <m>AP=PD</m>:
+        </p>
+        <sage>
+            <input>
+                A * P == P * D
+            </input>
+        </sage>
+        <p>
+            But the equation <m>P^-1AP= D</m> is not satisfied since <m>P</m> is not invertible.
+        </p>
+        <p>
+            Using the same method for the matrix <m>B</m>:
+        </p>
+        <sage>
+            <input>
+                D,P = B.eigenmatrix_right()
+                P.is_singular()
+            </input>
+        </sage>
+        <p>
+            We obtain that the second matrix is not singular, then the matrix is diagonalizable,
+            and the same matrices <m>D</m> and <m>P</m> are returned.
+        </p>
+        <sage>
+            <input>
+                D,P = B.eigenmatrix_right()
+                D,P
+            </input>
+        </sage>
+        <p>
+            Observe that in this case, both equalities <m>AP=PD</m> and <m>P^−1AP= D</m> are satisfied.
+        </p>
+        <sage>
+            <input>
+                D == P.inverse() * A * P
+            </input>
+        </sage>
+        <sage>
+            <input>
+                D == P.inverse() * B * P
+            </input>
+        </sage>
+
+
+        <p>
+            <idx>
+                <h>Non-diagonalizable matrix</h>
+                <h>Defective matrix</h>
+            </idx>
+            A frequent mistake is to assume that every square matrix is diagonalizable.
+            This is not true. A matrix may have eigenvalues but still fail to have enough
+            linearly independent eigenvectors. Such matrices are sometimes called <em>defective</em>.
+        </p>
+
+        <p>
+            For example, a matrix with a repeated eigenvalue may have an eigenspace
+            of dimension smaller than the algebraic multiplicity of that eigenvalue.
+            In this case, no matrix <m>P</m> with independent eigenvectors exists,
+            and diagonalization is impossible.
+        </p>
+
+        <sage>
+            <input>
+                # A matrix with a repeated eigenvalue
+                A = matrix(QQ, [
+                    [1, 1],
+                    [0, 1],
+                ])
+
+                A.eigenvalues()
+                A.eigenvectors_right()
+
+                # Attempt diagonalization
+                A.is_diagonalizable()
+            </input>
+        </sage>
+    </introduction>
+</section>

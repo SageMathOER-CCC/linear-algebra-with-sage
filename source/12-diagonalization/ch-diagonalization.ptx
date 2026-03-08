@@ -14,6 +14,5 @@
 
     <!-- include sections -->
     <xi:include href="sec01-diagonalization.ptx" />
-    <xi:include href="sec02-lu-decomposition.ptx" />
 
 </chapter>
