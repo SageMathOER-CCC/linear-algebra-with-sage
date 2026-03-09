@@ -20,17 +20,17 @@
             We begin by finding the orthogonal set:
         </p>
 
-        <m>
+        <me>
             u_k = v_k - \sum_{j=1}^{k-1} \frac{v_k \cdot u_j}{||u_j||^2} u_j
-        </m>
+        </me>
 
         <p>
             We then normalize these vectors to obtain the orthonormal set:
         </p>
 
-        <m>
+        <me>
             e_k = \frac{u_k}{||u_k||}
-        </m>
+        </me>
 
     </introduction>
     <subsection xml:id="sm-gram-schmidt-manual">
