@@ -8,7 +8,8 @@
         <p>
             Eigenvectors of <m>A</m>, as defined above, are also called right eigenvectors of <m>A</m>.
             Since the equation <m>Av = \lambda v</m> is equivalent to <m>(A - \lambda I)v = 0</m>, we have that its solution equals the nullspace of <m>(A - \lambda I)</m>.
-            For a given eigenvalue <m>\lambda</m>, the subspace <m>N(A - \lambda I)</m> is called the eigenspace of <m>A</m> associated to the eigenvalue <m>\lambda</m>. The dimension of this subspace is the geometric multiplicity of the eigenvalue <m>\lambda</m>. 
+            For a given eigenvalue <m>\lambda</m>, the subspace <m>N(A - \lambda I)</m> is called the <term>eigenspace</term> of <m>A</m> associated to the eigenvalue <m>\lambda</m>.
+            The dimension of this subspace is the <term>geometric multiplicity</term> of the eigenvalue <m>\lambda</m>. 
         </p>
         <p>
             The eigenvectors of the matrix <m>A</m> belonging to <m>\lambda</m> are all the nonzero vectors of <m>N(A - \lambda I)</m>. There is just one vector in the eigenspace <m>N(A - \lambda I)</m> that is not an eigenvector, namely the zero vector.
@@ -30,7 +31,8 @@
                     [0, 2, 0],
                     [0, 0, -1]
                     ])
-                B1 = A - (-1) * identity_matrix(3)
+                λ = A.eigenvalues()[0]
+                B1 = A - (λ) * identity_matrix(3)
                 B1
             </input>
             <output>
@@ -87,7 +89,7 @@
         </output>
     </sage>
     <p>
-        We have that obtained manually, a basis for each of the eigenspaces.
+        We have obtained manually, a basis for each of the eigenspaces and the geometric multiplicity of each eigenvalue.
     </p>
     </subsection>
     <subsection xml:id="subsec-sage-calculation-of-eigenvectors">
@@ -97,6 +99,11 @@
         </p>
         <sage>
             <input>
+                A = matrix([
+                    [2, 1, 0],
+                    [0, 2, 0],
+                    [0, 0, -1]
+                    ])
                 A.eigenvectors_right()
             </input>
             <output>
@@ -104,30 +111,15 @@
         </sage>
         <p>
             Sage returned a list of triples. Each triple <m>(e, [v1, v2, ... vn], m)</m> consists of 
+            <ul>
+                <li><m>e</m>, the eigenvalue</li>
+                <li><m>[v1, v2, ... vn]</m>, a basis for the eigenspace associated to the eigenvalue <m>e</m></li>
+                <li><m>m</m>, the algebraic multiplicity of the eigenvalue</li>
+            </ul>
         </p>
-        <dl>
-            <li>
-                <title>e</title>
-                <p>
-                    The eigenvalue.
-                </p>
-            </li>
-            <li>
-                <title>[v1, v2, ... vn]</title>
-                <p>
-                    A basis for the eigenspace associated to the eigenvalue <m>e</m>.
-                </p>
-            </li>
-            <li>
-                <title>m</title>
-                <p>
-                    The algebraic multiplicity of the eigenvalue.
-                </p>
-            </li>
-        </dl>
 
         <p>
-            We can access the corresponding element in this list, for instance, 
+            We can access the corresponding element in this list. For instance, 
             to obtain the algebraic multiplicity of the first eigenvalue, we first name the list:
         </p>
 
@@ -273,9 +265,24 @@
             </output>
         </sage>
 
+        <p>
+            Another way to get eigenvalues and eigenvectors is the matrix method <c>eigentmatrix.right()</c>.
+            The output consists of a pair of square matrices: a diagonal matrix with the eigenvalues in the diagonal
+            and a matrix with eigenvectors as columns, in the same order as the corresponding eigenvalues.
+            If there are not enough eigenvectors to fill the columns of the second square matrix, then Sage inserts zero columns in the matrix of eigenvectors.
+        </p>
 
+        <sage>
+            <input>
+                A.eigenmatrix_right()
+            </input>
+            <output>
+            </output>
+        </sage>
+        <p>
+            Obeserve that in this case, the last column of the second matrix was filled with zeros.
+        </p>
 
     </subsection>
-
 
 </section>

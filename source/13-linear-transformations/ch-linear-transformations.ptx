@@ -10,5 +10,5 @@
     </introduction>
 
     <!-- include sections -->
-    <xi:include href="sec01-placeholder-title.ptx" />
+    <xi:include href="sec01-definition.ptx" />
 </chapter>
