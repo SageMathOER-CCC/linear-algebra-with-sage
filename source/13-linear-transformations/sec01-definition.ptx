@@ -1,0 +1,179 @@
+<section xml:id="sec-linear-transformations" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Linear Transformations</title>
+    <introduction>
+        <p>
+            In this chapter, we show how to work with linear transformations in Sage and explore the connection between linear transformations and matrices.
+        </p>
+    </introduction>
+
+    <subsection xml:id="subsec-definition">
+        <title>Definition</title>
+
+        <p>
+            Linear transformations are functions between vector spaces that preserve the vector space operations of addition and scalar multiplication. 
+        </p>
+        <p>
+            Let <m>V</m> and <m>W</m> be vector spaces over a field <m>F</m>. A <term>linear transformation</term>  <m>T: V → W</m> is a function which assigns to each vector <m>v</m> in <m>V</m> a unique vector <m>w = T(v)</m> in <m>W</m> such that
+        </p>
+
+        <md>
+            <mrow>T(u+v) \amp = Tu+Tv</mrow>
+            <mrow>T(cv) \amp = cT(v)</mrow>
+        </md>
+            
+
+        <p>
+            for all vectors <m>u,v</m> in <m>V</m> and all scalars <m>c</m> in <m>F</m>.
+        </p>
+
+        <p>
+            Sage can create a linear transformation from a variety of possible inputs.
+            First, let's see how to create it from its symbolic expression. 
+        </p>
+        <p>
+            We will use the method <c>linear_transformation()</c> with inputs: domain <m>V</m>, codomain <m>W</m> and linear transformation <m>t</m>, where <m>t(x_1, \ldots, x_n) = [T(x_1, \ldots, x_n)]</m>.
+        </p>
+        <p>
+            Consider the linear transformation <m>T: \mathbb{R}^3 \to \mathbb{R}^2</m> given by
+        </p>
+
+        <md>
+            T(x,y,z)=(x-3z,y-2z).
+        </md>
+        
+        <sage>
+            <input>
+                x, y, z = var('x y z')  #declare variables
+                t(x, y, z) = [x-3*z,y-2*z]  #formula for the linear transformation
+                T = linear_transformation(QQ^3, QQ^2, t)
+                T
+            </input>
+            <output>
+            </output>
+        </sage>
+
+        <p>
+            The output is the linear transformation (called <em>vector space morphism</em> in Sage). By default Sage shows the domain, codomain and a matrix associated to the linear transformation.
+        </p>
+        <p>
+            We can evaluate this linear transformation at any vector in the domain.
+        </p>
+        <sage>
+            <input>
+                v = vector(QQ, [5, -1, 1])
+                w = T(v)
+                w
+            </input>
+            <output>
+            </output>
+        </sage>
+
+        <p>
+            We will now present the relationship between linear transformations and matrices.
+        </p>
+        <p>
+            Given an <m>m \times n</m> matrix <m>A</m>, the function that maps a vector <m>v</m> in <m>V</m> to the vector <m>Av</m> in <m>W</m> is a linear transformation.
+        </p>
+        <p>
+            A second way to define a linear transformation is using the same method <c>linear_transformation</c> but specifying the matrix <m>A</m> as input. In this case, we need to use the option <c>side='right'</c> to be consistent with Sage's preference for row vectors.
+        </p>
+        <sage>
+            <input>
+                A = matrix(QQ, [
+                [1, 0, -3],
+                [0, 1, -2],
+            ])
+            S = linear_transformation(QQ^3, QQ^2, A, side='right')
+            S
+            </input>
+            <output>
+            </output>
+        </sage>
+        <p>
+            We can check that these transformations are the same:
+        </p>
+        <sage>
+            <input>
+                S == T
+            </input>
+            <output>
+            </output>
+        </sage>
+        <p>
+            Conversely, any linear transformation <m>T: V → W</m> can be expressed as <m>T(x) = Ax</m> for some matrix <m>A</m>. This matrix is obtained by applying <m>T</m> 
+            to the vectors of the standard basis of <m>V</m> and writing the images <m>T(e_1), \ldots, T(e_n)</m> as the columns of <m>A</m>.
+        </p>
+        <p>
+            For our linear transformation <m>T: \mathbb{R}^3 \to \mathbb{R}^2</m> we can build this matrix manually by calculating first the images and building the matrix <m>A</m> by columns:
+        </p>
+        <sage>
+            <input>
+                e1 = vector(QQ, [1,0,0]) #standard basis of R^3
+                e2 = vector(QQ, [0,1,0])
+                e3 = vector(QQ, [0,0,1])
+                Te1=T(e1)   #images of the standard basis
+                Te2=T(e2)
+                Te3=T(e3)
+                A = column_matrix([Te1, Te2, Te3])
+                A
+            </input>
+            <output>
+            </output>
+        </sage>
+        <p>
+            Alternatively, we can ask Sage to obtain the associated matrix directly by using the method <c>matrix()</c> with the option <c>side='right'</c>.
+        </p>
+        <sage>
+            <input>
+                SA = T.matrix(side='right')
+                SA
+            </input>
+            <output>
+            </output>
+        </sage>
+        <p>
+            Let's check that the matrix that we calculated manually and the one calculated by Sage are the same:
+        </p>
+        <sage>
+            <input>
+                A == SA
+            </input>
+            <output>
+            </output>
+        </sage>
+        <p>
+            Observe that the matrix associated to a linear transformation by default in Sage is the transpose of this matrix, since the default Sage option is <c>side='left'</c>.
+        </p>
+        <p>
+            A third way to define a linear transformation is by inputing the images of the standard basis as a list in the <c>linear_transformation</c> method.
+        </p>
+        <sage>
+            <input>
+                Te1 = vector(QQ, [1,0])
+                Te2 = vector(QQ, [0,1])
+                Te3 = vector(QQ, [-3,-2])
+                R = linear_transformation(QQ^3, QQ^2, [Te1, Te2, Te3])
+                R
+            </input>
+            <output>
+            </output>
+        </sage>
+        <p>
+            Again, we can check that we obtain the same linear transformation:
+        </p>
+        <sage>
+            <input>
+                R == S == T
+            </input>
+            <output>
+            </output>
+        </sage>
+
+
+    
+        
+
+
+    </subsection>
+    
+</section>

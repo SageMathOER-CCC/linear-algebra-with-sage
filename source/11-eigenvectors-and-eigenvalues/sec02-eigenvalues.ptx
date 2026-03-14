@@ -2,11 +2,13 @@
     <title>Eigenvalues</title>
     <introduction>
         <p>
-            In this section, we will learn how to compute eigenvalues of a matrix.
+            This section demonstrates how to use Sage to compute eigenvalues. First, we will
+            show how Sage can assist with the calculations at each step of the eignevalue computation process.
+            Then, we will show how to use Sage's direct methods to obtain eigenvalues.
         </p>
     </introduction>
-    <subsection xml:id="subsec-manual-calculation-of-eigenvalues">
-        <title>Manual Calculation of Eigenvalues</title>
+    <subsection xml:id="subsec-assisted-calculation-of-eigenvalues">
+        <title>Assisted Calculation of Eigenvalues</title>
         <p>
             Since the equation <m> Av = \lambda v </m> is equivalent to <m> (A - \lambda I)v = 0 </m> , the eigenvalues of <m>A</m>
             are precisely the scalars <m>\lambda</m> for which this equation has nontrivial solutions.
@@ -86,6 +88,17 @@
                 cpoly.factor()
             </input>
         </sage>
+        <p>
+            The exponents in the factorization indicate the algebraic multiplicity of each eigenvalue.
+        </p>
+        <sage>
+            <input>
+                cpoly.factor_list()
+            </input>
+            <output>
+            </output>
+        </sage>
+
     </subsection>
     <subsection xml:id="subsec-sage-calculation-of-eigenvalues">
         <title>Sage Calculation of Eigenvalues</title>
@@ -103,7 +116,34 @@
                 A.eigenvalues()
             </input>
         </sage>
-
+        <p>
+            Observe that the eigenvalues are returned in a list, and each eigenvalue is repeated according to its algebraic multiplicity.
+            We can access each eigenvalue by indexing the list.
+        </p>
+        <sage>
+            <input>
+                A.eigenvalues()[0]
+            </input>
+            <output>
+            </output>
+        </sage>
+        <p>
+            Sage also provides a direct method to compute the multiplicities of the eigenvalues.
+        </p>
+        <sage>
+            <input>
+                A.eigenvalue_multiplicity(-1)
+            </input>
+            <output>
+            </output>
+        </sage>
+        <sage>
+            <input>
+                A.eigenvalue_multiplicity(2)
+            </input>
+            <output>
+            </output>
+        </sage>
         <p>
             Sage also provides a direct method to compute the multiplicities of the eigenvalues.
         </p>
@@ -119,7 +159,7 @@
             Observe that we obtained the same eigenvalues as before, each repeated according to its algebraic multiplicity.
         </p>
         <p>
-            To calculate the characteristic polynomial, Sage provides the <c>characteristic_polynomial()</c> method.
+            To directly calculate the characteristic polynomial, Sage provides the <c>characteristic_polynomial()</c> method.
             Note that this method computes the polynomial
         </p>
 
