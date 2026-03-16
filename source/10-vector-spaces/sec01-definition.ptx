@@ -4,31 +4,23 @@
     xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Definition of Vector Spaces</title>
     <introduction xml:id="sm-introduction-vector-spaces-definition">
-            <p>
-                A vector space provides an abstract generalization of the vectors in
-                <m>\R^n</m> defined before.
-                In <m>\R^n</m>,
-                vectors can be added and multiplied by real numbers.
-                Abstract vectors will have similar operations,
-                and scalars can be drawn from any field <m>\F</m>,
-                not exclusively <m>\R</m>.
-            </p>
-            <note>
-                <title>Fields</title>
-                <p>
-                    Fields have their own set of axioms,
-                    but for our purposes we will use pre-defined fields in Sage.
-                    So you may think of them as a class in Sage.
-                </p>
-            </note>
-            <p>
-                A vector space over a field of scalars
-                <m>\F</m> as a nonempty set <m>V</m> of vectors,
-                together with the operations, <m>+</m> vector addition
-                and <m>\cdot</m> scalar multiplication,
-                such that the following axioms are satisfied for all
-                <m>u,v,w \in V</m> and <m>a,b \in \F</m>:
-            </p>
+        <p>
+            A vector space provides an abstract generalization of the vectors in
+            <m>\R^n</m> defined before.
+            In <m>\R^n</m>,
+            vectors can be added and multiplied by real numbers.
+            Abstract vectors will have similar operations,
+            and scalars can be drawn from any field <m>\F</m>,
+            not exclusively <m>\R</m>.
+        </p>
+        <p>
+            A vector space over a field of scalars
+            <m>\F</m> as a nonempty set <m>V</m> of vectors,
+            together with the operations, <m>+</m> vector addition
+            and <m>\cdot</m> scalar multiplication,
+            such that the following axioms are satisfied for all
+            <m>u,v,w \in V</m> and <m>a,b \in \F</m>:
+        </p>
         <dl>
             <li>
                 <title>Closure</title>

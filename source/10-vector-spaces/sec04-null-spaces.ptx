@@ -4,7 +4,7 @@
     <title>Null Spaces</title>
     <p>
         The <term>null space</term> or <term>kernel</term> of a <m>m \times n</m> matrix <m>A</m>
-        is the solution space of the homogeneous system of equations <m>Ax=0</m>. 
+        is the solution space of the homogeneous system of equations <m>Ax = \mathbf 0</m>. 
         We denote this space <m>N(A)</m>, where
     </p>
     <md>
@@ -28,7 +28,7 @@
             <li>
                 <p>
                     Use <m>E</m> 
-                    to find the solution to the homogeneous system <m>Ax = 0</m>.
+                    to find the solution to the homogeneous system <m>Ax = \mathbf 0</m>.
                 </p>
             </li>
             <li>
@@ -39,10 +39,10 @@
                     for <m> i=1...k </m>
                     where <m>f_1, f_2, \dots, f_r</m>
                     are the free variables and <m>k + r = n</m>.
+                    Then the vectors:
                 </p>
             </li>
         </ol>
-        The vectors:
         <md>
             <mrow> (a_{11}, a_{12}, \dots, a_{1r}, 1, 0, \dots, 0) </mrow>
             <mrow> (a_{21}, a_{22}, \dots, a_{2r}, 0, 1, \dots, 0) </mrow>
@@ -121,10 +121,10 @@
             </output>
         </sage>
         <p>
-            Sage returns the subspace N with its basis as a matrix.
+            Sage returns the subspace <m>N</m> with its basis as a matrix.
         </p>
         <p>
-            We can verify that N is a subspace of <m>\R3</m>.
+            We can verify that N is a subspace of <m>\R^3</m>.
         </p>
         <sage>
             <input>
