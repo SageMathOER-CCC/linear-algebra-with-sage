@@ -22,13 +22,7 @@
         <ol>
             <li>
                 <p>
-                    Compute the reduced row echelon form <m>E</m> of <m>A</m>.
-                </p>
-            </li>
-            <li>
-                <p>
-                    Use <m>E</m> 
-                    to find the solution to the homogeneous system <m>Ax = \mathbf 0</m>.
+                    Find the solution to the homogeneous system <m>Ax = \mathbf 0</m>.
                 </p>
             </li>
             <li>
@@ -70,8 +64,8 @@
             </input>
         </sage>
         <p>
-            Then we will decompose the matrix into its homogeneous system
-            of equations <m>Ax = \mathbf 0</m>.
+            Then we will decompose the matrix into the system
+            of equations corresponding to <m>Ax = \mathbf 0</m>.
         </p>
         <sage>
             <input>
@@ -90,10 +84,30 @@
             </input>
         </sage>
         <p>
-            In the output, variables like <c>r1</c> represent free parameters. 
-            By choosing values for these parameters, 
-            we can identify the basis vectors of the null space.
+            By extracting the right hand side of the equation we get the parameterized solution vector.
         </p>
+        <sage>
+            <input>
+                x_sol = vector([s.rhs() for s in sol[0]])
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            By choosing values for these parameters, 
+            we can identify the basis vector, <m>v</m>, of the null space.
+            We preform this substitution with the <c>subs</c> method.
+        </p>
+        <sage>
+            <input>
+                v = x_sol.subs(r1=1)
+                v
+            </input>
+            <output>
+                
+            </output>
+        </sage>
     </subsection>
 
     <subsection xml:id="subsec-kernel-method">
