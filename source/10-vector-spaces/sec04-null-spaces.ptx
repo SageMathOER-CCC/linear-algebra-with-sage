@@ -4,7 +4,7 @@
     <title>Null Spaces</title>
     <p>
         The <term>null space</term> or <term>kernel</term> of a <m>m \times n</m> matrix <m>A</m>
-        is the solution space of the homogeneous system of equations <m>Ax=0</m>. 
+        is the solution space of the homogeneous system of equations <m>Ax = \mathbf 0</m>. 
         We denote this space <m>N(A)</m>, where
     </p>
     <md>
@@ -22,13 +22,7 @@
         <ol>
             <li>
                 <p>
-                    Compute the reduced row echelon form <m>E</m> of <m>A</m>.
-                </p>
-            </li>
-            <li>
-                <p>
-                    Use <m>E</m> 
-                    to find the solution to the homogeneous system <m>Ax = 0</m>.
+                    Find the solution to the homogeneous system <m>Ax = \mathbf 0</m>.
                 </p>
             </li>
             <li>
@@ -39,10 +33,10 @@
                     for <m> i=1...k </m>
                     where <m>f_1, f_2, \dots, f_r</m>
                     are the free variables and <m>k + r = n</m>.
+                    Then the vectors:
                 </p>
             </li>
         </ol>
-        The vectors:
         <md>
             <mrow> (a_{11}, a_{12}, \dots, a_{1r}, 1, 0, \dots, 0) </mrow>
             <mrow> (a_{21}, a_{22}, \dots, a_{2r}, 0, 1, \dots, 0) </mrow>
@@ -70,8 +64,8 @@
             </input>
         </sage>
         <p>
-            Then we will decompose the matrix into its homogeneous system
-            of equations <m>Ax = \mathbf 0</m>.
+            Then we will decompose the matrix into the system
+            of equations corresponding to <m>Ax = \mathbf 0</m>.
         </p>
         <sage>
             <input>
@@ -90,10 +84,30 @@
             </input>
         </sage>
         <p>
-            In the output, variables like <c>r1</c> represent free parameters. 
-            By choosing values for these parameters, 
-            we can identify the basis vectors of the null space.
+            By extracting the right hand side of the equation we get the parameterized solution vector.
         </p>
+        <sage>
+            <input>
+                x_sol = vector([s.rhs() for s in sol[0]])
+            </input>
+            <output>
+                
+            </output>
+        </sage>
+        <p>
+            By choosing values for these parameters, 
+            we can identify the basis vector, <m>v</m>, of the null space.
+            We preform this substitution with the <c>subs</c> method.
+        </p>
+        <sage>
+            <input>
+                v = x_sol.subs(r1=1)
+                v
+            </input>
+            <output>
+                
+            </output>
+        </sage>
     </subsection>
 
     <subsection xml:id="subsec-kernel-method">
@@ -121,10 +135,10 @@
             </output>
         </sage>
         <p>
-            Sage returns the subspace N with its basis as a matrix.
+            Sage returns the subspace <m>N</m> with its basis as a matrix.
         </p>
         <p>
-            We can verify that N is a subspace of <m>\R3</m>.
+            We can verify that N is a subspace of <m>\R^3</m>.
         </p>
         <sage>
             <input>
