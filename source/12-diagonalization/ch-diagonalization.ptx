@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<chapter xml:id="ch-diagonalization-and-lu-decomposition" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Diagonalization and LU Decomposition</title>
+<chapter xml:id="ch-diagonalization" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Diagonalization</title>
 
-    <introduction xml:id="sm-subsection-diagonalization-and-lu-decomposition">
+    <introduction xml:id="sm-subsection-diagonalization">
         <p>
-            Many problems in linear algebra become simpler when a matrix is written
-            in a special form. Two of the most important such forms are
-            <em>diagonal form</em> and <em>triangular form</em>.
-            In this section, we introduce matrix diagonalization and LU decomposition.
+            Many problems in linear algebra become simpler when a matrix is diagonal.
+            Diagonalizable matrices offer significant computational advantages, particularly
+            when calculating powers of matrices. They are especially useful when studying 
+            linear transformations and solving many advanced problems in linear algebra.
+            In this section, we introduce Sage methods for diagonalization.
         </p>
     </introduction>
 
