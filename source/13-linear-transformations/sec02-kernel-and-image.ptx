@@ -1,0 +1,152 @@
+<section xml:id="sec-kernel-and-image">
+    <title>Kernel and Image</title>
+    <p>
+        The <term>kernel</term> of a linear transformation  <m>T: V → W</m>, denoted Ker <m>T</m>,  is the subset of <m>V</m> consisting of those vectors that <m>T</m> maps to 0:
+    </p>
+    <me>
+        \text{Ker } T = \{v \in V : Tv = 0\}
+    </me>
+    <p>
+        The kernel is also called the null space. The term null space is commonly used in the context of matrices, while kernel is more often used for linear transformations, but the two terms are interchangeable.
+    </p>
+    <p>
+        Sage provides the method <c>kernel()</c> to compute this subspace. 
+    </p>
+    <sage>
+        <input>
+            x, y, z = var('x y z')  #declare variables
+            t(x, y, z) = [x-3*z,y-2*z]  #formula for the linear transformation
+            T = linear_transformation(QQ^3, QQ^2, t)
+            T.kernel()
+        </input>
+        <output>
+        </output>
+    </sage>
+    <p>
+        The output is the subspace <m>\text{Ker } T</m>. Sage provides by default the dimension and the echelonized basis of this space. 
+    </p>
+    <p>
+        A linear transformation <m>T: V→ W</m> is called <term>injective</term> if whenever <m>u,v ∈ V</m> and <m>Tu= Tv</m>, we have <m>u = v</m>. We have that <m>T</m> 
+        is injective if and only if <m>\text{Ker } T = 0</m>. This happens only when the dimension of the kernel is zero.
+    </p>
+    <p>
+        We can study if a linear transformation is injective by calculating the kernel as before and checking if its dimension is zero. 
+    </p>
+    <sage>
+        <input>
+            K=T.kernel()
+            K.dimension() == 0
+        </input>
+        <output>
+        </output>
+    </sage>
+    <p>
+        We obtained that the linear transformation <m>T</m> is not injective since the kernel is not zero.
+    </p>
+    <p>
+        Alternatively, we can ask Sage to directly decide if a linear transformation is injective by using the method <c>is_injective()</c>.
+    </p>
+    <sage>
+        <input>
+            T.is_injective()
+        </input>
+        <output>
+        </output>
+    </sage>
+    <p>
+        The dimension of the kernel is called the <term>nullity</term> of <m>T</m>. Sage can compute directly this number:
+    </p>
+    <sage>
+        <input>
+            T.nullity()
+        </input>
+        <output>
+        </output>
+    </sage>
+    <p>
+        The <term>image</term> of a linear transformation  <m>T: V → W</m>, denoted Im <m>T</m>,  is the subset of <m>W</m> consisting of  vectors of the form <m>Tv</m> for some <m>v∈V</m>:
+    </p>
+    <me>
+        \text{Im } T = \{Tv : v \in V\}.
+    </me>
+    <p>
+        The image is also called the <term>range space</term>. 
+        Sage provides the method <c>image()</c> to compute this subspace. 
+    </p>
+    <sage>
+        <input>
+            T.image()
+        </input>
+        <output>
+        </output>
+    </sage>
+    <p>
+        The output is the subspace <m>\text{Im } T</m>. Sage provides by default the dimension and the echelonized basis of this space. 
+    </p>
+    <p>
+        A linear transformation <m>T: V→ W</m> is called <term>surjective</term> if every vector <m>w ∈ W</m> is the image of some vector <m>v ∈ V</m>.
+        We have that <m>T</m> is surjective if and only if <m>\text{Im } T = W</m>. This happens only when the dimension of the image equals the dimension of <m>W</m>.
+    </p>
+    <p>
+        We can study if a linear transformation is <term>surjective</term> by calculating the image as before and checking if its dimension is the same as the dimension of <m>W</m>. 
+    </p>
+    <sage>
+        <input>
+            I=T.image()
+            I.dimension() == 2
+        </input>
+        <output>
+        </output>
+    </sage>
+    <p>
+        We obtained that the linear transformation <m>T</m> is surjective since the image is the whole codomain.
+    </p>
+    <p>
+        Alternatively, we can ask Sage to directly decide if a linear transformation is surjective by using the <c>is_surjective()</c> method.
+    </p>
+    <sage>
+        <input>
+            T.is_surjective()
+        </input>
+        <output>
+        </output>
+    </sage>
+    <p>
+        The dimension of the image is called the <term>rank</term> of <m>T</m>. Sage can compute directly this number:
+    </p>
+    <sage>
+        <input>
+            T.rank()
+        </input>
+        <output>
+        </output>
+    </sage>
+    <p>
+        The Rank-Nullity theorem states that
+    </p>
+    <me>
+        \text{rank } T + \text{nullity } T = \dim V
+    </me>
+    <p>
+        We can verify this result with the dimensions calculated manually:
+    </p>
+    <sage>
+        <input>
+            K.dimension() + I.dimension() == 3
+        </input>
+        <output>
+        </output>
+    </sage>
+    <p>
+        Or directly:
+    </p>
+    <sage>
+        <input>
+            T.rank() + T.nullity() == 3
+        </input>
+        <output>
+        </output>
+    </sage>
+
+
+</section>

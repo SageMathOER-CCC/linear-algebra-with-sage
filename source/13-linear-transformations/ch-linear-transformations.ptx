@@ -5,10 +5,12 @@
 
     <introduction>
         <p>
-            PLACEHOLDER.
+            In this chapter, we show how to work with linear transformations in Sage and explore the connection to matrices.
         </p>
     </introduction>
 
     <!-- include sections -->
-    <xi:include href="sec01-definition.ptx" />
+    <xi:include href="sec01-definition-linear-transformation.ptx" />
+    <xi:include href="sec02-kernel-and-image.ptx" />
+    <xi:include href="sec03-change-of-basis.ptx" />
 </chapter>

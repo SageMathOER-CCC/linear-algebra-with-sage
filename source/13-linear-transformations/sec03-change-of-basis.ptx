@@ -1,0 +1,229 @@
+<section xml:id="sec-change-of-basis">
+    <title>Change of Basis</title>
+
+    <p>
+        Let <m>B = \{v_1, \ldots, v_n\}</m> be a basis for <m>V</m> and
+        <m>C = \{w_1, \ldots, w_m\}</m> a basis for <m>W</m>.
+        The matrix associated to <m>T: V \to W</m> relative to the bases <m>B</m>
+        and <m>C</m>, denoted <m>[T]_{B \to C}</m>, is the matrix whose columns are
+        the coordinates of the images of the vectors of <m>B</m> relative to
+        the basis <m>C</m>.
+    </p>
+
+    <p>
+        For each <m>k=1,\ldots,n</m>, we can write <m>T(v_k)</m> as a unique
+        linear combination of the vectors in <m>C</m>:
+    </p>
+
+    <me>
+        T(v_k) = a_{1k}w_1 + \cdots + a_{mk}w_m,
+    </me>
+
+    <p>
+        where <m>a_{jk} \in F</m> for <m>j=1,\ldots,m</m>. These scalars
+        <m>a_{jk}</m> form the <m>m \times n</m> matrix <m>[T]_{B \to C}</m>.
+    </p>
+
+    <p>
+        Given the basis 
+    </p>
+    <me>
+        B = \{(5,1,0),\,(0,2,-1),\,(0,0,3)\}
+    </me>
+    <p>
+        of <m>\mathbb{R}^3</m> and the basis
+    </p>
+
+    <me>C = \{(2,3),\,(1,-1)\}</me>
+    <p> 
+        of <m>\mathbb{R}^2</m> we compute this matrix manually with the aid of Sage.
+        Recall the linear transformation <m>T(x,y,z) = (x-3z,\,y-2z)</m>
+        introduced previously.
+    </p>
+    <p>
+        We begin by computing the images of the basis vectors of <m>B</m>
+        under <m>T</m>.
+    </p>
+    <sage>
+        <input>
+            v1 = vector(QQ, [5,1,0])   #basis B
+            v2 = vector(QQ, [0,2,-1])
+            v3 = vector(QQ, [0,0,3])
+            w1 = vector(QQ, [2,3])     #basis C
+            w2 = vector(QQ, [1,-1])
+            x, y, z = var('x y z')
+            t(x, y, z) = [x - 3*z, y - 2*z]
+            T = linear_transformation(QQ^3, QQ^2, t)
+            Tv1 = T(v1); Tv2 = T(v2); Tv3 = T(v3)
+            Tv1, Tv2, Tv3
+        </input>
+        <output>
+        </output>
+    </sage>
+    <p>
+        Next, we express each image as a coordinate vector relative to <m>C</m>.
+        This amounts to solving the linear system <m>P_W \mathbf{x} = T(v_k)</m>
+        for each <m>k</m>, where <m>P_W</m> is the matrix whose columns are
+        <m>w_1</m> and <m>w_2</m>.
+    </p>
+
+    <sage>
+        <input>
+            PW = column_matrix([w1, w2])
+            c1 = PW.solve_right(Tv1)
+            c2 = PW.solve_right(Tv2)
+            c3 = PW.solve_right(Tv3)
+            c1, c2, c3
+        </input>
+        <output>
+        </output>
+    </sage>
+
+    <p>
+        These coordinate vectors become the columns of <m>[T]_{B \to C}</m>.
+    </p>
+
+    <sage>
+        <input>
+            TBC = column_matrix([c1, c2, c3])
+            TBC
+        </input>
+        <output>
+        </output>
+    </sage>
+
+    <p>
+        Therefore, the matrix of the transformation relative to the bases
+        <m>B</m> and <m>C</m> is
+    </p>
+
+    <me>
+        [T]_{B \to C} =
+        \begin{pmatrix}
+            \frac{6}{5}  \amp \frac{7}{5}  \amp -3 \\
+            \frac{13}{5} \amp \frac{1}{5}  \amp -3
+        \end{pmatrix}.
+    </me>
+
+    <p>
+        We can also ask Sage to compute this matrix directly, by defining
+        the linear transformation using the images of the basis <m>B</m>
+        and the custom bases as domain and codomain.
+    </p>
+
+    <sage>
+        <input>
+            s1 = vector(QQ, [5,1])    #images of B under T
+            s2 = vector(QQ, [3,4])
+            s3 = vector(QQ, [-9,-6])
+            U = (QQ^3).subspace_with_basis([v1, v2, v3])
+            V = (QQ^2).subspace_with_basis([w1, w2])
+            L = linear_transformation(U, V, [s1, s2, s3])
+            L
+        </input>
+        <output>
+        </output>
+    </sage>
+
+    <p>
+        The output displays the linear transformation with the given bases as
+        domain and codomain. The matrix shown by Sage is the transpose of
+        <m>[T]_{B \to C}</m>. To obtain <m>[T]_{B \to C}</m> explicitly, we use the
+        method <c>matrix('right')</c>:
+    </p>
+
+    <sage>
+        <input>
+            TBC = L.matrix('right')
+            TBC
+        </input>
+        <output>
+        </output>
+    </sage>
+
+    <p>
+        Note that the operator <c>==</c> applied to linear transformations in
+        Sage checks whether the associated internal matrices are identical,
+        not whether the underlying functions agree on all inputs. When
+        transformations are defined with respect to different bases, this
+        check may return <c>False</c> even for the same function. To compare
+        transformations reliably, use the method <c>.is_equal_function()</c>.
+    </p>
+
+    <p>
+        The change of basis formula provides an alternative way to compute
+        <m>[T]_{B \to C}</m>. If <m>[T]</m> denotes the matrix of <m>T</m> in the
+        standard bases, then
+    </p>
+
+    <me>
+        P_W^{-1}\, [T]\, P_V = [T]_{B \to C},
+    </me>
+
+    <p>
+        where <m>P_W</m> has the vectors of <m>C</m> as columns and
+        <m>P_V</m> has the vectors of <m>B</m> as columns.
+        We first compute the matrix <m>[T]</m> in the standard bases:
+    </p>
+
+    <sage>
+        <input>
+            TS = T.matrix('right')
+            TS
+        </input>
+        <output>
+        </output>
+    </sage>
+
+    <p>
+        The matrix <m>P_W</m>:
+    </p>
+
+    <sage>
+        <input>
+            PW = column_matrix([w1, w2])
+            PW
+        </input>
+        <output>
+        </output>
+    </sage>
+
+    <p>
+        The matrix <m>P_V</m>:
+    </p>
+
+    <sage>
+        <input>
+            PV = column_matrix([v1, v2, v3])
+            PV
+        </input>
+        <output>
+        </output>
+    </sage>
+
+    <p>
+        The matrix <m>[T]_{B \to C}</m> is then given by the following product:
+    </p>
+
+    <sage>
+        <input>
+            PW.inverse() * TS * PV
+        </input>
+        <output>
+        </output>
+    </sage>
+
+    <p>
+        Finally, we verify that this coincides with the matrix obtained
+        previously:
+    </p>
+
+    <sage>
+        <input>
+            PW.inverse() * TS * PV == TBC
+        </input>
+        <output>
+        </output>
+    </sage>
+
+</section>

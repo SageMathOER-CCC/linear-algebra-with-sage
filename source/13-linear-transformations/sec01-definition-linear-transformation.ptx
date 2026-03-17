@@ -1,14 +1,6 @@
-<section xml:id="sec-linear-transformations" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Linear Transformations</title>
+<section xml:id="sec-definition-linear-transformation" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Definition</title>
     <introduction>
-        <p>
-            In this chapter, we show how to work with linear transformations in Sage and explore the connection between linear transformations and matrices.
-        </p>
-    </introduction>
-
-    <subsection xml:id="subsec-definition">
-        <title>Definition</title>
-
         <p>
             Linear transformations are functions between vector spaces that preserve the vector space operations of addition and scalar multiplication. 
         </p>
@@ -25,7 +17,10 @@
         <p>
             for all vectors <m>u,v</m> in <m>V</m> and all scalars <m>c</m> in <m>F</m>.
         </p>
+    </introduction>
 
+    <subsection xml:id="subsec-sage-calculation">
+        <title>Sage Calculation</title>
         <p>
             Sage can create a linear transformation from a variety of possible inputs.
             First, let's see how to create it from its symbolic expression. 
@@ -168,11 +163,6 @@
             <output>
             </output>
         </sage>
-
-
-    
-        
-
 
     </subsection>
     
