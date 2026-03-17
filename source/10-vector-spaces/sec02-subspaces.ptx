@@ -61,6 +61,13 @@
             is a vector of the form <m>a_1 v_1 + \dots +a_k v_k</m>,
             where <m>a_1,\dots ,a_k \in \mathbb F</m>.
         </p>
+        <note>
+            <title>Sets of Vectors</title>
+            <p>
+                We use the term "set" to describe our collection of vectors as that is standard in linear algebra.
+                However, most Sage commands that generate vector spaces take lists as arguments.
+            </p>
+        </note>
         <p>
             For example, let's calculate a linear combination of the vectors
             <m>u</m> and <m>v</m> in <m>\R^3</m>:
@@ -126,21 +133,23 @@
         <title>Linear Independence</title>
         <p>
         The vectors <m>v_1, v_2, \dots ,v_k</m> are <term>linearly dependent</term> if
-        there exists scalars <m>c_1, c_2,\dots , c_k \in \mathbb F</m>,
-        where at least one <m>c_i \neq 0</m>, such that
+        there exists scalars <m>c_1, c_2,\dots , c_k \in \mathbb F</m>, such that
         </p>
         <md>
             <mrow> c_1 v_1 + c_2 v_2 + \dots + c_n v_k = 0 </mrow>
         </md>
         <p>
+            where at least one <m>c_i \neq 0</m>.
+        </p>
+        <p>
             Otherwise, we say they are <term>linearly independent</term>.
         </p>
         <p>
             Sage provides the <c>linear_dependence</c>
-            method to check if a set of vectors is linearly dependent,
+            method to check if a set of vectors is linearly dependent
             in a given vector space,
-            and in that case outputs the coefficients
-            <m>c_1, c_2, \dots, c_k</m> of the linear combination.
+            and in that case outputs a list of coefficient vectors
+            of the linear combinations.
         </p>
         <p>
             We can then test for linear dependence in the context of <m>V</m>.
@@ -152,8 +161,7 @@
                 u = vector([1, -2, 3])
                 w = vector([2, -5/2, 6])
 
-                L = [v, u, w]
-                V.linear_dependence(L)
+                V.linear_dependence([v, u, w])
             </input>
         </sage>
         <p>
