@@ -202,16 +202,16 @@
             </input>
         </sage>
         <p>
-            Observe that in this case, both equalities <m>AP=PD</m> and <m>P^{-1}AP= D</m> are satisfied.
+            Observe that in this case, both equalities <m>BP=PD</m> and <m>P^{-1}BP= D</m> are satisfied.
         </p>
         <sage>
             <input>
-                D == P.inverse() * A * P
+                B * P == P * D
             </input>
         </sage>
         <sage>
             <input>
-                D == P.inverse() * B * P
+                P.inverse() * B * P == D
             </input>
         </sage>
     </introduction>

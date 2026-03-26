@@ -3,221 +3,213 @@
 <section xml:id="sec-lu-decomposition"
     xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>LU Decomposition</title>
+    
     <introduction xml:id="sm-introduction-lu-decomposition">
         <p>
-            <idx>
-                <h>Matrices</h>
-                <h>Upper Triangular Matrix</h>
-                <h>Lower Triangular Matrix</h>
-            </idx>
-            The LU decomposition of a matrix <m>A</m> is a factorization of
-            the matrix into a product of a lower triangular matrix <m>L</m>
-            (often with ones on the diagonal) and an upper triangular matrix
-            <m>U</m>. Mathematically, this can be expressed as <m>A = L \times U</m>.
-            This decomposition is useful for solving systems of linear equations
-            and computing the determinant of the matrix.
+            Any nonsingular matrix <m>A</m> can be factored into a lower triangular matrix <m>L</m>
+            and an upper triangular matrix <m>U</m> such that <m>A = LU</m>.
         </p>
-
         <p>
-            LU decomposition is closely related to Gaussian elimination. The matrix
-            <m>L</m> records the multipliers used during elimination, while <m>U</m>
-            is the resulting row-echelon (triangular) matrix.
+            We obtain the matrix <m>U</m> by performing Gaussian elimination operations on the matrix <m>A</m>.
+            We obtain the matrix <m>L</m> by performing the inverse of those Gaussian elimination operations on the identity matrix.
         </p>
-
         <p>
-            <idx>
-                <h>Existence of LU decomposition</h>
-                <h>Pivot</h>
-            </idx>
-            Note that not every matrix admits an LU decomposition without modification.
-            A breakdown occurs when a zero appears in a pivot position during Gaussian
-            elimination. In such cases, row exchanges are required.
+            Such a factorization exists when <m>A</m> can be carried to row echelon form using no row interchanges.
         </p>
+    </introduction>
 
+    <subsection xml:id="subsec-assisted-lu-calculation">
+        <title>Assisted Calculation of LU factorization</title>
         <p>
-            To handle this situation, we introduce <em>pivoting</em>. Pivoting consists
-            of reordering the rows of <m>A</m> so that a suitable nonzero entry is used
-            as a pivot. This leads to the decomposition <m>P A = L U</m>, where <m>P</m>
-            is a permutation matrix representing the row swaps.
+            To find the LU factorization manually with Sage's assistance, we first find the echelon form of <m>A</m>
+            (without full reduction to reduced row echelon form). If there is no direct command in Sage to do this
+            (e.g., using only basic row operations), we can perform the row operations manually.
+            This process will output the matrix <m>U</m>.
         </p>
-
         <p>
-            Pivoting improves numerical stability and ensures that an LU-type decomposition
-            exists for a much larger class of matrices.
+            We then reproduce these operations in inverse order applied to the identity matrix.
+            This will output the matrix <m>L</m>.
         </p>
-
+        <p>
+            Consider the matrix <m>A</m> (from <m>\textbf{Case II}</m>):
+        </p>
+        <p>
+            The row operations to bring <m>A</m> to echelon form are:
+            <ol>
+                <li><m>R_3 - R_1 \to R_3</m></li>
+                <li><m>R_3 + 2R_2 \to R_3</m></li>
+            </ol>
+            Applying these to <m>A</m> gives <m>U</m>. The inverse operations applied to the identity matrix are:
+            <ol>
+                <li><m>R_3 - 2R_2 \to R_3</m></li>
+                <li><m>R_3 + R_1 \to R_3</m></li>
+            </ol>
+            This gives <m>L</m>. We can then verify that <m>A = LU</m>.
+        </p>
+        <p>
+            Let's start by defining our matrices.
+        </p>
         <sage>
             <input>
-                # Define a matrix that requires pivoting
-                A = matrix([[0, 2],
-                            [3, 4]])
-
-                # Compute the LU decomposition with pivoting
-                P, L, U = A.LU()
-
-                print(P)
-                print()
-
-                print(L)
-                print()
-
-                print(U)
-                print()
-
-                # Verify the decomposition
-                P * A == L * U
-            </input>
-        </sage>
-
-        <p>
-            LU decomposition is a fundamental tool for solving linear systems, computing
-            determinants, and performing efficient numerical computations. Unlike
-            diagonalization, LU decomposition applies to a broader class of matrices,
-            especially when pivoting is allowed.
-        </p>
-
-        <p>
-            In Sage, the LU decomposition can be computed using the <c>LU()</c> method
-            (note that Sage implementation of this method returns three matrices: the lower
-            triangular matrix <m>L</m>, the upper triangular matrix <m>U</m>, and an extra
-            permutation matrix <m>P</m>):
-        </p>
-
-        <sage>
-            <input>
-                A = matrix([[41, 37, 47], [61, 31, 59], [71, 73, 79]])
-                P, L, U = A.LU()
-                P # Permutation (or the pivot) matrix
+                A = matrix([
+                    [1, 2, 0],
+                    [0, 1, -1],
+                    [1, 0, 2]
+                ])
+                I = identity_matrix(3)
+                A
             </input>
         </sage>
         <p>
-            The product of the matrices <m>P</m>, <m>L</m>, and <m>U</m> yields the original matrix <m>A</m>.
-            The matrix <m>P</m> is called the <em>Pivot</em> (or the permutation) matrix, which always has a
-            determinant of 1 (has exactly one <m>1</m> in every row and column). The matrix <m>L</m> is the
-            Lower triangular matrix L. its determinant is equal to the product of the diagonal entries.
+            Then we will create <m>U</m>.
         </p>
         <sage>
             <input>
-                print(L, end="\n\n")
-                print(L.determinant())
-            </input>
-        </sage>
-        <p>
-            Similarly, the matrix <m>U</m> is the Upper triangular matrix U. its determinant is also equal
-            to the product of the diagonal entries.
-        </p>
-        <sage>
-            <input>
-                # The upper triangular matrix U
+                U = copy(A) # We must use copy so that A is not also edited
+                U.add_multiple_of_row(2, 0, -1)
+                U.add_multiple_of_row(2, 1, 2)
                 U
             </input>
         </sage>
         <p>
-            Note that the LU decomposition is not unique, and there are many different ways to perform it.
-            For instance, we can choose to decomposition with a pivot that has a non-zero determinant (also
-            equal to 1 in this case):
+            Finally we will create our <m>L</m>.
         </p>
         <sage>
             <input>
-                P, L, U = A.LU(pivot='nonzero')
-                print(P)
-                print('-'*7+'\n',P.det())
-            </input>
-        </sage>
-        <p>
-            With <em>partial</em> pivoting, every entry of <m>L</m> will have absolute value of <m>1</m> or less.
-        </p>
-        <sage>
-            <input>
-                P, L, U = A.LU(pivot='partial')
+                L = copy(I)
+                L.add_multiple_of_row(2, 1, -2)
+                L.add_multiple_of_row(2, 0, 1)
                 L
             </input>
         </sage>
         <p>
-            Additionally, Sage offers different ways to format the display of the result of the LU decomposition.
+            Then we can check that our decomposition is still equal to <m>A</m>.
         </p>
         <sage>
             <input>
-                P, L, U = A.LU(format='plu')
-                print(P)
-                print()
-
-                print(L)
-                print()
-
-                print(U)
-                print()
+                A == L * U
             </input>
         </sage>
+    </subsection>
+
+    <subsection xml:id="subsec-sage-lu-calculation">
+        <title>Sage Calculation of LU factorization</title>
         <p>
-            And for a slightly compact format:
+            To calculate the matrices of the factorization directly, 
+            Sage provides the method <c>LU</c>.
+        </p>
+        <p>
+            The output of <c>A.LU(pivot='nonzero')</c> is a triple of matrices <m>(P, L, U)</m>.
+            If the matrix admits an LU factorization without row interchanges, 
+            the first matrix <m>P</m> is the identity matrix.
         </p>
         <sage>
             <input>
-                P, M = A.LU(format='compact')
-                print(P)  # only display the diagonal entrees
-                print()
-                print(M)  # combines the upper and lower triangular matrices
+                A = matrix([
+                    [1, 2, 0],
+                    [0, 1, -1],
+                    [1, 0, 2]
+                ])
+                T = A.LU(pivot='nonzero')
+                T
             </input>
         </sage>
-
         <p>
-            Note that every square matrix over the complex numbers can be written
-            in an upper triangular form (for example, via the <em>Schur</em> decomposition),
-            but this does not imply that the matrix is diagonalizable.
+            We can then check that these values match our calculations above:
         </p>
-
-        <p>
-            <idx>
-                <h>Numerical instability</h>
-                <h>Pivoting</h>
-                <h>Floating-point arithmetic</h>
-            </idx>
-            In numerical computations, LU decomposition without pivoting can be unstable.
-            Even when an LU decomposition exists theoretically, small pivot values can
-            lead to large rounding errors in floating-point arithmetic.
-        </p>
-
-        <p>
-            For this reason, practical algorithms almost always use <em>partial pivoting</em>,
-            leading to a decomposition of the form <m>P A = L U</m>. Ignoring pivoting can
-            result in inaccurate solutions when solving linear systems numerically.
-        </p>
-
         <sage>
             <input>
-                # A matrix that is theoretically invertible
-                # but problematic without pivoting
-                A = matrix(RDF, [[1e-16, 1],
-                                [1,     1]])
-
-                # LU decomposition with pivoting
-                P, L, U = A.LU()
-                print(P)
-                print()
-
-                print(L)
-                print()
-
-                print(U)
-                print()
-
-                # Verify the decomposition
-                P * A - L * U
+                L == T[1]
             </input>
         </sage>
-
+        <sage>
+            <input>
+                U == T[2]
+            </input>
+        </sage>
         <p>
-            Once again, it is important to distinguish between exact arithmetic (as used by Sage
-            with symbolic or rational entries) and numerical computation with floating-point numbers.
-            A decomposition that is exact in theory may behave poorly when implemented numerically
-            without proper safeguards.
+            If the matrix does not admit an LU factorization,
+            it requires at least one row interchange
+            when being carried to row echelon form. 
+            In this case, the matrix admits a <term>PLU factorization</term>,
+            where the first matrix <m>P</m> records the row interchanges.
         </p>
-    </introduction>
-    <!-- TODO. Given a matrix that accept the strict mathematic definition of LU decomposition, what would the P
-        matrix contain? (let there be L and U, A=L*U, then what is P in P,L,U = A.LU() ?)
-        Q: given that not every matrix has an LU decomposition, does all matrices have PLU decomposition ?
-        Q: LU decomposition of a matrix is unique, but PLU decomposition **may** not be unique
-        TODO. how is LU decomposition related to diagonalization ?
-    -->
+        <p>
+            Let's consider the matrix <m>B</m> (from <m>\textbf{Case I}</m>):
+        </p>
+        <sage>
+            <input>
+                B = matrix([
+                    [0, 1, -1],
+                    [1, 2, 0],
+                    [1, 0, 1]
+                ])
+                T = B.LU(pivot='nonzero')
+                T
+            </input>
+        </sage>
+        <p>
+            Again, the output is a triple of matrices where the first matrix 
+            now is not the identity and records the row interchanges, 
+            whereas the second matrix is <m>L</m> and the third matrix is <m>U</m> as before.
+        </p>
+        <p>
+            We can verify that <m>B = PLU</m>
+        </p>
+        <sage>
+            <input>
+                P = T[0]
+                L = T[1]
+                U = T[2]
+                B == P * L * U 
+            </input>
+        </sage>
+    </subsection>
+
+    <subsection xml:id="subsec-solving-systems-lu">
+        <title>Solving a system of equations using LU</title>
+        <p>
+            If <m>A</m> can be factored as <m>A = LU</m>, the solution to a system <m>Ax = b</m>
+            can be solved quickly in two stages:
+        </p>
+        <ol>
+            <li>First solve <m>Ly = b</m> for <m>y</m> by forward substitution.</li>
+            <li>Then solve <m>Ux = y</m> for <m>x</m> by back substitution.</li>
+        </ol>
+        <p>
+            We demonstrate these steps in Sage for <m>\textbf{Case II}</m>. 
+            We define the matrix <m>A</m> and a vector <m>b</m> that lies in its column space.
+        </p>
+        <sage>
+            <input>
+                A = matrix([
+                    [1, 2, 0],
+                    [0, 1, -1], 
+                    [1, 0, 2]
+                ])
+                b = vector([4, 0, 4])
+                P, L, U = A.LU(pivot='nonzero')
+                L, U
+            </input>
+        </sage>
+        <p>
+            Since the permutation matrix is the identity for this case, 
+            we can proceed directly to solve <m>Ly = b</m>.
+        </p>
+        <sage>
+            <input>
+                y = L.solve_right(b)
+                y
+            </input>
+        </sage>
+        <p>
+            And then we solve <m>Ux = y</m> for the final solution.
+        </p>
+        <sage>
+            <input>
+                x = U.solve_right(y)
+                x
+            </input>
+        </sage>
+    </subsection>
 </section>
