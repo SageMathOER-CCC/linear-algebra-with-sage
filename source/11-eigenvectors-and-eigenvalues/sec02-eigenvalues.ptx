@@ -90,6 +90,8 @@
         </sage>
         <p>
             The exponents in the factorization indicate the algebraic multiplicity of each eigenvalue.
+            The <c>factor_list</c> method returns a list of tuples of the form <m>\big(f(x), r\big)</m>,
+            where <m>f(x)</m> is the factor and <m>r</m> is the algebraic multiplicity of that factor.
         </p>
         <sage>
             <input>
@@ -133,13 +135,6 @@
         <sage>
             <input>
                 A.eigenvalue_multiplicity(-1)
-            </input>
-            <output>
-            </output>
-        </sage>
-        <sage>
-            <input>
-                A.eigenvalue_multiplicity(2)
             </input>
             <output>
             </output>
