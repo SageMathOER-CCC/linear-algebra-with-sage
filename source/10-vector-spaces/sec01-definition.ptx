@@ -14,13 +14,11 @@
             not exclusively <m>\R</m>.
         </p>
         <p>
-            A vector space over a field of scalars
-            <m>\F</m> as a nonempty set <m>V</m> of vectors,
-            together with the operations, <m>+</m> vector addition
-            and <m>\cdot</m> scalar multiplication,
-            such that the following axioms are satisfied for all
-            <m>u,v,w \in V</m> and <m>a,b \in \F</m>:
+            A vector space over a field of scalars <m>\F</m> is a nonempty set <m>V</m> of vectors,
+            together with two operations: vector addition <m>+</m> and scalar multiplication <m>\cdot</m>,
+            such that the following axioms are satisfied:
         </p>
+        <p></p>
         <dl>
             <li>
                 <title>Closure</title>
@@ -86,6 +84,9 @@
                 V = VectorSpace(RR, 3)
                 V
             </input>
+            <output>
+                Vector space of dimension 3 over Real Field with 53 bits of precision
+            </output>
         </sage>
         <p>
             Let's create now the vector space <m>\Q^2</m>
@@ -96,6 +97,9 @@
                 W = VectorSpace(QQ, 2)
                 W
             </input>
+            <output>
+                Vector space of dimension 2 over Rational Field
+            </output>
         </sage>
         <p>
             Equivalently, we can define the same vector space as:
@@ -105,6 +109,9 @@
                 W = QQ ^ 2
                 W
             </input>
+            <output>
+                Vector space of dimension 2 over Rational Field
+            </output>
         </sage>
         <p>
             We can check if a vector belongs to a vector space.
@@ -115,6 +122,9 @@
                 # Ensure that the vector is over the same field
                 w in W
             </input>
+            <output>
+                False
+            </output>
         </sage>
         <!--
         <p>

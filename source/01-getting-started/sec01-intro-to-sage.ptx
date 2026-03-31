@@ -62,18 +62,27 @@
                 # and ignored by Sage
                 1 + 1
             </input>
+            <output>
+            2
+            </output>
         </sage>
 
         <sage>
             <input>
                 100 - 1
             </input>
+            <output>
+            99
+            </output>
         </sage>
 
         <sage>
             <input>
                 3 * 4
             </input>
+            <output>
+            12
+            </output>
         </sage>
 
         <p>
@@ -86,6 +95,9 @@
                 # ** is valid in Sage and Python
                 2**3
             </input>
+            <output>
+            8
+            </output>
         </sage>
 
         <sage>
@@ -94,17 +106,20 @@
                 # ^ is valid in Sage
                 2 ^ 3
             </input>
+            <output>
+            8
+            </output>
         </sage>
 
         <p>Division in Sage:</p>
 
-        <sage><input>5 / 3  # Returns a rational number</input></sage>
-        <sage><input>5 / 3.0  # Returns a floating-point approximation</input></sage>
+        <sage><input>5 / 3  # Returns a rational number</input><output>5/3</output></sage>
+        <sage><input>5 / 3.0  # Returns a floating-point approximation</input><output>1.66666666666667</output></sage>
 
         <p>Integer division and modulo:</p>
 
-        <sage><input>5 // 3  # Returns the quotient</input></sage>
-        <sage><input>5 % 3   # Returns the remainder</input></sage>
+        <sage><input>5 // 3  # Returns the quotient</input><output>1</output></sage>
+        <sage><input>5 % 3   # Returns the remainder</input><output>2</output></sage>
     </subsection>
 
     <subsection xml:id="subsec-Variables-and-Names">
@@ -124,6 +139,9 @@
                 sum = a + b
                 sum
             </input>
+            <output>
+            3
+            </output>
         </sage>
 
         <p>
@@ -166,6 +184,9 @@
                 import keyword
                 keyword.iskeyword('if')
             </input>
+            <output>
+            True
+            </output>
         </sage>
 
         <p>

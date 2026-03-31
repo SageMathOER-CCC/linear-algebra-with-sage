@@ -48,6 +48,9 @@
     <input>
       pascal_row(5)
     </input>
+    <output>
+      [1, 5, 10, 10, 5, 1]
+    </output>
   </sage>
   <p>
     Sage functions can sometimes produce unexpected results if given improper input. For instance,
@@ -57,6 +60,11 @@
     <input>
       pascal_row("5")
     </input>
+    <output>
+      Traceback (most recent call last):
+      ...
+      TypeError: 'str' object cannot be interpreted as an integer
+    </output>
   </sage>
   <p>
     However, if you pass a negative integer, the function will silently return an empty list. This
@@ -80,6 +88,11 @@
     <input>
       pascal_row(-5)
     </input>
+    <output>
+      Traceback (most recent call last):
+      ...
+      ValueError: `n` must be a non-negative integer
+    </output>
   </sage>
   <p>
     Functions can also include a <c>docstring</c> in the function definition to describe its
@@ -131,6 +144,36 @@
     <input>
       help(pascal_row)
     </input>
+    <output>
+      Help on function pascal_row in module __main__:
+
+      pascal_row(n)
+          Return row `n` of Pascal's triangle.
+
+          INPUT:
+          - ``n`` -- non-negative integer; the row number of Pascal's triangle to return.
+            The row index starts from 0, which corresponds to the top row.
+
+          OUTPUT: list; row `n` of Pascal's triangle as a list of integers.
+
+          EXAMPLES:
+          This example illustrates how to get various rows of Pascal's triangle (0-indexed) :
+
+              sage: pascal_row(0)  # the top row
+              [1]
+              sage: pascal_row(4)
+              [1, 4, 6, 4, 1]
+
+          It is an error to provide a negative value for `n`:
+              sage: pascal_row(-1)
+              Traceback (most recent call last):
+              ...
+              ValueError: `n` must be a non-negative integer
+
+            NOTE:
+              This function uses the `binomial` function to compute each
+              element of the row.
+    </output>
   </sage>
   <p>
     Alternatively, you can access the source code using the <c>??</c> operator:

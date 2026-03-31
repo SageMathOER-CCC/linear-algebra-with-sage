@@ -59,6 +59,11 @@
                 I = identity_matrix(3)
                 A
             </input>
+            <output>
+                [ 1  2  0]
+                [ 0  1 -1]
+                [ 1  0  2]
+            </output>
         </sage>
         <p>
             Then we will create <m>U</m>.
@@ -70,6 +75,11 @@
                 U.add_multiple_of_row(2, 1, 2)
                 U
             </input>
+            <output>
+                [ 1  2  0]
+                [ 0  1 -1]
+                [ 0  0  0]
+            </output>
         </sage>
         <p>
             Finally we will create our <m>L</m>.
@@ -81,6 +91,11 @@
                 L.add_multiple_of_row(2, 0, 1)
                 L
             </input>
+            <output>
+                [ 1  0  0]
+                [ 0  1  0]
+                [ 1 -2  1]
+            </output>
         </sage>
         <p>
             Then we can check that our decomposition is still equal to <m>A</m>.
@@ -89,6 +104,9 @@
             <input>
                 A == L * U
             </input>
+            <output>
+                True
+            </output>
         </sage>
     </subsection>
 
@@ -113,6 +131,19 @@
                 T = A.LU(pivot='nonzero')
                 T
             </input>
+            <output>
+                (
+                    [ 1  0  0]
+                    [ 0  1  0]
+                    [ 0  0  1],
+                    [ 1  0  0]
+                    [ 0  1  0]
+                    [ 1 -2  1],
+                    [ 1  2  0]
+                    [ 0  1 -1]
+                    [ 0  0  0]
+                )
+            </output>
         </sage>
         <p>
             We can then check that these values match our calculations above:
@@ -121,11 +152,17 @@
             <input>
                 L == T[1]
             </input>
+            <output>
+                True
+            </output>
         </sage>
         <sage>
             <input>
                 U == T[2]
             </input>
+            <output>
+                True
+            </output>
         </sage>
         <p>
             If the matrix does not admit an LU factorization,
@@ -147,6 +184,19 @@
                 T = B.LU(pivot='nonzero')
                 T
             </input>
+            <output>
+                (
+                    [ 0  1  0]
+                    [ 1  0  0]
+                    [ 0  0  1],
+                    [ 1  0  0]
+                    [ 0  1  0]
+                    [ 1 -2  1],
+                    [ 1  2  0]
+                    [ 0  1 -1]
+                    [ 0 -2 -1]
+                )
+            </output>
         </sage>
         <p>
             Again, the output is a triple of matrices where the first matrix 
@@ -163,6 +213,9 @@
                 U = T[2]
                 B == P * L * U 
             </input>
+            <output>
+                True
+            </output>
         </sage>
     </subsection>
 
@@ -191,6 +244,16 @@
                 P, L, U = A.LU(pivot='nonzero')
                 L, U
             </input>
+            <output>
+                (
+                    [ 1  0  0]
+                    [ 0  1  0]
+                    [ 1 -2  1],
+                    [ 1  2  0]
+                    [ 0  1 -1]
+                    [ 0  0  0]
+                )
+            </output>
         </sage>
         <p>
             Since the permutation matrix is the identity for this case, 
@@ -201,6 +264,9 @@
                 y = L.solve_right(b)
                 y
             </input>
+            <output>
+                (4, 0, 0)
+            </output>
         </sage>
         <p>
             And then we solve <m>Ux = y</m> for the final solution.
@@ -210,6 +276,9 @@
                 x = U.solve_right(y)
                 x
             </input>
+            <output>
+                (4, 0, 0)
+            </output>
         </sage>
     </subsection>
 </section>

@@ -21,6 +21,9 @@
                 ])
                 A.adjugate() == A.adjoint()
             </input>
+            <output>
+                True
+            </output>
         </sage>
     </introduction>
 </section>

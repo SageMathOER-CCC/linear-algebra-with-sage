@@ -29,6 +29,13 @@
                     [1, 0, 1, 2, 1]])
                 M.adjugate()
             </input>
+            <output>
+                [-4 11  1 -9  6]
+                [ 6 -4 11  1 -9]
+                [-9  6 -4 11  1]
+                [ 1 -9  6 -4 11]
+                [11  1 -9  6 -4]
+            </output>
         </sage>
         <p>
             In the next sections, we will explore how to compute step by step the minors,

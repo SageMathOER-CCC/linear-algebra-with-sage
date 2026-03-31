@@ -12,6 +12,9 @@
         <input>
             solve(8 + x, x)
         </input>
+        <output>
+            [x == -8]
+        </output>
     </sage>
     <p>
         Let's solve for <m>x</m> in the equation <m>8 + x = 5</m>.
@@ -20,6 +23,9 @@
         <input>
             solve(8 + x == 5, x)
         </input>
+        <output>
+            [x == -3]
+        </output>
     </sage>
     <p>
         We can store the equation in a new variable and perform operations on it.
@@ -33,6 +39,9 @@
             # Solve the equation for x
             solve(E, x)
         </input>
+        <output>
+            [x == -3]
+        </output>
     </sage>
     <p>
         Observe that the solution of an equation is given between square brackets, indicating that the data type is a <c>list</c>.
@@ -50,6 +59,9 @@
         # Access the zero-th element of the list
         S[0]
         </input>
+        <output>
+            x == -3
+        </output>
     </sage>
     <p>
         In this case the <c>list</c> has only one element.
@@ -62,6 +74,9 @@
         <input>
             E.rhs()
         </input>
+        <output>
+            5
+        </output>
     </sage>
     <p>
         Here is the left-hand side of the equation.
@@ -70,6 +85,9 @@
         <input>
             E.lhs()
         </input>
+        <output>
+            8 + x
+        </output>
     </sage>
     <p>
         To use a variable other than <c>x</c>, we need to create a <term>symbolic</term> variable object with the <c>var()</c> function.
@@ -83,5 +101,8 @@
         # Solve for z
         solve(8 + z == 5, z)
         </input>
+        <output>
+            [z == -3]
+        </output>
     </sage>
 </section>

@@ -14,25 +14,15 @@
             Matrices can be added, multiplied by a scalar (scalar multiplication), or multiplied with
             other matrices (matrix multiplication). Addition and scalar multiplication are performed
             element-wise, analogous to the corresponding operations on vectors.
+            Let <m>A = \begin{bmatrix} a_{ij} \end{bmatrix}</m> and <m>B = \begin{bmatrix} b_{ij} \end{bmatrix}</m> be <m>m\times n</m> matrices.
         </p>
-        <m>
-            Let\  A =
-            \begin{bmatrix}
-            a_{ij}
-            \end{bmatrix}
-            \ and\ B =
-            \begin{bmatrix}
-            b_{ij}
-            \end{bmatrix}
-            \ be\ m\times n\ matrices.
-        </m>
 
-        <m>
+        <me>
             A + B =
             \begin{bmatrix}
             a_{ij} + b_{ij}
             \end{bmatrix}
-        </m>
+        </me>
 
         <sage>
             <input>
@@ -43,33 +33,48 @@
                 # Matrix addition.
                 A + B
             </input>
+            <output>
+                [10 10 10]
+                [10 10 10]
+                [10 10 10]
+            </output>
         </sage>
 
-        <m>
+        <me>
             A - B =
             \begin{bmatrix}
             a_{ij} - b_{ij}
             \end{bmatrix}
-        </m>
+        </me>
 
         <sage>
             <input>
                 # Matrix subtraction
                 A - B
             </input>
+            <output>
+                [-8 -6 -4]
+                [-2  0  2]
+                [ 4  6  8]
+            </output>
         </sage>
 
-        <m>
+        <me>
             kA =
             \begin{bmatrix}
             ka_{ij}
             \end{bmatrix}
-        </m>
+        </me>
         <sage>
             <input>
                 # Scalar multiplication
                 3 * A
             </input>
+            <output>
+                [ 3  6  9]
+                [12 15 18]
+                [21 24 27]
+            </output>
         </sage>
 
         <p>
@@ -83,29 +88,18 @@
             For the multiplication to be defined, the number of columns in the first matrix must
             equal the number of rows in the second matrix. The resulting matrix has the same number of
             rows as the first matrix and the same number of columns as the second matrix.
+            Let <m>C = \begin{bmatrix} c_{ij} \end{bmatrix}</m> be an <m>m\times p</m> matrix and <m>D = \begin{bmatrix} d_{ij} \end{bmatrix}</m> be a <m>p\times n</m> matrix.
         </p>
-        <m>
-            Let\  C =
-            \begin{bmatrix}
-            c_{ij}
-            \end{bmatrix}
-            \ be\ an\ m\times p\; matrix\
-            \ and\ D =
-            \begin{bmatrix}
-            d_{ij}
-            \end{bmatrix}
-            \ an\; p\times n\ matrix.
-        </m>
-        <m>
+        <me>
         CD =
         \begin{bmatrix}
         d_{ij}
         \end{bmatrix}
-        </m>
+        </me>
 
-        <m>
-        \ where\ d_{ij} = \sum_{k=1}^p c_{ik}d_{kj}.
-        </m>
+        <p>
+        where <m>d_{ij} = \sum_{k=1}^p c_{ik}d_{kj}</m>.
+        </p>
 
         <sage>
             <input>
@@ -120,6 +114,11 @@
 
                 C * D
             </input>
+            <output>
+                [64 23 27 62 47]
+                [74 31 39 76 64]
+                [84 39 51 90 81]
+            </output>
         </sage>
 
         <p>
@@ -132,6 +131,9 @@
                 v = vector([3]*3)
                 A * v
             </input>
+            <output>
+                (18, 45, 72)
+            </output>
         </sage>
     </introduction>
 </section>
