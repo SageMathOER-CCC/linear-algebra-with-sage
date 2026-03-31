@@ -453,4 +453,78 @@
             </output>
         </sage>
     </subsection>
+    <subsection xml:id="subsec-change-of-basis-matrix">
+        <title>Change of Basis Matrix</title>
+        <p>
+            Often we need to convert the coordinates of a vector from one basis 
+            <m>B</m> to another basis <m>C</m>. 
+            This is done using a <term>change-of-basis matrix</term>, 
+            <m>P_{C \leftarrow B}</m>.
+            The conversion formula is:
+            <me>[v]_C = P_{C \leftarrow B} \cdot [v]_B</me>
+            where <m>[v]_B</m> and <m>[v]_C</m> are column vectors of coordinates.
+            The columns of the matrix <m>P_{C \leftarrow B}</m> are the coordinate vectors of the vectors in basis <m>B</m>
+            expressed in terms of basis <m>C</m>.
+        </p>
+        <p>
+            Let's calculate the transition matrix from the canonical basis <m>B</m> of <m>S</m>
+            to the basis <m>C = \{u_1, u_2\}</m> of <m>T</m>.
+        </p>
+        <sage>
+            <input>
+                # Re-initialize our previous definitions
+                V = VectorSpace(QQ, 4)
+                v1 = vector(QQ, [1, 2,  0,  1])
+                v2 = vector(QQ, [0, 2, -1,  2])
+                v3 = vector(QQ, [1, 0,  1, -1])
+                v4 = vector(QQ, [2, 4,  0,  2])
+                S = V.span([v1,v2,v3,v4])
+                u1 = vector([1, 4, -1, 3])
+                u2 = vector([2, 2, 1, 0])
+                T = S.subspace_with_basis([u1,u2])
+            </input>
+        </sage>
+        <p>
+            We will first define our initial basis <m>B</m>.
+        </p>
+        <sage>
+            <input>
+                B = S.basis()
+                B
+            </input>
+        </sage>
+        <p>
+            We will now produce our change of basis matrix by using the coordinates of the vectors in <m>B</m> 
+            with respect to the basis <m>C</m>.
+        </p>
+        <sage>
+            <input>
+                p1 = T.coordinate_vector(B[0])
+                p2 = T.coordinate_vector(B[1])
+
+                # The transition matrix P_{C&lt;-B}
+                P = matrix([p1, p2]).transpose()
+                P
+            </input>
+        </sage>
+        <p>
+            Now we can use this matrix to convert the coordinates of <m>v_1</m> 
+            from basis <m>B</m> to basis <m>C</m>.
+        </p>
+        <sage>
+            <input>
+                v1_B = S.coordinate_vector(v1)
+                v1_C = P * v1_B
+                v1_C
+            </input>
+        </sage>
+        <p>
+            We can verify that this matches the coordinates we calculated earlier using the <c>coordinates</c> method:
+        </p>
+        <sage>
+            <input>
+                v1_C == T.coordinate_vector(v1)
+            </input>
+        </sage>
+    </subsection>
 </section>

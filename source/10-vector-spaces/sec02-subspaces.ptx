@@ -65,6 +65,13 @@
             is a vector of the form <m>a_1 v_1 + \dots +a_k v_k</m>,
             where <m>a_1,\dots ,a_k \in \mathbb F</m>.
         </p>
+        <note>
+            <title>Sets of Vectors</title>
+            <p>
+                We use the term "set" to describe our collection of vectors as that is standard in linear algebra.
+                However, most Sage commands that generate vector spaces take lists as arguments.
+            </p>
+        </note>
         <p>
             We use the term "set" to describe our collection of vectors as that is standard in linear algebra.
             However, most Sage commands that generate vector spaces take lists as arguments.
