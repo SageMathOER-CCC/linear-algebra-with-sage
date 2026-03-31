@@ -107,7 +107,7 @@
             </output>
         </sage>
         <p>
-            For these parameters we can choose a particular value, in this case we will set <m>r_1 = 1</m>. 
+            For these parameters we can choose a particular value, in this case we will set <m>r_1 = 1</m>.
             We can then identify the basis vector, <m>v</m>, of the null space.
             We preform this substitution with the <c>subs</c> method.
         </p>
