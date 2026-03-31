@@ -40,12 +40,18 @@
         vowels = ['a', 'e', 'i', 'o', 'u']
         type(vowels)
       </input>
+      <output>
+        class 'list'
+      </output>
     </sage>
 
     <sage>
       <input>
         type('a')
       </input>
+      <output>
+        class 'str'
+      </output>
     </sage>
 
     <p>
@@ -71,6 +77,9 @@
         vowels.append('y')
         vowels
       </input>
+      <output>
+        ['a', 'e', 'i', 'o', 'u', 'y']
+      </output>
     </sage>
 
     <p>
@@ -93,6 +102,9 @@
         v = Set(vowels)
         type(v)
       </input>
+      <output>
+        class 'sage.sets.set.Set_object_enumerated_with_category'
+      </output>
     </sage>
 
     <p>

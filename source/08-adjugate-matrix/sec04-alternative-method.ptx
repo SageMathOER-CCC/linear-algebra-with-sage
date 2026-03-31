@@ -19,6 +19,11 @@
                 C = A.adjugate().transpose()
                 C
             </input>
+            <output>
+                [-54  48  -6]
+                [ 13 -20   9]
+                [  1   4  -3]
+            </output>
         </sage>
         <p>
             From the cofactors matrix, we then have access to cofactors <m>c_{ij}</m>,
@@ -32,6 +37,10 @@
                 m_12 = (-1)^(1+2)*c_12 # divide/multiply by +/-1 are equivalent
                 print("m_12:", m_12)
             </input>
+            <output>
+                c_12: 48
+                m_12: -48
+            </output>
         </sage>
     </introduction>
 </section>

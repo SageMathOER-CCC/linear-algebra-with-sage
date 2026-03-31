@@ -37,6 +37,9 @@
                 ])
                 A.is_singular()  # Check if A is singular
             </input>
+            <output>
+                False
+            </output>
         </sage>
 
         <p>
@@ -47,6 +50,9 @@
                 det_A = A.det()
                 print(det_A)
             </input>
+            <output>
+                1
+            </output>
         </sage>
 
         <p>
@@ -64,6 +70,9 @@
                 x1 = det_A1 / det_A
                 x1
             </input>
+            <output>
+                4
+            </output>
         </sage>
 
         <p>
@@ -77,6 +86,9 @@
                 x2 = det_A2 / det_A
                 x2
             </input>
+            <output>
+                0
+            </output>
         </sage>
 
         <p>
@@ -90,6 +102,9 @@
                 x3 = det_A3 / det_A
                 x3
             </input>
+            <output>
+                0
+            </output>
         </sage>
 
         <p>
@@ -104,6 +119,9 @@
 
                 A * x == b # notice the the double equal sign
             </input>
+            <output>
+                True
+            </output>
         </sage>
 
         <p>
@@ -162,6 +180,9 @@
                 x = solve_system(A, b)
                 x
             </input>
+            <output>
+                (3767/1571, -2898/1571, 3103/1571, 282/1571, -2587/1571)
+            </output>
         </sage>
 
         <p>
@@ -171,6 +192,9 @@
             <input>
                 A * x == b
             </input>
+            <output>
+                True
+            </output>
         </sage>
 
         <p>
@@ -189,6 +213,9 @@
                 x = solve_system(A, b)
                 x  # returns an empty vector since A is singular
             </input>
+            <output>
+                ()
+            </output>
         </sage>
 
         <note>
@@ -216,6 +243,9 @@
                     x = solve_system(A, b)
                     x  # returns solution vector with floating-point entries
                 </input>
+                <output>
+                    (2.39783577339274, -1.84468491406747, 1.97517504774029, 0.179503500954806, -1.64672183322724)
+                </output>
             </sage>
             <p>
                 However the previous equality comparison <c>A*x == b</c> would typically fail because of tiny rounding errors.
@@ -224,6 +254,9 @@
                 <input>
                     A * x == b
                 </input>
+                <output>
+                    False
+                </output>
             </sage>
 
             <p>
@@ -235,6 +268,9 @@
                 <input>
                     all([abs(e)&lt;1E-12 for e in (A * x - b)])
                 </input>
+                <output>
+                    True
+                </output>
             </sage>
         </note>
     </introduction>

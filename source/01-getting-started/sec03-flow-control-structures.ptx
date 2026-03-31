@@ -69,6 +69,9 @@
                 else:
                     print("x is odd and not divisible by 3")
             </input>
+            <output>
+                x is odd and not divisible by 3
+            </output>
         </sage>
 
         <p>
@@ -92,6 +95,10 @@
                     finally:
                         print("The code is done")
                 </input>
+                <output>
+                    Division by zero is undefined
+                    The code is done
+                </output>
             </sage>
             <p>
                 In the case of valid division here is how execution occurs:
@@ -105,6 +112,9 @@
                     finally:
                         print("The code is done")
                 </input>
+                <output>
+                    The code is done
+                </output>
             </sage>
         </subsubsection>
     </subsection>
@@ -130,6 +140,28 @@
                 for i in range(20):
                     print(i)
             </input>
+            <output>
+                0
+                1
+                2
+                3
+                4
+                5
+                6
+                7
+                8
+                9
+                10
+                11
+                12
+                13
+                14
+                15
+                16
+                17
+                18
+                19
+            </output>
         </sage>
 
         <p>
@@ -142,6 +174,18 @@
                 for i in range(10, 20):
                     print(i)
             </input>
+            <output>
+                10
+                11
+                12
+                13
+                14
+                15
+                16
+                17
+                18
+                19
+            </output>
         </sage>
 
         <p>
@@ -154,6 +198,15 @@
                 for i in range(30, 90, 9):
                     print(i)
             </input>
+            <output>
+                30
+                39
+                48
+                57
+                66
+                75
+                84
+            </output>
         </sage>
 
         <idx>
@@ -175,6 +228,9 @@
                     # The for loop is written inside square brackets
                     [n**3 for n in [9..20]]
                 </input>
+                <output>
+                    [729, 1000, 1331, 1728, 2197, 2744, 3375, 4096, 4913, 5832, 6859, 8000]
+                </output>
             </sage>
 
             <p>
@@ -186,6 +242,9 @@
                 <input>
                     [n**3 for n in [9..20] if n % 2 == 0]
                 </input>
+                <output>
+                    [1000, 1728, 2744, 4096, 5832, 8000]
+                </output>
             </sage>
 
         </subsubsection>
@@ -233,6 +292,13 @@
                     print(count)
                     count += 1
             </input>
+            <output>
+                0
+                1
+                2
+                3
+                4
+            </output>
         </sage>
     </subsection>
 </section>

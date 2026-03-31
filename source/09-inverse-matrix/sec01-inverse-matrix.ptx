@@ -23,14 +23,22 @@
                 ])
             A.is_invertible()
         </input>
+        <output>
+            True
+        </output>
     </sage>
     <p>
         In Sage, if a matrix is invertible, the inverse of a matrix can be computed using the <c>inverse()</c> method:
     </p>
     <sage>
-    <input>
-        A.inverse()
-    </input>
+        <input>
+            A.inverse()
+        </input>
+        <output>
+            [ 2 -1  2]
+            [-1  1 -1]
+            [-2  1 -1]
+        </output>
     </sage>
     <p>
         We can check that the products of these matrices are actually the identity:
@@ -39,11 +47,21 @@
         <input>
             A * A.inverse()
         </input>
+        <output>
+            [1 0 0]
+            [0 1 0]
+            [0 0 1]
+        </output>
     </sage>
     <sage>
         <input>
             A.inverse() * A
         </input>
+        <output>
+            [1 0 0]
+            [0 1 0]
+            [0 0 1]
+        </output>
     </sage>
     <p>
         Exponent notation also produces the same result.
@@ -52,6 +70,11 @@
         <input>
             A^-1
         </input>
+        <output>
+            [ 2 -1  2]
+            [-1  1 -1]
+            [-2  1 -1]
+        </output>
     </sage>
     <p>
         Observe that a matrix is invertible over its base ring.
@@ -67,6 +90,9 @@
             ])
             A.is_invertible()
         </input>
+        <output>
+            False
+        </output>
     </sage>
     <p>
         By calculating the inverse,
@@ -77,6 +103,11 @@
         <input>
             A^-1
         </input>
+        <output>
+            [-27/74  12/37 -23/74]
+            [45/148 -10/37 63/148]
+            [  7/74   1/37  -5/74]
+        </output>
     </sage>
     <p>
         If we specify the ring to be the rationals, we obtain the correct result:
@@ -90,6 +121,9 @@
             ])
             A.is_invertible()
         </input>
+        <output>
+            True
+        </output>
     </sage>
     <p>
         Next, we will show how to use Sage to implement the different ways in which we can calculate the inverse matrix.
@@ -115,6 +149,11 @@
                 AI = A.augment(identity_matrix(3), subdivide=true)
                 AI
             </input>
+            <output>
+                [ 0  1 -1| 1  0  0]
+                [ 1  2  0| 0  1  0]
+                [ 1  0  1| 0  0  1]
+            </output>
         </sage>
         <p>
             By invoking <c>rref()</c>, we obtain the reduced form of the augmented matrix, which allows us to determine whether the original matrix is invertible.
@@ -124,6 +163,11 @@
                 rrefAI = AI.rref()
                 rrefAI
             </input>
+            <output>
+                [ 1  0  0| 2 -1  2]
+                [ 0  1  0|-1  1 -1]
+                [ 0  0  1|-2  1 -1]
+            </output>
         </sage>
         <p>
             Since the left sub-matrix is the identity matrix,
@@ -135,6 +179,11 @@
                 B = rrefAI.submatrix(0,3)
                 B
             </input>
+            <output>
+                [ 2 -1  2]
+                [-1  1 -1]
+                [-2  1 -1]
+            </output>
         </sage>
         <p>
             This algorithm coincides with Sage's built-in <c>inverse()</c> method:
@@ -143,6 +192,9 @@
             <input>
                 A.inverse() == B
             </input>
+            <output>
+                True
+            </output>
         </sage>
     </subsection>
     <subsection xml:id="subsec-minors-cofactors-and-adjugate-for-inverse">
@@ -156,6 +208,11 @@
                 C = A.adjugate() / A.det()
                 C
             </input>
+            <output>
+                [ 2 -1  2]
+                [-1  1 -1]
+                [-2  1 -1]
+            </output>
         </sage>
         <p>
             This algorithm also coincides with Sage's built-in <c>inverse()</c> method:
@@ -164,6 +221,9 @@
             <input>
                 A.inverse() == C
             </input>
+            <output>
+                True
+            </output>
         </sage>
     </subsection>
     <subsection xml:id="subsec-comparing-methods">
@@ -181,6 +241,9 @@
                     ])
                 A.inverse() == A.augment(I).rref().submatrix(0,3) == A.adjugate() / A.det()
             </input>
+            <output>
+                True
+            </output>
         </sage>
         <p>
             Let's see how they differ in the way they handled non-invertible matrices.
@@ -200,6 +263,9 @@
                 except Exception as e:
                     print(e)
             </input>
+            <output>
+                matrix must be nonsingular
+            </output>
         </sage>
         <p>
             Using the adjugate method will also raise an exception.
@@ -211,6 +277,9 @@
                 except Exception as e:
                     print(e)
             </input>
+            <output>
+                matrix must be nonsingular
+            </output>
         </sage>
         <p>
             While the echelon method will return a matrix whose first half is not the identity.
@@ -219,6 +288,11 @@
             <input>
                 M.augment(I).rref()
             </input>
+            <output>
+                [ 1  0  2  0  0  1]
+                [ 0  1 -1  0  1  0]
+                [ 0  0  0  1 -2 -1]
+            </output>
         </sage>
         <p>
             We can programmatically check for this with the following code:
@@ -227,6 +301,9 @@
             <input>
                 I == M.augment(I).rref().submatrix(0,0,-1,3)
             </input>
+            <output>
+                False
+            </output>
         </sage>
         <p>
             To generalize the previous code to any <m>n \times n</m> matrix,

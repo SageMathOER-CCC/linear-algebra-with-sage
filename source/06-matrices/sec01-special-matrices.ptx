@@ -23,6 +23,10 @@
                             # 2x5 zero matrix
                             zero_matrix(2,5)
                         </input>
+                        <output>
+                            [0 0 0 0 0]
+                            [0 0 0 0 0]
+                        </output>
                     </sage>
                     <p>
                         For a square matrix, the command can be shortened to <c>zero_matrix(n)</c> like
@@ -33,6 +37,11 @@
                             # 3x3 zero matrix
                             zero_matrix(3)
                         </input>
+                        <output>
+                            [0 0 0]
+                            [0 0 0]
+                            [0 0 0]
+                        </output>
                     </sage>
                 </li>
                 <li>
@@ -45,6 +54,11 @@
                             # 3x4 ones matrix
                             ones_matrix(3,4)
                         </input>
+                        <output>
+                            [1 1 1 1]
+                            [1 1 1 1]
+                            [1 1 1 1]
+                        </output>
                     </sage>
                     <p>
                         The ones matrix can be useful for example to add a constant offset to all entries of a matrix.
@@ -55,6 +69,10 @@
                             # Adding an offset of 4 to all entries in A
                             A + 4 * ones_matrix(2, 3)
                         </input>
+                        <output>
+                            [ 5  6  7]
+                            [ 8  9 10]
+                        </output>
                     </sage>
                     <p>
                         For a square matrix, the command can be shortened to <c>ones_matrix(n)</c> like
@@ -65,6 +83,12 @@
                             # 4x4 ones matrix
                             ones_matrix(4)
                         </input>
+                        <output>
+                            [1 1 1 1]
+                            [1 1 1 1]
+                            [1 1 1 1]
+                            [1 1 1 1]
+                        </output>
                     </sage>
                 </li>
                 <li>
@@ -82,6 +106,11 @@
                         <input>
                             diagonal_matrix([2, 4, 6])
                         </input>
+                        <output>
+                            [2 0 0]
+                            [0 4 0]
+                            [0 0 6]
+                        </output>
                     </sage>
                     <p>
                         To check if a matrix is diagonal, the method <c>is_diagonal()</c> can be used.
@@ -91,6 +120,9 @@
                             d=diagonal_matrix([1, 3, 5])
                             d.is_diagonal()
                         </input>
+                        <output>
+                            True
+                        </output>
                     </sage>
                 </li>
                 <li>
@@ -103,6 +135,13 @@
                         <input>
                             identity_matrix(5)
                         </input>
+                        <output>
+                            [1 0 0 0 0]
+                            [0 1 0 0 0]
+                            [0 0 1 0 0]
+                            [0 0 0 1 0]
+                            [0 0 0 0 1]
+                        </output>
                     </sage>
                 </li>
                 <li>
@@ -120,6 +159,11 @@
                         <input>
                             Matrix([[1, 2, 3], [0, 4, 5], [0, 0, 6]])
                         </input>
+                        <output>
+                            [1 2 3]
+                            [0 4 5]
+                            [0 0 6]
+                        </output>
                     </sage>
                     <p>
                         Note that Sage does not have these predefined commands to create triangular matrices, or check if a square
@@ -137,6 +181,11 @@
             <input>
                 random_matrix(ZZ, 3, 4, x=10)
             </input>
+            <output>
+                [0 3 7 9]
+                [2 5 1 4]
+                [6 8 0 2]
+            </output>
         </sage>
     </introduction>
 </section>
