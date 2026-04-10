@@ -50,7 +50,7 @@
         </sage>
 
         <p>
-            Or as a <em>list of vectors</em>.
+            The rows may also be entered using a <em>list of vectors</em>:
         </p>
         <sage>
             <input>
@@ -67,9 +67,19 @@
                 [41 43 47 53]
             </output>
         </sage>
+        <p>
+            Alternatively, we can use <c>column_matrix()</c> to enter the columns 
+            as a <em>list of vectors</em>:
+        </p>
+        <sage>
+            <input>
+                M = column_matrix([v1, v2, v3])
+                M
+            </input>
+        </sage>
 
         <p>
-            Alternatively, we can create a matrix by passing the entries as a list, and
+            Finally, we can create a matrix by passing the entries as a list, and
             the dimensions as arguments to the <c>matrix</c> command. Here is an example
             of a <m>2 \times 3</m> matrix.
         </p>
@@ -465,9 +475,9 @@
         </sage>
 
         <p>
-            <em>Type assertion</em> is a useful tool to check if two objects are <em>identical</em>
-            and are of the same type. For instance, comparing the types of <m>v</m> and <m>m</m>
-            yields <c>False</c> because they are <em>NOT</em> of the same type.
+            The expression <c>A==B</c> returns <c>True</c> if objects <m>A</m> and <m>B</m> are equal and
+            <c>False</c> if they are not equal. Notice that <c>==</c> performs a comparison which includes
+            the <em>type comparison</em>.
         </p>
         <sage>
             <input>
