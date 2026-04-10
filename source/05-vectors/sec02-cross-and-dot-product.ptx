@@ -22,6 +22,9 @@
                 w = vector([4, 5, 6])
                 v.dot_product(w)
             </input>
+            <output>
+                32
+            </output>
         </sage>
         <p>
             Observe that the dot product of two vectors produces a scalar (a single number), not a
@@ -32,6 +35,10 @@
                 print(v * w)
                 print(v.dot_product(w))
             </input>
+            <output>
+                32
+                32
+            </output>
         </sage>
 
         <p>
@@ -41,6 +48,9 @@
             <input>
                 sum([v[i]*w[i] for i in range(v.degree())])
             </input>
+            <output>
+                32
+            </output>
         </sage>
 
         <p>
@@ -59,6 +69,9 @@
                 w = vector([4, 5, 6])
                 v.cross_product(w)
             </input>
+            <output>
+                (-3, 6, -3)
+            </output>
         </sage>
         <p>
             Observe that the cross product of two vectors is a vector.

@@ -46,34 +46,47 @@
             Let’s define first the coefficient matrix, consisting of the coefficients extracted from the system of equations where each column corresponds to a variable:
         </p>
         <sage>
-        <input>
-                A = matrix([
-                    [0, 1, -1],
-                    [1, 2, 0],
-                    [1, 0, 1]
-                ])
-                A
-        </input>
+            <input>
+                    A = matrix([
+                        [0, 1, -1],
+                        [1, 2, 0],
+                        [1, 0, 1]
+                    ])
+                    A
+            </input>
+            <output>
+                [ 0  1 -1]
+                [ 1  2  0]
+                [ 1  0  1]
+            </output>
         </sage>
 
         <p>
             Then, let's define the constants vector:
         </p>
         <sage>
-        <input>
-                b = vector([0, 4, 4])  # Right-hand side of the equations
-                b
-        </input>
+            <input>
+                    b = vector([0, 4, 4])  # Right-hand side of the equations
+                    b
+            </input>
+            <output>
+                (0, 4, 4)
+            </output>
         </sage>
 
         <p>
             Next, create the augmented matrix by passing the constants vector to the <c>augment()</c> method of the coefficient matrix.
         </p>
         <sage>
-        <input>
-                Ab = A.augment(b)
-                Ab
-        </input>
+            <input>
+                    Ab = A.augment(b)
+                    Ab
+            </input>
+            <output>
+                [ 0  1 -1  0]
+                [ 1  2  0  4]
+                [ 1  0  1  4]
+            </output>
         </sage>
 
         <p>
@@ -88,6 +101,11 @@
                         ])
                     Ab
             </input>
+            <output>
+                [ 0  1 -1  0]
+                [ 1  2  0  4]
+                [ 1  0  1  4]
+            </output>
         </sage>
     </section>
 
@@ -174,65 +192,100 @@
                         ])
                     Ab
             </input>
+            <output>
+                [ 0  1 -1  0]
+                [ 1  2  0  4]
+                [ 1  0  1  4]
+            </output>
         </sage>
         <p>
             First, we will move the leading <m>1</m> from the second row to the first row.
         </p>
         <sage>
-        <input>
-                Ab.swap_rows(0,1)
-                Ab
-        </input>
+            <input>
+                    Ab.swap_rows(0,1)
+                    Ab
+            </input>
+            <output>
+                [ 1  2  0  4]
+                [ 0  1 -1  0]
+                [ 1  0  1  4]
+            </output>
         </sage>
 
         <p>
             The next step is to multiply the first row by <m>-1</m> and add it to the third row.
         </p>
         <sage>
-        <input>
-                Ab.add_multiple_of_row(2, 0, -1)
-                Ab
-        </input>
+            <input>
+                    Ab.add_multiple_of_row(2, 0, -1)
+                    Ab
+            </input>
+            <output>
+                [ 1  2  0  4]
+                [ 0  1 -1  0]
+                [ 0 -2  1  0]
+            </output>
         </sage>
 
         <p>
             Next, multiple the second row by <m>2</m> and add it to the third row.
         </p>
         <sage>
-        <input>
-                Ab.add_multiple_of_row(2, 1, 2)
-                Ab
-        </input>
+            <input>
+                    Ab.add_multiple_of_row(2, 1, 2)
+                    Ab
+            </input>
+            <output>
+                [ 1  2  0  4]
+                [ 0  1 -1  0]
+                [ 0  0 -1  0]
+            </output>
         </sage>
 
         <p>
             Multiply the third row by <m>-1</m> and add it to the second row.
         </p>
         <sage>
-        <input>
-                Ab.add_multiple_of_row(1, 2, -1)
-                Ab
-        </input>
+            <input>
+                    Ab.add_multiple_of_row(1, 2, -1)
+                    Ab
+            </input>
+            <output>
+                [ 1  2  0  4]
+                [ 0  1  0  0]
+                [ 0  0 -1  0]
+            </output>
         </sage>
 
         <p>
             Multiply the second row by <m>-2</m> and add it to the first row.
         </p>
         <sage>
-        <input>
-                Ab.add_multiple_of_row(0, 1, -2)
-                Ab
-        </input>
+            <input>
+                    Ab.add_multiple_of_row(0, 1, -2)
+                    Ab
+            </input>
+            <output>
+                [ 1  0  0  4]
+                [ 0  1  0  0]
+                [ 0  0 -1  0]
+            </output>
         </sage>
 
         <p>
             Multiply the third row in place by <m>-1</m>.
         </p>
         <sage>
-        <input>
-                Ab.rescale_row(2,-1)
-                Ab
-        </input>
+            <input>
+                    Ab.rescale_row(2,-1)
+                    Ab
+            </input>
+            <output>
+                [ 1  0  0  4]
+                [ 0  1  0  0]
+                [ 0  0  1  0]
+            </output>
         </sage>
 
         <p>
@@ -249,14 +302,19 @@
             The <c>rref()</c> method returns the reduced row echelon Form of a matrix.
         </p>
         <sage>
-        <input>
-                Ab = matrix([ # Re-use our old augmented matrix
-                        [0, 1, -1, 0],
-                        [1, 2, 0, 4],
-                        [1, 0, 1, 4]
-                    ])
-                Ab.rref()
-        </input>
+            <input>
+                    Ab = matrix([ # Re-use our old augmented matrix
+                            [0, 1, -1, 0],
+                            [1, 2, 0, 4],
+                            [1, 0, 1, 4]
+                        ])
+                    Ab.rref()
+            </input>
+            <output>
+                [ 1  0  0  4]
+                [ 0  1  0  0]
+                [ 0  0  1  0]
+            </output>
         </sage>
 
         <p>
@@ -271,6 +329,11 @@
                     ])
                 M.rref()
             </input>
+            <output>
+                [ 1  0  2  4]
+                [ 0  1 -1  0]
+                [ 0  0  0  0]
+            </output>
         </sage>
         <p>
             Observe that when we translate it back into a system of equations,
@@ -313,6 +376,11 @@
                     ])
                 T.rref()
             </input>
+            <output>
+                [ 1  0  2  0]
+                [ 0  1 -1  0]
+                [ 0  0  0  1]
+            </output>
         </sage>
         <p>
             Observe that when we translate it back into a system of equations, we obtain:

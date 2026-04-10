@@ -17,6 +17,11 @@
                 A = matrix([[2, 3, 5], [7, 11, 13], [17, 19, 23]])
                 A.transpose()
             </input>
+            <output>
+                [ 2  7 17]
+                [ 3 11 19]
+                [ 5 13 23]
+            </output>
         </sage>
 
         <p>
@@ -31,6 +36,9 @@
             <input>
                 A.is_symmetric()
             </input>
+            <output>
+                False
+            </output>
         </sage>
 
         <p>
@@ -52,6 +60,10 @@
                 B = A.conjugate()
                 B
             </input>
+            <output>
+                [-2*I + 1    I + 3]
+                [     2*I        4]
+            </output>
         </sage>
         <p>
             <idx>
@@ -64,6 +76,10 @@
             <input>
                 B.transpose()
             </input>
+            <output>
+                [-2*I + 1      2*I]
+                [   I + 3        4]
+            </output>
         </sage>
         <p>
             We can also calculate the conjugate transpose directly using the <c>conjugate_transpose</c> method.
@@ -72,6 +88,10 @@
             <input>
                 A.conjugate_transpose()
             </input>
+            <output>
+                [-2*I + 1      2*I]
+                [   I + 3        4]
+            </output>
         </sage>
         <p>
             <idx>

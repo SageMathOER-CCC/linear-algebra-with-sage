@@ -62,10 +62,15 @@
                     ])
                 A
             </input>
+            <output>
+                [1 2 3]
+                [4 5 6]
+            </output>
         </sage>
         <p>
-            Then we will decompose the matrix into the system
+            Then we will translate the matrix into the system
             of equations corresponding to <m>Ax = \mathbf 0</m>.
+            For each row of <m>A</m>, we form the product with the variable vector and set it equal to zero.
         </p>
         <sage>
             <input>
@@ -73,15 +78,21 @@
                        for i in range(A.nrows())]
                 eqs
             </input>
+            <output>
+                [x1 + 2*x2 + 3*x3 == 0, 4*x1 + 5*x2 + 6*x3 == 0]
+            </output>
         </sage>
         <p>
-            Then we call <c>solve</c> to solve the equation.
+            Then we call <c>solve</c> to solve the equations.
         </p>
         <sage>
             <input>
                 sol = solve(eqs, vars)
                 sol
             </input>
+            <output>
+                [[x1 == r2, x2 == -2*r2, x3 == r2]]
+            </output>
         </sage>
         <p>
             By extracting the right hand side of the equation we get the parameterized solution vector.
@@ -89,14 +100,15 @@
         <sage>
             <input>
                 x_sol = vector([s.rhs() for s in sol[0]])
+                x_sol
             </input>
             <output>
-                
+                (r2, -2*r2, r2)
             </output>
         </sage>
         <p>
-            By choosing values for these parameters, 
-            we can identify the basis vector, <m>v</m>, of the null space.
+            For these parameters we can choose a particular value, in this case we will set <m>r_1 = 1</m>.
+            We can then identify the basis vector, <m>v</m>, of the null space.
             We preform this substitution with the <c>subs</c> method.
         </p>
         <sage>
@@ -105,7 +117,7 @@
                 v
             </input>
             <output>
-                
+                (1, -2, 1)
             </output>
         </sage>
     </subsection>
@@ -124,6 +136,10 @@
                      ])
                 A
             </input>
+            <output>
+                [1 2 3]
+                [4 5 6]
+            </output>
         </sage>
         <sage>
             <input>
@@ -131,11 +147,24 @@
                 N
             </input>
             <output>
+                Vector space of degree 3 and dimension 1 over Rational Field
+                Basis matrix:
+                [ 1 -2  1]
+            </output>
+        </sage>
+        <p>
+            The output is a subspace of <m>\R^3</m> with a basis given by the vector we found manually.
+        </p>
+        <sage>
+            <input>
+                N == v
+            </input>
+            <output>
                 
             </output>
         </sage>
         <p>
-            Sage returns the subspace <m>N</m> with its basis as a matrix.
+            Sage also returns the subspace <m>N</m> with its basis as a matrix.
         </p>
         <p>
             We can verify that N is a subspace of <m>\R^3</m>.
@@ -144,6 +173,9 @@
             <input>
                 N.is_subspace(V)
             </input>
+            <output>
+                
+            </output>
         </sage>
     </subsection>
 </section>

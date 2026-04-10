@@ -5,7 +5,9 @@
 
     <introduction>
         <p>
-            PLACEHOLDER.
+            We will show in this chapter how to use Sage 
+            to assist with the manual calculation of eigenvalues and eigenvectors,
+            as well as how to compute them directly.
         </p>
     </introduction>
 

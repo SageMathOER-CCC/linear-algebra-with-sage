@@ -24,6 +24,9 @@
                 ])
                 M.trace()
             </input>
+            <output>
+                7
+            </output>
         </sage>
 
         <p>
@@ -45,6 +48,9 @@
                 ])
                 A.norm()
             </input>
+            <output>
+                8.650217581753541
+            </output>
         </sage>
         <p>
             The <m>L_2</m> norm of a matrix <m>A</m> is defined as the largest singular value of <m>A</m>,
@@ -56,6 +62,9 @@
                 # Compute the square root of largest singular values of A
                 sqrt(max([abs(s) for s in list((A.transpose()*A).eigenvalues())]))
             </input>
+            <output>
+                8.65021758175354120
+            </output>
         </sage>
         <note>
             <title>Default Norm of Matrix in Sage</title>
@@ -83,6 +92,9 @@
             <input>
                 sum([a**2 for a in A.list()]).sqrt()
             </input>
+            <output>
+                8.66025403784439
+            </output>
         </sage>
 
         <p>
@@ -93,6 +105,9 @@
             <input>
                 vector([a for a in A.list()]).norm()
             </input>
+            <output>
+                8.66025403784439
+            </output>
         </sage>
 
         <p>
@@ -103,6 +118,9 @@
             <input>
                 A.norm('frob')
             </input>
+            <output>
+                8.660254037844387
+            </output>
         </sage>
 
         <p>
@@ -113,6 +131,9 @@
             <input>
                 (A.transpose() * A).trace().sqrt()
             </input>
+            <output>
+                8.66025403784439
+            </output>
         </sage>
     </introduction>
 </section>

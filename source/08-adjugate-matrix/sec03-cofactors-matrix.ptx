@@ -25,6 +25,9 @@
                 c_12 = (-1)^(1+2) * m_12
                 c_12
             </input>
+            <output>
+                48
+            </output>
         </sage>
         <p>
             <idx>
@@ -48,6 +51,11 @@
                     for i in range(n)])
                 C
             </input>
+            <output>
+                [-54  48  -6]
+                [ 13 -20   9]
+                [  1   4  -3]
+            </output>
         </sage>
 
         <note>
@@ -64,6 +72,11 @@
                         for j in range(1, n + 1)]
                         for i in range(1, n + 1)])
                 </input>
+                <output>
+                    [-54  48  -6]
+                    [ 13 -20   9]
+                    [  1   4  -3]
+                </output>
             </sage>
             <p>
                 Another valid expression while keeping <m>0</m>-based indexing, and <m>i</m> and <m>j</m> vary
@@ -76,6 +89,11 @@
                         for j in range(n)]
                         for i in range(n)])
                 </input>
+                <output>
+                    [-54  48  -6]
+                    [ 13 -20   9]
+                    [  1   4  -3]
+                </output>
             </sage>
             <p>
                 All these expressions are equivalent and correctly computes the cofactors entries of <m>C</m>.
@@ -90,6 +108,11 @@
                 Adj = C.transpose()
                 Adj
             </input>
+            <output>
+                [-54  13   1]
+                [ 48 -20   4]
+                [ -6   9  -3]
+            </output>
         </sage>
 
         <p>
@@ -100,6 +123,9 @@
             <input>
                 Adj == A.adjugate()
             </input>
+            <output>
+                True
+            </output>
         </sage>
     </introduction>
 </section>

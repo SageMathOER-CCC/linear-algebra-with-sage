@@ -51,6 +51,9 @@
                 b = vector([0, 4, 4])
                 A.solve_right(b)
             </input>
+            <output>
+                (4, 0, 0)
+            </output>
         </sage>
         <p>
             We found that the solution of the system is <m>x = 4,\ y = 0</m>, and <m>z = 0</m>.
@@ -71,6 +74,9 @@
                 b = vector([4, 0, 4])
                 A.solve_right(b)
             </input>
+            <output>
+                (4, 0, 0)
+            </output>
         </sage>
         <p>
             We found that one solution to the system is <m>x = 4,\ y = 0</m>, and <m>z = 0</m>.
@@ -94,6 +100,10 @@
             b = vector([4, 1, 4])
             A.solve_right(b)
         </input>
+        <output>
+            Traceback (most recent call last):
+            ValueError: matrix equation has no solutions
+        </output>
     </sage>
     <p>
         Observe that in this case, Sage produces an error message.
@@ -115,5 +125,8 @@
             except Exception as e:
                 print(e)
         </input>
+        <output>
+            matrix equation has no solutions
+        </output>
     </sage>
 </section>

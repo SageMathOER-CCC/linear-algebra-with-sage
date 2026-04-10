@@ -46,6 +46,12 @@
             1message = "Hello, World!"
             print(1message)
         </input>
+        <output>
+              Cell In[1], line 2
+                1message = "Hello, World!"
+                ^
+            SyntaxError: invalid decimal literal
+        </output>
     </sage>
 
     <p>
@@ -65,6 +71,9 @@
             message = "Hello, World!"
             print(message)
         </input>
+        <output>
+            Hello, World!
+        </output>
     </sage>
 
     <p>
@@ -76,6 +85,12 @@
         <input>
             print(Hi)
         </input>
+        <output>
+              Cell In[1], line 1
+                print(Hi)
+                      ^
+            NameError: name 'Hi' is not defined
+        </output>
     </sage>
 
     <p>
@@ -90,6 +105,9 @@
         <input>
             print("Hi")
         </input>
+        <output>
+            Hi
+        </output>
     </sage>
 
     <ul>
@@ -101,6 +119,9 @@
             Hi = "Hello, World!"
             print(Hi)
         </input>
+        <output>
+            Hello, World!
+        </output>
     </sage>
 
     <p> Reading the documentation is essential to understanding the proper use of methods. If we
@@ -117,6 +138,12 @@
             l = [6, 1, 5, 2, 4, 3]
             sort(l)
         </input>
+        <output>
+              Cell In[1], line 2
+                sort(l)
+                ^
+            NameError: name 'sort' is not defined
+        </output>
     </sage>
 
     <p> The <c>sort()</c> method must be called on the list object using dot notation. </p>
@@ -126,6 +153,9 @@
             l.sort()
             print(l)
         </input>
+        <output>
+            [1, 2, 3, 4]
+        </output>
     </sage>
 
     <p>
@@ -138,6 +168,12 @@
             l = [1, 2, 3]
             l.len()
         </input>
+        <output>
+              Cell In[1], line 2
+                l.len()
+                ^
+            AttributeError: 'list' object has no attribute 'len'
+        </output>
     </sage>
 
     <p>
@@ -148,6 +184,9 @@
         <input>
             len(l)
         </input>
+        <output>
+            3
+        </output>
     </sage>
 
     <p>
@@ -160,6 +199,12 @@
             l = [1, 2, 3]
             l.append(4, 5)
         </input>
+        <output>
+              Cell In[1], line 2
+                l.append(4, 5)
+                         ^
+            TypeError: list.append() takes exactly one argument (2 given)
+        </output>
     </sage>
 
     <p>
@@ -171,6 +216,9 @@
             l.extend([4, 5])
             print(l)
         </input>
+        <output>
+            [1, 2, 3, 4, 5]
+        </output>
     </sage>
 
     <p>
@@ -183,6 +231,12 @@
         <input>
             factorial(-5)
         </input>
+        <output>
+              Cell In[1], line 1
+                factorial(-5)
+                ^
+            ValueError: factorial() only defined for non-negative integers
+        </output>
     </sage>
 
     <p>
@@ -194,6 +248,9 @@
         <input>
             factorial(5)
         </input>
+        <output>
+            120
+        </output>
     </sage>
 
     <p>
@@ -211,6 +268,18 @@
             for i in range(10):
                 print(i)
         </input>
+        <output>
+            0
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+        </output>
     </sage>
 
     <p>
@@ -223,6 +292,18 @@
             for i in range(1, 11):
                 print(i)
         </input>
+        <output>
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+            10
+        </output>
     </sage>
 
     <p>
