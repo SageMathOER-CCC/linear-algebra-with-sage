@@ -1,0 +1,237 @@
+<section xml:id="sec-systems-of-equations-in-action" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Systems of Equations in Action</title>
+    <introduction>
+        <p>
+            Imagine you are in a house with five roommates and are trying to divide up collective chores.
+            Among yourselves it has been agreed that there are 20 total hours of chores per week.
+            Additionally, there are some outside deals and requirements made between roommates.
+            Let <m>x_1, x_2, x_3, x_4, x_5</m> denote the number of chore hours allotted to each roommate.
+        </p>
+    </introduction>
+    <subsection xml:id="subsec-inconsistent-system">
+        <title>Initial Constraints</title>
+        <p>
+            Initially, the roommates propose the following conditions for chore distribution:
+        </p>
+        <ul>
+            <li>
+                The total chore hours must be 20:
+                <me>
+                    x_1 + x_2 + x_3 + x_4 + x_5 = 20
+                </me>
+            </li>
+            <li>
+                Roommates 1 and 5 are a couple and want to maximize time together, 
+                so they insist on having the same number of chore hours:
+                <me>
+                    x_1 = x_5 \Rightarrow x_1 - x_5 = 0
+                </me>
+            </li>
+            <li>
+                Roommate 5 agrees to take on <m>3</m> more hours than roommate 3, 
+                in exchange for access to roommate 3's car:
+                <me>
+                    x_5 = 3 + x_3
+                    \Rightarrow
+                    x_5 - x_3 = 3
+                </me>
+            </li>
+            <li>
+                Roommate 3 wants to only work <m>2</m> hours 
+                in exchange for doing the more physically intense tasks:
+                <me>
+                    x_3 = 2
+                </me>
+            </li>
+            <li>
+                Roommate 5 has a fixed work schedule and can only contribute 
+                4 hours per week:
+                <me>
+                    x_5 = 4
+                </me>
+            </li>
+        </ul>
+        <p>
+            We can combine these conditions 
+            and form the following system of equations:
+        </p>
+        <me>
+            \left\{\begin{array}{l}
+                x_1 + x_2 + x_3 + x_4 + x_5 = 20 \\
+                x_1 - x_5 = 0 \\
+                - x_3 + x_5 = 3 \\
+                x_3 = 2 \\
+                x_5 = 4
+            \end{array}\right.
+        </me>
+        <p>
+            We can then find the distribution hours each roommate should be 
+            given to honor every deal by using the <c>solve</c> function:
+        </p>
+        <sage>
+            <input>
+                var("x_1 x_2 x_3 x_4 x_5") # Declare our symbolic variables first
+                
+                eq1 = x_1 + x_2 + x_3 + x_4 + x_5 == 20 
+                eq2 = x_1 - x_5 == 0 
+                eq3 = - x_3 + x_5 == 3 
+                eq4 = x_3 == 2 
+                eq5 = x_5 == 4
+
+                solve([eq1, eq2, eq3, eq4, eq5], x_1, x_2, x_3, x_4, x_5)
+            </input>
+            <output>
+                []
+            </output>
+        </sage>
+        <p>
+            We can see that the resulting system is inconsistent 
+            because the <c>solve</c> function returned an empty list.
+            Therefore a new set of deals must be made as these deals can not 
+            all be honored at the same time.
+        </p>
+    </subsection>
+    <subsection xml:id="subsec-infinitely-many-solutions">
+        <title>Renegotiated System</title>
+        <p>
+            After further discussion everyone has agreed to the following new set of deals:
+        </p>
+        <ul>
+            <li>
+                The total chore hours still must be 20:
+                <me>
+                    x_1 + x_2 + x_3 + x_4 + x_5 = 20
+                </me>
+            </li>
+            <li>
+                Roommates 1 and 5 still want equal chore hours:
+                <me>
+                    x_1 - x_5 = 0
+                </me>
+            </li>
+            <li>
+                Roommate 5 is still assigned <m>3</m> more hours than roommate 3:
+                <me>
+                    x_5 - x_3 = 3
+                </me>
+            </li>
+            <li>
+                Roommate 2 pays a lower portion of rent and the group has agreed that 
+                their chores should be <m>4/3</m> of the average of the other roommates:
+                <me>
+                    \frac{4}{3} \cdot \frac{x_1 + x_3 + x_4 + x_5}{4} = x_2
+                    \Rightarrow
+                    x_1 - 3x_2 + x_3 + x_4 + x_5 = 0
+                </me>
+            </li>
+        </ul>
+        <p>
+            This new set of conditions forms the following system of equations:
+        </p>
+        <me>
+            \left\{\begin{array}{l}
+                x_1 + x_2 + x_3 + x_4 + x_5 = 20 \\
+                x_1 - x_5 = 0 \\
+                - x_3 + x_5 = 3 \\
+                x_1 - 3x_2 + x_3 + x_4 + x_5 = 0
+            \end{array}\right.
+        </me>
+        <p>
+            We can then check for the existence of solutions again by using
+            <c>solve</c> again:
+        </p>
+        <sage>
+            <input>
+                var("x_1 x_2 x_3 x_4 x_5") # Declare our symbolic variables first
+                
+                eq1 = x_1 + x_2 + x_3 + x_4 + x_5 == 20
+                eq2 = x_1 - x_5 == 0
+                eq3 = - x_3 + x_5 == 3
+                eq4 = x_1 - 3*x_2 + x_3 + x_4 + x_5 == 0
+
+                sol = solve([eq1, eq2, eq3, eq4], x_1, x_2, x_3, x_4, x_5)
+                sol
+            </input>
+            <output>
+                [[x_1 == r1, x_2 == 5, x_3 == r1 - 1, x_4 == -3*r1 + 16, x_5 == r1]]
+            </output>
+        </sage>
+        <p>
+            This system of equations has infinitely many solutions as seen by 
+            the parameterization <m>x_5 = r_1</m>:
+        </p>
+        <me>
+            \left\{\begin{array}{l}
+                x_1 = r_1 \\
+                x_2 = 5 \\
+                x_3 = r_1 - 3 \\
+                x_4 = - 3r_1 + 18 \\
+                x_5 = r_1
+            \end{array}\right.
+        </me>
+        <p>
+            We must have <m>3 \le r_1 \le 6</m>
+            because other values would result in negative chore hours due to rows 3 and 4. 
+        </p>
+        <p>
+            If we then chose a value of <m>r_1</m>, say <m>r_1 = 5</m>, 
+            we can get <em>a</em> valid solution.
+        </p>
+        <sage>
+            <input>
+                sol_vec = vector(sol[0]).subs(r1=5)
+                sol_vec
+            </input>
+            <output>
+                (x_1 == 5, x_2 == 5, x_3 == 4, x_4 == 1, x_5 == 5)
+            </output>
+        </sage>
+    </subsection>
+    <subsection xml:id="subsec-unique-solution">
+        <title>A Unique Solution</title>
+        <p>
+            Roommate 5 brings up their fixed schedule again and the group agrees to include it.
+            So we must add the following to the system of equations:
+        </p>
+        <me>
+            x_5 = 4
+        </me>
+        <p>
+            This results in the following matrix and system:
+        </p>
+        <me>
+            \left\{\begin{array}{l}
+                x_1 + x_2 + x_3 + x_4 + x_5 = 20 \\
+                x_1  - x_5 = 0 \\
+                - x_3 + x_5 = 3 \\
+                x_1 - 3x_2 + x_3 + x_4 + x_5 = 0 \\
+                x_5 = 4
+            \end{array}\right.
+        </me>
+        <p>
+            We can check for constistancy by using <c>solve</c> again in sage:
+        </p>
+        <sage>
+            <input>
+                var("x_1 x_2 x_3 x_4 x_5") # Declare our symbolic variables first
+                
+                eq1 = x_1 + x_2 + x_3 + x_4 + x_5 == 20
+                eq2 = x_1 - x_5 == 0
+                eq3 = - x_3 + x_5 == 3
+                eq4 = x_1 - 3*x_2 + x_3 + x_4 + x_5 == 0
+                eq5 = x_5 == 4
+
+                solve([eq1, eq2, eq3, eq4, eq5], x_1, x_2, x_3, x_4, x_5)
+            </input>
+            <output>
+                [[x_1 == 4, x_2 == 5, x_3 == 1, x_4 == 6, x_5 == 4]]
+            </output>
+        </sage>
+        <p>
+            We now obtain the unique solution:
+        </p>
+        <me>
+            x_1 = 4,\ x_2 = 5,\ x_3 = 1,\ x_4 = 6,\ x_5 = 4
+        </me>
+    </subsection>
+</section>
