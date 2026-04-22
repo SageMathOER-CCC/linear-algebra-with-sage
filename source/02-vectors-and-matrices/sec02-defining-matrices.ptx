@@ -67,6 +67,23 @@
                 [41 43 47 53]
             </output>
         </sage>
+        
+        <p>
+            Likewise we can generate a matrix using vectors as columns instead of rows
+            with the <c>column_matrix</c> function.
+        </p>
+        <sage>
+            <input>
+                M = column_matrix([v1, v2, v3])
+                M
+            </input>
+            <output>
+                [11 23 41]
+                [13 29 43]
+                [17 31 47]
+                [19 37 53]
+            </output>
+        </sage>
 
         <p>
             Alternatively, we can create a matrix by passing the entries as a list, and
