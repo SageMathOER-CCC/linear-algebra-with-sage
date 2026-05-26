@@ -1,0 +1,203 @@
+<section xml:id="sec-linear-transformations-in-action" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Linear Transformations in Action</title>
+    <introduction>
+        <p>
+            At its core, a digital image is a matrix where each entry corresponds to a pixel.
+            The value of the entry can represent the intensity of the pixel (in a grayscale image) or the intensity of the red, green, and blue channels (in a color image).
+        </p>
+        <p>
+            Each entry has coordinates <m>(i,j)</m> corresponding to its position in the matrix.
+            We can apply a linear transformation to the vector of coordinates <m>(i,j)</m> to obtain new coordinates <m>(i',j')</m>.
+            This allows us to manipulate the image.
+        </p>
+        <p>
+            It's important to note that in computer science <m>(0,0)</m> is typically located at the top-left corner of the image,
+            with the <m>i</m> coordinate increasing downwards and the <m>j</m> coordinate increasing to the right.
+        </p>
+        <p>
+            This means that, if we want our output to follow the standard Cartesian coordinate system,
+            our <m>x</m> coordinate is actually the vertical coordinate, <m>j</m>, and our <m>y</m> coordinate is the horizontal coordinate, <m>i</m>.
+        </p>
+    </introduction>
+
+    <subsection xml:id="subsec-lt-single-point">
+        <title>Rotating a Single Point</title>
+        <p>
+            We start with the simplest possible image: a single lit pixel in a 
+            <m>10 \times 10</m> grid of zeros. Note that we are using <c>flip_y=False</c>
+            as an argument of the <c>matrix_plot</c> function to display the image with the origin at the bottom-left.
+        </p>
+        <sage>
+            <input>
+                P = matrix(ZZ, 10, 10)
+                P[5, 5] = 1
+                matrix_plot(P, flip_y=False)
+            </input>
+        </sage>
+        <p>
+            Before rotating, there is a practical issue to address.
+            Our rotation matrix rotates around the origin <m>(0, 0)</m>, 
+            which can move a pixel's new position outside the bounds of the grid entirely.
+            To prevent this, we pad the image: we embed our matrix 
+            inside a larger matrix of zeros using <c>block_matrix</c>, 
+            giving the transformed pixels room to land.
+        </p>
+        <sage>
+            <input>
+                # Embed P at the center of a larger grid of zeros
+                Z = matrix(ZZ, 10, 10)
+                AP = block_matrix([
+                    [Z, Z, Z],
+                    [Z, P, Z],
+                    [Z, Z, Z]
+                ])
+                matrix_plot(AP, flip_y=False)
+            </input>
+        </sage>
+        <p>
+            Our pixel now sits at position <m>(15, 15)</m> inside a <m>30 \times 30</m> grid.
+            We can now define the rotation matrix:
+        </p>
+        <md>
+            R(\theta) =
+            \begin{bmatrix}
+            \cos(\theta) &amp; -\sin(\theta) \\
+            \sin(\theta) &amp;  \cos(\theta)
+            \end{bmatrix}
+        </md>
+        <sage>
+            <input>
+                def R(theta):
+                    return matrix(RR, [
+                        [cos(theta), -sin(theta)],
+                        [sin(theta),  cos(theta)]
+                    ])
+            </input>
+        </sage>
+        <p>
+            Next, we collect the coordinates of every lit pixel in the image,
+            using a for loop to check which entries of the matrix are greater than zero.
+        </p>
+        <sage>
+            <input>
+                pts = [(x, y) for x in range(AP.ncols())
+                              for y in range(AP.nrows())
+                              if AP[y, x] > 0]
+                pts
+            </input>
+        </sage>
+        <p>
+            Then we stack them as column vectors into a matrix, and multiply by <m>R(\theta)</m>,
+            rotating all pixels simultaneously via a single matrix multiplication.
+        </p>
+        <sage>
+            <input>
+                # Stack as column vectors: each column is one pixel's [x, y]
+                px = matrix([[p[0], p[1]] for p in pts]).transpose()
+
+                # Apply a 45-degree rotation
+                newpx = R(pi/4) * px
+
+                # Write the rotated pixels back into the grid
+                for col in newpx.columns():
+                    x, y = round(col[0]), round(col[1])
+                    if 0 &lt;= y &lt; AP.nrows() and 0 &lt;= x &lt; AP.ncols():
+                        AP[y, x] = 1
+
+                matrix_plot(AP, flip_y=False)
+            </input>
+        </sage>
+        <p>
+            Both the original pixel and the rotated pixel are now visible.
+            The original sits at <m>(15, 15)</m>, and a rotation of 
+            <m>\theta = \pi/4</m> maps it to:
+        </p>
+        <me>
+            R\!\left(\frac{\pi}{4}\right)
+            \begin{bmatrix} 15 \\ 15 \end{bmatrix}
+            =
+            \begin{bmatrix} 0 \\ 15\sqrt{2} \end{bmatrix}
+            \approx
+            \begin{bmatrix} 0 \\ 21 \end{bmatrix}
+        </me>
+        <p>
+            which we can verify directly in the image.
+        </p>
+    </subsection>
+
+    <subsection xml:id="subsec-lt-letter-f">
+        <title>Rotating the Letter F</title>
+        <p>
+            The same approach applies to any shape. 
+            We encode the letter <q>F</q> as a <m>10 \times 10</m> binary matrix.
+        </p>
+        <p>
+            Plotting with <c>flip_y=False</c> displays row <m>0</m> of the matrix 
+            at the <em>bottom</em> of the image, with <m>y</m> increasing upward.
+            This means the matrix must be defined with the bottom of the image in row <m>0</m> 
+            and the top in the last row.
+            As a result, the letter looks upside down when you read the code, 
+            but displays correctly when plotted.
+        </p>
+        <sage>
+            <input>
+                # Appears upside down in code; displays correctly with flip_y=False
+                F = matrix(ZZ, [
+                    [0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,1,1,1,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,1,1,1,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0],
+                ])
+                matrix_plot(F, flip_y=False)
+            </input>
+        </sage>
+        <p>
+            We again embed the letter inside a larger grid of zeros.
+            Since the rotation is around the origin and the letter will swing 
+            up and to the left, we add more padding in those directions to 
+            ensure the rotated pixels stay in bounds.
+        </p>
+        <sage>
+            <input>
+                AT = block_matrix([
+                    [matrix(ZZ,  40, 100), matrix(ZZ,  40, 10), matrix(ZZ,  40, 40)],
+                    [matrix(ZZ,  10, 100), F,                   matrix(ZZ,  10, 40)],
+                    [matrix(ZZ, 100, 100), matrix(ZZ, 100, 10), matrix(ZZ, 100, 40)]
+                ])
+                matrix_plot(AT, flip_y=False)
+            </input>
+        </sage>
+        <p>
+            Now we apply the rotation. Since <c>R</c> is already defined from the previous 
+            cell, we can use it directly.
+        </p>
+        <sage>
+            <input>
+                pts = [(x, y) for x in range(AT.ncols())
+                              for y in range(AT.nrows())
+                              if AT[y, x] > 0]
+
+                px = matrix([[p[0], p[1]] for p in pts]).transpose()
+
+                newpx = R(pi/4) * px
+
+                for col in newpx.columns():
+                    x, y = round(col[0]), round(col[1])
+                    if 0 &lt;= y &lt; AT.nrows() and 0 &lt;= x &lt; AT.ncols():
+                        AT[y, x] = 1
+
+                matrix_plot(AT, flip_y=False)
+            </input>
+        </sage>
+        <p>
+            The letter F has been rotated <m>45^\circ</m> around the origin.
+        </p>
+    </subsection>
+
+</section>
