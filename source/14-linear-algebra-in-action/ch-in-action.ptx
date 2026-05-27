@@ -12,4 +12,5 @@
     <!-- include sections -->
     <xi:include href="sec01-systems-of-equations.ptx" />
     <xi:include href="sec02-linear-transformations.ptx" />
+    <xi:include href="sec03-pca-in-action.ptx" />
 </chapter>
