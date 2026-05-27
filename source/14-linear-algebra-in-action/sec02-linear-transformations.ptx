@@ -12,11 +12,11 @@
         </p>
         <p>
             It's important to note that in computer science <m>(0,0)</m> is typically located at the top-left corner of the image,
-            with the <m>i</m> coordinate increasing downwards and the <m>j</m> coordinate increasing to the right.
+            with the <m>i</m>-coordinate increasing downwards and the <m>j</m>-coordinate increasing to the right.
         </p>
         <p>
             This means that, if we want our output to follow the standard Cartesian coordinate system,
-            our <m>x</m> coordinate is actually the vertical coordinate, <m>j</m>, and our <m>y</m> coordinate is the horizontal coordinate, <m>i</m>.
+            our <m>x</m>-coordinate is actually the vertical coordinate, <m>j</m>, and our <m>y</m>-coordinate is the horizontal coordinate, <m>i</m>.
         </p>
     </introduction>
 
@@ -198,6 +198,145 @@
         <p>
             The letter F has been rotated <m>45^\circ</m> around the origin.
         </p>
+    </subsection>
+    <subsection xml:id="subsec-lt-stretch">
+        <title>Stretching the Letter F</title>
+        <p>
+            This method can also be applied using other transformation matrices to complete a
+            different form of transformation. One example is a matrix which can vertically and
+            stretch the original form.
+        </p>
+        <p> 
+            In matrix <m>S</m>,  The element <m>a</m> represents the horizontal stretching factor,
+            and element <m>b</m> represents the vertical stretching factor.
+
+        </p>
+        <md>
+            S =
+            \begin{bmatrix}
+            a &amp; 0 \\
+            0 &amp;  b
+            \end{bmatrix}
+        </md>
+        <p>
+            If the stretching factor (either <m>a</m> or <m>b</m>) is below <m>1</m>, then that factor
+            will shrink. If it is above <m>1</m> then the factor will stretch. To keep the value unchanged
+            <m>a</m> or <m>b</m> must be equal to <m>1</m>.
+        </p>
+        <p>
+            Let's try to shrink the letter F vertically to be half the original height. To do this, we need
+            to assign the values <m>a=1</m> and <m>b=1/2</m> in the transformation matrix <m>S</m> 
+        </p>
+        <sage>
+            <input>
+                def S(a,b):
+                    return matrix(RR, [
+                        [a, 0],
+                        [0, b]
+                    ])
+            </input>
+        </sage>
+        <sage>
+            <input>
+                # Appears upside down in code; displays correctly with flip_y=False
+                F = matrix(ZZ, [
+                    [0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,1,1,1,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,1,1,1,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0],
+                ])
+                matrix_plot(F, flip_y=False)
+                AT = block_matrix([
+                [matrix(ZZ,  40, 100), matrix(ZZ,  40, 10), matrix(ZZ,  40, 40)],
+                [matrix(ZZ,  10, 100), F,                   matrix(ZZ,  10, 40)],
+                [matrix(ZZ, 100, 100), matrix(ZZ, 100, 10), matrix(ZZ, 100, 40)]
+                ])
+
+                matrix_plot(AT, flip_y=False)
+                pts = [(x, y) for x in range(AT.ncols())
+                              for y in range(AT.nrows())
+                              if AT[y, x] > 0]
+
+                px = matrix([[p[0], p[1]] for p in pts]).transpose()
+
+                newpx = S(a=1,b=1/2) * px
+
+                for col in newpx.columns():
+                    x, y = round(col[0]), round(col[1])
+                    if 0 &lt;= y &lt; AT.nrows() and 0 &lt;= x &lt; AT.ncols():
+                        AT[y, x] = 1
+
+                matrix_plot(AT, flip_y=False)
+            </input>
+        </sage>
+        <p>
+            It is important to note that the way this method works is by changing the original coordinates.
+            While the transformed F is still on the same <m>j</m>-level as the original F, it is only at halfway
+            between the <m>i</m>-axis and the original F. Because we are multiplying the size by a factor of <m>1/2</m>,
+            the coordinates are being transformed as well, and are also becoming <m>1/2</m> of the original coordinates.
+        </p>
+
+        <p>
+            Let's try to stretch the letter F by a factor of <m>3</m> in both the horizontal and vertical direction. As mentioned
+            earlier, the size of the graph will need to be changed so that there is a point on the graph of the matrix that is <m>3</m>
+            times as large as the original coordinates. To do this, we can either reduce the current coordinates of the original shape
+            by removing some padding on the left and bottom, or we can increase the bounds of the graph to accomodate for the new coordinates.
+        </p>
+        <p>
+            First, we need to set up our original matrix with the F shape and put it in another matrix with substantative padding
+            so that the shape can stay within the bounds of the matrix.
+        </p>
+        <sage>
+            <input>
+                # Appears upside down in code; displays correctly with flip_y=False
+                F = matrix(ZZ, [
+                    [0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,1,1,1,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,1,1,1,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0],
+                ])
+                matrix_plot(F, flip_y=False)
+                AT = block_matrix([
+                [matrix(ZZ,  40, 40), matrix(ZZ,  40, 10), matrix(ZZ,  40, 100)],
+                [matrix(ZZ,  10, 40), F,                   matrix(ZZ,  10, 100)],
+                [matrix(ZZ, 100, 40), matrix(ZZ, 100, 10), matrix(ZZ, 100, 100)]
+                ])
+
+                matrix_plot(AT, flip_y=False)
+                pts = [(x, y) for x in range(AT.ncols())
+                              for y in range(AT.nrows())
+                              if AT[y, x] > 0]
+
+                px = matrix([[p[0], p[1]] for p in pts]).transpose()
+
+                newpx = S(a=3,b=3) * px
+
+                for col in newpx.columns():
+                    x, y = round(col[0]), round(col[1])
+                    if 0 &lt;= y &lt; AT.nrows() and 0 &lt;= x &lt; AT.ncols():
+                        AT[y, x] = 1
+
+                matrix_plot(AT, flip_y=False)
+            </input>
+        </sage>
+        <p>
+            When we are transforming the shape, we do not add any new pixels. This results in stretched
+            images to contain gaps because we are increasing the distance between the pixels. Shrinking will not have this issue
+            because we are decreasing the distance between the pixels.
+        </p>
+
     </subsection>
 
 </section>
