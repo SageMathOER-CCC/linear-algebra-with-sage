@@ -200,7 +200,7 @@
         </p>
     </subsection>
     <subsection xml:id="subsec-lt-stretch">
-        <title>Alternative Transformation Matrices</title>
+        <title>Stretching the Letter F</title>
         <p>
             This method can also be applied using other transformation matrices to complete a
             different form of transformation. One example is a matrix which can vertically and
