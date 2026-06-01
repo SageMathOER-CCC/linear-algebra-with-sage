@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section xml:id="sec-pca-in-action" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Principle Component Analysis</title>
+  <p>
+    When working with a large dataset, it can be difficult to describe the set in relevant terms that
+    everyone can understand. That is why many researchers and data analysts will use Principle
+    Component Analysis (PCA) to display the data without the other unnecessary variable data.
+  </p>
+
+  <subsection xml:id="subsec-pca-in-action">
   <title>PCA in Action</title>
   <p>
-    When multiple <em>features</em> are measured from a <em>instance</em> 
+    When multiple <em>features</em> are measured from an <em>instance</em> 
     in an experiment we can interpret the features to the instance as a vector in 
     <m>\mathbb R ^ d</m>, where <m>d</m> is the number of features, 
     we call <m>d</m> the dimension of the data. 
     This poses an issue because <m>d</m> may be greater than 3 and this causes it 
     to be difficult to understand how two different data points relate. 
-    Principal Component Analysis (PCA) is a method of finding a new basis for 
+    PCA is a method of finding a new basis for 
     <m>\mathbb R^d</m> that maximizes how "expressive", formally known as variance, the data is; 
     PCA also gives this new basis an ordering by how well each vector maintains the variance of the data. 
     We can then pick the 2 or 3 best vectors and project our data into the subspace spanned by them to allow for plotting.
@@ -20,41 +28,41 @@
     <li>
       <p>
         Organize your data into vectors, 
-        <m>x_1, x_2 \dots, x_n \in \mathbb R^d</m>, 
-        where <m>x_i  = (x_{i1}, \dots, x_{id})^T</m> and <m>x_{ij}</m>
+        <m>u_1, u_2 \dots, u_n \in \mathbb R^d</m>, 
+        where <m>u_i  = (u_{i1}, \dots, u_{id})^T</m> and <m>u_{ij}</m>
         is the value that corresponds to the <m>j</m>-th feature of the <m>i</m>-th  instance. 
       </p>
     </li>
     <li>
       <p>
-        Find the average vector, <m>\bar x</m>, 
+        Find the average vector, <m>\bar u</m>, 
         with the following formula 
-        <m> \bar x = \frac{1}{n} \bigg ( x_1 + x_2 + \dots + x_n \bigg ) </m> 
+        <m> \bar u = \frac{1}{n} \bigg ( u_1 + u_2 + \dots + u_n \bigg ) </m> 
       </p>
     </li>
     <li>
       <p>
-        Create a <m>n \times d</m> matrix, <m>X</m>, 
+        Create a <m>n \times d</m> matrix, <m>U</m>, 
         with rows of mean centered data using the following formula: 
             </p>
             <me>
-              X = \begin{bmatrix}
-                x_1 \\
-                x_2 \\
+              U = \begin{bmatrix}
+                u_1 \\
+                u_2 \\
                 \vdots \\
-                x_n \\
+                u_n \\
               \end{bmatrix} -
               \begin{bmatrix}
-                \bar x \\
-                \bar x \\
+                \bar u \\
+                \bar u \\
                 \vdots \\
-                \bar x \\
+                \bar u \\
               \end{bmatrix}
             </me>
           </li>    <li>
       <p>
         Create a new matrix <m>C</m>, 
-        where <m>C = \frac{1}{n} X^T X</m>. 
+        where <m>C = \frac{1}{n} U^T U</m>. 
         This formula results in <m>C</m> being a <em>covariance matrix</em> 
         therefore <m>C</m> will be diagonalizable and therefore the eigenvectors form a basis of 
         <m>\mathbb R ^d</m>.
@@ -95,6 +103,7 @@
     this is called the <em>elbow test</em> because we look for the point that resembles 
     the crease of an elbow.
   </p>
+  </subsection>
   <subsection xml:id="subsec-transit-example">
   <title>Transit Example</title>
   <p>
@@ -108,7 +117,7 @@
   <row header="yes" bottom="minor" >
   <cell>Neighborhood</cell>
   <cell>Land Dedicated to Transportation (Acres)</cell>
-  <cell>Solo Divers</cell>
+  <cell>Solo Drivers</cell>
   <cell>Carpoolers</cell>
   <cell>Households Without Vehicles</cell>
   </row>
@@ -289,17 +298,17 @@
   <sage>
   <input>
     v1 = E[0][1][0]
-    v1
+    v1,v1.plot().show()
   </input>
   <output>
-    (-0.0170056607513805, 0.597751340444584, 0.000408054366080072, 0.801501076724633)
+    (-0.0170056607513805, 0.597751340444584, 0.000408054366080072, 0.801501076724633), Graphics object consisting of 1 graphics primitive
   </output>
   </sage>
   <p>
-    Observe that the second entry (Solo Divers) and the forth entry (Households Without Vehicles) 
+    Observe that the second entry (Solo Drivers) and the fourth entry (Households Without Vehicles) 
     are the only components with significant magnitude and are both positive, 
     implying that both tend increase together in the data. 
-    This is very counter intuitive because we would expect that the more people who do not have access to vehicles, 
+    This is very counterintuitive because we would expect that the more people who do not have access to vehicles, 
     the fewer that would be able to drive themselves to work.
   </p>
   <p>
