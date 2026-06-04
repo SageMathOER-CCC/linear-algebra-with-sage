@@ -42,55 +42,61 @@
     <li>
       <p>
         We organize the data in a matrix <m>A</m> with <m>n</m> rows for the instances and <m>p</m> columns for to the features.
-        matrix etc. (placeholder to start the list)
-      </p>
-    </li>
-  </ol>
-  <p>
-    (everything below this will be deleted [in this section]) The process is  as follows: 
-  </p>
-  <ol>
-    <li>
+        matrix etc. 
+        Write it as a matrix:
+      </p> 
       <p>
-        Organize your data into vectors, 
-        <m>u_1, u_2 \dots, u_n \in \mathbb R^d</m>, 
-        where <m>u_i  = (u_{i1}, \dots, u_{id})^T</m> and <m>u_{ij}</m>
-        is the value that corresponds to the <m>j</m>-th feature of the <m>i</m>-th  instance. 
+        <m>A= \begin{bmatrix}
+          x_11 &amp; x_12 &amp; \dots &amp;x_1p \\
+          \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\  
+          x_n1 &amp; x_n2 &amp; \dots &amp; x_np
+        \end{bmatrix}</m>
       </p>
-    </li>
-    <li>
       <p>
-        Find the average vector, <m>\bar u</m>, 
-        with the following formula 
-        <m> \bar u = \frac{1}{n} \bigg ( u_1 + u_2 + \dots + u_n \bigg ) </m> 
+        Each entry <m>x_ij</m> represents the feature <m>j</m> measured at the instance <m>i</m>.
+      </p> 
+      <p>
+        Each feature <m>j</m> is represented by the vector <m>x^j = (x_1j, x_2j, ... x_nj)</m>.
+      </p> 
+      <p>
+        Each instance <m>i</m> is represented by the vector <m>x_i = (x_i1, x_i2, ... x_ip)</m>.
       </p>
     </li>
     <li>
       <p>
-        Create a <m>n \times d</m> matrix, <m>U</m>, 
+        Let <m>\bar x</m> be the vector whose components are the means of each of the <m>p</m> features:
+
+        <m>\bar x = (\bar x^1, ... , \bar x^p)</m>
+
+        where each <m>\bar x^k = \frac{1}{n} \bigg ( x_1 + x_2 + \dots + x_n \bigg )</m>.
+      </p>
+    </li>
+    <li>
+      <p>
+        Create a <m>n \times p</m> matrix, <m>D</m>, 
         with rows of mean centered data using the following formula: 
             </p>
             <me>
-              U = \begin{bmatrix}
-                u_1 \\
-                u_2 \\
+              X = \begin{bmatrix}
+                x_1 \\
+                x_2 \\
                 \vdots \\
-                u_n \\
+                x_n \\
               \end{bmatrix} -
               \begin{bmatrix}
-                \bar u \\
-                \bar u \\
+                \bar x \\
+                \bar x \\
                 \vdots \\
-                \bar u \\
+                \bar x \\
               \end{bmatrix}
             </me>
           </li>    <li>
       <p>
         Create a new matrix <m>C</m>, 
-        where <m>C = \frac{1}{n} U^T U</m>. 
+        where <m>C = \frac{1}{n} X^T X</m>. 
         This formula results in <m>C</m> being a <em>covariance matrix</em> 
         therefore <m>C</m> will be diagonalizable and therefore the eigenvectors form a basis of 
-        <m>\mathbb R ^d</m>.
+        <m>\mathbb R ^p</m>.
       </p>
     </li>
     <li>
@@ -100,16 +106,16 @@
     </li>
     <li>
       <p>
-        Arrange the normalized eigenvectors in a list <m>v_1, v_2, \dots, v_d</m>, 
-        such that for the corresponding eigenvalues, <m>\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_d</m>.
+        Arrange the normalized eigenvectors in a list <m>v_1, v_2, \dots, v_p</m>, 
+        such that for the corresponding eigenvalues, <m>\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_p</m>.
       </p>
     </li>
   </ol>
   <p>
     We call the vectors of our new basis, 
-    <m>B =  \{v_1, \dots, v_d\}</m> , the principal components. 
+    <m>B =  \{v_1, \dots, v_p\}</m> , the principal components. 
     To reduce the dimension of a <m>d</m>-dimensional data point <m>x</m> to <m>m</m> dimensions, 
-    preform a change of basis to find <m>[x]_B = (c_1, \dots, c_d)^T</m>. 
+    preform a change of basis to find <m>[x]_B = (c_1, \dots, c_p)^T</m>. 
     Then remove every entry after the <m>m</m>-th entry. 
     Which results in, <m>x' = (c_1, \dots, c_m)^T</m>. 
     We can preform this reduction by multiplying by the matrix <m>P_{Bm}</m> where: 
