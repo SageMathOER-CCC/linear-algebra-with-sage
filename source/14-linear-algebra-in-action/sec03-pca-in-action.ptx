@@ -2,27 +2,52 @@
 <section xml:id="sec-pca-in-action" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Principle Component Analysis</title>
   <p>
-    When working with a large dataset, it can be difficult to describe the set in relevant terms that
-    everyone can understand. That is why many researchers and data analysts will use Principle
-    Component Analysis (PCA) to display the data without the other unnecessary variable data.
+    Principal Component Analysis (PCA) is an exploratory method used across many scientific disciplines
+    to analyze high-dimensional data. Its goal is to reduce the dimensionality of a dataset while
+    preserving as much information as possible. PCA relies on several concepts from linear algebra
+    studied previously in this textbook, including Matrices, Eigenvectors and Eigenvalues and
+    Diagonalization.
   </p>
 
-  <subsection xml:id="subsec-pca-in-action">
-  <title>PCA in Action</title>
   <p>
-    When multiple <em>features</em> are measured from an <em>instance</em> 
-    in an experiment we can interpret the features to the instance as a vector in 
-    <m>\mathbb R ^ d</m>, where <m>d</m> is the number of features, 
-    we call <m>d</m> the dimension of the data. 
-    This poses an issue because <m>d</m> may be greater than 3 and this causes it 
-    to be difficult to understand how two different data points relate. 
-    PCA is a method of finding a new basis for 
-    <m>\mathbb R^d</m> that maximizes how "expressive", formally known as variance, the data is; 
-    PCA also gives this new basis an ordering by how well each vector maintains the variance of the data. 
-    We can then pick the 2 or 3 best vectors and project our data into the subspace spanned by them to allow for plotting.
+    The dimension <em>p</em> of a dataset corresponds to the number of variables measured in a study. Each
+    of these variables is called a <em>feature</em>. If the experiment is repeated <em>n</em> times, each resulting
+    observation is referred to as an <em>instance</em>. When p is large, the resulting data cloud becomes
+    difficult or impossible to visualize directly. The goal of PCA is to summarize the information
+    contained in the data in a form that is easier to understand and visualize. For example, if the
+    number of variables can be reduced to two or three, the data can be represented and visualized
+    in a low-dimensional space.
+  </p> 
+  <p>
+    PCA is a useful tool for organizing and summarizing data. Dimensionality reduction is achieved
+    by transforming a large set of correlated original variables into a smaller set of uncorrelated
+    variables called principal components. This transformation is performed in a way that preserves
+    as much of the variation in the original dataset as possible.
+  </p> 
+  <p>
+    Essentially, PCA consists of finding a new basis for <m>\mathbb R^p</m> such that, when the data are expressed
+    in this basis, their projection onto the first few components captures the maximum possible
+    variance. The variance of the data quantifies the dispersion of data points around their mean.
+    This new basis is given by the eigenvectors of the covariance matrix of the data. Each vector
+    in the new basis defines a principal component. The principal components are ordered such that
+    just the first few capture most of the variation present in all the original variables.
+  </p> 
+  <p>
+    The following sections present the steps of the PCA algorithm used to construct this basis.
   </p>
+
+  <subsection xml:id="subsec-algorithm">
+  <title>Algorithm</title>
+  <ol>
+    <li>
+      <p>
+        We organize the data in a matrix <m>A</m> with <m>n</m> rows for the instances and <m>p</m> columns for to the features.
+        matrix etc. (placeholder to start the list)
+      </p>
+    </li>
+  </ol>
   <p>
-    The process is  as follows: 
+    (everything below this will be deleted [in this section]) The process is  as follows: 
   </p>
   <ol>
     <li>
