@@ -72,7 +72,7 @@
 
         <m>\bar x = (\overline {x^1}, ... , \overline {x^p})</m> 
 
-        where each <m>\overline {x^j} = \frac{1}{n} \bigg ( x^1 + x^2 + \dots + x^n \bigg )</m>.
+        where each <m>\overline {x^j} = \frac{1}{n} \bigg ( x^j_1 + x^j_2 + \dots + x^j_n \bigg )</m>.
       </p>
     </li>
     <li>
@@ -87,7 +87,7 @@
               D= \begin{bmatrix}
               x_1^1 - \overline{x^1} &amp; x_1^2 - \overline{x^2} &amp; \dots &amp;x_1^p- \overline{x^p} \\
               \vdots &amp; \vdots\\  
-              x_n^1- \overline{x^1} &amp; x_n^2- \overline{x^2} &amp; \dots &amp; x_n^p- \overline{x^[]}
+              x_n^1- \overline{x^1} &amp; x_n^2- \overline{x^2} &amp; \dots &amp; x_n^p- \overline{x^p}
               \end{bmatrix}
             </me>
     </li>
@@ -97,7 +97,7 @@
       </p>
       <p>
         The covariance matrix is a square matrix with variances in the diagonal and covariances in the
-        the non-diagonal components. The covariance matrix of centered data can be computed with the formula:
+        non-diagonal components. The covariance matrix of centered data can be computed with the formula:
         <me>C = \frac{1}{n-1} D^T D</me>. 
       </p>
     </li>
@@ -107,7 +107,7 @@
       </p>
       <p>
         Since the matrix <m>C</m> is symmetric, it admits a basis of orthonormal eigenvectors.
-        Find eigenvectors and their associated eigenvalues. Then normalize the eigenvectors. 
+        Find eigenvectors of <m>C</m> and their associated eigenvalues. Then normalize the eigenvectors. 
       </p>
     </li>
     <li>
@@ -122,7 +122,12 @@
   </ol>
   <p>
     The principal components are given by the eigenvectors that form our new basis. At this stage,
-    we have as many principal components as original variables. However, the components are now
+    we have as many principal components as original variables.
+    <me>
+      B= \{ v_1, v_2, \cdots, v_n \}
+    </me>
+    
+    However, the components are now
     ranked according to the amount of variance they explain. To reduce the dimensionality of the
     data, we can retain only the first few principal components, as they capture most of the
     variance present in the original dataset.
@@ -136,18 +141,18 @@
     <li>
       <p>
         Express each instance <m>x_i</m> in the new basis:
-        <m>\begin{bmatrix}
-          x_i = a_{i}^1v_1 + a_{i}^2v_2 + \cdots + a_{i}^n v_p
-         \end{bmatrix}</m>
-          where <m>v_1, v_2, \ldots, v_p</m> are the principal components (eigenvectors), and <m>a_{i1}, a_{i2}, \ldots, a_{ip}</m> are the coordinates of <m>x_i</m> in the new basis.
+        <me>
+          x_i = a_{i1}v_1 + a_{i2}v_2 + \cdots + a_{in} v_p</me>
+          where <m>v_1, v_2, \ldots, v_p</m> are the principal components (eigenvectors), and
+          <m>a_{i1}, a_{i2}, \ldots, a_{ip}</m> are the coordinates of <m>x_i</m> in the new basis <m>B</m>.
       </p>
     </li>
     <li>
       <p>
-        Project each instance in the new basis onto the first two coordinates:
-        <m>\begin{bmatrix}
-        (a_{i}^1, a_{i}^2)
-        \end{bmatrix}</m>
+        Project each instance in the basis <m>B</m> onto the first two coordinates:
+        <me>
+        (a_{i1}, a_{i2})
+        </me>
       </p>
     </li>
   </ol>
