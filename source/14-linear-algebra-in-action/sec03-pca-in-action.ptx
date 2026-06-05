@@ -84,7 +84,7 @@
         with rows of mean centered data using the following formula: 
             </p>
             <me>
-              A= \begin{bmatrix}
+              D= \begin{bmatrix}
               x_1^1 - \overline{x^1} &amp; x_1^2 - \overline{x^2} &amp; \dots &amp;x_1^p- \overline{x^p} \\
               \vdots &amp; \vdots\\  
               x_n^1- \overline{x^1} &amp; x_n^2- \overline{x^2} &amp; \dots &amp; x_n^p- \overline{x^[]}
