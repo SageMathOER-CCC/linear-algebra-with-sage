@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section xml:id="sec-pca-in-action" xmlns:xi="http://www.w3.org/2001/XInclude">
-  <title>Principle Component Analysis</title>
+  <title>Principal Component Analysis</title>
   <p>
     Principal Component Analysis (PCA) is an exploratory method used across many scientific disciplines
     to analyze high-dimensional data. Its goal is to reduce the dimensionality of a dataset while
@@ -10,19 +10,18 @@
   </p>
 
   <p>
-    The dimension <em>p</em> of a dataset corresponds to the number of variables measured in a study. Each
-    of these variables is called a <em>feature</em>. If the experiment is repeated <em>n</em> times, each resulting
-    observation is referred to as an <em>instance</em>. When p is large, the resulting data cloud becomes
+    The dimension <m>p</m> of a dataset corresponds to the number of variables measured in a study. Each
+    of these variables is called a <em>feature</em>. If the experiment is repeated <m>n</m> times, each resulting
+    observation is referred to as an <em>instance</em>. When <m>p</m> is large, the resulting data cloud becomes
     difficult or impossible to visualize directly. The goal of PCA is to summarize the information
     contained in the data in a form that is easier to understand and visualize. For example, if the
     number of variables can be reduced to two or three, the data can be represented and visualized
     in a low-dimensional space.
   </p> 
   <p>
-    PCA is a useful tool for organizing and summarizing data. Dimensionality reduction is achieved
-    by transforming a large set of correlated original variables into a smaller set of uncorrelated
-    variables called principal components. This transformation is performed in a way that preserves
-    as much of the variation in the original dataset as possible.
+    Dimensionality reduction is achieved by transforming a large set of correlated variables
+    into a smaller set of uncorrelated ones called principal components. This transformation
+    is performed in a way that preserves as much of the variation in the original dataset as possible.
   </p> 
   <p>
     Essentially, PCA consists of finding a new basis for <m>\mathbb R^p</m> such that, when the data are expressed
@@ -41,70 +40,80 @@
   <ol>
     <li>
       <p>
+        Organize the data.
+      </p> 
+      <p> 
         We organize the data in a matrix <m>A</m> with <m>n</m> rows for the instances and <m>p</m> columns for to the features.
-        matrix etc. 
         Write it as a matrix:
       </p> 
       <p>
-        <m>A= \begin{bmatrix}
-          x_11 &amp; x_12 &amp; \dots &amp;x_1p \\
-          \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\  
-          x_n1 &amp; x_n2 &amp; \dots &amp; x_np
-        \end{bmatrix}</m>
+        <me>A= \begin{bmatrix}
+          x_1^1 &amp; x_1^2 &amp; \dots &amp;x_1^p \\
+          \vdots &amp; \vdots\\  
+          x_n^1 &amp; x_n^2 &amp; \dots &amp; x_n^p
+        \end{bmatrix}</me>
       </p>
       <p>
-        Each entry <m>x_ij</m> represents the feature <m>j</m> measured at the instance <m>i</m>.
+        Each entry <m>x_i^j</m> represents the feature <m>j</m> measured at the instance <m>i</m>.
       </p> 
       <p>
-        Each feature <m>j</m> is represented by the vector <m>x^j = (x_1j, x_2j, ... x_nj)</m>.
+        Each feature <m>j</m> is represented by the vector <m>x^j = (x_1^j, x_2^j, ... x_n^j)</m>.
       </p> 
       <p>
-        Each instance <m>i</m> is represented by the vector <m>x_i = (x_i1, x_i2, ... x_ip)</m>.
+        Each instance <m>i</m> is represented by the vector <m>x_i = (x_i^1, x_i^2, ... x_i^p)</m>.
       </p>
     </li>
     <li>
+      <p>
+        Find the mean of each feature.
+      </p>
       <p>
         Let <m>\bar x</m> be the vector whose components are the means of each of the <m>p</m> features:
 
-        <m>\bar x = (\bar x^1, ... , \bar x^p)</m>
+        <m>\bar x = (\overline {x^1}, ... , \overline {x^p})</m> 
 
-        where each <m>\bar x^k = \frac{1}{n} \bigg ( x_1 + x_2 + \dots + x_n \bigg )</m>.
+        where each <m>\overline {x^j} = \frac{1}{n} \bigg ( x^1 + x^2 + \dots + x^n \bigg )</m>.
       </p>
     </li>
     <li>
+      <p>
+        Center the data.
+      </p>
       <p>
         Create a <m>n \times p</m> matrix, <m>D</m>, 
         with rows of mean centered data using the following formula: 
             </p>
             <me>
-              X = \begin{bmatrix}
-                x_1 \\
-                x_2 \\
-                \vdots \\
-                x_n \\
-              \end{bmatrix} -
-              \begin{bmatrix}
-                \bar x \\
-                \bar x \\
-                \vdots \\
-                \bar x \\
+              D= \begin{bmatrix}
+              x_1^1 - \overline{x^1} &amp; x_1^2 - \overline{x^2} &amp; \dots &amp;x_1^p- \overline{x^p} \\
+              \vdots &amp; \vdots\\  
+              x_n^1- \overline{x^1} &amp; x_n^2- \overline{x^2} &amp; \dots &amp; x_n^p- \overline{x^[]}
               \end{bmatrix}
             </me>
-          </li>    <li>
+    </li>
+    <li>
       <p>
-        Create a new matrix <m>C</m>, 
-        where <m>C = \frac{1}{n} X^T X</m>. 
-        This formula results in <m>C</m> being a <em>covariance matrix</em> 
-        therefore <m>C</m> will be diagonalizable and therefore the eigenvectors form a basis of 
-        <m>\mathbb R ^p</m>.
+        Find the covariance matrix of the centered data.
+      </p>
+      <p>
+        The covariance matrix is a square matrix with variances in the diagonal and covariances in the
+        the non-diagonal components. The covariance matrix of centered data can be computed with the formula:
+        <me>C = \frac{1}{n-1} D^T D</me>. 
       </p>
     </li>
     <li>
       <p>
-        Compute the eigenvalues and eigenvectors of <m>C</m> and then normalize the eigenvectors. 
+        Calculate the eigenvectors and the eigenvalues.
+      </p>
+      <p>
+        Since the matrix <m>C</m> is symmetric, it admits a basis of orthonormal eigenvectors.
+        Find eigenvectors and their associated eigenvalues. Then normalize the eigenvectors. 
       </p>
     </li>
     <li>
+      <p>
+        Order eigenvectors.
+      </p>
       <p>
         Arrange the normalized eigenvectors in a list <m>v_1, v_2, \dots, v_p</m>, 
         such that for the corresponding eigenvalues, <m>\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_p</m>.
@@ -112,28 +121,47 @@
     </li>
   </ol>
   <p>
-    We call the vectors of our new basis, 
-    <m>B =  \{v_1, \dots, v_p\}</m> , the principal components. 
-    To reduce the dimension of a <m>d</m>-dimensional data point <m>x</m> to <m>m</m> dimensions, 
-    preform a change of basis to find <m>[x]_B = (c_1, \dots, c_p)^T</m>. 
-    Then remove every entry after the <m>m</m>-th entry. 
-    Which results in, <m>x' = (c_1, \dots, c_m)^T</m>. 
-    We can preform this reduction by multiplying by the matrix <m>P_{Bm}</m> where: 
-  </p>
-  <md>
-  P_{Bm} =  \begin{bmatrix}     v_1 \\ v_2 \\ \vdots \\ v_m \end{bmatrix}
-  </md>
-  
-  <p>
-    Notice that we only include the first <m>m</m> principal components as rows in our matrix.
+    The principal components are given by the eigenvectors that form our new basis. At this stage,
+    we have as many principal components as original variables. However, the components are now
+    ranked according to the amount of variance they explain. To reduce the dimensionality of the
+    data, we can retain only the first few principal components, as they capture most of the
+    variance present in the original dataset.
   </p>
   <p>
-    Additionally we can use a <em>scree plot</em> to find a good value for <m>m</m>. 
-    A scree plot is a line plot of the eigenvalues, 
-    where we look for the tapering off of eigenvalues; 
-    this is called the <em>elbow test</em> because we look for the point that resembles 
-    the crease of an elbow.
+    To obtain a graphical representation of the data in a plot whose axes
+    correspond to the first two principal components:
   </p>
+  <p>
+  <ol>
+    <li>
+      <p>
+        Express each instance <m>x_i</m> in the new basis:
+        <m>\begin{bmatrix}
+          x_i = a_{i}^1v_1 + a_{i}^2v_2 + \cdots + a_{i}^n v_p
+         \end{bmatrix}</m>
+          where <m>v_1, v_2, \ldots, v_p</m> are the principal components (eigenvectors), and <m>a_{i1}, a_{i2}, \ldots, a_{ip}</m> are the coordinates of <m>x_i</m> in the new basis.
+      </p>
+    </li>
+    <li>
+      <p>
+        Project each instance in the new basis onto the first two coordinates:
+        <m>\begin{bmatrix}
+        (a_{i}^1, a_{i}^2)
+        \end{bmatrix}</m>
+      </p>
+    </li>
+  </ol>
+  </p>
+  <p>
+    To perform the first operation, we multiply each data vector by the change-of-basis matrix. To perform the second, we retain only the first
+    two coordinates of the resulting vector. These two operations can be combined by multiplying the data by the matrix formed by the first two
+    rows of the change-of-basis matrix.
+  </p> 
+  <p>
+    Plotting the resulting vector in a coordinate system whose axes correspond to the first two principal components provides a two-dimensional
+    representation of the original data that preserves as much variance as possible.
+  </p>
+
   </subsection>
   <subsection xml:id="subsec-transit-example">
   <title>Transit Example</title>
