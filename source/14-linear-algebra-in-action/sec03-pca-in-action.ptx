@@ -32,7 +32,7 @@
     just the first few capture most of the variation present in all the original variables.
   </p> 
   <p>
-    The following sections present the steps of the PCA algorithm used to construct this basis.
+    The following section presents the steps of the PCA algorithm used to construct this basis.
   </p>
 
   <subsection xml:id="subsec-algorithm">
@@ -115,18 +115,21 @@
         Order eigenvectors.
       </p>
       <p>
-        Arrange the normalized eigenvectors in a list <m>v_1, v_2, \dots, v_p</m>, 
-        such that for the corresponding eigenvalues, <m>\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_p</m>.
+        Arrange the normalized eigenvectors in a list <m>v_1, v_2, \dots, v_p</m> in a list of decreasing
+        eigenvalues. That is, such that the corresponding eigenvalues satisfy
+        <m>\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_p</m>.
       </p>
     </li>
   </ol>
   <p>
-    The principal components are given by the eigenvectors that form our new basis. At this stage,
-    we have as many principal components as original variables.
-    <me>
+    The principal components are given by the eigenvectors that form our new basis, 
+    <m>
       B= \{ v_1, v_2, \cdots, v_n \}
-    </me>
-    
+    </m>.
+  </p> 
+  <p>
+    At this stage,
+    we have as many principal components as original variables.
     However, the components are now
     ranked according to the amount of variance they explain. To reduce the dimensionality of the
     data, we can retain only the first few principal components, as they capture most of the
