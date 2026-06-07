@@ -115,7 +115,7 @@
         Order eigenvectors.
       </p>
       <p>
-        Arrange the normalized eigenvectors in a list <m>v_1, v_2, \dots, v_p</m> in a list of decreasing
+        Arrange the normalized eigenvectors in a list <m>v_1, v_2, \dots, v_p</m>, ordered by decreasing
         eigenvalues. That is, such that the corresponding eigenvalues satisfy
         <m>\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_p</m>.
       </p>
