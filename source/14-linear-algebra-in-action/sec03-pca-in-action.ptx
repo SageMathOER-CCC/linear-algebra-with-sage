@@ -172,10 +172,12 @@
 
   </subsection>
   <subsection xml:id="subsec-transit-example">
-  <title>Transit Example</title>
+  <title>PLACEHOLDER Example</title>
   <p>
-    Imagine you are responsible for analyzing the commuting habits across Chicago neighborhoods and are focused on the causes and effects of car usage.
+    We study the following data. (Placeholder for the data to be studied.)
+    For the first part of the algorithm, we will calculate the principal components.
   </p>
+  <!-- 
   <p>
     Here is the data you have been given:
   </p>
@@ -225,245 +227,290 @@
   </row>
   </tabular>
   </table>
+  -->
+  <ol>
+    <li>
+      <p>
+        We organize the data in a matrix. 
+        Each instance represents a neighbourhood and the four features we are studying are 
+        (placeholder). 
+      </p>
+      <sage>
+      <input>
+        A = matrix(RR, [
+            [17, 31, 18, 10],
+            [16, 25, 19,  5],
+            [10, 31, 22,  3],
+            [18, 30, 18,  4],
+            [17, 37, 19,  8],
+            [18, 35, 15, 10],
+            [18, 35, 10,  1],
+            [19, 32, 23,  3]
+        ])
+        A
+      </input>
+      <output>
+        [17.0000000000000 31.0000000000000 18.0000000000000 10.0000000000000]
+        [16.0000000000000 25.0000000000000 19.0000000000000 5.00000000000000]
+        [10.0000000000000 31.0000000000000 22.0000000000000 3.00000000000000]
+        [18.0000000000000 30.0000000000000 18.0000000000000 4.00000000000000]
+        [17.0000000000000 37.0000000000000 19.0000000000000 8.00000000000000]
+        [18.0000000000000 35.0000000000000 15.0000000000000 10.0000000000000]
+        [18.0000000000000 35.0000000000000 10.0000000000000 1.00000000000000]
+        [19.0000000000000 32.0000000000000 23.0000000000000 3.00000000000000]
+      </output>
+      </sage>
+    </li>
+    <li>
+      <p>
+         We find now the mean of each feature:
+      </p>
+      <sage>
+      <input>
+        n = len(A.rows())
+        x_bar = sum(A.rows()) / n
+        x_bar
+      </input>
+      <output>
+        (16.6250000000000, 32.0000000000000, 18.0000000000000, 5.50000000000000)
+      </output>
+      </sage>
+    </li>
+    <li>
+      <p>
+      Next, we create a matrix of centered data.
+      </p>
+      <sage>
+      <input>
+        D = A - matrix(RR, [x_bar] * n)
+        D 
+      </input>
+      <output>
+        [ 0.375000000000000  -1.00000000000000  0.000000000000000   4.50000000000000]
+        [-0.625000000000000  -7.00000000000000   1.00000000000000 -0.500000000000000]
+        [ -6.62500000000000  -1.00000000000000   4.00000000000000  -2.50000000000000]
+        [  1.37500000000000  -2.00000000000000  0.000000000000000  -1.50000000000000]
+        [ 0.375000000000000   5.00000000000000   1.00000000000000   2.50000000000000]
+        [  1.37500000000000   3.00000000000000  -3.00000000000000   4.50000000000000]
+        [  1.37500000000000   3.00000000000000  -8.00000000000000  -4.50000000000000]
+        [  2.37500000000000  0.000000000000000   5.00000000000000  -2.50000000000000]
+      </output>
+      </sage>
+    </li>
+    <li>
+      <p>
+        We compute the covariance matrix.
+      </p>
+      <sage>
+        <input>
+          C = D.transpose() * D / (n-1)
+          C
+        </input>
+        <output>
+          [ 7.98214285714286  2.57142857142857 -4.28571428571429  1.64285714285714]
+          [ 2.57142857142857  14.0000000000000 -5.57142857142857  2.42857142857143]
+          [-4.28571428571429 -5.57142857142857  16.5714285714286 0.285714285714286]
+          [ 1.64285714285714  2.42857142857143 0.285714285714286  11.7142857142857]
+        </output>
+      </sage>
+    </li>
+    <li>
+      <p>
+        We calculate the eigenvectors and eigenvalues by using <c>eigenvectors_right</c>. 
+        Recall that the output of <c>eigenvectors_right</c> 
+        is a list with elements of the form <m>(e,[v_1,...,v_k],m)</m> 
+        where <m>e</m> is the eigenvalue , <m>[v_1,...,v_k]</m> are the corresponding eigenvectors, 
+        and <m>m</m> is the algebraic multiplicity of the eigenvalue.
+      </p>
+      <sage>
+        <input>
+          E = C.eigenvectors_right()
+          E
+        </input>
+        <output>
+          [(22.9485932221950,
+            [(0.325492477366089, 0.587041783846931, -0.724622462509627, 0.156073309769429)],
+            1),
+           (5.73544305220284,
+            [(0.869515224788321, 0.0789473352842690, 0.392130787803805, -0.289730974128064)],
+            1),
+           (12.8516918480794,
+            [(-0.0480470860509575, -0.306617632073587, -0.450304579445670, -0.837199433202063)],
+            1),
+           (8.73212902037989,
+            [(0.368360419374035, -0.745073748008151, -0.344066153251244, 0.436799946948902)],
+            1)]
+        </output>
+      </sage>
+    </li>
+    <li>
+      <p>
+        We order the eigenvectors by decreasing eigenvalues.
+      </p>
+      <sage>
+        <input>
+          E.sort(reverse=True)
+          E
+        </input>
+        <output>
+          [(22.9485932221950,
+            [(0.325492477366089, 0.587041783846931, -0.724622462509627, 0.156073309769429)],
+            1),
+           (12.8516918480794,
+            [(-0.0480470860509575, -0.306617632073587, -0.450304579445670, -0.837199433202063)],
+            1),
+           (8.73212902037989,
+            [(0.368360419374035, -0.745073748008151, -0.344066153251244, 0.436799946948902)],
+            1),
+           (5.73544305220284,
+            [(0.869515224788321, 0.0789473352842690, 0.392130787803805, -0.289730974128064)],
+            1)]
+        </output>
+      </sage>
+    </li>
+  </ol>
   <p>
-    In this example the neighborhoods are instances and the measurements of people and land 
-    are the features.
-  </p>
-  <p>
-    We can then do our work for <em>(step 1)</em> by making a list of vectors.
-  </p>
-  <sage>
-  <input>
-    D = [
-        vector(RR, (348, 11732,  910, 13531)),
-        vector(RR, (457,  9823, 1405,  4559)),
-        vector(RR, (427,  5939,  335, 12319)),
-        vector(RR, (254,  3408,  436,  6218)),
-        vector(RR, (757,  3158,  818,  4189))
-    ]
-    D
-  </input>
-  <output>
-    [(348.000000000000, 11732.0000000000, 910.000000000000, 13531.0000000000),
-     (457.000000000000, 9823.00000000000, 1405.00000000000, 4559.00000000000),
-     (427.000000000000, 5939.00000000000, 335.000000000000, 12319.0000000000),
-     (254.000000000000, 3408.00000000000, 436.000000000000, 6218.00000000000),
-     (757.000000000000, 3158.00000000000, 818.000000000000, 4189.00000000000)]
-  </output>
-  </sage>
-  <p>
-    We can then preform <em>(step 2)</em> by calculating <m>\bar x</m> with the following code:
-  </p>
-  <sage>
-  <input>
-    n = len(D)
-    x_bar = sum(D) / n
-    x_bar
-  </input>
-  <output>
-    (448.600000000000, 6812.00000000000, 780.800000000000, 8163.20000000000)
-  </output>
-  </sage>
-  <p>
-    We can now calculate <m>X</m> to complete <em>(step 3)</em>.
-  </p>
-  <sage>
-  <input>
-  X = matrix(RR, D) - matrix(RR, [x_bar] * n)
-  X
-  </input>
-  <output>
-    [-100.600000000000  4920.00000000000  129.200000000000  5367.80000000000]
-    [ 8.39999999999998  3011.00000000000  624.200000000000 -3604.20000000000]
-    [-21.6000000000000 -873.000000000000 -445.800000000000  4155.80000000000]
-    [-194.600000000000 -3404.00000000000 -344.800000000000 -1945.20000000000]
-    [ 308.400000000000 -3654.00000000000  37.1999999999999 -3974.20000000000]
-  </output>
-  </sage>
-  <p>We can now complete <em>(step 4)</em> by applying the formula 
-    <m>C = \frac{1}{n} X^T X</m>:
-  </p>
-  <sage>
-  <input>
-    C = X.transpose() * X / n
-    C
-  </input>
-  <output>
-    [  28727.4400000000  -183055.600000000   16089.1200000000  -301429.720000000]
-    [ -183055.600000000 1.17947164000000e7   788416.800000000 6.61450080000000e6]
-    [  16089.1200000000   788416.800000000   145065.360000000  -577202.560000000]
-    [ -301429.720000000 6.61450080000000e6  -577202.560000000 1.57304553600000e7]
-  </output>
-  </sage>
-  <p>
-    We can then complete <em>(step 5)</em> by using <c>eigenvectors_right</c>. 
-    Recall that output of <c>eigenvectors_right</c> is a list with elements of the form 
-    <m>(e, [v1, \dots, v_k], m)</m> where <m>e</m> is the eigenvalue, 
-    <m>v_1, \dots, v_k</m> are the corresponding eigenvectors, 
-    and <m>m</m> is the algebraic multiplicity of the eigenvalue; 
-    additionally (when floating point arithmetic does not interfere) 
-    the eigenvectors are given as normalized vectors.
-  </p>
-  <sage>
-  <input>
-    E = C.eigenvectors_right()
-    E
-  </input>
-  <output>
-    [(28303.0940771232,
-      [(-0.892658378311645, 0.0455799389164258, -0.445315118733104, -0.0527061080532448)],
-      1),
-     (81.6610343814343,
-      [(0.450384349756819, 0.103965041396969, -0.884186014073206, -0.0675299946600636)],
-      1),
-     (7.00099545795910e6,
-      [(-0.00507588677580685, -0.793603852266611, -0.141100570646222, 0.591825810525652)],
-      1),
-     (2.06695843469294e7,
-      [(-0.0170056607513805, 0.597751340444584, 0.000408054366080072, 0.801501076724633)],
-      1)]
-  </output>
-  </sage>
-  <p>
-    Since <c>eigenvectors_right</c> does not sort its output we must use the <c>sort</c> method to complete 
-    <em>(step 6)</em> and order our list with respect to eigenvalues.
-  </p>
-  <sage>
-  <input>
-    E.sort(reverse=True)
-    E
-  </input>
-  <output>
-    [(2.06695843469294e7,
-      [(-0.0170056607513805, 0.597751340444584, 0.000408054366080072, 0.801501076724633)],
-      1),
-     (7.00099545795910e6,
-      [(-0.00507588677580685, -0.793603852266611, -0.141100570646222, 0.591825810525652)],
-      1),
-     (28303.0940771232,
-      [(-0.892658378311645, 0.0455799389164258, -0.445315118733104, -0.0527061080532448)],
-      1),
-     (81.6610343814343,
-      [(0.450384349756819, 0.103965041396969, -0.884186014073206, -0.0675299946600636)],
-      1)]
-  </output>
-  </sage>
-  <p>
-    We can then look at our scree plot:
-  </p>
-  <sage>
-  <input>
-    line([(i + 1, e[0]) for i, e in enumerate(E)])
-  </input>
-  <output>
-    Graphics object consisting of 1 graphics primitive
-  </output>
-  </sage>
-  <p>
-    Let's now investigate our first principal component since it accounts for the majority of the variance:
+    Since the principal components are the directions of the eigenvectors, we need to retrieve the eigenvectors from the previous list.
   </p>
   <sage>
   <input>
     v1 = E[0][1][0]
-    v1,v1.plot().show()
+    v2 = E[1][1][0]
+    v3 = E[2][1][0]
+    v4 = E[3][1][0]
+    v1, v2, v3, v4
   </input>
   <output>
-    (-0.0170056607513805, 0.597751340444584, 0.000408054366080072, 0.801501076724633), Graphics object consisting of 1 graphics primitive
+    ((0.325492477366089, 0.587041783846931, -0.724622462509627, 0.156073309769429),
+    (-0.0480470860509575, -0.306617632073587, -0.450304579445670, -0.837199433202063),
+    (0.368360419374035, -0.745073748008151, -0.344066153251244, 0.436799946948902),
+    (0.869515224788321, 0.0789473352842690, 0.392130787803805, -0.289730974128064))
   </output>
   </sage>
   <p>
-    Observe that the second entry (Solo Drivers) and the fourth entry (Households Without Vehicles) 
-    are the only components with significant magnitude and are both positive, 
-    implying that both tend increase together in the data. 
-    This is very counterintuitive because we would expect that the more people who do not have access to vehicles, 
-    the fewer that would be able to drive themselves to work.
+    These four vectors form the new basis of principal components. 
   </p>
   <p>
-    However, these figures are not population adjusted so let's look at the populations of each of these neighborhoods and compare them to the data projected onto our first principal component.
+    For the second part of the algorithm, 
+    we will graph each point in the original data set, 
+    in the new basis.
   </p>
   <p>
-    Here are the population figures:
+    To achieve that, 
+    we will compute the change-of-basis matrix as described in previous sections. 
+    Recall that a vector <m>u</m>
+    in the standard basis <m>S</m> can be written in a base <m>B</m> 
+    by multiplying by that change-of-basis matrix:
   </p>
-  <table>
-  <tabular halign="center">
-  <row header="yes" bottom="minor">
-  <cell>Neighborhood</cell>
-  <cell>Population</cell>
-  </row>
-  <row>
-  <cell>Uptown</cell>
-  <cell>57331</cell>
-  </row>
-  <row>
-  <cell>Lincoln Square</cell>
-  <cell>41673</cell>
-  </row>
-  <row>
-  <cell>The Loop</cell>
-  <cell>42181</cell>
-  </row>
-  <row>
-  <cell>Hyde Park</cell>
-  <cell>29591</cell>
-  </row>
-  <row>
-  <cell>Englewood</cell>
-  <cell>21411</cell>
-  </row>
-  </tabular>
-  </table>
+  <md>
+    [u]_B = P_{B \leftarrow S} (u)
+  </md>
   <p>
-    Let's now create a list of the populations and a list of the coordinates along the first principal component.
+    This matrix is the inverse of <m>P_{S \leftarrow B}</m> 
+    which is just the matrix whose columns are the vectors in the base <m>B</m>.
   </p>
   <p>
-    First we must create our projection matrix:
+    Let's start by finding the matrix <m>EVM = P_{S \leftarrow B}</m> 
+    by writing the eigenvectors as columns:
   </p>
   <sage>
   <input>
-    P_V1 = matrix(RR, [v1])
-    P_V1
+    EVM = column_matrix(RR, [v1, v2, v3,v4])
+    EVM
   </input>
   <output>
-    [ -0.0170056607513805    0.597751340444584 0.000408054366080072    0.801501076724633]
+    [  0.325492477366089 -0.0480470860509575   0.368360419374035   0.869515224788321]
+    [  0.587041783846931  -0.306617632073587  -0.745073748008151  0.0789473352842690]
+    [ -0.724622462509627  -0.450304579445670  -0.344066153251244   0.392130787803805]
+    [  0.156073309769429  -0.837199433202063   0.436799946948902  -0.289730974128064]
   </output>
   </sage>
   <p>
-    Then we can create our lists.
+    The change of basis matrix <m>C = P_{B \leftarrow S}</m> 
+    is just the inverse of this matrix:
   </p>
   <sage>
-  <input>
-    pop = [57331, 41673, 42181, 29591, 21411]
-    proj_v1 = [(P_V1 * x)[0] for x in D]
-    pop, proj_v1
-  </input>
-  <output>
-  ([57331, 41673, 42181, 29591, 21411],
-   [17852.3831547885,
-    9518.55655539571,
-    13416.6122561429,
-    7016.72873718167,
-    5232.64724680614])
-  </output>
+    <input>
+      C = EVM^-1
+      C
+    </input>
+    <output>
+      [0.325492477366088   0.587041783846930  -0.724622462509627   0.156073309769428]
+      [-0.0480470860509578  -0.306617632073587  -0.450304579445672  -0.837199433202063]
+      [  0.368360419374034  -0.745073748008150  -0.344066153251244   0.436799946948902]
+      [  0.869515224788320  0.0789473352842695   0.392130787803806  -0.289730974128063]
+    </output>
   </sage>
   <p>
-    We can then visually compare the data using the <c>bar_chart</c> and <c>graphics_array</c> commands:
+    To obtain the coordinates of a vector in the new basis, 
+    it suffices to multiply the vector by this matrix. 
+    Since we are only interested in the first two coordinates of the result 
+    (the first two principal components), 
+    we can first remove the remaining rows of the matrix and multiply the vector only by the first two rows. 
+    This directly yields the projection of the vector onto the subspace spanned by the first two principal components.
+  </p>
+  <p>
+    We then obtain, the submatrix formed by the first two rows:
   </p>
   <sage>
-  <input>
-    graphics_array([[
-        bar_chart(pop, legend_label='Population'), 
-        bar_chart(proj_v1, legend_label='$v_1$', rgbcolor=(0.5,0,0))]
-    ])
-  </input>
-  <output>
-    Graphics Array of size 1 x 2
-  </output>
+    <input>
+      M = C.submatrix(0, 0, 2, 4)
+      M
+    </input>
+    <output>
+      [  0.325492477366088   0.587041783846930  -0.724622462509627   0.156073309769428]
+      [-0.0480470860509578  -0.306617632073587  -0.450304579445672  -0.837199433202063]
+    </output>
   </sage>
   <p>
-    Since these plots are very similar, with the exception of Lincoln Square, we can say that our first principal component primarily tracked population. In this case we were fortunate enough to have an easily measured statistic that our principal component tracked, 
-    but if this were not the case we would have a <em>latent variable</em> 
-    (also known as a hidden variable) and we could use our principal component as a stand-in for that variable.
+    Now we can multiply this matrix by each of the vectors in the original data:
   </p>
+  <sage>
+    <input>
+      N = [M * x for x in D.rows()]
+      N
+    </input>
+    <output>
+      [(12.2491961869993, -26.7994238191902),
+       (6.89646399519489, -21.1759783541331),
+       (5.97974582701220, -22.4039165022017),
+       (11.0512070219019, -21.5176566739552),
+       (14.7346778080324, -27.4150353246733),
+       (17.0967231872820, -26.7230276951985),
+       (19.3151757119053, -16.9367098991516),
+       (8.77159744464430, -23.5932624881796)]
+    </output>
+  </sage>
+  <p>
+    We then obtained the coordinates of each data point in the new basis, 
+    corresponding to their projections onto the subspace spanned by the first two principal components. 
+    We are now ready to visualize these points in the resulting two-dimensional subspace.
+  </p>
+  <sage>
+    <input>
+      scatter_plot(N)
+    </input>
+    <output>
+      Graphics object consisting of 1 graphics primitive
+    </output>
+  </sage>
+  <p>
+    Finally, we add labels to each data point to visualize what instance each point represents:
+  </p>
+  <sage>
+    <input>
+      p = scatter_plot(N)
+      l = ["1", "2", "3", "4", "5","6", "7", "8"] #labels for plot
+
+      for i, txt in enumerate(l):
+          p += text(txt, N[i], vertical_alignment="bottom")
+          
+      p
+    </input>
+    <output>
+      Graphics object consisting of 1 graphics primitive
+    </output>
+  </sage>
   </subsection>
   <subsection xml:id="subsec-example-2">
   <title>Lab Example</title>
