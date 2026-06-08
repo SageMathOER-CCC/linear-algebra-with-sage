@@ -37,6 +37,11 @@
 
   <subsection xml:id="subsec-algorithm">
   <title>Algorithm</title>
+    <p>
+      The algorithm is described in two stages. First, we present the computation of the principal
+      components. We then describe how the original data are projected onto a two-dimensional space
+      for visualization.
+    </p>
     <subsubsection xml:id="subsubsec-pca-calc"> 
     <title>Calculation of Principal Components</title>
 
