@@ -1,0 +1,364 @@
+<section xml:id="sec-digital-image-processing" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Digital Image Processing</title>
+    <introduction>
+        <p>
+            At its core, a digital image is a matrix where each entry corresponds to a pixel.
+            The value of the entry can represent the intensity of the pixel (in a grayscale image) or the intensity of the red, green, and blue channels (in a color image).
+        </p>
+        <p>
+            Each entry of the matrix has coordinates <m>(i,j)</m>, indicating its position in the matrix,  with <m>i</m> representing the row and <m>j</m> representing the column.
+            We can consider the coordinates <m>(i,j)</m> as a vector and apply the transformation
+            <me>T(i,j)=(i',j')</me>
+            This allows us to manipulate the entire image by transforming each <m>(i,j)</m> coordinate, producing a new image with pixels at position <m>(i',j')</m>.
+        </p>
+        <p>
+            It's important to note that in computer science <m>(0,0)</m> is typically located at the top-left corner of the image,
+            with the <m>i</m>-coordinate increasing downwards and the <m>j</m>-coordinate increasing to the right.
+            This means that, if we want our output to follow the standard Cartesian coordinate system,
+            our <m>x</m>-coordinate is actually the vertical coordinate, <m>j</m>, and our <m>y</m>-coordinate is the horizontal coordinate, <m>i</m>.
+        </p>
+    </introduction>
+
+    <subsection xml:id="subsec-lt-single-point">
+        <title>Rotating a Single Point</title>
+        <p>
+            We start with the simplest possible image: a single black pixel in a 
+            <m>10 \times 10</m> grid of white pixels. The black pixel corresponds to a value of <m>1</m> and the white pixels
+            correspond to a value of <m>0</m>. Note that we are using <c>flip_y=False</c>
+            as an argument of the <c>matrix_plot</c> function to display the image with the origin at the bottom-left.
+        </p>
+        <sage>
+            <input>
+                P = matrix(ZZ, 10, 10)
+                P[5, 5] = 1
+                matrix_plot(P, flip_y=False)
+            </input>
+        </sage>
+        <p>
+            Before rotating, there is a practical issue to address.
+            Our rotation matrix rotates around the origin <m>(0, 0)</m>, 
+            which can move the transformed pixel outside of the bounds of the image entirely.
+            To prevent this, we pad the image: we embed our matrix 
+            inside a larger matrix of zeros using <c>block_matrix</c>, 
+            giving the transformed pixels room to land.
+        </p>
+        <sage>
+            <input>
+                # Embed P at the center of a larger grid of zeros
+                Z = matrix(ZZ, 10, 10)
+                AP = block_matrix([
+                    [Z, Z, Z],
+                    [Z, P, Z],
+                    [Z, Z, Z]
+                ])
+                matrix_plot(AP, flip_y=False)
+            </input>
+        </sage>
+        <p>
+            Our pixel now sits at position <m>(15, 15)</m> inside a <m>30 \times 30</m> grid.
+            We can now define the rotation matrix:
+        </p>
+        <md>
+            R(\theta) =
+            \begin{bmatrix}
+            \cos(\theta) &amp; -\sin(\theta) \\
+            \sin(\theta) &amp;  \cos(\theta)
+            \end{bmatrix}
+        </md>
+        <sage>
+            <input>
+                def R(theta):
+                    return matrix(RR, [
+                        [cos(theta), -sin(theta)],
+                        [sin(theta),  cos(theta)]
+                    ])
+            </input>
+        </sage>
+        <p>
+            For example, a transformation matrix that rotates <m>45 ^\circ </m> will be <m>R(\frac{\pi}{4})</m>.
+        </p>
+        <p>
+            Next, we collect the coordinates of every lit pixel in the image,
+            using a <c>for()</c> loop to check which entries of the matrix are greater than zero.
+        </p>
+        <sage>
+            <input>
+                pts = [(x, y) for x in range(AP.ncols())
+                              for y in range(AP.nrows())
+                              if AP[y, x] > 0]
+                pts
+            </input>
+        </sage>
+        <p>
+            We obtain a coordinate vector that indicates there is a black pixel at <m>(15,15)</m>.
+        </p>
+        <p>
+            Now we construct a matrix <m>D</m> whose columns are the coordinate vectors obtained. Then, we multiply <m>D</m>
+            by the rotation matrix <m>R(\theta)</m>, rotating all pixels simultaneously via a single matrix multiplication.
+            We store the rotated image in the original matrix <m>AP</m>
+        </p>
+        <sage>
+            <input>
+                # Stack as column vectors: each column is one pixel's [x, y]
+                D = matrix([[p[0], p[1]] for p in pts]).transpose()
+
+                # Apply a 45-degree rotation
+                newpx = R(pi/4) * D
+
+                # Write the rotated pixels back into the grid
+                for col in newpx.columns():
+                    x, y = round(col[0]), round(col[1])
+                    if 0 &lt;= y &lt; AP.nrows() and 0 &lt;= x &lt; AP.ncols():
+                        AP[y, x] = 1
+
+                matrix_plot(AP, flip_y=False)
+            </input>
+        </sage>
+        <p>
+            Both the original pixel and the rotated pixel are now visible.
+            The original pixel sits at <m>(15, 15)</m>, and a rotation of 
+            <m>\theta = \pi/4</m> maps the pixel to:
+        </p>
+        <me>
+            R\!\left(\frac{\pi}{4}\right)
+            \begin{bmatrix} 15 \\ 15 \end{bmatrix}
+            =
+            \begin{bmatrix} 0 \\ 15\sqrt{2} \end{bmatrix}
+        </me>
+        <p>
+            Because we can't map a pixel to a non-integer defined entry, we use <c>round()</c> to approximate it to
+            the nearest integer.
+        </p>
+        <me>
+            \begin{bmatrix} 0 \\ 15\sqrt{2} \end{bmatrix}
+            \approx
+            \begin{bmatrix} 0 \\ 21 \end{bmatrix}
+        </me>
+        
+        <p>
+            which we can verify directly in the image.
+        </p>
+    </subsection>
+
+    <subsection xml:id="subsec-lt-letter-f">
+        <title>Rotating the Letter F</title>
+        <p>
+            The same approach applies to any shape. 
+            We encode the letter <q>F</q> as a <m>10 \times 10</m> binary matrix.
+        </p>
+        <p>
+            Plotting with <c>flip_y=False</c> displays row <m>0</m> of the matrix 
+            at the <em>bottom</em> of the image, with <m>y</m> increasing upward.
+            This means the matrix must be defined with the bottom of the image in row <m>0</m> 
+            and the top in the last row.
+            As a result, the letter looks upside down when reading the code, 
+            but displays correctly when plotted.
+        </p>
+        <sage>
+            <input>
+                # Appears upside down in code; displays correctly with flip_y=False
+                F = matrix(ZZ, [
+                    [0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,1,1,1,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,1,1,1,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0],
+                ])
+                matrix_plot(F, flip_y=False)
+            </input>
+        </sage>
+        <p>
+            We again embed the letter inside a larger grid of zeros.
+            Since the rotation is around the origin and the letter will swing 
+            up and to the left, we add more padding in those directions to 
+            ensure the rotated pixels stay in bounds.
+        </p>
+        <sage>
+            <input>
+                AT = block_matrix([
+                    [matrix(ZZ,  40, 100), matrix(ZZ,  40, 10), matrix(ZZ,  40, 40)],
+                    [matrix(ZZ,  10, 100), F,                   matrix(ZZ,  10, 40)],
+                    [matrix(ZZ, 100, 100), matrix(ZZ, 100, 10), matrix(ZZ, 100, 40)]
+                ])
+                matrix_plot(AT, flip_y=False)
+            </input>
+        </sage>
+        <p>
+            Now we apply the rotation. Since the function <m>R</m> is already defined from the previous 
+            cell, we can use it directly.
+        </p>
+        <sage>
+            <input>
+                pts = [(x, y) for x in range(AT.ncols())
+                              for y in range(AT.nrows())
+                              if AT[y, x] > 0]
+
+                D = matrix([[p[0], p[1]] for p in pts]).transpose()
+
+                newpx = R(pi/4) * D
+
+                for col in newpx.columns():
+                    x, y = round(col[0]), round(col[1])
+                    if 0 &lt;= y &lt; AT.nrows() and 0 &lt;= x &lt; AT.ncols():
+                        AT[y, x] = 1
+
+                matrix_plot(AT, flip_y=False)
+            </input>
+        </sage>
+        <p>
+            The letter F has been rotated <m>45^\circ</m> around the origin.
+        </p>
+    </subsection>
+    <subsection xml:id="subsec-lt-stretch">
+        <title>Stretching the Letter F</title>
+        <p>
+            This method can also be applied for other transformation matrices. For example, we can
+            stretch or shrink an image
+        </p>
+        <p> 
+            Matrix <m>S</m> is the transformation matrix that is used to stretch an image.
+
+        </p>
+        <md>
+            S =
+            \begin{bmatrix}
+            a &amp; 0 \\
+            0 &amp;  b
+            \end{bmatrix}
+        </md>
+        <p>
+            The scale that the image will shrink or stretch by is determined by the value of the stretching factor.
+            In matrix <m>S</m>, there are 2 stretching factors. The horizontal stretching factor <m>a</m> will determine how much
+            the image will be stretched in the <m>i</m> direction. Similarly, the vertical stretching factor <m>b</m> will determine how much
+            the image will be stretched in the <m>j</m> direction.
+        </p> 
+        <p>
+            If the stretching factor is less than <m>1</m>, then the transformation
+            will shrink. If it is greater than <m>1</m> then the transformation will stretch. To maintain the original dimension of the image in a certain direction,
+            the factor must be equal to <m>1</m>.
+        </p>
+        <sage>
+            <input>
+                def S(a,b):
+                    return matrix(RR, [
+                        [a, 0],
+                        [0, b]
+                    ])
+            </input>
+        </sage>
+        <p>
+            For example, if we wanted to shrink the image vertically to be half the original size while maintaining
+            the original horizontal dimensions, we can use the transformation matrix <m>S(1,\frac{1}{2})</m>.
+        </p>
+        <p>
+            To do this transformation, we need to assign the values <m>a=1</m> and <m>b=1/2</m> in the transformation matrix <m>S</m>.
+        </p>
+        <sage>
+            <input>
+                # Appears upside down in code; displays correctly with flip_y=False
+                F = matrix(ZZ, [
+                    [0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,1,1,1,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,1,1,1,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0],
+                ])
+                matrix_plot(F, flip_y=False)
+                AT = block_matrix([
+                [matrix(ZZ,  40, 100), matrix(ZZ,  40, 10), matrix(ZZ,  40, 40)],
+                [matrix(ZZ,  10, 100), F,                   matrix(ZZ,  10, 40)],
+                [matrix(ZZ, 100, 100), matrix(ZZ, 100, 10), matrix(ZZ, 100, 40)]
+                ])
+
+                matrix_plot(AT, flip_y=False)
+                pts = [(x, y) for x in range(AT.ncols())
+                              for y in range(AT.nrows())
+                              if AT[y, x] > 0]
+
+                D = matrix([[p[0], p[1]] for p in pts]).transpose()
+
+                newpx = S(a=1,b=1/2) * D
+
+                for col in newpx.columns():
+                    x, y = round(col[0]), round(col[1])
+                    if 0 &lt;= y &lt; AT.nrows() and 0 &lt;= x &lt; AT.ncols():
+                        AT[y, x] = 1
+
+                matrix_plot(AT, flip_y=False)
+            </input>
+        </sage>
+        <p>
+            It is important to note that the way this method works is by changing the original coordinates.
+            While the transformed F is still on the same <m>j</m>-level as the original F, it is only at halfway
+            between the <m>i</m>-axis and the original F. Because we are multiplying by a factor of <m>1/2</m>,
+            the coordinates are being transformed as well, and are also becoming <m>1/2</m> of the original coordinates.
+        </p>
+
+        <p>
+            Let's try to stretch the letter F by a factor of <m>3</m> in both the horizontal and vertical direction. As mentioned
+            earlier, the size of the graph will need to be changed so that there is room for all of the points to land on the graph.
+            To do this, we can either reduce the current coordinates of the original shape
+            by removing some padding on the left and bottom, or we can increase the bounds of the graph to accomodate for the new coordinates.
+        </p>
+        <p>
+            First, we need to set up our original matrix with the F shape and put it in another matrix with substantative padding
+            so that the shape can stay within the bounds of the matrix.
+        </p>
+        <sage>
+            <input>
+                # Appears upside down in code; displays correctly with flip_y=False
+                F = matrix(ZZ, [
+                    [0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,1,1,1,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,0,0,0,0,0,0],
+                    [0,0,0,1,1,1,1,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0],
+                ])
+                matrix_plot(F, flip_y=False)
+                AT = block_matrix([
+                [matrix(ZZ,  40, 40), matrix(ZZ,  40, 10), matrix(ZZ,  40, 100)],
+                [matrix(ZZ,  10, 40), F,                   matrix(ZZ,  10, 100)],
+                [matrix(ZZ, 100, 40), matrix(ZZ, 100, 10), matrix(ZZ, 100, 100)]
+                ])
+
+                matrix_plot(AT, flip_y=False)
+                pts = [(x, y) for x in range(AT.ncols())
+                              for y in range(AT.nrows())
+                              if AT[y, x] > 0]
+
+                D = matrix([[p[0], p[1]] for p in pts]).transpose()
+
+                newpx = S(a=3,b=3) * D
+
+                for col in newpx.columns():
+                    x, y = round(col[0]), round(col[1])
+                    if 0 &lt;= y &lt; AT.nrows() and 0 &lt;= x &lt; AT.ncols():
+                        AT[y, x] = 1
+
+                matrix_plot(AT, flip_y=False)
+            </input>
+        </sage>
+        <p>
+            When we are transforming the shape, we do not add any new pixels. This results in stretched
+            images to contain gaps because we are increasing the distance between the pixels. Shrinking will not have this issue
+            because we are decreasing the distance between the pixels.
+        </p>
+
+    </subsection>
+
+</section>
