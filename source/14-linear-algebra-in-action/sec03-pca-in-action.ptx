@@ -294,8 +294,8 @@
       </p>
       <sage>
       <input>
-        D = A - matrix(RR, [x_bar] * n)
-        D 
+        X = A - matrix(RR, [x_bar] * n)
+        X
       </input>
       <output>
         [ 0.375000000000000  -1.00000000000000  0.000000000000000   4.50000000000000]
@@ -315,7 +315,7 @@
       </p>
       <sage>
         <input>
-          C = D.transpose() * D / (n-1)
+          C = X.transpose() * X / (n-1)
           C
         </input>
         <output>
@@ -400,11 +400,12 @@
   </output>
   </sage>
   <p>
-    These four vectors form the new basis of principal components. 
+    These four vectors form the new basis of principal components, 
+    <m>B = \{v_1, v_2, v_3, v_4\}</m>. 
   </p>
   <p>
     For the second part of the algorithm, 
-    we express each point in the original data set, 
+    we express each point in the original data set
     in the new basis and then project on to the first two coordinates.
   </p>
   <p>
@@ -479,7 +480,7 @@
   </p>
   <sage>
     <input>
-      N = [M * x for x in D.rows()]
+      N = [M * x for x in X.rows()]
       N
     </input>
     <output>
