@@ -6,9 +6,10 @@
             The value of the entry can represent the intensity of the pixel (in a grayscale image) or the intensity of the red, green, and blue channels (in a color image).
         </p>
         <p>
-            Each entry of the matrix has coordinates <m>(i,j)</m> indicating its position in the matrix of row <m>i</m> and column <m>j</m>.
-            We can consider the coordinates of <m>(i,j)</m> as a vector and apply the transformation <m>T(i,j)=(i',j')</m>. The transformation <m>T</m> will solve for the new coordinates <m>(i',j')</m> after the transformation.
-            This allows us to manipulate the whole image and obtain a transformed image.
+            Each entry of the matrix has coordinates <m>(i,j)</m>, indicating its position in the matrix,  with <m>i</m> representing the row and <m>j</m> representing the column.
+            We can consider the coordinates <m>(i,j)</m> as a vector and apply the transformation
+            <me>T(i,j)=(i',j')</me>
+            This allows us to manipulate the entire image by transforming each <m>(i,j)</m> coordinate, producing a new image with pixels at position <m>(i',j')</m>.
         </p>
         <p>
             It's important to note that in computer science <m>(0,0)</m> is typically located at the top-left corner of the image,
@@ -22,7 +23,7 @@
         <title>Rotating a Single Point</title>
         <p>
             We start with the simplest possible image: a single black pixel in a 
-            <m>10 \times 10</m> grid of white pixels. The black pixel corresponds to a value of <m>1</m> and the black pixels
+            <m>10 \times 10</m> grid of white pixels. The black pixel corresponds to a value of <m>1</m> and the white pixels
             correspond to a value of <m>0</m>. Note that we are using <c>flip_y=False</c>
             as an argument of the <c>matrix_plot</c> function to display the image with the origin at the bottom-left.
         </p>
@@ -92,7 +93,7 @@
             We obtain a coordinate vector that indicates there is a black pixel at <m>(15,15)</m>.
         </p>
         <p>
-            Now we construct a matrix <m>D</m> whose columns are the coordinate vectors obtained. Ee multiply <m>D</m>
+            Now we construct a matrix <m>D</m> whose columns are the coordinate vectors obtained. Then, we multiply <m>D</m>
             by the rotation matrix <m>R(\theta)</m>, rotating all pixels simultaneously via a single matrix multiplication.
             We store the rotated image in the original matrix <m>AP</m>
         </p>
@@ -233,8 +234,8 @@
         <p>
             The scale that the image will shrink or stretch by is determined by the value of the stretching factor.
             In matrix <m>S</m>, there are 2 stretching factors. The horizontal stretching factor <m>a</m> will determine how much
-            the image will be stretched in the <m>j</m> direction. Similarly, the vertical stretching factor <m>b</m> will determine how much
-            the image will be stretched in the <m>i</m> direction.
+            the image will be stretched in the <m>i</m> direction. Similarly, the vertical stretching factor <m>b</m> will determine how much
+            the image will be stretched in the <m>j</m> direction.
         </p> 
         <p>
             If the stretching factor is less than <m>1</m>, then the transformation
