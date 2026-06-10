@@ -1,5 +1,5 @@
-<section xml:id="sec-linear-transformations-in-action" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Linear Transformations in Action</title>
+<section xml:id="sec-digital-image-processing" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Digital Image Processing</title>
     <introduction>
         <p>
             At its core, a digital image is a matrix where each entry corresponds to a pixel.
