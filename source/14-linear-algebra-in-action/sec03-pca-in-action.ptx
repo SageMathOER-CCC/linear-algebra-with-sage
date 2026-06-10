@@ -404,8 +404,8 @@
   </p>
   <p>
     For the second part of the algorithm, 
-    we will graph each point in the original data set, 
-    in the new basis.
+    we express each point in the original data set, 
+    in the new basis and then project on to the first two coordinates.
   </p>
   <p>
     To achieve that, 
@@ -415,20 +415,20 @@
     by multiplying by that change-of-basis matrix:
   </p>
   <md>
-    [u]_B = P_{B \leftarrow S} (u)
+    [u]_B = P_{B \leftarrow S} u
   </md>
   <p>
     This matrix is the inverse of <m>P_{S \leftarrow B}</m> 
     which is just the matrix whose columns are the vectors in the base <m>B</m>.
   </p>
   <p>
-    Let's start by finding the matrix <m>EVM = P_{S \leftarrow B}</m> 
+    Let's start by finding the matrix <m>V = P_{S \leftarrow B}</m> 
     by writing the eigenvectors as columns:
   </p>
   <sage>
   <input>
-    EVM = column_matrix(RR, [v1, v2, v3,v4])
-    EVM
+    V = column_matrix(RR, [v1, v2, v3,v4])
+    V 
   </input>
   <output>
     [  0.325492477366089 -0.0480470860509575   0.368360419374035   0.869515224788321]
@@ -443,7 +443,7 @@
   </p>
   <sage>
     <input>
-      C = EVM^-1
+      C = V^-1
       C
     </input>
     <output>
@@ -462,7 +462,7 @@
     This directly yields the projection of the vector onto the subspace spanned by the first two principal components.
   </p>
   <p>
-    We then obtain, the submatrix formed by the first two rows:
+    Let's start by finding the submatrix formed by the first two rows:
   </p>
   <sage>
     <input>
