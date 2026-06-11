@@ -8,7 +8,7 @@
         <p>
             Each entry of the matrix has coordinates <m>(i,j)</m>, indicating its position in the matrix,  with <m>i</m> representing the row and <m>j</m> representing the column.
             We can consider the coordinates <m>(i,j)</m> as a vector and apply the transformation
-            <me>T(i,j)=(i',j')</me>
+            <me>T(i,j)=(i',j')</me>.
             This allows us to manipulate the entire image by transforming each <m>(i,j)</m> coordinate, producing a new image with pixels at position <m>(i',j')</m>.
         </p>
         <p>
