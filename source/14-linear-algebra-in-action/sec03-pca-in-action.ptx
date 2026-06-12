@@ -616,7 +616,7 @@
       l = ["Dunning", "Englewood", "Loop", "Uptown", "Sauganash", "Lincoln Park", "Hyde Park", "Armour Square"] #labels for plot
 
       for i, txt in enumerate(l):
-          p += text(txt, N_x[i], vertical_alignment="bottom")
+          p += text(txt, N_x[i], vertical_alignment="bottom", horizontal_alignment='left', rotation=45)
           
       p
     </input>
