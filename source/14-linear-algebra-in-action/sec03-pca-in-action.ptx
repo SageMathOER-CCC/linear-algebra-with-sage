@@ -44,7 +44,6 @@
     </p>
     <subsubsection xml:id="subsubsec-pca-calc"> 
     <title>Calculation of Principal Components</title>
-
     <ol>
       <li>
         <p>
@@ -150,27 +149,25 @@
       To obtain a graphical representation of the data in a plot whose axes
       correspond to the first two principal components:
     </p>
-    <p>
-    <ol>
-      <li>
-        <p>
-          Express each instance <m>x_i</m> in the new basis:
-          <me>
-            x_i = a_{i1}v_1 + a_{i2}v_2 + \cdots + a_{in} v_p</me>
-            where <m>v_1, v_2, \ldots, v_p</m> are the principal components (eigenvectors), and
-            <m>a_{i1}, a_{i2}, \ldots, a_{ip}</m> are the coordinates of <m>x_i</m> in the new basis <m>B</m>.
-        </p>
-      </li>
-      <li>
-        <p>
-          Project each instance in the basis <m>B</m> onto the first two coordinates:
-          <me>
-          (a_{i1}, a_{i2})
-          </me>
-        </p>
-      </li>
-    </ol>
-    </p>
+        <ol>
+          <li>
+            <p>
+              Express each instance <m>x_i</m> in the new basis:
+              <me>
+                x_i = a_{i1}v_1 + a_{i2}v_2 + \cdots + a_{in} v_p</me>
+                where <m>v_1, v_2, \ldots, v_p</m> are the principal components (eigenvectors), and
+                <m>a_{i1}, a_{i2}, \ldots, a_{ip}</m> are the coordinates of <m>x_i</m> in the new basis <m>B</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Project each instance in the basis <m>B</m> onto the first two coordinates:
+              <me>
+              (a_{i1}, a_{i2})
+              </me>
+            </p>
+          </li>
+        </ol>
     <p>
       To perform the first operation, we multiply each data vector by the change-of-basis matrix. To perform the second, we retain only the first
       two coordinates of the resulting vector. These two operations can be combined by multiplying the data by the matrix formed by the first two
@@ -180,102 +177,158 @@
       Plotting the resulting vector in a coordinate system whose axes correspond to the first two principal components provides a two-dimensional
       representation of the original data that preserves as much variance as possible.
     </p>
+    <p>
+      
+    </p>
   </subsubsection>
-
   </subsection>
-  <subsection xml:id="subsec-transit-example">
-  <title>PLACEHOLDER Example</title>
+  <subsection xml:id="subsec-ccc-example">
+  <title>City Colleges of Chicago Locations</title>
   <p>
-    We study the following data. (Placeholder for the data to be studied.)
+    One important application of PCA is as an exploratory tool for investigating a phenomenon within a population. 
+    Researchers begin by selecting a set of variables that they believe may be related to the phenomenon of interest. 
+    PCA produces a two-dimensional visualization that facilitates interpretation.
+  </p>
+  <p>
+    If the resulting plot reveals distinct clusters—for example, 
+    one cluster containing individuals affected by the phenomenon 
+    and another containing the rest of the population—this suggests 
+    that the selected variables may be relevant for characterizing 
+    or explaining the phenomenon. 
+    Conversely, if the data points do not exhibit any meaningful separation, 
+    the chosen variables may provide limited insight into the phenomenon under study.
+  </p>
+  <p>
+    Another important aspect of PCA is its ability to summarize the information contained 
+    in a dataset through a smaller set of new variables that often capture the most 
+    significant patterns of variation in the data and may provide a more informative representation than the original variables.
+  </p>
+  <p>
+    Let's investigate these two aspects using the following example. 
+    Our population consists of neighborhoods in Chicago. 
+    We know that some neighborhoods have a City Colleges of Chicago (CCC) campus, 
+    while others do not. 
+    We want to study this phenomenon and determine whether certain neighborhood characteristics 
+    (variables) influence the location of City Colleges of Chicago campuses.
+  </p>
+  <p>
+    We consider the following neighborhoods of Chicago as our instances: 
+    Dunning, Englewood, Loop, Uptown, Sauganash, Lincoln Park, Hyde Park, and Armour Square.
+  </p>
+  <p>
+    We know that Dunning, Englewood, Loop, and Uptown 
+    have a CCC campus whereas Sauganash, Lincoln Park, Hyde Park, and Armour Square do not. 
+  </p>
+  <p>
+    We consider the following four features: number of CTA train stations, 
+    average household size (by number of people),
+    percentage of foreign born residents,
+    and percentage of population below poverty level.
+  </p>
+  <table xml:id="neighborhood-data-table">
+    <tabular halign="center">
+      <row header="yes" bottom="minor" >
+        <cell>Neighborhood</cell>
+        <cell>CTA</cell>
+        <cell>Household</cell>
+        <cell>Foreign</cell>
+        <cell>Poverty</cell>
+      </row>
+      <row>
+        <cell>Dunning</cell>
+        <cell>0</cell>
+        <cell>6.8</cell>
+        <cell>31.9</cell>
+        <cell>8.8</cell>
+      </row>
+      <row>
+        <cell>Englewood</cell>
+        <cell>4</cell>
+        <cell>4.3</cell>
+        <cell>4.4</cell>
+        <cell>31.6</cell>
+      </row>
+      <row>
+        <cell>Loop</cell>
+        <cell>8</cell>
+        <cell>1.6</cell>
+        <cell>17.1</cell>
+        <cell>11.2</cell>
+      </row>
+      <row>
+        <cell>Uptown</cell>
+        <cell>3</cell>
+        <cell>3.2</cell>
+        <cell>21.6</cell>
+        <cell>15.3</cell>
+      </row>
+      <row>
+        <cell>Sauganash</cell>
+        <cell>0</cell>
+        <cell>8.4</cell>
+        <cell>20.2</cell>
+        <cell>5.9</cell>
+      </row>
+      <row>
+        <cell>Lincoln Park</cell>
+        <cell>2</cell>
+        <cell>3.6</cell>
+        <cell>13.4</cell>
+        <cell>8.3</cell>
+      </row>
+      <row>
+        <cell>Hyde Park</cell>
+        <cell>0</cell>
+        <cell>3.5</cell>
+        <cell>21.6</cell>
+        <cell>21.7</cell>
+      </row>
+      <row>
+        <cell>Armour Square</cell>
+        <cell>2</cell>
+        <cell>2.3</cell>
+        <cell>35.5</cell>
+        <cell>32.3</cell>
+      </row>
+    </tabular>
+  </table>
+  <p>
     For the first part of the algorithm, we will calculate the principal components.
   </p>
-  <!-- 
-  <p>
-    Here is the data you have been given:
-  </p>
-  <table>
-  <tabular halign="center">
-  <row header="yes" bottom="minor" >
-  <cell>Neighborhood</cell>
-  <cell>Land Dedicated to Transportation (Acres)</cell>
-  <cell>Solo Drivers</cell>
-  <cell>Carpoolers</cell>
-  <cell>Households Without Vehicles</cell>
-  </row>
-  <row>
-  <cell>Uptown</cell>
-  <cell>348</cell>
-  <cell>11732</cell>
-  <cell>910</cell>
-  <cell>13531</cell>
-  </row>
-  <row>
-  <cell>Lincoln Square</cell>
-  <cell>457</cell>
-  <cell>9823</cell>
-  <cell>1405</cell>
-  <cell>4559</cell>
-  </row>
-  <row>
-  <cell>The Loop</cell>
-  <cell>427</cell>
-  <cell>5939</cell>
-  <cell>335</cell>
-  <cell>12319</cell>
-  </row>
-  <row>
-  <cell>Hyde Park</cell>
-  <cell>254</cell>
-  <cell>3408</cell>
-  <cell>436</cell>
-  <cell>6218</cell>
-  </row>
-  <row>
-  <cell>Englewood</cell>
-  <cell>757</cell>
-  <cell>3158</cell>
-  <cell>818</cell>
-  <cell>4189</cell>
-  </row>
-  </tabular>
-  </table>
-  -->
   <ol>
     <li>
       <p>
-        We organize the data in a matrix. 
-        Each instance represents a neighbourhood and the four features we are studying are 
-        (placeholder). 
+        We organize the data in a matrix <m>A</m>:
       </p>
       <sage>
       <input>
         A = matrix(RR, [
-            [17, 31, 18, 10],
-            [16, 25, 19,  5],
-            [10, 31, 22,  3],
-            [18, 30, 18,  4],
-            [17, 37, 19,  8],
-            [18, 35, 15, 10],
-            [18, 35, 10,  1],
-            [19, 32, 23,  3]
+            [0, 6.8, 31.9, 8.8],
+            [4, 4.3, 4.40, 31.6],
+            [8, 1.6, 17.1, 11.2],
+            [3, 3.2, 21.6, 15.3],
+            [0, 8.4, 20.2, 5.9],
+            [2, 3.6, 13.4, 8.3],
+            [0, 3.5, 21.6, 21.7],
+            [2, 2.3, 35.5, 32.3]
         ])
         A
       </input>
       <output>
-        [17.0000000000000 31.0000000000000 18.0000000000000 10.0000000000000]
-        [16.0000000000000 25.0000000000000 19.0000000000000 5.00000000000000]
-        [10.0000000000000 31.0000000000000 22.0000000000000 3.00000000000000]
-        [18.0000000000000 30.0000000000000 18.0000000000000 4.00000000000000]
-        [17.0000000000000 37.0000000000000 19.0000000000000 8.00000000000000]
-        [18.0000000000000 35.0000000000000 15.0000000000000 10.0000000000000]
-        [18.0000000000000 35.0000000000000 10.0000000000000 1.00000000000000]
-        [19.0000000000000 32.0000000000000 23.0000000000000 3.00000000000000]
+        [0.000000000000000  6.80000000000000  31.9000000000000  8.80000000000000]
+        [ 4.00000000000000  4.30000000000000  4.40000000000000  31.6000000000000]
+        [ 8.00000000000000  1.60000000000000  17.1000000000000  11.2000000000000]
+        [ 3.00000000000000  3.20000000000000  21.6000000000000  15.3000000000000]
+        [0.000000000000000  8.40000000000000  20.2000000000000  5.90000000000000]
+        [ 2.00000000000000  3.60000000000000  13.4000000000000  8.30000000000000]
+        [0.000000000000000  3.50000000000000  21.6000000000000  21.7000000000000]
+        [ 2.00000000000000  2.30000000000000  35.5000000000000  32.3000000000000]
       </output>
       </sage>
     </li>
     <li>
       <p>
-         We find now the mean of each feature:
+         We find now the mean of each feature, <m>\bar x</m>:
       </p>
       <sage>
       <input>
@@ -284,13 +337,13 @@
         x_bar
       </input>
       <output>
-        (16.6250000000000, 32.0000000000000, 18.0000000000000, 5.50000000000000)
+        (2.37500000000000, 4.21250000000000, 20.7125000000000, 16.8875000000000)
       </output>
       </sage>
     </li>
     <li>
       <p>
-      Next, we create a matrix of centered data.
+      Next, we create a matrix of mean centered data, <m>X</m>:
       </p>
       <sage>
       <input>
@@ -298,14 +351,14 @@
         X
       </input>
       <output>
-        [ 0.375000000000000  -1.00000000000000  0.000000000000000   4.50000000000000]
-        [-0.625000000000000  -7.00000000000000   1.00000000000000 -0.500000000000000]
-        [ -6.62500000000000  -1.00000000000000   4.00000000000000  -2.50000000000000]
-        [  1.37500000000000  -2.00000000000000  0.000000000000000  -1.50000000000000]
-        [ 0.375000000000000   5.00000000000000   1.00000000000000   2.50000000000000]
-        [  1.37500000000000   3.00000000000000  -3.00000000000000   4.50000000000000]
-        [  1.37500000000000   3.00000000000000  -8.00000000000000  -4.50000000000000]
-        [  2.37500000000000  0.000000000000000   5.00000000000000  -2.50000000000000]
+        [ -2.37500000000000   2.58750000000000   11.1875000000000  -8.08750000000000]
+        [  1.62500000000000 0.0875000000000004  -16.3125000000000   14.7125000000000]
+        [  5.62500000000000  -2.61250000000000  -3.61250000000000  -5.68750000000000]
+        [ 0.625000000000000  -1.01250000000000  0.887499999999999  -1.58750000000000]
+        [ -2.37500000000000   4.18750000000000 -0.512500000000003  -10.9875000000000]
+        [-0.375000000000000 -0.612499999999999  -7.31250000000000  -8.58750000000000]
+        [ -2.37500000000000 -0.712499999999999  0.887499999999999   4.81250000000000]
+        [-0.375000000000000  -1.91250000000000   14.7875000000000   15.4125000000000]
       </output>
       </sage>
     </li>
@@ -319,10 +372,10 @@
           C
         </input>
         <output>
-          [ 7.98214285714286  2.57142857142857 -4.28571428571429  1.64285714285714]
-          [ 2.57142857142857  14.0000000000000 -5.57142857142857  2.42857142857143]
-          [-4.28571428571429 -5.57142857142857  16.5714285714286 0.285714285714286]
-          [ 1.64285714285714  2.42857142857143 0.285714285714286  11.7142857142857]
+          [ 7.41071428571429 -4.09107142857143 -10.9339285714286  3.17678571428571]
+          [-4.09107142857143  5.23267857142857  1.35410714285714 -10.9755357142857]
+          [-10.9339285714286  1.35410714285714  96.8983928571428 -1.53267857142857]
+          [ 3.17678571428571 -10.9755357142857 -1.53267857142857  110.272678571429]
         </output>
       </sage>
     </li>
@@ -340,24 +393,24 @@
           E
         </input>
         <output>
-          [(22.9485932221950,
-            [(0.325492477366089, 0.587041783846931, -0.724622462509627, 0.156073309769429)],
+          [(1.32968485646507,
+            [(-0.605600225353558, -0.791078162359166, -0.0590856991118019, -0.0628696130943475)],
             1),
-           (5.73544305220284,
-            [(0.869515224788321, 0.0789473352842690, 0.392130787803805, -0.289730974128064)],
+           (8.72750624379311,
+            [(-0.786112548177548, 0.602651823740953, -0.105207729900907, 0.0881429209216655)],
             1),
-           (12.8516918480794,
-            [(-0.0480470860509575, -0.306617632073587, -0.450304579445670, -0.837199433202063)],
+           (97.9246098278908,
+            [(0.113321638494049, -0.00132325399248570, -0.981831031664113, -0.152198161977324)],
             1),
-           (8.73212902037989,
-            [(0.368360419374035, -0.745073748008151, -0.344066153251244, 0.436799946948902)],
+           (111.832663357565,
+            [(0.0493318852117437, -0.104901712946067, -0.146451490231229, 0.982402135956294)],
             1)]
         </output>
       </sage>
     </li>
     <li>
       <p>
-        We order the eigenvectors by decreasing eigenvalues.
+        We order the eigenvectors by decreasing eigenvalues:
       </p>
       <sage>
         <input>
@@ -365,24 +418,25 @@
           E
         </input>
         <output>
-          [(22.9485932221950,
-            [(0.325492477366089, 0.587041783846931, -0.724622462509627, 0.156073309769429)],
+          [(111.832663357565,
+            [(0.0493318852117437, -0.104901712946067, -0.146451490231229, 0.982402135956294)],
             1),
-           (12.8516918480794,
-            [(-0.0480470860509575, -0.306617632073587, -0.450304579445670, -0.837199433202063)],
+           (97.9246098278908,
+            [(0.113321638494049, -0.00132325399248570, -0.981831031664113, -0.152198161977324)],
             1),
-           (8.73212902037989,
-            [(0.368360419374035, -0.745073748008151, -0.344066153251244, 0.436799946948902)],
+           (8.72750624379311,
+            [(-0.786112548177548, 0.602651823740953, -0.105207729900907, 0.0881429209216655)],
             1),
-           (5.73544305220284,
-            [(0.869515224788321, 0.0789473352842690, 0.392130787803805, -0.289730974128064)],
+           (1.32968485646507,
+            [(-0.605600225353558, -0.791078162359166, -0.0590856991118019, -0.0628696130943475)],
             1)]
         </output>
       </sage>
     </li>
   </ol>
   <p>
-    Since the principal components are the directions of the eigenvectors, we need to retrieve the eigenvectors from the previous list.
+    Since the principal components are the directions of the eigenvectors, 
+    we need to retrieve the eigenvectors from the previous list.
   </p>
   <sage>
   <input>
@@ -393,10 +447,10 @@
     v1, v2, v3, v4
   </input>
   <output>
-    ((0.325492477366089, 0.587041783846931, -0.724622462509627, 0.156073309769429),
-    (-0.0480470860509575, -0.306617632073587, -0.450304579445670, -0.837199433202063),
-    (0.368360419374035, -0.745073748008151, -0.344066153251244, 0.436799946948902),
-    (0.869515224788321, 0.0789473352842690, 0.392130787803805, -0.289730974128064))
+    ((0.0493318852117437, -0.104901712946067, -0.146451490231229, 0.982402135956294),
+     (0.113321638494049, -0.00132325399248570, -0.981831031664113, -0.152198161977324),
+     (-0.786112548177548, 0.602651823740953, -0.105207729900907, 0.0881429209216655),
+     (-0.605600225353558, -0.791078162359166, -0.0590856991118019, -0.0628696130943475))
   </output>
   </sage>
   <p>
@@ -432,10 +486,10 @@
     V 
   </input>
   <output>
-    [  0.325492477366089 -0.0480470860509575   0.368360419374035   0.869515224788321]
-    [  0.587041783846931  -0.306617632073587  -0.745073748008151  0.0789473352842690]
-    [ -0.724622462509627  -0.450304579445670  -0.344066153251244   0.392130787803805]
-    [  0.156073309769429  -0.837199433202063   0.436799946948902  -0.289730974128064]
+    [  0.0493318852117437    0.113321638494049   -0.786112548177548   -0.605600225353558]
+    [  -0.104901712946067 -0.00132325399248570    0.602651823740953   -0.791078162359166]
+    [  -0.146451490231229   -0.981831031664113   -0.105207729900907  -0.0590856991118019]
+    [   0.982402135956294   -0.152198161977324   0.0881429209216655  -0.0628696130943475]
   </output>
   </sage>
   <p>
@@ -448,10 +502,10 @@
       C
     </input>
     <output>
-      [0.325492477366088   0.587041783846930  -0.724622462509627   0.156073309769428]
-      [-0.0480470860509578  -0.306617632073587  -0.450304579445672  -0.837199433202063]
-      [  0.368360419374034  -0.745073748008150  -0.344066153251244   0.436799946948902]
-      [  0.869515224788320  0.0789473352842695   0.392130787803806  -0.289730974128063]
+      [  0.0493318852117439   -0.104901712946067   -0.146451490231230    0.982402135956294]
+      [   0.113321638494051 -0.00132325399248600   -0.981831031664116   -0.152198161977323]
+      [  -0.786112548177549    0.602651823740953   -0.105207729900906   0.0881429209216656]
+      [  -0.605600225353559   -0.791078162359167  -0.0590856991118015  -0.0628696130943477]
     </output>
   </sage>
   <p>
@@ -471,8 +525,8 @@
       M
     </input>
     <output>
-      [  0.325492477366088   0.587041783846930  -0.724622462509627   0.156073309769428]
-      [-0.0480470860509578  -0.306617632073587  -0.450304579445672  -0.837199433202063]
+      [  0.0493318852117439   -0.104901712946067   -0.146451490231230    0.982402135956294]
+      [   0.113321638494051 -0.00132325399248600   -0.981831031664116   -0.152198161977323]
     </output>
   </sage>
   <p>
@@ -484,14 +538,14 @@
       N
     </input>
     <output>
-      [(12.2491961869993, -26.7994238191902),
-       (6.89646399519489, -21.1759783541331),
-       (5.97974582701220, -22.4039165022017),
-       (11.0512070219019, -21.5176566739552),
-       (14.7346778080324, -27.4150353246733),
-       (17.0967231872820, -26.7230276951985),
-       (19.3151757119053, -16.9367098991516),
-       (8.77159744464430, -23.5932624881796)]
+      [(-9.97219973113425, -10.0258948428796),
+       (16.9135667732402, 13.9609351237580),
+       (-4.50680856040345, 5.05338286571705),
+       (-1.55249367579560, -0.557594639736728),
+       (-11.2755262304158, 1.90078569093680),
+       (-7.31969897798374, 8.44495601365925),
+       (4.55541382480562, -1.87202476807149),
+       (13.1577465776870, -16.9045454433832)]
     </output>
   </sage>
   <p>
@@ -508,12 +562,13 @@
     </output>
   </sage>
   <p>
-    Finally, we add labels to each data point to visualize what instance each point represents:
+    Finally, we add labels and color (blue meaning with a CCC campus and red meaning without) 
+    to each data point to visualize what instance each point represents:
   </p>
   <sage>
     <input>
-      p = scatter_plot(N)
-      l = ["1", "2", "3", "4", "5","6", "7", "8"] #labels for plot
+      p = scatter_plot(N[0:4], facecolor='blue') + scatter_plot(N[4:], facecolor='red')
+      l = ["Dunning", "Englewood", "Loop", "Uptown", "Sauganash", "Lincoln Park", "Hyde Park", "Armour Square"] #labels for plot
 
       for i, txt in enumerate(l):
           p += text(txt, N[i], vertical_alignment="bottom")
@@ -524,167 +579,232 @@
       Graphics object consisting of 1 graphics primitive
     </output>
   </sage>
-  </subsection>
-  <subsection xml:id="subsec-example-2">
-  <title>Lab Example</title>
   <p>
-    We will now show an example using two dimensional data to help visualize how PCA preserves 
-    the separation of data points when reducing dimensions. 
-    Imagine you are in a lab that has mixed up 3 different populations of mice, 
-    however it is known that these populations differ significantly when comparing length and weight.
+    Since the neighborhoods with and without a CCC campus appear to be mixed together, 
+    the variables selected may not explain the campus locations very well. 
+    You can try using different variables by replacing one of the original variables with another and then repeating the analysis. 
+    If the resulting plot shows neighborhoods with and without a campus separating into two distinct clusters, 
+    you may have identified a set of variables whose first two principal components do a good job of explaining the locations of the CCC campuses.
   </p>
   <p>
-    After mesuring the mice you arrive at the following data:
+    In terms of data summarization, 
+    we can see that the first principal component can be expressed in terms of the original variables as:
+  </p>
+  <sage>
+    <input>
+      v1
+    </input>
+    <output>
+      (0.0493318852117437, -0.104901712946067, -0.146451490231229, 0.982402135956294)
+    </output>
+  </sage>
+  <p>
+    In this case, most of the weight in the linear combination is assigned to the last variable: 
+    the percentage of people living below the poverty line.
+  </p>
+  <p>
+    If we project the data onto the x-axis (the first principal component), 
+    we observe that Englewood and Armour Square in the southern part of the city cluster together, 
+    while neighborhoods Dunning and Sauganash in the northern part also cluster together. 
+    These two groups are located far apart along the first principal component, 
+    indicating a strong separation according to this measure.
+  </p>
+  <sage>
+    <input>
+      N_x = [(v[0], 0) for v in N] # Create a new version of the transformed data without the y-values
+      p = scatter_plot(N_x[0:4], facecolor='blue') + scatter_plot(N_x[4:], facecolor='red')
+      l = ["Dunning", "Englewood", "Loop", "Uptown", "Sauganash", "Lincoln Park", "Hyde Park", "Armour Square"] #labels for plot
+
+      for i, txt in enumerate(l):
+          p += text(txt, N_x[i], vertical_alignment="bottom")
+          
+      p
+    </input>
+    <output>
+      Graphics object consisting of 1 graphics primitive
+    </output>
+  </sage>
+  <p>
+    Similarly, the second principal component can be expressed in terms of the original variables as:
+  </p>
+  <sage>
+    <input>
+      v2
+    </input>
+    <output>
+      (0.113321638494049, -0.00132325399248570, -0.981831031664113, -0.152198161977324)
+    </output>
+  </sage>
+  <p>
+    In this case, most of the weight in the linear combination is assigned to the third variable: 
+    the percentage of foreign-born residents.
+  </p>
+  <p>
+    If we project the data onto the y-axis (the second principal component), 
+    we observe that Englewood and Armour Square are now the farthest apart according to this measure. 
+    Englewood has the lowest proportion of foreign born residents, while Armour Square has the highest.
+  </p>
+  <sage>
+    <input>
+      N_y = [(0, v[1]) for v in N]
+      p = scatter_plot(N_y[0:4], facecolor='blue') + scatter_plot(N_y[4:], facecolor='red')
+      l = ["Dunning", "Englewood", "Loop", "Uptown", "Sauganash", "Lincoln Park", "Hyde Park", "Armour Square"] #labels for plot
+
+      for i, txt in enumerate(l):
+          p += text(txt, N_y[i], vertical_alignment="bottom")
+          
+      p
+    </input>
+    <output>
+        Graphics object consisting of 1 graphics primitive
+    </output>
+  </sage>
+  <aside>
+    <p>
+      This data was gathered from: <url href="https://www.city-data.com/city/Chicago-Illinois.html" visual="city-data.com"/>
+    </p>
+  </aside>
+  </subsection>
+  <subsection xml:id="subsec-mice-example">
+  <title>Three Mice Strains</title>
+  <p>
+    We will now consider an example in which the data are already two-dimensional, 
+    but PCA demonstrates how cluster structure can be preserved when reducing the data to one dimension. 
+    Although the data may be projected onto any axis, 
+    the first principal component axis captures the greatest amount of variation and therefore provides the best preservation of the original cluster separation.
+  </p>
+  <p>
+    The following dataset shows three distinct clusters corresponding to different mouse strains.
   </p>
   <table>
-  <tabular halign="center">
-  <row header="yes" bottom="minor" >
-  <cell>Mouse ID.</cell>
-  <cell>Mouse Length (cm)</cell>
-  <cell>Mouse Weight (g)</cell>
-  </row>
-  <row>
-  <cell>1</cell>
-  <cell>5.44</cell>
-  <cell>35.46</cell>
-  </row>
-  <row>
-  <cell>2</cell>
-  <cell>6.35</cell>
-  <cell>36.77</cell>
-  </row>
-  <row>
-  <cell>3</cell>
-  <cell>6.82</cell>
-  <cell>36.49</cell>
-  </row>
-  <row>
-  <cell>4</cell>
-  <cell>6.75</cell>
-  <cell>34.12</cell>
-  </row>
-  <row>
-  <cell>5</cell>
-  <cell>6.21</cell>
-  <cell>33.95</cell>
-  </row>
-  <row>
-  <cell>6</cell>
-  <cell>6.67</cell>
-  <cell>35.71</cell>
-  </row>
-  <row>
-  <cell>7</cell>
-  <cell>7.12</cell>
-  <cell>33.85</cell>
-  </row>
-  <row>
-  <cell>8</cell>
-  <cell>6.39</cell>
-  <cell>36.22</cell>
-  </row>
-  <row>
-  <cell>9</cell>
-  <cell>9.82</cell>
-  <cell>44.71</cell>
-  </row>
-  <row>
-  <cell>10</cell>
-  <cell>10.56</cell>
-  <cell>46.24</cell>
-  </row>
-  <row>
-  <cell>11</cell>
-  <cell>10.35</cell>
-  <cell>45.11</cell>
-  </row>
-  <row>
-  <cell>12</cell>
-  <cell>9.21</cell>
-  <cell>46.35</cell>
-  </row>
-  <row>
-  <cell>13</cell>
-  <cell>10.76</cell>
-  <cell>44.89</cell>
-  </row>
-  <row>
-  <cell>14</cell>
-  <cell>5.34</cell>
-  <cell>43.05</cell>
-  </row>
-  <row>
-  <cell>15</cell>
-  <cell>7.25</cell>
-  <cell>43.44</cell>
-  </row>
-  <row>
-  <cell>16</cell>
-  <cell>5.61</cell>
-  <cell>43.4</cell>
-  </row>
-  <row>
-  <cell>17</cell>
-  <cell>5.05</cell>
-  <cell>42.52</cell>
-  </row>
-  <row>
-  <cell>18</cell>
-  <cell>5.15</cell>
-  <cell>42.16</cell>
-  </row>
-  <row>
-  <cell>19</cell>
-  <cell>5.93</cell>
-  <cell>42.46</cell>
-  </row>
-  <row>
-  <cell>20</cell>
-  <cell>6.13</cell>
-  <cell>42.0</cell>
-  </row>
-  <row>
-  <cell>21</cell>
-  <cell>6.35</cell>
-  <cell>41.75</cell>
-  </row>
-  <row>
-  <cell>22</cell>
-  <cell>6.35</cell>
-  <cell>42.67</cell>
-  </row>
-  </tabular>
+      <tabular halign="center">
+          <row header="yes" bottom="minor">
+              <cell>Mouse ID.</cell>
+              <cell>Mouse Length (cm)</cell>
+              <cell>Mouse Weight (g)</cell>
+          </row>
+          <row>
+              <cell>1</cell>
+              <cell>5.44</cell>
+              <cell>35.46</cell>
+          </row>
+          <row>
+              <cell>2</cell>
+              <cell>6.35</cell>
+              <cell>36.77</cell>
+          </row>
+          <row>
+              <cell>3</cell>
+              <cell>6.82</cell>
+              <cell>36.49</cell>
+          </row>
+          <row>
+              <cell>4</cell>
+              <cell>6.75</cell>
+              <cell>34.12</cell>
+          </row>
+          <row>
+              <cell>5</cell>
+              <cell>6.21</cell>
+              <cell>33.95</cell>
+          </row>
+          <row>
+              <cell>6</cell>
+              <cell>6.67</cell>
+              <cell>35.71</cell>
+          </row>
+          <row>
+              <cell>7</cell>
+              <cell>7.12</cell>
+              <cell>33.85</cell>
+          </row>
+          <row>
+              <cell>8</cell>
+              <cell>6.39</cell>
+              <cell>36.22</cell>
+          </row>
+          <row>
+              <cell>9</cell>
+              <cell>9.82</cell>
+              <cell>44.71</cell>
+          </row>
+          <row>
+              <cell>10</cell>
+              <cell>10.56</cell>
+              <cell>46.24</cell>
+          </row>
+          <row>
+              <cell>11</cell>
+              <cell>10.35</cell>
+              <cell>45.11</cell>
+          </row>
+          <row>
+              <cell>12</cell>
+              <cell>9.21</cell>
+              <cell>46.35</cell>
+          </row>
+          <row>
+              <cell>13</cell>
+              <cell>10.76</cell>
+              <cell>44.89</cell>
+          </row>
+          <row>
+              <cell>14</cell>
+              <cell>5.34</cell>
+              <cell>43.05</cell>
+          </row>
+          <row>
+              <cell>15</cell>
+              <cell>7.25</cell>
+              <cell>43.44</cell>
+          </row>
+          <row>
+              <cell>16</cell>
+              <cell>5.61</cell>
+              <cell>43.4</cell>
+          </row>
+          <row>
+              <cell>17</cell>
+              <cell>5.05</cell>
+              <cell>42.52</cell>
+          </row>
+          <row>
+              <cell>18</cell>
+              <cell>5.15</cell>
+              <cell>42.16</cell>
+          </row>
+      </tabular>
   </table>
   <p>
-    We can then preform <em>(step 1)</em> by converting the data into vectors like so:
+    We organize the data in a matrix:
   </p>
   <sage>
   <input>
-  D = [
-      vector(RR, (5.44, 35.46)),
-      vector(RR, (6.35, 36.77)),
-      vector(RR, (6.82, 36.49)),
-      vector(RR, (6.75, 34.12)),
-      vector(RR, (6.21, 33.95)),
-      vector(RR, (6.67, 35.71)),
-      vector(RR, (7.12, 33.85)),
-      vector(RR, (6.39, 36.22)),
-      vector(RR, (9.82, 44.71)),
-      vector(RR, (10.56, 46.24)),
-      vector(RR, (10.35, 45.11)),
-      vector(RR, (9.21, 46.35)),
-      vector(RR, (10.76, 44.89)),
-      vector(RR, (5.34, 43.05)),
-      vector(RR, (7.25, 43.44)),
-      vector(RR, (5.61, 43.4)),
-      vector(RR, (5.05, 42.52)),
-      vector(RR, (5.15, 42.16)),
-      vector(RR, (5.93, 42.46)),
-      vector(RR, (6.13, 42.0)),
-      vector(RR, (6.35, 41.75)),
-      vector(RR, (6.35, 42.67))
-  ]
-  D
+  A = matrix(RR, [
+      [05.44, 35.46],
+      [06.35, 36.77],
+      [06.82, 36.49],
+      [06.75, 34.12],
+      [06.21, 33.95],
+      [06.67, 35.71],
+      [07.12, 33.85],
+      [06.39, 36.22],
+      [09.82, 44.71],
+      [10.56, 46.24],
+      [10.35, 45.11],
+      [09.21, 46.35],
+      [10.76, 44.89],
+      [05.34, 43.05],
+      [07.25, 43.44],
+      [05.61, 43.40],
+      [05.05, 42.52],
+      [05.15, 42.16],
+      [05.93, 42.46],
+      [06.13, 42.00],
+      [06.35, 41.75],
+      [06.35, 42.67]
+  ])
+  print(A.str())
   </input>
   <output>
     [(5.44000000000000, 35.4600000000000),
@@ -711,183 +831,57 @@
      (6.35000000000000, 42.6700000000000)]
   </output>
   </sage>
-  <p>
-    We can then plot this data using the <c>scatter_plot</c> function to visualize the three distinct populations.
-  </p>
-  <sage>
-  <input>
-    scatter_plot(D)
-  </input>
-  <output>
-    Graphics object consisting of 1 graphics primitive
-  </output>
-  </sage>
-  <p>
-    Since our data is 2 dimensional we can plot and therefore clearly see the three populations. 
-    However, if we were to attempt the naive approach to dimension reduction, 
-    by projecting onto the standard basis vectors, we lose this distinctness. 
-    For example here is the projection onto the <m>x</m> axis:
-  </p>
-  <sage>
-  <input>
-    P_x = matrix(RR, [[1,0],[0,0]]) # Projection mapping matrix
-    scatter_plot([P_x * x_i for x_i in D], )
-  </input>
-  <output>
-    Graphics object consisting of 1 graphics primitive
-  </output>
-  </sage>
-  <p>
-    It now appears to only have two distinct populations. 
-    Likewise when projecting onto the <m>y</m> axis:
-  </p>
-  <sage>
-  <input>
-    P_y = matrix(RR, [[0,0],[0,1]]) # Projection mapping matrix
-    scatter_plot([P_y * x_i for x_i in D])
-  </input>
-  <output>
-    Graphics object consisting of 1 graphics primitive
-  </output>
-  </sage>
-  <p>
-    Therefore we should continue with principal component analysis to find a better basis for these vectors. 
-    We can preform <em>(step 2)</em> and compute <m>\bar x</m> with the following code:
-  </p>
-  <sage>
-  <input>
-    n = len(D)
-    x_bar = sum(D) / n
-    x_bar
-  </input>
-  <output>
-  (7.07318181818182, 40.6054545454545)
-  </output>
-  </sage>
-  <p>
-    We can now do <em>(step 3)</em> and create our matrix <m>X</m>:
-  </p>
-  <sage>
-  <input>
-    X = matrix(RR, D) - matrix(RR, [x_bar] * n)
-    print(X.str())
-  </input>
-  <output>
-    [ -1.63318181818182  -5.14545454545455]
-    [-0.723181818181818  -3.83545454545455]
-    [-0.253181818181817  -4.11545454545455]
-    [-0.323181818181817  -6.48545454545455]
-    [-0.863181818181817  -6.65545454545455]
-    [-0.403181818181817  -4.89545454545455]
-    [0.0468181818181828  -6.75545454545455]
-    [-0.683181818181818  -4.38545454545455]
-    [  2.74681818181818   4.10454545454545]
-    [  3.48681818181818   5.63454545454545]
-    [  3.27681818181818   4.50454545454545]
-    [  2.13681818181818   5.74454545454545]
-    [  3.68681818181818   4.28454545454545]
-    [ -1.73318181818182   2.44454545454545]
-    [ 0.176818181818183   2.83454545454545]
-    [ -1.46318181818182   2.79454545454545]
-    [ -2.02318181818182   1.91454545454545]
-    [ -1.92318181818182   1.55454545454545]
-    [ -1.14318181818182   1.85454545454545]
-    [-0.943181818181817   1.39454545454545]
-    [-0.723181818181818   1.14454545454545]
-    [-0.723181818181818   2.06454545454545]
-
-  </output>
-  </sage>
-  <p>
-    The data in <m>X</m> is the same but with its points shifted such that the mean is at the origin.
-  </p>
-  <sage>
-  <input>
-    scatter_plot(X.rows())
-  </input>
-  <output>
-    Graphics object consisting of 1 graphics primitive
-  </output>
-  </sage>
-  <p>
-    We can now preform <em>(step 4)</em> and compute our matrix <m>C</m>:
-  </p>
-  <sage>
-  <input>
-    C = X.transpose() * X / n
-    C
-  </input>
-  <output>
-    [3.16113078512397 3.54648719008265]
-    [3.54648719008265 17.8370611570248]
-  </output>
-  </sage>
-  <p>
-    We can then complete <em>(step 5)</em> by using <c>eigenvectors_right</c>.
-  </p>
-  <sage>
-  <input>
-    E = C.eigenvectors_right()
-    E
-  </input>
-  <output>
-    [(2.34904661787163, [(0.974771351210088, -0.223205763500991)], 1),
-     (18.6491453242771, [(0.223205763500991, 0.974771351210088)], 1)]
-  </output>
-  </sage>
-  <p>
-    Since Sage does not sort the result by default we must use the <c>sort</c> 
-    method to complete <em>step 6</em> and put our largest eigenvalue at the front.
-  </p>
-  <sage>
-  <input>
-    E.sort(reverse=True)
-    E
-  </input>
-  <output>
-    [(18.6491453242771, [(0.223205763500991, 0.974771351210088)], 1),
-     (2.34904661787163, [(0.974771351210088, -0.223205763500991)], 1)]
-  </output>
-  </sage>
-  <p>
-    We will now access out our first principal component and reduce our data with respect to its eigenspace to plot it.
-  </p>
-  <sage>
-  <input>
-    v_1 = E[0][1][0]
-    v_1
-  </input>
-  <output>
-    (0.223205763500991, 0.974771351210088)
-  </output>
-  </sage>
-  <p>
-    We must now create our projection matrix:
-  </p>
-  <sage>
-  <input>
-    P_V1 = matrix(RR, [v_1, (0,0)]) # Projection mapping matrix
-    P_V1
-  </input>
-  <output>
-    [0.223205763500991 0.974771351210088]
-    [0.000000000000000 0.000000000000000]
-  </output>
-  </sage>
-  <p>
-    We can then plot our transformed data on the <m>x</m>-axis.
-  </p>
-  <sage>
-  <input>
-  scatter_plot([P_V1 * x_i for x_i in D])
-  </input>
-  <output>
-    Graphics object consisting of 1 graphics primitive
-  </output>
-  </sage>
-  <p>
-    We can now see that despite being lower dimensional, 
-    the clustering of the data along the first principal component is preserved.
-  </p>
+    <p>
+      We plot the two-dimensional data using <c>scatter_plot</c> 
+      and observe the three clusters corresponding to different mouse strains.
+    </p>
+    <sage>
+    <input>
+      scatter_plot(A.rows())
+    </input>
+    <output>
+      Graphics object consisting of 1 graphics primitive
+    </output>
+    </sage>
+    <p>
+      If we project the data onto the x-axis, 
+      the separation between the clusters is largely lost.
+    </p>
+    <sage>
+    <input>
+      P_x = matrix(RR, [[1,0],[0,0]]) # Projection mapping matrix
+      scatter_plot([P_x * x_i for x_i in A.rows()], )
+    </input>
+    <output>
+      Graphics object consisting of 1 graphics primitive
+    </output>
+    </sage>
+    <p>
+      However, if we first apply PCA and then project the data onto the first principal component, the cluster structure is preserved, and the three groups remain clearly separated.
+      Let's apply first PCA to the dataset:
+    </p>
+    <sage>
+      <input>
+        n = len(A.rows())
+        x_bar = sum(A.rows()) / n
+        X = A - matrix(RR, [x_bar] * n)
+        C = X.transpose() * X / (n-1)
+        E = C.eigenvectors_right()
+        E.sort(reverse=true)
+        v1 = E[0][1][0]
+        v2 = E[1][1][0]
+        V = column_matrix(RR, [v1, v2])
+        C = V^-1
+        M = matrix(RR, [C.row(0), (0,0)])
+        N = [M * x for x in A]
+        scatter_plot(N)
+      </input>
+      <output>
+        Graphics object consisting of 1 graphics primitive
+      </output>
+    </sage>
+    <p>
+      We observe that the projection onto the first principal component retains most of the variation of the data showing the three original clusters.
+    </p>
 </subsection>
 </section>
