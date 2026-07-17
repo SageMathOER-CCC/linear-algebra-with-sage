@@ -659,11 +659,118 @@
         Graphics object consisting of 1 graphics primitive
     </output>
   </sage>
-  <aside>
+  <subsubsection xml:id="subsubsec-standardization">
+    <title>Standardization</title>
     <p>
-      This data was gathered from: <url href="https://www.city-data.com/city/Chicago-Illinois.html" visual="city-data.com"/>
+      Observe that the variables in our dataset are measured on different scales and in different units: counts of CTA stations, 
+      household size, and percentages. 
+      Because our analysis is based on the raw covariance matrix, 
+      the principal components are disproportionately influenced by variables with the largest variances—in this case, 
+      the percentage variables. 
+      As a result, the leading principal components tend to align with these high-variance variables, 
+      potentially obscuring meaningful patterns in variables with smaller variances.
     </p>
-  </aside>
+    <p>
+      To avoid this dominance of scale, 
+      the standard approach is to first standardize each variable by subtracting its mean and dividing by its standard deviation, 
+      giving all variables unit variance. 
+      An equivalent approach is to perform PCA using the correlation matrix instead of the covariance matrix, 
+      as we show next.
+    </p>
+    <p>
+      This is done by taking the centered matrix <m>X</m> 
+      and dividing each row by its standard deviation to produce a standardized matrix <m>Z</m>.
+    </p>
+    <sage>
+      <input>
+        import numpy as np # The native sage standard deviation function is deprecated and inaccurate it is recommended to use numpy's
+        Z = matrix(RR, [x_i / np.std(x_i) for x_i in X.rows()])
+        Z
+      </input>
+        [ -0.335741090960770   0.365781083309892    1.58151724426258   -1.14328676764010]
+        [  0.147544414247229 0.00794469922869695   -1.48111892763564    1.33584442745375]
+        [   1.30795890111821  -0.607474245186013  -0.840000272051473   -1.32249177779730]
+        [  0.594031746053298  -0.962331428606342   0.843525079395682   -1.50884063497538]
+        [ -0.432351482751179   0.762303930113921 -0.0932968989094654   -2.00019449125414]
+        [-0.0998344743898330  -0.163062974836727   -1.94677225060174   -2.28620946352718]
+        [ -0.891481648043084  -0.267444494412925   0.333132615847679    1.80642333945572]
+        [-0.0460515733108436  -0.234863023885302    1.81596704089093    1.89271966307567]
+      <output>
+      </output>
+    </sage>
+    <p>
+      We then replace <m>X</m> with <m>Z</m> in our calculations for the covariance matrix to produce the correlation matrix.
+    </p>
+    <sage>
+      <input>
+        C = Z.transpose() * Z / (n-1)
+        C
+      </input>
+      <output>
+        [    0.455982377112061    -0.221701223811729    -0.213290574617153    -0.378520828419335]
+        [   -0.221701223811729     0.309049952773014 -0.000574604247558294   -0.0331147396482454]
+        [   -0.213290574617153 -0.000574604247558294      1.90276931838847     0.675387496683507]
+        [   -0.378520828419335   -0.0331147396482454     0.675387496683507      3.31289346425755]
+      </output>
+    </sage>
+    <p>
+      We can then proceed as usual with our algorithm.
+    </p>
+    <sage>
+      <input>
+        E = C.eigenvectors_right()
+        E.sort(reverse=true)
+        v1 = E[0][1][0]
+        v2 = E[1][1][0]
+        v3 = E[2][1][0]
+        v4 = E[3][1][0]
+        v1, v2, v3, v4
+      </input>
+      <output>
+        
+      </output>
+    </sage>
+    <p>
+      Notice the different weighings for our principal components.
+    </p>
+    <sage>
+      <input>
+        V = column_matrix(RR, [v1, v2, v3, v4])
+        C = V^-1
+        M = C.submatrix(0, 0, 2, 4)
+        N = [M * x for x in Z]
+        scatter_plot(N)
+      </input>
+      <output>
+        Graphics object consisting of 1 graphics primitive
+      </output>
+    </sage>
+    <p>
+      The shape of the plot is also noticeably different.
+    </p>
+    <p>
+      We can then add color and labels to see how the data has clustered differently.
+    </p>
+    <sage>
+      <input>
+        p = scatter_plot(N[0:4], facecolor='blue') + scatter_plot(N[4:], facecolor='red')
+        l = ["Dunning", "Englewood", "Loop", "Uptown", "Sauganash", "Lincoln Park", "Hyde Park", "Armour Square"] #labels for plot
+           
+        for i, txt in enumerate(l):
+            p += text(txt, N[i], vertical_alignment="bottom")
+                
+        p
+      </input>
+      <output>
+        Graphics object consisting of 1 graphics primitive
+      </output>
+    </sage>
+    <aside>
+      <p>
+        This data was gathered from: <url href="https://www.city-data.com/city/Chicago-Illinois.html" visual="city-data.com"/>
+      </p>
+    </aside>
+  </subsubsection>
   </subsection>
   <subsection xml:id="subsec-mice-example">
   <title>Three Mice Strains</title>
