@@ -1,8 +1,15 @@
 [![PreTeXt-CLI Actions](https://github.com/SageMathOER-CCC/linear-algebra-with-sage/actions/workflows/pretext-cli.yml/badge.svg)](https://github.com/SageMathOER-CCC/linear-algebra-with-sage/actions/workflows/pretext-cli.yml)
 
 # Linear Algebra with SageMath
+**Official Identifier:** ISBN 979-8-9971037-1-2
 
-Welcome to this open online textbook for learning Linear Algebra with SageMath, as taught at the City Colleges of Chicago. The live version of the textbook is available at [https://sagemathoer-ccc.github.io/linear-algebra-with-sage/Linear-Algebra-with-SageMath.html](https://sagemathoer-ccc.github.io/linear-algebra-with-sage/Linear-Algebra-with-SageMath.html)
+* **Authors:** Allaoua Boughrira, Hellen Colman, Michael Kattner, Samuel Lubliner
+* **Institution:** City Colleges of Chicago (Wright College)
+* **Web Link:** [Access the Digital Linear Algebra Book Here](https://github.com/SageMathOER-CCC/linear-algebra-with-sage)
+
+Welcome to this open online textbook for learning Linear Algebra with SageMath, as taught at the City Colleges of Chicago. 
+
+The live version of the textbook is available at [https://sagemathoer-ccc.github.io/linear-algebra-with-sage/Linear-Algebra-with-SageMath.html](https://sagemathoer-ccc.github.io/linear-algebra-with-sage/Linear-Algebra-with-SageMath.html)
 
 ### What is SageMath?
 
