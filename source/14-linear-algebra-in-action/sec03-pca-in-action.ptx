@@ -659,11 +659,122 @@
         Graphics object consisting of 1 graphics primitive
     </output>
   </sage>
-  <aside>
+  <subsubsection xml:id="subsubsec-standardization">
+    <title>Standardization</title>
     <p>
-      This data was gathered from: <url href="https://www.city-data.com/city/Chicago-Illinois.html" visual="city-data.com"/>
+      Observe that the variables in our dataset are measured on different scales and in different units: counts of CTA stations, 
+      household size, and percentages. 
+      Because our analysis is based on the raw covariance matrix, 
+      the principal components are disproportionately influenced by variables with the largest variances—in this case, 
+      the percentage variables. 
+      As a result, the leading principal components tend to align with these high-variance variables, 
+      potentially obscuring meaningful patterns in variables with smaller variances.
     </p>
-  </aside>
+    <p>
+      To avoid this dominance of scale, 
+      the standard approach is to first standardize each variable by subtracting its mean and dividing by its standard deviation, 
+      giving all variables unit variance. 
+      An equivalent approach is to perform PCA using the correlation matrix instead of the covariance matrix, 
+      as we show next.
+    </p>
+    <p>
+      This is done by taking the centered matrix <m>X</m> 
+      and dividing each column by its standard deviation, also being the standard deviation of the corospoinding feature, 
+      to produce a standardized matrix <m>Z</m>.
+    </p>
+    <sage>
+      <input>
+        import numpy as np # The native sage standard deviation function is deprecated and inaccurate it is recommended to use numpy's
+        Z = column_matrix(RR, [x_i / np.std(x_i, ddof=1) for x_i in X.columns()])
+        Z
+      </input>
+        [-0.872436002416941    1.13114512837068    1.13651392528082  -0.770158887958077]
+        [ 0.596929896390539  0.0382512845342742   -1.65715158937595    1.40104638504893]
+        [  2.06629579519802   -1.14207406680904  -0.366986060789003  -0.541610964483655]
+        [ 0.229588421688669  -0.442622006753742  0.0901592052457410  -0.151174928548185]
+        [-0.872436002416941    1.83059718842597 -0.0520637664095127   -1.04632096215634]
+        [-0.137753053013201  -0.267758991739918  -0.742861057306458  -0.817773038681915]
+        [-0.872436002416941  -0.311474745493374  0.0901592052457410   0.458286200716939]
+        [-0.137753053013201  -0.836063790534847    1.50223013810862    1.46770619606230]
+      <output>
+      </output>
+    </sage>
+    <p>
+      We then replace <m>X</m> with <m>Z</m> in our calculations for the covariance matrix to produce the correlation matrix.
+    </p>
+    <sage>
+      <input>
+        C = Z.transpose() * Z / (n-1)
+        C
+      </input>
+      <output>
+        [   1.00000000000000  -0.656969183096121  -0.408026068356748   0.111128108997193]
+        [ -0.656969183096121    1.00000000000000  0.0601357473954359  -0.456909024827374]
+        [ -0.408026068356748  0.0601357473954359    1.00000000000000 -0.0148271894472971]
+        [  0.111128108997193  -0.456909024827374 -0.0148271894472971    1.00000000000000]
+      </output>
+    </sage>
+    <p>
+      We can then proceed as usual with our algorithm.
+    </p>
+    <sage>
+      <input>
+        E = C.eigenvectors_right()
+        E.sort(reverse=true)
+        v1 = E[0][1][0]
+        v2 = E[1][1][0]
+        v3 = E[2][1][0]
+        v4 = E[3][1][0]
+        v1, v2, v3, v4
+      </input>
+      <output>
+        ((-0.610108151988275, 0.624638922747796, 0.308269343564495, -0.377576841032709),
+        (-0.293965736891863, -0.271310211122762, 0.696945659040497, 0.595182042083557),
+        (0.370734731033865, -0.317963887632317, 0.585300765979962, -0.647207647289694),
+        (0.635537526520915, 0.659633194806581, 0.276875014232399, 0.290372738366995))
+      </output>
+    </sage>
+    <p>
+      Notice the different weighings for our principal components.
+    </p>
+    <sage>
+      <input>
+        V = column_matrix(RR, [v1, v2, v3, v4])
+        C = V^-1
+        M = C.submatrix(0, 0, 2, 4)
+        N = [M * x for x in Z]
+        scatter_plot(N)
+      </input>
+      <output>
+        Graphics object consisting of 1 graphics primitive
+      </output>
+    </sage>
+    <p>
+      The shape of the plot is also noticeably different.
+    </p>
+    <p>
+      We can then add color and labels to see how the data has clustered differently.
+    </p>
+    <sage>
+      <input>
+        p = scatter_plot(N[0:4], facecolor='blue') + scatter_plot(N[4:], facecolor='red')
+        l = ["Dunning", "Englewood", "Loop", "Uptown", "Sauganash", "Lincoln Park", "Hyde Park", "Armour Square"] #labels for plot
+           
+        for i, txt in enumerate(l):
+            p += text(txt, N[i], vertical_alignment="bottom")
+                
+        p
+      </input>
+      <output>
+        Graphics object consisting of 1 graphics primitive
+      </output>
+    </sage>
+    <aside>
+      <p>
+        This data was gathered from: <url href="https://www.city-data.com/city/Chicago-Illinois.html" visual="city-data.com"/>
+      </p>
+    </aside>
+  </subsubsection>
   </subsection>
   <subsection xml:id="subsec-mice-example">
   <title>Three Mice Strains</title>
