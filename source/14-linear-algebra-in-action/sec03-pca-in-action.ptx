@@ -749,9 +749,6 @@
       </output>
     </sage>
     <p>
-      The shape of the plot is also noticeably different.
-    </p>
-    <p>
       We can then add color and labels to see how the data has clustered differently.
     </p>
     <sage>
@@ -768,6 +765,13 @@
         Graphics object consisting of 1 graphics primitive
       </output>
     </sage>
+    <p>
+      We observe that the interpretation of neighborhood differences is sensitive to whether the variables are standardized. 
+      Standardization removes the dominance of variables with high raw variance, 
+      allowing variables to contribute more equally to the PCA. 
+      As a result, neighborhoods that previously appeared as outliers, such as Englewood, 
+      demonstrate stronger clustering with other neighborhoods once the data are standardized.
+    </p>
     <aside>
       <p>
         This data was gathered from: <url href="https://www.city-data.com/city/Chicago-Illinois.html" visual="city-data.com"/>
