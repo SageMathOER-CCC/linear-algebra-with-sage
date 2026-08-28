@@ -1,0 +1,14 @@
+{
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "1.1.1",
+      "resolved": "ghcr.io/devcontainers/features/github-cli@sha256:94879eebb6a0e4e2f197de9f12db7427cb4a25b82d93c55239ce8c8fc394a1b4",
+      "integrity": "sha256:94879eebb6a0e4e2f197de9f12db7427cb4a25b82d93c55239ce8c8fc394a1b4"
+    },
+    "ghcr.io/jungaretti/features/make:1": {
+      "version": "1.0.1",
+      "resolved": "ghcr.io/jungaretti/features/make@sha256:08d5c03484f33c16ae19e1015cdb3ef967b38db66ad0ae7f896e4cdadbb59d20",
+      "integrity": "sha256:08d5c03484f33c16ae19e1015cdb3ef967b38db66ad0ae7f896e4cdadbb59d20"
+    }
+  }
+}
