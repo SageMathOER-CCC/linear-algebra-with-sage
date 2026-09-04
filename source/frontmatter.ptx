@@ -76,6 +76,11 @@
             Vartuyi Manoyan, Wright College
           </p>
         </li>
+        <li>
+          <p>
+            Justin P. Whalley, Rosalind Franklin University of Medicine and Science
+          </p>
+        </li>
       </ul>
     </p>
 
@@ -191,6 +196,11 @@
     </credit>
 
     <edition>February 2026</edition>
+
+    <credit>
+    <role>ISBN</role>
+      <entity>979-8-9971037-1-2</entity>
+    </credit>
 
     <website>
       <url href="https://github.com/SageMathOER-CCC/linear-algebra-with-sage">GitHub Repository</url>
