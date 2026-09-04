@@ -50,7 +50,7 @@
           Organize the data.
         </p> 
         <p> 
-          We organize the data in a matrix <m>A</m> with <m>n</m> rows for the instances and <m>p</m> columns for to the features.
+          We organize the data in a matrix <m>A</m> with <m>n</m> rows for the instances and <m>p</m> columns for the features.
           Write it as a matrix:
         </p> 
         <p>
@@ -154,7 +154,7 @@
             <p>
               Express each instance <m>x_i</m> in the new basis:
               <me>
-                x_i = a_{i1}v_1 + a_{i2}v_2 + \cdots + a_{in} v_p</me>
+                x_i = a_{i1}v_1 + a_{i2}v_2 + \cdots + a_{ip} v_p</me>
                 where <m>v_1, v_2, \ldots, v_p</m> are the principal components (eigenvectors), and
                 <m>a_{i1}, a_{i2}, \ldots, a_{ip}</m> are the coordinates of <m>x_i</m> in the new basis <m>B</m>.
             </p>
@@ -674,12 +674,11 @@
       To avoid this dominance of scale, 
       the standard approach is to first standardize each variable by subtracting its mean and dividing by its standard deviation, 
       giving all variables unit variance. 
-      An equivalent approach is to perform PCA using the correlation matrix instead of the covariance matrix, 
-      as we show next.
+      An equivalent approach is to perform PCA using the correlation matrix instead of the covariance matrix.
     </p>
     <p>
-      This is done by taking the centered matrix <m>X</m> 
-      and dividing each column by its standard deviation, also being the standard deviation of the corospoinding feature, 
+      Since we already have the centered <m>X</m>,
+      we need to divide each column by its standard deviation 
       to produce a standardized matrix <m>Z</m>.
     </p>
     <sage>
@@ -700,7 +699,7 @@
       </output>
     </sage>
     <p>
-      We then replace <m>X</m> with <m>Z</m> in our calculations for the covariance matrix to produce the correlation matrix.
+      We now calculate the covariance matrix of <m>Z</m> to obtain the correlation matrix.
     </p>
     <sage>
       <input>
@@ -715,7 +714,7 @@
       </output>
     </sage>
     <p>
-      We can then proceed as usual with our algorithm.
+      Then we proceed with our algorithm as before.
     </p>
     <sage>
       <input>
@@ -735,7 +734,7 @@
       </output>
     </sage>
     <p>
-      Notice the different weighings for our principal components.
+      Notice the different weightings for our principal components.
     </p>
     <sage>
       <input>
@@ -749,9 +748,6 @@
         Graphics object consisting of 1 graphics primitive
       </output>
     </sage>
-    <p>
-      The shape of the plot is also noticeably different.
-    </p>
     <p>
       We can then add color and labels to see how the data has clustered differently.
     </p>
@@ -769,6 +765,13 @@
         Graphics object consisting of 1 graphics primitive
       </output>
     </sage>
+    <p>
+      We observe that the interpretation of neighborhood differences is sensitive to whether the variables are standardized. 
+      Standardization removes the dominance of variables with high raw variance, 
+      allowing variables to contribute more equally to the PCA. 
+      As a result, neighborhoods that previously appeared as outliers, such as Englewood, 
+      demonstrate stronger clustering with other neighborhoods once the data are standardized.
+    </p>
     <aside>
       <p>
         This data was gathered from: <url href="https://www.city-data.com/city/Chicago-Illinois.html" visual="city-data.com"/>
