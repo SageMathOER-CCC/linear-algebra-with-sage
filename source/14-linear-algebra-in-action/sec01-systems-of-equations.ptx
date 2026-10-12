@@ -80,9 +80,6 @@
 
                 solve([eq1, eq2, eq3, eq4, eq5], x_1, x_2, x_3, x_4, x_5)
             </input>
-            <output>
-                []
-            </output>
         </sage>
         <p>
             We can see that the resulting system is inconsistent 
@@ -152,9 +149,6 @@
                 sol = solve([eq1, eq2, eq3, eq4], x_1, x_2, x_3, x_4, x_5)
                 sol
             </input>
-            <output>
-                [[x_1 == r1, x_2 == 5, x_3 == r1 - 1, x_4 == -3*r1 + 16, x_5 == r1]]
-            </output>
         </sage>
         <p>
             This system of equations has infinitely many solutions as seen by 
@@ -182,9 +176,6 @@
                 sol_vec = vector(sol[0]).subs(r1=5)
                 sol_vec
             </input>
-            <output>
-                (x_1 == 5, x_2 == 5, x_3 == 4, x_4 == 1, x_5 == 5)
-            </output>
         </sage>
     </subsection>
     <subsection xml:id="subsec-unique-solution">
@@ -223,9 +214,6 @@
 
                 solve([eq1, eq2, eq3, eq4, eq5], x_1, x_2, x_3, x_4, x_5)
             </input>
-            <output>
-                [[x_1 == 4, x_2 == 5, x_3 == 1, x_4 == 6, x_5 == 4]]
-            </output>
         </sage>
         <p>
             We now obtain the unique solution:

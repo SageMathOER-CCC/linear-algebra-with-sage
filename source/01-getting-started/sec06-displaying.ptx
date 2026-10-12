@@ -49,9 +49,6 @@
         <input>
             "Hello, World!"
         </input>
-        <output>
-            'Hello, World!'
-        </output>
     </sage>
 
     <p>
@@ -62,9 +59,6 @@
         <input>
             print("Hello, World!")
         </input>
-        <output>
-            Hello, World!
-        </output>
     </sage>
 
     <p>
@@ -76,9 +70,6 @@
         <input>
             show(sqrt(2) / log(3))
         </input>
-        <output>
-            <m>\sqrt{2} / \log(3)</m>
-        </output>
     </sage>
 
     <p>
@@ -92,10 +83,6 @@
             show(a)
             show(b)
         </input>
-        <output>
-            <m>x^{2}</m>
-            <m>\pi</m>
-        </output>
     </sage>
 
     <p>
@@ -106,9 +93,6 @@
         <input>
             latex(sqrt(2) / log(3))
         </input>
-        <output>
-            \frac{\sqrt{2}}{\log\left(3\right)}
-        </output>
     </sage>
 
     <p>
@@ -121,9 +105,6 @@
             # Notice we don't need the show() function
             sqrt(2) / log(3)
         </input>
-        <output>
-            <m>\sqrt{2} / \log(3)</m>
-        </output>
     </sage>
 
     <p>
@@ -134,9 +115,6 @@
         <input>
             ZZ
         </input>
-        <output>
-            <m>\mathbb{Z}</m>
-        </output>
     </sage>
 
     <p>
@@ -148,18 +126,12 @@
             %display plain
             sqrt(2) / log(3)
         </input>
-        <output>
-            sqrt(2) / log(3)
-        </output>
     </sage>
 
     <sage>
         <input>
             ZZ
         </input>
-        <output>
-            Integer Ring
-        </output>
     </sage>
 
 </section>

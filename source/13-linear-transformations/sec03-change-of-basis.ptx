@@ -57,8 +57,6 @@
             Tv1 = T(v1); Tv2 = T(v2); Tv3 = T(v3)
             Tv1, Tv2, Tv3
         </input>
-        <output>
-        </output>
     </sage>
     <p>
         Next, we express each image as a coordinate vector relative to <m>C</m>.
@@ -75,8 +73,6 @@
             c3 = PW.solve_right(Tv3)
             c1, c2, c3
         </input>
-        <output>
-        </output>
     </sage>
 
     <p>
@@ -88,8 +84,6 @@
             TBC = column_matrix([c1, c2, c3])
             TBC
         </input>
-        <output>
-        </output>
     </sage>
 
     <p>
@@ -121,8 +115,6 @@
             L = linear_transformation(U, V, [s1, s2, s3])
             L
         </input>
-        <output>
-        </output>
     </sage>
 
     <p>
@@ -137,8 +129,6 @@
             TBC = L.matrix('right')
             TBC
         </input>
-        <output>
-        </output>
     </sage>
 
     <p>
@@ -171,8 +161,6 @@
             TS = T.matrix('right')
             TS
         </input>
-        <output>
-        </output>
     </sage>
 
     <p>
@@ -184,8 +172,6 @@
             PW = column_matrix([w1, w2])
             PW
         </input>
-        <output>
-        </output>
     </sage>
 
     <p>
@@ -197,8 +183,6 @@
             PV = column_matrix([v1, v2, v3])
             PV
         </input>
-        <output>
-        </output>
     </sage>
 
     <p>
@@ -209,8 +193,6 @@
         <input>
             PW.inverse() * TS * PV
         </input>
-        <output>
-        </output>
     </sage>
 
     <p>
@@ -222,8 +204,6 @@
         <input>
             PW.inverse() * TS * PV == TBC
         </input>
-        <output>
-        </output>
     </sage>
 
 </section>

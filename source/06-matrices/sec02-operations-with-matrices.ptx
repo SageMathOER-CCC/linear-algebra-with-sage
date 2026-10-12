@@ -33,11 +33,6 @@
                 # Matrix addition.
                 A + B
             </input>
-            <output>
-                [10 10 10]
-                [10 10 10]
-                [10 10 10]
-            </output>
         </sage>
 
         <me>
@@ -52,11 +47,6 @@
                 # Matrix subtraction
                 A - B
             </input>
-            <output>
-                [-8 -6 -4]
-                [-2  0  2]
-                [ 4  6  8]
-            </output>
         </sage>
 
         <me>
@@ -70,11 +60,6 @@
                 # Scalar multiplication
                 3 * A
             </input>
-            <output>
-                [ 3  6  9]
-                [12 15 18]
-                [21 24 27]
-            </output>
         </sage>
 
         <p>
@@ -114,11 +99,6 @@
 
                 C * D
             </input>
-            <output>
-                [64 23 27 62 47]
-                [74 31 39 76 64]
-                [84 39 51 90 81]
-            </output>
         </sage>
 
         <p>
@@ -131,9 +111,6 @@
                 v = vector([3]*3)
                 A * v
             </input>
-            <output>
-                (18, 45, 72)
-            </output>
         </sage>
     </introduction>
 </section>
