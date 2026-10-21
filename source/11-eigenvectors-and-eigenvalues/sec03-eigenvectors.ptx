@@ -35,8 +35,6 @@
                 B1 = A - (λ) * identity_matrix(3)
                 B1
             </input>
-            <output>
-            </output>
         </sage>
         <p>
             Next, we compute the null space.
@@ -46,8 +44,6 @@
                 Nfirst = B1.right_kernel()
                 Nfirst
             </input>
-            <output>
-            </output>
         </sage>
         <p>
             We obtained the basis of the eigenspace associated to the eigenvalue <m>\lambda = -1</m> as rows of a matrix.
@@ -57,8 +53,6 @@
             <input>
                 Nfirst.dimension()
             </input>
-            <output>
-            </output>
         </sage>
 
         <p>
@@ -69,8 +63,6 @@
                 B2 = A - 2 * identity_matrix(3)
                 B2
             </input>
-            <output>
-            </output>
         </sage>
 
     <sage>
@@ -78,15 +70,11 @@
             Nsecond=B2.right_kernel()
             Nsecond
         </input>
-        <output>
-        </output>
     </sage>
     <sage>
         <input>
             Nsecond.dimension()
         </input>
-        <output>
-        </output>
     </sage>
     <p>
         We have obtained manually, a basis for each of the eigenspaces and the geometric multiplicity of each eigenvalue.
@@ -106,8 +94,6 @@
                     ])
                 A.eigenvectors_right()
             </input>
-            <output>
-            </output>
         </sage>
         <p>
             Sage returned a list of triples. Each triple <m>(e, [v1, v2, ... vn], m)</m> consists of 
@@ -128,9 +114,6 @@
                 C=A.eigenvectors_right()
                 C
             </input>
-            <output>
-                
-            </output>
         </sage>
 
         <p>
@@ -141,9 +124,6 @@
             <input>
                 C[0][2]
             </input>
-            <output>
-                
-            </output>
         </sage>
 
         <p>
@@ -156,8 +136,6 @@
             <input>
                 A.eigenspaces_right()
             </input>
-            <output>
-            </output>
         </sage>
 
         <p>
@@ -170,9 +148,6 @@
                 L=A.eigenspaces_right()
                 L[0][1] #accessing the first eigenspace
             </input>
-            <output>
-                
-            </output>
         </sage>
 
         <p>
@@ -183,9 +158,6 @@
             <input>
                 L[0][1].dimension()
             </input>
-            <output>
-                
-            </output>
         </sage>
 
         <p>
@@ -198,9 +170,6 @@
                 L[1][1] #accessing the second eigenspace
                 L[1][1].dimension()
             </input>
-            <output>
-                
-            </output>
         </sage>
 
         <p>
@@ -214,17 +183,11 @@
             <input>
                 Nfirst == L[0][1]
             </input>
-            <output>
-                
-            </output>
         </sage>
         <sage>
             <input>
                 Nsecond == L[1][1]
             </input>
-            <output>
-                
-            </output>
         </sage>
         <p>
             Same algebraic multiplicities:
@@ -233,17 +196,11 @@
             <input>
                 C[0][2] == A.eigenvalue_multiplicity(-1)
             </input>
-            <output>
-                
-            </output>
         </sage>
         <sage>
             <input>
                 C[1][2] == A.eigenvalue_multiplicity(2)                
             </input>
-            <output>
-                
-            </output>
         </sage>
         <p>
             Same geometric multiplicities:
@@ -252,17 +209,11 @@
             <input>
                 Nfirst.dimension() == L[0][1].dimension()
             </input>
-            <output>
-                
-            </output>
         </sage>
         <sage>
             <input>
                 Nsecond.dimension() == L[1][1].dimension()
             </input>
-            <output>
-                
-            </output>
         </sage>
 
         <p>
@@ -276,8 +227,6 @@
             <input>
                 A.eigenmatrix_right()
             </input>
-            <output>
-            </output>
         </sage>
         <p>
             Obeserve that in this case, the last column of the second matrix was filled with zeros.

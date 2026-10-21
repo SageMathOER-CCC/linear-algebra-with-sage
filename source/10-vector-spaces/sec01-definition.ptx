@@ -84,9 +84,6 @@
                 V = VectorSpace(RR, 3)
                 V
             </input>
-            <output>
-                Vector space of dimension 3 over Real Field with 53 bits of precision
-            </output>
         </sage>
         <p>
             Let's create now the vector space <m>\Q^2</m>
@@ -97,9 +94,6 @@
                 W = VectorSpace(QQ, 2)
                 W
             </input>
-            <output>
-                Vector space of dimension 2 over Rational Field
-            </output>
         </sage>
         <p>
             Equivalently, we can define the same vector space as:
@@ -109,9 +103,6 @@
                 W = QQ ^ 2
                 W
             </input>
-            <output>
-                Vector space of dimension 2 over Rational Field
-            </output>
         </sage>
         <p>
             We can check if a vector belongs to a vector space.
@@ -122,9 +113,6 @@
                 # Ensure that the vector is over the same field
                 w in W
             </input>
-            <output>
-                False
-            </output>
         </sage>
         <!--
         <p>

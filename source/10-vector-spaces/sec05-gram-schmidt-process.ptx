@@ -46,7 +46,6 @@
                 v2 = vector([1, 2, 2])
                 v1, v2
             </input>
-            <output></output>
         </sage>
 
         <p>
@@ -73,7 +72,6 @@
                 #orthogonal basis
                 u1, u2
             </input>
-            <output></output>
         </sage>
 
         <p>
@@ -91,7 +89,6 @@
                 A = matrix([v1, v2])
                 A
             </input>
-            <output></output>
         </sage>
 
         <p>
@@ -103,7 +100,6 @@
                 B, mu = A.gram_schmidt()
                 B
             </input>
-            <output></output>
         </sage>
 
         <p>
@@ -116,7 +112,6 @@
                 C = matrix([u1, u2])
                 C == B
             </input>
-            <output></output>
         </sage>
 
     </subsection>
@@ -134,7 +129,6 @@
                 e2 = u2 / norm(u2)
                 e1, e2
             </input>
-            <output></output>
         </sage>
 
         <p>
@@ -148,7 +142,6 @@
                 A = matrix([v1, v2])
                 A
             </input>
-            <output></output>
         </sage>
 
         <sage>
@@ -156,7 +149,6 @@
                 B, mu = A.gram_schmidt(orthonormal=True)
                 B
             </input>
-            <output></output>
         </sage>
 
         <p>
@@ -169,14 +161,12 @@
                 M = matrix([e1, e2])
                 M
             </input>
-            <output></output>
         </sage>
 
         <sage>
             <input>
                 B == M
             </input>
-            <output></output>
         </sage>
 
     </subsection>

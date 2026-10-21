@@ -97,8 +97,6 @@
             <input>
                 cpoly.factor_list()
             </input>
-            <output>
-            </output>
         </sage>
 
     </subsection>
@@ -126,8 +124,6 @@
             <input>
                 A.eigenvalues()[0]
             </input>
-            <output>
-            </output>
         </sage>
         <p>
             Sage also provides a direct method to compute the multiplicities of the eigenvalues.
@@ -136,8 +132,6 @@
             <input>
                 A.eigenvalue_multiplicity(-1)
             </input>
-            <output>
-            </output>
         </sage>
         <p>
             Sage also provides a direct method to compute the multiplicities of the eigenvalues.
@@ -147,8 +141,6 @@
                 A.eigenvalue_multiplicity(-1)
                 A.eigenvalue_multiplicity(2)
             </input>
-            <output>
-            </output>
         </sage>
         <p>
             Observe that we obtained the same eigenvalues as before, each repeated according to its algebraic multiplicity.

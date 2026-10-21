@@ -25,9 +25,6 @@
                 A = matrix([[2, 3, 5], [7, 11, 13], [17, 19, 23]])
                 A.det()
             </input>
-            <output>
-                -78
-            </output>
         </sage>
 
         <p>
@@ -40,9 +37,6 @@
                 M = matrix([[1, 2], [2, 4]])
                 M.is_singular()
             </input>
-            <output>
-                True
-            </output>
         </sage>
 
         <p>
@@ -58,9 +52,6 @@
                 B = matrix([[1,2,3],[2,4,6],[1,0,1]])
                 print(B.rank())
             </input>
-            <output>
-                2
-            </output>
         </sage>
         <p>
             Alternatively, the rank is also the number of pivots in the row reduction of the matrix.
@@ -72,9 +63,6 @@
             <input>
                 len(B.pivots())
             </input>
-            <output>
-                2
-            </output>
         </sage>
     </introduction>
 </section>

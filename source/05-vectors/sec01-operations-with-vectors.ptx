@@ -22,17 +22,11 @@
                 w = vector([4, 5, 6])
                 v + w
             </input>
-            <output>
-                (5, 7, 9)
-            </output>
         </sage>
         <sage>
             <input>
                 v - w
             </input>
-            <output>
-                (-3, -3, -3)
-            </output>
         </sage>
 
         <p>
@@ -47,9 +41,6 @@
             <input>
                 2 * v
             </input>
-            <output>
-                (2, 4, 6)
-            </output>
         </sage>
     </introduction>
 </section>

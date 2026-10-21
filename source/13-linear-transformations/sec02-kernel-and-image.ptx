@@ -19,8 +19,6 @@
             T = linear_transformation(QQ^3, QQ^2, t)
             T.kernel()
         </input>
-        <output>
-        </output>
     </sage>
     <p>
         The output is the subspace <m>\text{Ker } T</m>. Sage provides by default the dimension and the echelonized basis of this space. 
@@ -37,8 +35,6 @@
             K=T.kernel()
             K.dimension() == 0
         </input>
-        <output>
-        </output>
     </sage>
     <p>
         We obtained that the linear transformation <m>T</m> is not injective since the kernel is not zero.
@@ -50,8 +46,6 @@
         <input>
             T.is_injective()
         </input>
-        <output>
-        </output>
     </sage>
     <p>
         The dimension of the kernel is called the <term>nullity</term> of <m>T</m>. Sage can compute directly this number:
@@ -60,8 +54,6 @@
         <input>
             T.nullity()
         </input>
-        <output>
-        </output>
     </sage>
     <p>
         The <term>image</term> of a linear transformation  <m>T: V → W</m>, denoted Im <m>T</m>,  is the subset of <m>W</m> consisting of  vectors of the form <m>Tv</m> for some <m>v∈V</m>:
@@ -77,8 +69,6 @@
         <input>
             T.image()
         </input>
-        <output>
-        </output>
     </sage>
     <p>
         The output is the subspace <m>\text{Im } T</m>. Sage provides by default the dimension and the echelonized basis of this space. 
@@ -95,8 +85,6 @@
             I=T.image()
             I.dimension() == 2
         </input>
-        <output>
-        </output>
     </sage>
     <p>
         We obtained that the linear transformation <m>T</m> is surjective since the image is the whole codomain.
@@ -108,8 +96,6 @@
         <input>
             T.is_surjective()
         </input>
-        <output>
-        </output>
     </sage>
     <p>
         The dimension of the image is called the <term>rank</term> of <m>T</m>. Sage can compute directly this number:
@@ -118,8 +104,6 @@
         <input>
             T.rank()
         </input>
-        <output>
-        </output>
     </sage>
     <p>
         The Rank-Nullity theorem states that
@@ -134,8 +118,6 @@
         <input>
             K.dimension() + I.dimension() == 3
         </input>
-        <output>
-        </output>
     </sage>
     <p>
         Or directly:
@@ -144,8 +126,6 @@
         <input>
             T.rank() + T.nullity() == 3
         </input>
-        <output>
-        </output>
     </sage>
 
 
