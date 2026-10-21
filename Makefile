@@ -2,13 +2,15 @@
 SOURCE_FILE = source/manuscript.ptx
 
 # Targets
-.PHONY: setup update all web view pdf clean rebuild help
+.PHONY: setup update all web view pdf latex clean rebuild help
+
+.DEFAULT_GOAL := help
 
 # Local environment set up
 setup:
 	pip install -r requirements.txt
 
-# Default target: build the pdf and web version and display local
+# Build and do all: the pdf and web version and display local
 all: pdf web view
 
 # Build the web version of the project
