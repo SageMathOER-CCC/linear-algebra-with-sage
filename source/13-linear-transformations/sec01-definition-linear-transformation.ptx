@@ -43,8 +43,6 @@
                 T = linear_transformation(QQ^3, QQ^2, t)
                 T
             </input>
-            <output>
-            </output>
         </sage>
 
         <p>
@@ -59,8 +57,6 @@
                 w = T(v)
                 w
             </input>
-            <output>
-            </output>
         </sage>
 
         <p>
@@ -81,8 +77,6 @@
             S = linear_transformation(QQ^3, QQ^2, A, side='right')
             S
             </input>
-            <output>
-            </output>
         </sage>
         <p>
             We can check that these transformations are the same:
@@ -91,8 +85,6 @@
             <input>
                 S == T
             </input>
-            <output>
-            </output>
         </sage>
         <p>
             Conversely, any linear transformation <m>T: V → W</m> can be expressed as <m>T(x) = Ax</m> for some matrix <m>A</m>. This matrix is obtained by applying <m>T</m> 
@@ -112,8 +104,6 @@
                 A = column_matrix([Te1, Te2, Te3])
                 A
             </input>
-            <output>
-            </output>
         </sage>
         <p>
             Alternatively, we can ask Sage to obtain the associated matrix directly by using the method <c>matrix()</c> with the option <c>side='right'</c>.
@@ -123,8 +113,6 @@
                 SA = T.matrix(side='right')
                 SA
             </input>
-            <output>
-            </output>
         </sage>
         <p>
             Let's check that the matrix that we calculated manually and the one calculated by Sage are the same:
@@ -133,8 +121,6 @@
             <input>
                 A == SA
             </input>
-            <output>
-            </output>
         </sage>
         <p>
             Observe that the matrix associated to a linear transformation by default in Sage is the transpose of this matrix, since the default Sage option is <c>side='left'</c>.
@@ -150,8 +136,6 @@
                 R = linear_transformation(QQ^3, QQ^2, [Te1, Te2, Te3])
                 R
             </input>
-            <output>
-            </output>
         </sage>
         <p>
             Again, we can check that we obtain the same linear transformation:
@@ -160,8 +144,6 @@
             <input>
                 R == S == T
             </input>
-            <output>
-            </output>
         </sage>
 
     </subsection>
